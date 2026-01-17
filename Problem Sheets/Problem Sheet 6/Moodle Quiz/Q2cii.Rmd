@@ -1,0 +1,23 @@
+Question
+========
+When using inverse distance weighting with $p=2$ for the New Zealand precipitation data, what is the predicted value at 166°E Longitude and 51°S Latitude?
+
+Solution
+========
+
+The main challenge is to identify that we have to consider the negative for the latitude, because the point lies in the southern hemisphere:
+
+```{r, eval=FALSE}
+Rain  <- read.csv( "NewZealandRain.csv" )
+coord <- cbind( Rain$lon, Rain$lat )
+IDW( X=Rain$precipitation, S=coord, s_star=c(166,-51), p=2.0 )
+```
+
+We find that the predicted value (to 2 decimal places) is $225.48$mm.
+
+Meta-information
+================
+exname: Q2cii
+extype: num
+exsolution: 400.46
+extol: 0.01

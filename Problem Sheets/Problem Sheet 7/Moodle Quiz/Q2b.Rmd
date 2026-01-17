@@ -1,0 +1,17 @@
+Question
+========
+At which distance are zinc concentrations at two spatial sites close to independent?
+
+
+Solution
+========
+
+This is a bit subjective, but one may say that the semi-variogram is levelling off around 0.1.
+
+
+Meta-information
+================
+exname: Q2b
+extype: num
+exsolution: 0.11
+extol: 0.02

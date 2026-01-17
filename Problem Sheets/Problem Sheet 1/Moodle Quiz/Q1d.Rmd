@@ -1,0 +1,21 @@
+Question
+========
+Which issue with the raw data may be addressed by using the group_by() function? 
+
+
+Answerlist
+----------
+* Variable names are uninformative;
+* Data types are incompatible with available R functions;
+* We are only interested in a subset of the data.
+
+Solution
+========
+The function group_by() makes it easier to access different subsets of data by grouping observations based on one (or more) variables. We can then use the summarize() function to calculate summaries for the individual groups. Consequently, this function may be used to address the third issue. 
+
+Meta-information
+================
+exname: Q1d
+extype: schoice
+exsolution: 001
+exshuffle: 3

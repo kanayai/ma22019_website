@@ -1,0 +1,23 @@
+Question
+========
+When sightings of Type Ia supernova, which type of spatial data (point-referenced, point pattern or lattice/areal data) are mostly likely working with?
+
+Answerlist
+----------
+		
+* Point-referenced
+* Point pattern
+* Lattice/areal
+
+Solution
+========
+
+The locations of Type Ia supernova are unknown and we thus will have point pattern data. 
+
+This is one application of spatial data analysis which does not consider observations located on earth. This results in a coordinate system different to the latitude/longitude system considered in most examples.
+
+Meta-information
+================
+exname: Q1e
+extype: schoice
+exsolution: 010

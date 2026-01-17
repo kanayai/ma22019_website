@@ -1,0 +1,21 @@
+Question
+========
+Which issue with the raw data may be addressed by using the slice_head() function? 
+
+
+Answerlist
+----------
+* Variable names are uninformative;
+* Data types are incompatible with available R functions;
+* We are only interested in a subset of the data.
+
+Solution
+========
+The function slice_head() returns the first few elements of the data frame. We have to specify how many elements we want to print using the option n=... For instance, n=5 prints the first five lines. As such, this function is useful if we are just interested in exploring the first few lines of a data frame, i.e. it may address the first issue.
+
+Meta-information
+================
+exname: Q1f
+extype: schoice
+exsolution: 001
+exshuffle: 3

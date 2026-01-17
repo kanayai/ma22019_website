@@ -1,0 +1,44 @@
+Question
+========
+Which two countries recorded the highest total CO$_2$ emissions across all sectors for the considered time window? 
+
+Answerlist
+----------
+* Brazil
+* China
+* France
+* Germany
+* India
+* Italy
+* Japan
+* Russia
+* Spain
+* UK
+* United States
+
+
+Solution
+========
+
+We extract the information using
+
+```{r, eval=FALSE, echo=TRUE}
+CO2 <- read.csv( "CO2 Emissions.csv", header=TRUE )
+
+CO2 %>%
+  group_by( country ) %>%
+  summarize( Total=sum( emissions) ) %>%
+  arrange( desc(Total) ) %>%
+  slice_head( n=5 )
+```
+
+The US and China are the two top countries according to this list.
+
+
+
+Meta-information
+================
+exname: Q1a
+extype: mchoice
+exsolution: 01000000001
+exshuffle: 11

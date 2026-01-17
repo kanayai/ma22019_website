@@ -1,0 +1,36 @@
+Question
+========
+Decide whether the following statement is true or not: Most of the earthquakes with a magnitude of 6 or higher occurred to the east and south of Japan, with the majority being to the east of Honshu (the largest of Japan's four main islands). 
+
+Answerlist
+----------
+		
+* True
+* False
+
+
+Solution
+========
+
+We produce the map using 
+```{r, eval=FALSE}
+Earthquakes <- read.csv( "Japan earthquakes.csv" )
+
+Earthquakes_strong <- filter( Earthquakes, mag>=6.0 )
+
+ggplot( Earthquakes_strong, aes(x=longitude, y=latitude) ) + 
+  annotation_map_tile( zoom=5 ) + 
+  geom_spatial_point( aes( color = mag ) ) + 
+  scale_color_distiller( palette="Reds", trans="reverse" ) +
+  labs( x="Longitude", y="Latitude", color="Magnitude" ) + 
+  theme_bw()
+```
+
+Most of the points are located to the east and south of Japan, with the majority being to the east of Honshu (the largest of Japan's four main islands). So the statement is true
+
+
+Meta-information
+================
+exname: Q3cii
+extype: schoice
+exsolution: 10

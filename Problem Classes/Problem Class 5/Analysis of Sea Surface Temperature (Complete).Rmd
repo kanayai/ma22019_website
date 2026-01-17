@@ -1,0 +1,70 @@
+---
+title: "Problem Class 5 - Solution"
+author: "Christian Rohrbeck"
+date: "19/03/2025"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background
+
+Sea surface temperature is the temperature of the top millimeter of the ocean's surface. Sea surface temperatures influence weather, including hurricanes, as well as plant and animal life in the ocean. Like Earth's land surface, sea surface temperatures are warmer near the equator and colder near the poles. Currents like giant rivers move warm and cold water around the world's oceans. Some of these currents flow on the surface, and they are obvious in sea surface temperature images.
+
+In this short exercise we consider the average sea surface temperature for the North Atlantic in August 2022 as recorded by <a href="https://neo.gsfc.nasa.gov/view.php?datasetId=MYD28M&date=2022-08-01">NASA</a>. The data is produced by placing a fine grid over the globe and then deriving the average temperature for each pixel.  
+
+Let's import the data
+
+```{r}
+Sea_raw <- read.csv("SeaSurface.csv")
+```
+
+Our aim is to visualize the spatial distribution, and we load the necessary packages
+
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(sf)
+```
+
+Consider the following tasks.
+
+## Tasks 
+
+**Task 1:** What is the type of spatial data we are working with?
+
+<p style="color:blue">*While this is strictly speaking lattice data, we will see that the techniques we introduced so far also work for this data due to its high resolution.*</p>
+
+
+**Task 2:** Convert the data into a spatial object using the **st_as_sf()** function:
+
+<p style="color:blue">*We can use the same code as for the temperature data from Germany*</p>
+
+```{r}
+Sea <- st_as_sf( Sea_raw, coords=c("lon", "lat"), crs="WGS84" )
+```
+
+**Task 3:** Visualize the data using the WGS84 coordinate system. What do you conclude?
+
+<p style="color:blue">*This is an example where we don't need a shapefile or map. We can directly plot the spatial object:*</p>
+
+```{r, fig.align='center', out.width='50%', fig.height=5, fig.width=5}
+ggplot( data=Sea ) + theme_bw() + geom_sf( aes(color=Temperature) )
+```
+
+<p style="color:blue">*We see that north-south trend described in the background section, with temperatures tending to be be higher near to the equator. The plot also shows that the sea surface temperature changes slowly even over large distances. Finally, we identify the Labrador Current which is a cold current that flows along the east coast of Canada, and there are some indications of the Gulf Stream.*</p>
+
+**Task 4:** Visualize the data using coordinate system with CRS=3347. Which aspects are better represented by this projection?
+
+<p style="color:blue">*We use the function coord_sf() to change the coordinate system:*</p>
+
+```{r, fig.align='center', out.width='50%', fig.height=5, fig.width=5}
+ggplot( data=Sea ) + theme_bw() + geom_sf( aes(color=Temperature) ) + 
+  coord_sf( crs=st_crs(3347) )
+```
+
+<p style="color:blue">*This new plot does a better job at visualizing that observations are located on a sphere. This will mean that distances between sites in the plot are more representative of the actual distances.*</p>
+

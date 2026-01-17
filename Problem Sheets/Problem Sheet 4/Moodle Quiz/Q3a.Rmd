@@ -1,0 +1,43 @@
+Question
+========
+Which words (exclusing stop words) are not among the five most common words in the book *Frankenstein*?
+
+Answerlist
+----------
+* life			
+* father
+* time
+* elizabeth			
+* mind			
+* day	
+* the 
+* on 
+
+Solution
+========
+
+We first split the lines of text and remove any punctuation:
+
+```{r, eval=FALSE, echo=TRUE}
+Frankenstein <- Frankenstein_raw %>% unnest_tokens( word, text )
+Frankenstein <- Frankenstein %>% mutate( word = gsub( "_", "", word ) )
+```
+
+We then count the number of occurrences for each word and remove any words that are categorized as stop words. Finally, we print the five most common words (excluding stop words):
+
+```{r, eval=FALSE, echo=TRUE}
+Frankenstein %>% 
+  count( word, sort=TRUE ) %>%
+  anti_join( stop_words, by=c("word") ) %>% 
+  slice_head( n=5 )
+```
+
+We conclude that that five most common words (excluding stop words) are “life”, “father”, “eyes”, “time” and “night”.
+
+
+Meta-information
+================
+exname: Q3a
+extype: mchoice
+exsolution: 00011111
+exshuffle: 8

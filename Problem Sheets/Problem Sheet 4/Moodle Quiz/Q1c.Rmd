@@ -1,0 +1,36 @@
+Question
+========
+Which of the following words are the most common in one of the short stories in *The Works of Edgar Allan Poe - Volume 1*?
+
+Answerlist
+----------
+* ship
+* voice
+* machine
+* balloon
+* king
+* body
+
+Solution
+========
+
+Using the data from part a), we first remove the stop words in the list provided by the tidytext package:
+
+```{r, eval=FALSE, echo=TRUE}
+data( stop_words )
+Poe <- Poe %>% anti_join( stop_words, by="word" )
+```
+
+Finally, we apply the count() function again, but we need to do it for each story. So we combine count() with group_by():
+
+```{r, eval=FALSE, echo=TRUE}
+Poe %>%
+  group_by( story ) %>%
+  count( word, sort=TRUE ) %>% 
+  slice_head( n=1 )
+```
+Meta-information
+================
+exname: Q1c
+extype: mchoice
+exsolution: 110100

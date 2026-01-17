@@ -1,0 +1,47 @@
+Question
+========
+What is the difference in average traffic volume between work days and the weekend/ a holiday?
+
+Solution
+========
+We first perform the data operations from part a):
+
+```{r, eval=FALSE, echo=TRUE}
+Traffic <- read.csv( "Traffic Minnesota.csv" )
+Traffic <- Traffic %>% mutate( date_time = dmy_hm(date_time) )
+Traffic <- Traffic %>% mutate( Weekday = weekdays(date_time) )
+```
+
+We then create a variable which represents whether an observation comes from Monday-Friday or whether it's the weekend / a holiday.
+
+```{r, eval=FALSE, echo=TRUE}
+Traffic <- Traffic %>% 
+  mutate( WorkDay = case_when( Weekday == "Saturday" ~ "Weekend",
+                               Weekday == "Sunday" ~ "Weekend",
+                               holiday != "None" ~ "Weekend",
+                               .default = "Workday" ) )
+```
+
+Next, we calculate the average traffic volume for the two categories:
+  
+```{r, eval=FALSE, echo=TRUE}
+AverageTraffic <- Traffic %>% 
+  group_by( WorkDay ) %>%
+  summarise( Mean = mean(traffic_volume) )
+```
+
+Finally, we calculate the difference in the averages:
+
+```{r, eval=FALSE, echo=TRUE}
+AverageTraffic$Mean[1] - AverageTraffic$Mean[2]
+```
+
+So the difference is 975.372.
+
+
+Meta-information
+================
+exname: Q2bi
+extype: num
+exsolution: 975.372
+extol: 0.01

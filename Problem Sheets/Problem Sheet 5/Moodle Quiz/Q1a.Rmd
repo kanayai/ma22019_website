@@ -1,0 +1,41 @@
+Question
+========
+Which five words (excluding stop words) are the most common in *Moby Dick*?
+
+Answerlist
+----------
+		
+* ahab		
+* boat
+* captain
+* head
+* sea	
+* ship
+* time	
+* whale	
+* white
+* ye
+
+Solution
+========
+
+We extract the information using
+
+```{r, eval=FALSE, echo=TRUE}
+MobyDick_raw <- filter( Books, title == "Moby Dick" )
+
+MobyDick_raw %>% 
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "_", "", word ) ) %>%
+  count( word, sort=TRUE ) %>%
+  anti_join( stop_words, by="word" ) %>%
+  slice_head( n=5 )
+```
+
+We find that whale, ahab, sea, ship and ye are the five most common words (excluding stop words).
+
+Meta-information
+================
+exname: Q1a
+extype: mchoice
+exsolution: 1000110101

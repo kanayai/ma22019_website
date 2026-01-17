@@ -1,0 +1,5 @@
+Stations_id;Stationshoehe;Geogr.Breite;Geogr.Laenge;von_datum;bis_datum;Stationsname
+  1766;   48.00; 52.1328;  7.6856;19820101;19890930;Münster/Osnabrück
+  1766;   48.40; 52.1345;  7.6964;19891001;20091013;Münster/Osnabrück
+  1766;   47.80; 52.1344;  7.6969;20091014;20170424;Münster/Osnabrück
+  1766;   47.80; 52.1344;  7.6969;20170425;        ;Münster/Osnabrück

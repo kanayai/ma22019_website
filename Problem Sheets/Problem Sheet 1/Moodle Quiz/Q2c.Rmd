@@ -1,0 +1,23 @@
+Question
+========
+Which plane (specified by the **tailnum** variable) departed most often from New York City airports in 2013?
+
+
+Solution
+========
+The plan with tail number N725MQ departed the most often from the New York City airports. We may use group_by() and summarise(), but now also order the planes according to their number flights, since the data contain information for a large number of planes:
+```{r, eval=FALSE, echo=TRUE}
+NYCFlights %>%
+  group_by( tailnum ) %>%
+  summarize( Number_of_Flights=n() ) %>%
+  arrange( desc(Number_of_Flights) ) %>%
+  slice_head( n=5 )
+```
+We have to ignore the first entry, because **NA** does not refer to a single plane.
+
+
+Meta-information
+================
+exname: Q2c
+extype: string
+exsolution: N725MQ

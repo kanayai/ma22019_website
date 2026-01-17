@@ -1,0 +1,21 @@
+Question
+========
+Which issue with the raw data may be addressed by using the as_numeric() function? 
+
+
+Answerlist
+----------
+* Variable names are uninformative;
+* Data types are incompatible with available R functions;
+* We are only interested in a subset of the data.
+
+Solution
+========
+ The function as_numeric() converts a variable of type character into a variable of type numeric. This function is useful when we read data as character but actually need to use it for calculations, i.e., it again addresses the second issue.  
+
+Meta-information
+================
+exname: Q1b
+extype: schoice
+exsolution: 010
+exshuffle: 3

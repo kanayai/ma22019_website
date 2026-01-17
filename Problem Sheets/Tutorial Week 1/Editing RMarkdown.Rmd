@@ -1,0 +1,158 @@
+---
+title: "Editing the R Markdown file"
+author: "Christian Rohrbeck"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Changing the header and adding text
+
+At the top of the file you find the header, which looks something like:
+
+```{r, eval=F}
+---
+title: "My title"
+author: "Christian Rohrbeck"
+date: "07/07/2023"
+output: pdf_document
+---
+```
+
+This is where you can edit the header (title, author and date) of your document. You do not have to change the line starting with "output" to knit to HTML or Word.
+
+Section headings are specified using hashes, such as
+
+```{r, eval=F}
+# R Markdown
+```
+
+with \# being used for top level sections and \#\# for sub-sections, should you want to use them.
+
+To add text to the various sections of your document, you just have to write it like in a Word document. The difference to Word is that you will not see the layout until you knit to your output file. In RStudio you will see the buttons "Source" and "Visual" to the upper left of your file. By switching to "Visual" you will have a limited preview.
+
+If you want to start a new paragraph, you have to leave a blank line - it's not enough to just start a new line.
+
+You can use LaTeX in R Markdown documents to display equations. For example to show $\sqrt{X}$ you can use \$$\backslash$sqrt{X}\$. For more details on using LaTeX equations in R Markdown, see 
+[here](https://www.math.mcgill.ca/yyang/regression/RMarkdown/example.html).
+
+### Inserting R code
+
+Between the different lines of text (or paragraphs), we want to insert bits of R code, for instance, to create a plot that is inserted at this point of the document.
+
+We can insert R code chunks using the keyboard short cut $\mathrm{\texttt{Ctrl + Alt + I}}$ ($\mathrm{\texttt{Cmd + Option + I }}$ on macOS). This will produce an R chunk that is presented as
+
+````{=html}
+<pre><code>```{r}
+
+```</code></pre>
+````
+
+```{=latex}
+\texttt{```$\left\{\mathrm{r}\right\}$}\\
+~\\
+\texttt{```}
+```
+
+You can also type this directly into the R Markdown file. 
+
+Everything that is typed within this chunk will be evaluated using R. For instance, we can generate two samples from a Normal(1,4) distribution using
+
+````{=html}
+<pre><code>```{r}
+rnorm( 2, mean=1, sd=2 )
+```</code></pre>
+````
+
+```{=latex}
+\texttt{```$\left\{\mathrm{r}\right\}$}\\
+\texttt{rnorm( 2, mean=1, sd=2 )}\\
+\texttt{```}
+```
+```{r, echo=F}
+rnorm( 2, mean=1, sd=2 )
+```
+
+**Tip:** You will find a small green play button in the right upper corner of each R code chunk. You can use it to test the R chunk individually and to verify that your code is working correctly.
+
+### Loading R packages
+
+It is important to remember that R Markdown ignores any packages or variables loaded within your RStudio workspace when knitting to the PDF/HTML/Word files. Hence you have to load them separately within the document. This ensures reproducibility of your results.
+
+When loading R packages, it is best to suppress any messages because some messages may cause issues when knitting. To do this, we use the options **warning=FALSE** and **message=FALSE** when loading packages
+
+````{=html}
+<pre><code>```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+```</code></pre>
+````
+
+```{=latex}
+\texttt{```$\left\{\mathrm{r, warning=FALSE, message=FALSE}\right\}$}\\
+\texttt{library(dplyr)}\\
+\texttt{```}
+```
+
+Please also remember that any packages you load must be installed on your device.
+
+
+### Figures in R Markdown
+
+By putting the code for producing our data graphics into the R Markdown file, the figures are automatically generated and inserted into the knitted text document. However, the data graphics may be quite large, which is troubling when we have to stick to a page limit or are concerned about presentation.
+
+There are multiple options we can use to control the size and position of the data graphic within the text document:
+
+-   $\mathrm{\texttt{out.width}}$: Controls the width of the data graphic, relative to the width of the text.
+
+-   $\mathrm{\texttt{fig.height}}$ and $\mathrm{\texttt{fig.width}}$: Width and height of the plot - the size of the plot may still be changed using $\mathrm{\texttt{out.width}}$
+
+-   $\mathrm{\texttt{fig.align}}$: Specifies alignment of the figure. Possible values are 'default', 'left', 'right', and 'center'.
+
+-   $\mathrm{\texttt{fig.cap}}$: Gives your graphic a caption.
+
+-   $\mathrm{\texttt{warning=FALSE}}$ and $\mathrm{\texttt{message=FALSE}}$ to suppress R warnings and messages. **Only use this to save space in the final document and do not use from the start.**
+
+There are many more chunk options, which you can find in the R Markdown documentation. For the purposes of this course, the options above are the important ones.
+
+**Important:** Please remember that you cannot have a line break when you specify options, no matter how many you set.
+
+**Example:** Let's start by generating some random data samples in one chunk of R code
+
+````{=html}
+<pre><code>```{r}
+set.seed(2022)
+x <- rnorm( 100, mean=0, sd=1 )
+y <- rnorm( 100, mean=0, sd=1 )
+obs <- data.frame( "x"=x, "y"=y )
+```</code></pre>
+````
+
+This piece of R code does not produce any output because we stored everything as variables, and the generated data is stored in the data frame **obs**.
+
+To visualize the data, we create a scatter plot of the two samples in a new R chunk
+
+````{=html}
+<pre><code>```{r, fig.align='center', out.width='40%', fig.width=5, fig.height=5, fig.cap='Scatter plot of X against Y.'}
+plot( obs$x, obs$y, xlab="Samples for X", ylab="Samples for Y" )}
+```</code></pre>
+````
+
+When knitting the document, these two chunks of R code produce the following output in the text document
+
+
+```{r}
+set.seed(2022)
+x <- rnorm( 100 )
+y <- rnorm( 100 )
+obs <- data.frame( "x"=x, "y"=y )
+```
+
+```{r, fig.align='center', out.width='40%', fig.width=5, fig.height=5, fig.cap='Scatter plot of X against Y.', message=FALSE}
+plot( obs$x, obs$y, xlab="Samples for X", ylab="Samples for Y" )
+```

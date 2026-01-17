@@ -1,0 +1,20 @@
+Question
+========
+Decide whether the following statement is true: "The first principal component indicates that given river flow is high at one location, it is also high at the other locations."
+
+Answerlist
+----------
+		
+* True
+* False
+
+Solution
+========
+
+All sites have the same sign in the first principal component and thus this statement is true.
+
+Meta-information
+================
+exname: Q1a
+extype: schoice
+exsolution: 10

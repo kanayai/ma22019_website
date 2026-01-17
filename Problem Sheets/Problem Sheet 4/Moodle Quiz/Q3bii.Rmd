@@ -1,0 +1,15 @@
+Question
+========
+Which chapter has the lowest sentiment score?
+
+Solution
+========
+
+We follow the same steps as in Section 3.2.2 and find that Chapter 24 has the lowest sentiment, with a value of -290.
+
+Meta-information
+================
+exname: Q3bii
+extype: num
+exsolution: 24
+extol: 0.2

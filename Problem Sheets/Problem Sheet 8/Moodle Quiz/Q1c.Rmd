@@ -1,0 +1,48 @@
+Question
+========
+Is it reasonable to conclude that the point process describing outbreaks of African swine fever across Latvia is homogeneous?
+
+Answerlist
+----------
+		
+* Yes
+* No
+
+Solution
+========
+
+We first create a ppp object by adapting the code in Section 4.6.4 of the lecture notes:
+
+```{r, warning=FALSE, eval=FALSE}
+Latvia <- read_sf( "Shapefiles/gadm41_LVA_0.shp" )
+Latvia <- Latvia %>% 
+  st_simplify( dTolerance = 1000 ) %>%
+  st_transform( crs=3857 )
+
+SwineFever_transformed <- SwineFever_Latvia %>%
+  st_as_sf( coords=c("longitude","latitude"), crs=4326 ) %>%
+  st_transform( crs=3857 ) %>% 
+  st_coordinates( )
+
+Latvia_ppp <- ppp( SwineFever_transformed[,1], 
+                   SwineFever_transformed[,2], 
+                   window = as.owin(Latvia) )
+```
+
+We can then derive and visualize the quadrat counting estimate:
+
+```{r, out.width='60%', fig.align='center', eval=FALSE}
+par( mai=c(0.01,0.01,0.5,0.01) )
+Latvia_Quadrants <- quadratcount( Latvia_ppp, nx=7, ny=5 )
+plot( Latvia_Quadrants, 
+      main="Quadrat counting for swine fever outbreaks across Latvia" )
+```
+
+From this plot we conclude that there are large spatial differences in the intensity with almost all cases located in north-eastern Latvia. Consequently, we conclude that the process is non-homogeneous.
+
+
+Meta-information
+================
+exname: Q1c
+extype: schoice
+exsolution: 01

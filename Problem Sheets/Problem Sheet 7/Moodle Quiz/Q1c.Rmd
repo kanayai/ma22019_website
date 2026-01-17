@@ -1,0 +1,21 @@
+Question
+========
+Do the results suggest that the river flow dynamics in the Lake District are different to that in North East England? 
+
+
+Answerlist
+----------
+		
+* Yes
+* No
+
+Solution
+========
+
+The third eigenvector has positive values for sites in North East England and negative values for sites in the Lake District. Therefore, the third eigenvector suggests that the river flow dynamics in the Lake District are different to that in North East England.
+
+Meta-information
+================
+exname: Q1c
+extype: schoice
+exsolution: 10

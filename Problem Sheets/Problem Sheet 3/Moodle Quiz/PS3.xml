@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 1</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q1 : Q1a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which two countries recorded the highest total CO<span class="math inline">\(_2\)</span> emissions across all sectors for the considered time window?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We extract the information using</p>
+<pre><code>CO2 &lt;- read.csv( &quot;CO2 Emissions.csv&quot;, header=TRUE )
+
+CO2 %&gt;%
+  group_by( country ) %&gt;%
+  summarize( Total=sum( emissions) ) %&gt;%
+  arrange( desc(Total) ) %&gt;%
+  slice_head( n=5 )</code></pre>
+<p>The US and China are the two top countries according to this list.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Russia
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+France
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Japan
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+India
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+UK
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Spain
+</p>]]></text>
+</answer>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+United States
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Brazil
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Italy
+</p>]]></text>
+</answer>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+China
+</p>]]></text>
+</answer>
+<answer fraction="-11.11111" format="html">
+<text><![CDATA[<p>
+Germany
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 2</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q2 : Q1b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which sector of the UK economy produced the most CO<span class="math inline">\(_2\)</span> emissions over the observation period?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>To identify of the UK economy which produced the most CO<span class="math inline">\(_2\)</span> emissions, we can use functions from dplyr:</p>
+<pre><code>CO2_UK &lt;- CO2 %&gt;%
+  filter( country==&quot;UK&quot; ) %&gt;%
+  group_by( sector ) %&gt;%
+  summarize( Total=sum(emissions) )
+CO2_UK</code></pre>
+<p>We find that ground transport is the corect answer.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Domestic Aviation
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+International Aviation
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Power
+</p>]]></text>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+Ground Transport
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Residential
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Industry
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 3</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q3 : Q2bi </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>What is the average traffic volume on a Saturday?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We extract this information using</p>
+<pre><code>Traffic &lt;- read.csv( &quot;Traffic Minnesota.csv&quot; )
+Traffic &lt;- Traffic %&gt;% mutate( date_time = dmy_hm(date_time) )
+Traffic &lt;- Traffic %&gt;% mutate( Weekday = weekdays(date_time) )
+
+Traffic %&gt;% 
+  filter( Weekday==&quot;Saturday&quot; ) %&gt;%
+  summarize( Average = mean(traffic_volume) )</code></pre>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>2773.638</text>
+<tolerance>0.01</tolerance>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 4</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q4 : Q2bii </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>What is the difference in average traffic volume between work days and the weekend/ a holiday?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first perform the data operations from part a):</p>
+<pre><code>Traffic &lt;- read.csv( &quot;Traffic Minnesota.csv&quot; )
+Traffic &lt;- Traffic %&gt;% mutate( date_time = dmy_hm(date_time) )
+Traffic &lt;- Traffic %&gt;% mutate( Weekday = weekdays(date_time) )</code></pre>
+<p>We then create a variable which represents whether an observation comes from Monday-Friday or whether it’s the weekend / a holiday.</p>
+<pre><code>Traffic &lt;- Traffic %&gt;% 
+  mutate( WorkDay = case_when( Weekday == &quot;Saturday&quot; ~ &quot;Weekend&quot;,
+                               Weekday == &quot;Sunday&quot; ~ &quot;Weekend&quot;,
+                               holiday != &quot;None&quot; ~ &quot;Weekend&quot;,
+                               .default = &quot;Workday&quot; ) )</code></pre>
+<p>Next, we calculate the average traffic volume for the two categories:</p>
+<pre><code>AverageTraffic &lt;- Traffic %&gt;% 
+  group_by( WorkDay ) %&gt;%
+  summarise( Mean = mean(traffic_volume) )</code></pre>
+<p>Finally, we calculate the difference in the averages:</p>
+<pre><code>AverageTraffic$Mean[1] - AverageTraffic$Mean[2]</code></pre>
+<p>So the difference is 975.372.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>975.372</text>
+<tolerance>0.01</tolerance>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 5</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q5 : Q3ai </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following periods records the highest average daily maximum temperatures?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We can for instance produce a plot which plots day of the year against temperature:</p>
+<pre><code>BrisbaneGoldCoast &lt;- read.csv(&quot;BrisbaneGoldCoast.csv&quot;)
+
+BrisbaneGoldCoast &lt;- BrisbaneGoldCoast %&gt;% 
+  mutate( Date = as_date( Date, format=&quot;%d/%m/%Y&quot; ) )
+
+GoldCoast &lt;- filter( BrisbaneGoldCoast, Location==&quot;GoldCoast&quot; )
+
+ggplot( GoldCoast, aes( x=Date, y=MaxTemp ) ) + 
+  geom_line( ) + labs( x=&quot;Date&quot;, y=&quot;Maximum Temperature&quot; )</code></pre>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+December - February
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+June - August
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+September - November
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+March - Mai
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS3/Exercise 6</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q6 : Q3aii </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Provide an estimate for the average daily maximum temperature in July.</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>Looking at the plot for the first question, the temperature seems between 21 and 22 degree Celsius. We can also extract this information exactly using</p>
+<pre><code>GoldCoast %&gt;% 
+  group_by(month(Date)) %&gt;% 
+  summarise( Mean=mean(MaxTemp, na.rm=TRUE) )</code></pre>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>21.5</text>
+<tolerance>1.5</tolerance>
+</answer>
+</question>
+
+</quiz>

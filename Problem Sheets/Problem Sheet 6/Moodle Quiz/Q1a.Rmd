@@ -1,0 +1,21 @@
+Question
+========
+When considering the occurrences of tornadoes across Europe, which type of spatial data (point-referenced, point pattern or lattice/areal data) are mostly likely working with?
+
+Answerlist
+----------
+		
+* Point-referenced
+* Point pattern
+* Lattice/areal
+
+Solution
+========
+
+The locations at which tornadoes occur are unknown/random and thus we will likely have point pattern data.
+
+Meta-information
+================
+exname: Q1a
+extype: schoice
+exsolution: 010

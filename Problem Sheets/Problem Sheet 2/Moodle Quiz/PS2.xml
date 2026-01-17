@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 1</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q1 : Q1 </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which visual cues were used in the analysis?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>One may argue that the following visual cues have been used:</p>
+<ul>
+<li><p>Position to indicate whether observations are earlier or later in the year.</p></li>
+<li><p>Length to facilitate a comparison of different days.</p></li>
+<li><p>Colour and shape (line type) to separate the two cities.</p></li>
+</ul>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Position
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Length
+</p>]]></text>
+</answer>
+<answer fraction="-20" format="html">
+<text><![CDATA[<p>
+Angle
+</p>]]></text>
+</answer>
+<answer fraction="-20" format="html">
+<text><![CDATA[<p>
+Direction
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Shape
+</p>]]></text>
+</answer>
+<answer fraction="-20" format="html">
+<text><![CDATA[<p>
+Area
+</p>]]></text>
+</answer>
+<answer fraction="-20" format="html">
+<text><![CDATA[<p>
+Volume
+</p>]]></text>
+</answer>
+<answer fraction="-20" format="html">
+<text><![CDATA[<p>
+Shade
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Colour
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 2</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q2 : Q2a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>What was the monthly average temperature for Rio de Janeiro when Sao Paulo recorded its highest monthly average temperature?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first load and combine the data sets</p>
+<pre><code>Rio &lt;- read.csv( &quot;Rio Temperature.csv&quot; )
+SaoPaulo &lt;- read.csv( &quot;Sao Paulo Temperature.csv&quot; )
+
+Temperature &lt;- full_join( SaoPaulo, Rio, by=c(&quot;YEAR&quot;=&quot;YEAR&quot;, &quot;MONTH&quot;=&quot;MONTH&quot;) )
+Temperature &lt;- Temperature %&gt;%
+  rename( &quot;SaoPaulo&quot; = TEMPERATURE.x, &quot;Rio&quot; = TEMPERATURE.y )</code></pre>
+<p>One way is to then sort the data based on the temperature for Sao Paulo and to extract the first entry:</p>
+<pre><code>Temperature %&gt;%
+  arrange( desc(SaoPaulo) ) %&gt;%
+  slice_head( n=1 )</code></pre>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>28.95</text>
+<tolerance>0</tolerance>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 3</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q3 : Q2b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>What was the largest difference in the monthly average temperatures for Sao Paulo and Rio de Janeiro?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We find that the answer is 5.44 degree Celsius using the following R code:</p>
+<pre><code>Temperature %&gt;%
+  mutate( Difference = abs( SaoPaulo - Rio ) ) %&gt;%
+  summarise( &quot;Maximum Difference&quot; = max( Difference, na.rm = TRUE ) )</code></pre>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>5.44</text>
+<tolerance>0</tolerance>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 4</text>
+</category>
+</question>
+
+
+<question type="shortanswer">
+<name>
+<text> Q4 : Q3c </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Identify the date for which the difference in recorded daily minimum and maximum temperatures was at its highest in 2019. Enter your answer in the Day/Month format via the quiz on Moodle.</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first create a new variable which represents the difference in minimum and maximum temperature on the day and then find the day with the largest difference:</p>
+<pre><code>NYC &lt;- read.csv( &quot;NYC Weather 2019.csv&quot; )
+NYC %&gt;% 
+  mutate( Difference = Tmax - Tmin ) %&gt;%
+  arrange( desc(Difference) ) %&gt;%
+  slice_head( n=1 )</code></pre>
+<p>We find that the correct answer is 08/04.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<usecase>0</usecase>
+<answer fraction="100" format="moodle_auto_format">
+<text>
+08/04
+</text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 5</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q5 : Q3ei </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which month had the highest median daily maximum temperature according to your plot in part d)?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>The first step is to create a new variable in the data frame which represents the month of the observation. We apply the functions mentioned in the question text as follows:</p>
+<pre><code>NYC &lt;- NYC %&gt;% mutate( Date = as_date( Date, format=&quot;%d/%m/%Y&quot;) )
+NYC &lt;- NYC %&gt;% mutate( Month = factor( month(Date) ) )</code></pre>
+<p>We then use the function geom_boxplot() from the lecture to produce for each momth a boxplot for the daily maximum temperature:</p>
+<pre><code>ggplot( NYC, aes(x=Month,y=Tmax) ) + geom_boxplot() + 
+  labs( x=&quot;Month&quot;, y=&quot;Maximum daily temperature in Fahrenheit&quot; )</code></pre>
+<div class="figure" style="text-align: center">
+<img src="@@PLUGINFILE@@/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" width="60%" />
+<p class="caption">
+plot of chunk unnamed-chunk-2
+</p>
+</div>
+<p>Since the box plot visualizes, amongst others, the median value, we conclude that July recorded the highest median in terms of daily maximum temperature.</p>
+</p>]]></text>
+<file name="unnamed-chunk-2-1.png" encoding="base64">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</file>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+January
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+February
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+March
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+April
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+May
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+June
+</p>]]></text>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+July
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+August
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+September
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+October
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+November
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+December
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS2/Exercise 6</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q6 : Q3eii </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>We learned that box plots should usually be ordered based on a criteria, such as the median. Should this approach also be taken for the box plot you created in part d)?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>No, it’s better to keep the plot as it is presented in part d). In general, we should not reorder the categorical variables when they are ordinal, i.e., when there is a logical ordering to them. Another example would be star ratings - in this case we also should not change the order of the variables. For the example above, not changing the order of the months makes it, for instance, easier to visualize seasonal effects.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Yes
+</p>]]></text>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+No
+</p>]]></text>
+</answer>
+</question>
+
+</quiz>

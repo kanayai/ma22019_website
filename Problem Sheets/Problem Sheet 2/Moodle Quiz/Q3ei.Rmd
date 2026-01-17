@@ -1,0 +1,42 @@
+Question
+========
+Which month had the highest median daily maximum temperature according to your plot in part d)?
+
+Answerlist
+----------
+* January
+* February
+* March
+* April
+* May
+* June
+* July
+* August
+* September
+* October
+* November
+* December
+
+Solution
+========
+The first step is to create a new variable in the data frame which represents the month of the observation. We apply the functions mentioned in the question text as follows:
+
+```{r, eval=FALSE, echo=TRUE}
+NYC <- NYC %>% mutate( Date = as_date( Date, format="%d/%m/%Y") )
+NYC <- NYC %>% mutate( Month = factor( month(Date) ) )
+```
+
+We then use the function geom_boxplot() from the lecture to produce for each momth a boxplot for the daily maximum temperature:
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+ggplot( NYC, aes(x=Month,y=Tmax) ) + geom_boxplot() + 
+  labs( x="Month", y="Maximum daily temperature in Fahrenheit" )
+```  
+
+Since the box plot visualizes, amongst others, the median value, we conclude that July recorded the highest median in terms of daily maximum temperature.
+
+Meta-information
+================
+exname: Q3ei
+extype: schoice
+exsolution: 000000100000

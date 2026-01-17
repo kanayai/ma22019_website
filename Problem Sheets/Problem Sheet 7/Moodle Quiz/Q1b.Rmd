@@ -1,0 +1,21 @@
+Question
+========
+Decide whether the following statement is true: "The second eigenvector suggests a west-east trend in the river flow. Specifically, there is an inverse relationship, with river flow being relatively higher close to the west coast than for locations in North East England (or vice versa)."
+
+Answerlist
+----------
+		
+* TRUE
+* FALSE
+
+Solution
+========
+
+The interpretation above more fits for the third eigenvector. The second eigenvector shows a north-south trend which highlights differences between sites in the Lake District and sites located to the south around Manchester.
+
+
+Meta-information
+================
+exname: Q1b
+extype: schoice
+exsolution: 01

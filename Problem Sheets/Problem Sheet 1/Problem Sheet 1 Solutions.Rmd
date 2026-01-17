@@ -1,0 +1,429 @@
+---
+title: "MA22019 2025 - Solutions for Problem Sheet 1"
+author: "The dplyr R package"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### **Overview**
+
+Exercises 1-3 will help you with revising the techniques covered in the lectures in Week 1 (Sections 1.1 and 1.2 of the lecture notes). You can check your solutions to these questions yourself by entering them on Moodle via the Quiz provided in the "Problem Sheets" section.
+
+The tutorial questions ask you to apply functions from the dplyr and lubridate R packages to analyse real-world data sets, and also introduce some important functions we did not use so far.
+
+Your answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 13 February 2025. You should submit a single Word, PDF or HTML file that provides your R code, any created R output and all your comments.
+
+Before starting the exercises, make sure to load the dplyr and lubridate R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+```
+
+If you are using your own laptop, you may have to first run the code in "InstallPackages.R" (available from Moodle) to install all the packages essential for this course.
+
+### **Exercise 1 - Functions for data wrangling**
+
+We described that data may not be in the format required for the analysis because
+
+-   Variable names are uninformative;
+
+-   Data types are incompatible with available R functions;
+
+-   We are only interested in a subset of the data.
+
+For each of the following R functions, decide which issue they may address and submit your answers via the Moodle quiz:
+
+a) **as_date()**
+
+<p style="color:blue"> *The function as_date() converts a variable of type character into a variable of type* **Date**. *Therefore, it is useful when we are working with dates and the function we want to use requires that the variable is of type* **Date***, i.e., it addresses the second issue*. </p>
+
+b) **as.numeric()**
+
+<p style="color:blue"> *The function as_numeric() converts a variable of type character into a variable of type* **numeric**. *This function is useful when we read data as character but actually need to use it for calculations, i.e., it again addresses the second issue.*</p>
+
+c) **filter()**
+
+<p style="color:blue"> *The function filter() allows us to subset the data based on one or more criteria, i.e., it addresses the third issue.* </p>
+
+d) **group_by()**
+
+<p style="color:blue"> *The function group_by() makes it easier to access different subsets of data by grouping observations based on one (or more) variables. We can then use the summarize() function to calculate summaries for the individual groups. Consequently, this function may be used to address the third issue.*</p>
+
+e) **rename()**
+
+<p style="color:blue"> *When we want to change variable names, the function rename() is the easiest option. So this function is useful to deal with uninformative variable names, i.e., the first issue.*</p>
+
+f) **slice_head()**
+
+<p style="color:blue"> *The function slice_head() returns the first few elements of the data frame. We have to specify how many elements we want to print using the option* $\mathrm{\texttt{n=..}}$*. For instance,* $\mathrm{\texttt{n=5}}$ *prints the first five lines. As such, this function is useful if we are just interested in exploring the first few lines of a data frame, i.e. it may address the first issue.*</p>
+
+If you are unsure about a function, you can use the **help()** function in R, or look at the cheat sheets provided on Moodle.
+
+### **Exercise 2 - Flights from New York City airports**
+
+The file "NYCFlights.csv" provides data for flights in 2013 that departed from any of the three main airports servicing New York City: John F Kennedy (JFK), LaGuardia (LGA) and Newark (EWR). To load the data into your R Workspace, you can use
+
+```{r}
+NYCFlights <- read.csv( "NYCFlights.csv" )
+```
+
+Answer the following questions using the provided data and submit your answers via the Moodle quiz:
+
+a)  How many flights does the data set contain?
+
+<p style="color:blue">*We can use the function glimpse() to extract the number of observations*</p>
+
+```{r}
+glimpse( NYCFlights )
+```
+
+<p style="color:blue">*The output shows that the data set contains 336,776 flights.*</p>
+
+
+b) For which month were the most flights recorded?
+
+<p style="color:blue">*We use group_by() and summarize() to extract this information*</p>
+
+```{r}
+NYCFlights %>%
+  group_by( month ) %>%
+  summarize( Number_of_Flights = n() )
+```
+
+<p style="color:blue">*Looking at the table, we conclude that the most flights (29,425) were recorded for July.*</p>
+
+
+c)  Which plane (specified by the **tailnum** variable) departed most often from New York City airports in 2013?
+
+<p style="color:blue">*We again use group_by() and summarise(), but now also order the planes according to their number flights, since the data contain information for a large number of planes:*</p>
+
+```{r}
+NYCFlights %>%
+  group_by( tailnum ) %>%
+  summarize( Number_of_Flights=n() ) %>%
+  arrange( desc(Number_of_Flights) ) %>%
+  slice_head( n=5 )
+```
+
+<p style="color:blue">*We have to ignore the first entry, because $\mathrm{\texttt{NA}}$ does not refer to a single plane, but to the data entries for which the tail number is not recorded. So we conclude that the plan with tail number N725MQ departed the most often from the New York City airports.*</p>
+
+d) How often did the plane identified in part c) depart from New York airports in January?
+
+<p style="color:blue">*One option is extract the observations for the plane N725MQ and the month of January, an to then count the number of data points in the subset:*</p>
+
+```{r}
+NYCFlights %>%
+  filter( tailnum == "N725MQ", month == 1 ) %>%
+  summarize( Number_of_Flights = n() )
+```
+<p style="color:blue">*So the plane N725MQ departed 65 times from a New York City airport in January 2013.*</p>
+
+
+### **Exercise 3 - Earthquakes around the world**
+
+The data set "Earthquakes.csv" contains the location and size of all significant earthquakes, as recorded by the National Earthquake Information Center (NEIC), which occurred worldwide between 1965 and 2016.
+
+We can load the data using 
+
+```{r}
+Earthquakes <- read.csv( "Earthquakes.csv" )
+```
+
+Answer the following questions and submit your answers via the Moodle quiz:
+
+a) In which year between 1965 and 2016 were the most earthquakes recorded?
+
+<p style="color:blue">*We first have a look at the data using the glimpse() function*</p>
+
+```{r}
+glimpse( Earthquakes )
+```
+
+<p style="color:blue">*We see that* **Date** *is not of the correct type. We thus first use the function as_date() function from the lubridate package*</p>
+
+```{r}
+Earthquakes$Date <- as_date( Earthquakes$Date, format='%m/%d/%Y' )
+```
+
+<p style="color:blue">*We then use the group_by() and year() functions to group the observations based on the year, and count the number of entries in each group:*</p>
+
+```{r}
+Earthquakes %>% 
+  group_by( year(Date) ) %>%
+  summarize( "Number_Earthquakes" = n() ) %>%
+  arrange( desc(Number_Earthquakes) ) %>%
+  slice_head( n=2 )
+```
+
+<p style="color:blue">*We find that the most earthquakes were recorded in 2011.*</p>
+
+b) Were more earthquakes recorded in the northern or the southern hemisphere?
+
+<p style="color:blue">*There are multiple ways to extract the requested information. One option is to first define a new variable based on Latitude to distinguish between northern and southern hemisphere, and to then group earthquakes based on this new variable*</p>
+
+```{r}
+Earthquakes %>% 
+  mutate( Hemisphere = case_when( Latitude>=0 ~ "North",
+                                  Latitude< 0 ~ "South" ) ) %>%
+  group_by( Hemisphere ) %>%
+  summarize( "Number_Earthquakes" = n() )
+```
+
+<p style="color:blue">*We find that between 1965 and 2016 there were a larger number of earthquakes in the southern than in the northern hemisphere.*</p>
+
+### **Tutorial Question 1 - Honey production in the United States**
+
+In 2006, global concern was raised over the rapid decline in the U.S. honeybee population, an integral component to American honey agriculture. Large numbers of hives were lost to Colony Collapse Disorder, a phenomenon of disappearing worker bees causing the remaining hive colony to collapse. Speculation to the cause of this disorder points to hive diseases and pesticides harming the pollinators, though no overall consensus has been reached.
+
+The data collected by the National Agricultural Statistics Service (NASS) for 1998-2012 is provided in the file "HoneyProductionUS.csv". The following information is provided:
+
+* state	- Initial of the U.S state
+
+* numcol - Number of honey producing colonies	
+
+* yieldpercol	- Honey yield per colony in pounds
+
+* priceperlb - Average price per pound in dollars based on expanded sales
+
+* year - Year to which the data relates
+
+
+We are asked to extract some information on the amount of honey produced and its price.  
+
+
+a) For each state calculate the total amount of honey produced (in pounds) for the period 1998-2012. Identify the states which had the lowest and highest production. 
+
+<p style="color:blue">*We start by loading the data from the .csv file*</p>
+
+```{r}
+Honey_Raw <- read.csv( "HoneyProductionUS.csv" )
+```
+
+<p style="color:blue">*Since we are interested in total production, we first derive the total production (number of colonies x yield per colony) for each state. This information can be calculated and attached to the data frame using mutate()*</p>
+
+```{r}
+Honey_Raw <- Honey_Raw %>% 
+  mutate( "Total" = numcol * yieldpercol )
+```
+
+<p style="color:blue">*We can use the group_by() and summarize() functions to calculate the total amount of honey produced for each state*</p>
+
+```{r}
+Tot_Production <- Honey_Raw %>% 
+  group_by( state ) %>%
+  summarize( "Total_1998_to_2012" = sum(Total) )
+```
+
+<p style="color:blue">*To find the states with the lowest and highest production, we sort the data and then use slice() to access the first and last element in the sorted data frame:*</p>
+
+```{r}
+Tot_Production %>%
+  arrange( desc( Total_1998_to_2012 ) ) %>% 
+  slice( c( 1, n() ) )
+```
+
+<p style="color:blue">*We conclude that South Carolina produced the least amount of honey in 1998-2012 with a total of 1.03 million pounds, while North Dakota was the largest producer with about 475 million pounds of honey.*</p>
+
+
+b) How has the yield per colony of honey bees in the U.S. evolved from 1998 to 2012?
+
+<p style="color:blue">*We need to derive the yield per colony across the U.S. based on the data for the individual state. The average yield per colony across the U.S. for each year can be calculated using *</p>
+
+```{r}
+US_Production <- Honey_Raw %>%
+  group_by( year ) %>%
+  summarise( Yield = sum(yieldpercol * numcol) / sum(numcol) )
+```
+
+<p style="color:blue">*Let's create a plot which illustrates how the yield has changed over the years:*</p>
+
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( US_Production$year, US_Production$Yield ,
+      xlab="Year", ylab="Yield per colony", type='h' )
+```
+
+<p style="color:blue">*The plot implies that there was a marked decrease in yield per colony from around 85 pounds in 1998 to less than 60 pounds in 2012. This agrees with the substantial decline in the honeybee population observed around 2006.*</p>
+
+
+c) By which factor has the average price of honey increased in the state of Alabama  between 1998 and 2012? 
+
+<p style="color:blue">*We first use filter() to only keep the data for Alabama and we calculate the ratio between the price in any year and the price in 1998:*</p>
+
+```{r}
+Price_Alabama <- Honey_Raw %>% 
+  select( state, year, priceperlb ) %>%
+  filter( state == "Alabama" ) %>%
+  mutate( Factor =  priceperlb / priceperlb[1] )
+```
+
+<p style="color:blue">*Let's create a plot of the calculated ratios:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( Price_Alabama$year, Price_Alabama$Factor, pch=19,
+      xlab="Year", ylab="Increase in price compared to 1998" )
+```
+
+<p style="color:blue">*We see that the price has increased by a factor of around 3.5, i.e., the data suggests a 250% increase in the price of honey between 1998 and 2012.*</p>
+
+
+### **Tutorial Question 2 - Price of Bitcoin**
+
+The file "Bitcoin.csv" provides hourly data on the price of Bitcoin and the level of trade for the period 17 August 2017 - 19 October 2023. There are four variables:
+
+* **date** - Day and time of the observation
+
+* **close** - The value of one Bitcoin token at the end of the hour
+
+* **volume.usdt** - The trading volume during the hour in Tether (USDT). This provides a stable reference point for trading volume because the value of USDT is supposed to be roughly equivalent to $1 USD.
+
+* **tradecount** - The total number of individual trades or transactions that have occurred within the hour. This variable counts the actual number of separate buy and sell transactions.
+
+Use the data to address the following questions:
+
+a) Load the data and use the function as_datetime() in the lubridate package to convert the variable representing the date and time to its correct type. Explore how the value of one Bitcoin token has evolved between 17 August 2017 and 19 October 2023 (which is the period covered by the data).
+
+<p style="color:blue">*We start by loading the data:*</p>
+
+```{r}
+Bitcoin <- read.csv("Bitcoin.csv")
+```
+
+<p style="color:blue">*To convert the variabe representing day and time to its correct type, we use the function as_datetime():*</p>
+
+```{r}
+Bitcoin <- Bitcoin %>% mutate( date = as_datetime(date) )
+```
+
+<p style="color:blue">*After cleaning the data, we can create a plot as we did for the river flow data in Lecture 1:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( Bitcoin$date, Bitcoin$close, type='l', xlab="Date", ylab="Value of one Bitcoin")
+```
+
+<p style="color:blue">*We find that the value of one token stayed around 10,000 USDT until 2021, when it rose to values of above 60,000 USDT. Over the year 2022, the value fell from this peak to values between 20,000 and 30,000 USDT for the rest of the observation period.*</p>
+
+b)  Does the number of tokens traded per day follow the same pattern as that found in part a) for the price of one token?
+
+<p style="color:blue">*The first step is to calculate the number of tokens traded from the other variables:*</p>
+
+```{r}
+Bitcoin <- Bitcoin %>% mutate( Volume = volume.usdt / close )
+```
+
+<p style="color:blue">*Since we are asked to analyse daily volume, we have to aggregate the numbers according to date, which we can achiev using*</p>
+
+```{r}
+BitcoinDay <- Bitcoin %>%
+  group_by( Date = as_date(date) ) %>%
+  summarise( VolumeDay = sum( Volume ) )
+```
+
+<p style="color:blue">*Finally, we can plot date against number of tokens traded on the day:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( BitcoinDay$Date, BitcoinDay$VolumeDay, type='l',
+      xlab="Date", ylab="Amount of traded Bitcoin" )
+```
+
+<p style="color:blue">*We find that the the pattern is not the same as that for the price. Specifically, the number of trades peaks around the time the price is on a downward trend, in particular when it reached its lowest value across 2022.*</p>
+
+
+### **Homework Question - Salaries for Data Scientists**
+
+The file "Salary Data Scientists.csv" provides data for 603 employees working in Data Science / Machine Learning /AI. For each employee, we are given the following information
+
+* **work_year** - Year the data were collected for the employee
+
+* **experience_level** - Experience Level: Entry-level (EN), Junior (MI), Senior (SE) or Expert (EX)
+
+* **employment_type** - Full-time (FT), Part-time (PT) or Contingent Workers (CT)
+
+* **salary, salary_currency** - Nominal salary and currency in which it was paid
+
+* **salary_in_usd** - Nominal salary in U.S. Dollars
+
+* **employee_residence** - Country the employee is residing
+
+* **remote_ratio** - Proportion of time the employee may work from home
+
+* **company_location** - Location of the company's headquarters
+
+* **company_size** - Size of the company: Small (S), Medium (M) or Large (L)
+
+An undergraduate is considering to take units in Data Science / Machine Learning / AI. However, they are unsure about the working conditions they are likely to experience if they decide to work in the sector. Specifically, the student plans to work full-time for an U.S. company, and they want to get some insight into the differences between small-/medium-sized and large companies. After a discussion with the student, the following three aspects have been identified as important for them: 
+
+a) Opportunity to work remotely for at least 50% of the time.
+
+b) Salaries for Entry-Level positions.
+
+c) Structure of the workforce in terms of experience level.
+
+Perform an analysis which considers the three aspects above. Make sure to clearly describe your approach and conclusions.
+
+<p style="color:blue">*We start by loading the data:*</p>
+  
+```{r}
+Salary <- read.csv("Salary Data Scientists.csv")
+```
+
+<p style="color:blue">*Since the student wants to work full-time for a US company, we have to remove any observations that don't refer to a US company and full-time employment:*</p>
+
+```{r}
+Salary_USA <- Salary %>% 
+  filter(  company_location=="US", employment_type=="FT" ) %>% 
+  select( work_year, experience_level, salary_in_usd, remote_ratio, company_size )
+```
+
+<p style="color:blue">*The final step is to convert the information on company size into a binary variable, because we want to compare large companies against the rest:*</p>
+
+```{r}
+Salary_USA <- Salary_USA %>%
+  mutate( size = case_when( company_size=="L" ~ "L", .default = "S/M" )  )
+```
+
+<p style="color:blue">*We are now ready to address the three aspects. Let's start with the ratio of employees that work remotely *</p>
+  
+```{r}
+Salary_USA %>% 
+  group_by( size ) %>% 
+  summarise( "Remote Working" = round( mean( remote_ratio>=50 ), 3 ) )
+```
+
+<p style="color:blue">*We find that there are only small differences in the proportion of people that work remotely when comparing companies of different size.*</p>
+  
+<p style="color:blue">*For the second part we derive some summaries for the salary in U.S. Dollars:*</p>
+  
+```{r}
+Salary_USA %>% 
+  filter( experience_level=="EN" ) %>%
+  group_by( size ) %>% 
+  summarise( "Median Salary" = quantile( salary_in_usd, 0.5 ), 
+             "Average Salary" = mean( salary_in_usd ),
+             "Standard Deviation" = sd( salary_in_usd ) )
+```
+
+<p style="color:blue">*We see that the medium salary for small-/medium-sized companies is larger than for large companies, and that the reverse is true for the average salary. Looking at the standard deviation we see that there is quite a bit of variation in the salary for entry-level positions.*</p>
+  
+  
+<p style="color:blue">*Finally, we extract the number of employees at the different experience levels for the different company sizes:*</p>
+  
+```{r}
+Salary_USA %>% 
+  group_by( size, experience_level ) %>%
+  summarise( Number=n() ) %>%
+  mutate( Proportion = Number / sum(Number) )
+```
+
+<p style="color:blue">*Looking at the numbers, the main difference between small/medium-sized and larger companies seems to lie in the proportion of junior/senior staff. For small/medium-sized companies about 2/3 of employees in the sector are at senior level, while it is less than 1/2 for larger companies.*</p>
+
+<p style="color:blue">**Here is were you should provide a conclusion which addressess the question!**</p>

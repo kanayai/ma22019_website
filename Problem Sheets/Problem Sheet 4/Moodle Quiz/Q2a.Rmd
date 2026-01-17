@@ -1,0 +1,39 @@
+Question
+========
+Which was the most coming baby name over the period 1880-2017?
+
+Answerlist
+----------
+* James
+* John
+* Michael
+* Robert	
+
+
+Solution
+========
+
+We start by loading the data set:
+
+```{r, eval=FALSE, echo=TRUE}
+Babies <- read.csv("Babynames.csv")
+```
+
+To find the most common name, we have to sum up the counts across the different years:
+
+```{r, eval=FALSE, echo=TRUE}
+Babies %>%
+  group_by( Name=name ) %>%
+  summarise( Count = sum(n) ) %>%
+  arrange( desc(Count) ) %>%
+  slice_head( n=1 )
+```
+
+We find that "James" was the most common baby name.
+
+
+Meta-information
+================
+exname: Q2a
+extype: schoice
+exsolution: 1000

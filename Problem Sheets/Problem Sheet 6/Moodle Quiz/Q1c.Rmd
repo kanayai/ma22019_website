@@ -1,0 +1,21 @@
+Question
+========
+When considering strength of mobile phone signal, which type of spatial data (point-referenced, point pattern or lattice/areal data) are mostly likely working with?
+
+Answerlist
+----------
+		
+* Point-referenced
+* Point pattern
+* Lattice/areal
+
+Solution
+========
+
+Such data could be collected by measuring signal strength at a number of fixed locations. This would then give point-referenced data.
+
+Meta-information
+================
+exname: Q1c
+extype: schoice
+exsolution: 100

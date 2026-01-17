@@ -1,0 +1,29 @@
+Question
+========
+Were more earthquakes recorded in the northern or the southern hemisphere between 1965 and 2016?
+
+Answerlist
+----------
+* Northern
+* Southern
+
+
+Solution
+========
+We find that between 1965 and 2016 there were a larger number of earthquakes in the southern than in the northern hemisphere.
+
+```{r, echo=TRUE, eval=FALSE}
+Earthquakes %>% 
+  mutate( Hemisphere = case_when( Latitude>=0 ~ "North",
+                                  Latitude< 0 ~ "South" ) ) %>%
+  group_by( Hemisphere ) %>%
+  summarize( "Number_Earthquakes" = n() )
+```
+
+
+Meta-information
+================
+exname: Q1a
+extype: schoice
+exsolution: 01
+exshuffle: 2

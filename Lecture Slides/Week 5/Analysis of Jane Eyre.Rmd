@@ -1,0 +1,200 @@
+---
+title: "Analysis of Jane Eyre"
+author: "Christian Rohrbeck"
+date: '05/03/2025'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(wordcloud)
+library(stringr)
+```
+
+### **Loading and cleaning the text data**
+
+We can either download the text from Project Gutenberg (see lecture notes), or directly via the text file provided on Moodle
+
+```{r}
+JaneEyre_raw <- readLines( "JaneEyre.txt" )
+JaneEyre_raw <- data.frame( text = JaneEyre_raw )
+```
+
+Let's split the text into words:
+```{r}
+JaneEyre <- JaneEyre_raw %>% unnest_tokens( word, text )
+```
+
+```{r}
+nrow(JaneEyre)
+```
+
+We have to do some data cleaning. Let's look at the first 10 words
+```{r}
+slice_head( JaneEyre, n=10 )
+```
+
+We remove the underscores from any words, as they are used to indicate words in italics
+```{r}
+JaneEyre <- JaneEyre %>% mutate( word = gsub( "\\_", "", word ) )
+```
+
+
+## **Word frequency analysis**
+
+### Calculating term frequency
+
+We now count how often each word appears in the book:
+
+```{r}
+JaneEyre_Count <- JaneEyre %>% count( word, sort=TRUE )
+```
+
+```{r}
+slice_head(JaneEyre_Count, n=10 )
+```
+
+
+One important measure is *term frequency*:
+```{r}
+JaneEyre_Count <- JaneEyre_Count %>%
+  mutate( 'term frequency'=n/sum(n), rank=row_number() ) %>%
+  rename( Count = n )
+```
+
+```{r}
+slice_head(JaneEyre_Count, n=10)
+```
+
+
+
+### Does Zipf's Law hold?
+
+Plot rank against term frequency (both on logarithmic scale):
+
+```{r, fig.align='center', out.width='40%', fig.height=4, fig.width=4}
+ggplot( JaneEyre_Count, aes( x=rank, y=`term frequency` ) ) + 
+  geom_line( linewidth=1.5 ) + 
+  coord_trans( x="log10", y="log10" )
+```
+
+We see a linear relationship in the plot, which supports Zipf's Law that postulates an inverse proportionality between rank and term frequency.
+
+### Removing stop words
+
+We use the data set **stop_words** in the tidytext package:
+
+```{r}
+data("stop_words")
+JaneEyre_Count <- JaneEyre_Count %>% 
+  anti_join(stop_words, by="word")
+```
+
+```{r}
+slice_head(JaneEyre_Count, n=10)
+```
+
+### Visualization
+
+**Option 1 Bar plot:** we order the words based on frequency
+
+```{r, fig.align='center', out.width='50%', fig.height=3, fig.width=4}
+JaneEyre_Count %>%
+  slice_max( Count, n=10 ) %>% 
+  mutate( word = reorder(word,Count) ) %>%
+  ggplot( aes( x=Count, y=word ) ) + 
+    geom_col() + labs( x="Count", y="" )
+```
+
+
+**Option 2 Word cloud:**
+
+```{r, out.width='65%', fig.align='center'}
+JaneEyre_Count %>%
+  with( wordcloud( word, Count, max.words=40, colors=topo.colors(n=40) ) )
+```
+
+## **Sentiment Analysis for** *Jane Eyre*
+
+### Start with the raw data and split it into words
+
+```{r}
+JaneEyre <- JaneEyre_raw %>%
+  mutate( line = row_number() ) %>%
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "_", "", word ) )
+```
+
+### Load the sentiment lexicon
+
+```{r}
+AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
+```
+
+```{r}
+slice_head(AFINN, n=5)
+```
+
+
+### Only keep the words both in the book and the sentiment lexicon
+
+```{r}
+JaneEyre_AFINN <- inner_join( JaneEyre, AFINN, by="word" )
+```
+
+```{r}
+slice_head(JaneEyre_AFINN, n=5)
+```
+
+
+### Sentiment across lines
+
+```{r, out.width='50%', fig.align='center', fig.height=4, fig.width=6}
+JaneEyre_AFINN %>% 
+  filter( word != "miss" ) %>%
+  mutate( sentiment = cumsum( value ) ) %>%
+  ggplot( aes( x=line, y=sentiment ) ) +
+  geom_line( linewidth=1.2 ) + 
+  labs( x="Line number", y="Sentiment" )
+```
+
+### Sentiment for the individual chapters 
+
+Detect which chapter each line belongs to:
+
+```{r}
+JaneEyre_chapters <- JaneEyre_raw %>%
+  mutate( chapter = cumsum( str_detect(
+    text, regex("^chapter ", ignore_case = TRUE)
+  ) ) )
+```
+
+Remove any text before Chapter 1 and split the text into words:
+
+```{r}
+JaneEyre_chapters <- JaneEyre_chapters %>%
+  filter( chapter > 0 ) %>%
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "_", "", word ) )
+```
+
+```{r}
+slice_head(JaneEyre_chapters, n=5)
+```
+
+We can now calculate and visualize the aggregated sentiment for each chapter
+
+```{r, out.width='50%', fig.align='center', fig.height=4, fig.width=5}
+JaneEyre_chapters %>%
+  inner_join( AFINN, by="word" ) %>%
+  group_by( chapter ) %>%
+  summarise( sentiment = mean(value) ) %>%
+  ggplot( aes( x=chapter, y=sentiment ) ) + 
+  geom_col() + labs( x="Chapter", y="AFINN sentiment score" )
+```

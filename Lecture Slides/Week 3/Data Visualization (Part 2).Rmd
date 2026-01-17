@@ -1,0 +1,265 @@
+---
+title: "MA22019 - Data Visualization (Part 2)"
+author: "Christian Rohrbeck"
+date: "19 February 2025"
+output: 
+  ioslides_presentation:
+    fig_height: 5
+    logo: uob.png
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+colorize <- function(x, color="blue") {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color,
+      x)
+  } else x
+}
+```
+
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+```
+
+## Reminder I
+
+We have introduced six types of plot:
+
+- Scatter plot
+
+- Line plot
+
+- Histogram / Density plot
+
+- Box / Violin plot
+
+We create such plots in ggplot2 using the syntax
+```{r, eval=FALSE, echo=TRUE}
+ggplot( data, aes(...) ) + 
+  geom_...( aes(...) ) + 
+  labs( x=..., y=... )
+```
+
+## Reminder II
+
+|Type of plot | geom_... | 
+|:-------     | :------------       | 
+|Scatter plot | **geom_point**      | 
+|Line plot    | **geom_line**, **geom_step**       | 
+|Bar plot     | **geom_bar**, **geom_col**        | 
+|Histogram    | **geom_histogram**  |
+|Box plot     | **geom_boxplot**    |
+|Density plot | **geom_density**    |
+|Violin plot  | **geom_violin**     |
+
+
+## Plan for Today
+
+Today we will explore the remaining plot elements:
+
+- **Coordinate system** (Sections 2.1.3 and 2.3.1)
+
+- **Scale** and **context** (Sections 2.1.5 and 2.3.2)
+
+- Labelling and colours (Sections 2.3.3 and 2.3.4)
+
+- Changing the format of a data frame (Section 2.4)
+
+This will complete Chapter 2 on data visualization.
+
+At the end, I will make some announcements regarding Coursework 1.
+
+# Coordinate System
+
+## Overview {.build}
+
+<div>
+We have to decide which coordinate system is the most suitable for our analysis.
+</div>
+
+<div>
+The three types we consider in this course are
+
+* Cartesian coordinate system
+
+* Polar coordinate system
+
+* Geographical / spatial coordinate system
+</div>
+
+For now, we only focus on the fist two types.
+
+The key function to switch between types is **coord_polar()**.
+
+## Example - Wind direction at Bela Vista
+
+We are working with:
+
+- Hourly data from Bela Vista, Brazil, for 2017 and 2018
+
+- Observations on wind direction and speed 
+
+Let's explore the distribution of wind direction and its relation to wind speed.
+
+<p style="color:Blue">**Which types of plot should we be using?**</p>
+
+## Pie charts {.build}
+
+In ggplot2, we have to create a bar plot with polar coordinates
+
+```{r, out.width='55%', fig.align='center', echo=TRUE}
+df <- data.frame( "prob" = c(0.3,0.4,0.3), "group" = c("A","B","C") )
+ggplot( df, aes( x="", y=prob, fill=group ) ) + 
+  geom_col() + coord_polar( theta="y" ) + labs( x="", y="" )
+```
+
+
+
+## Summary
+
+There are two scenarios when a polar coordinate system may be useful to consider:
+
+1) **Pie charts** </br>
+However, a bar plot may be better as it uses position and length as visual cues.
+
+2) To visualize variables such as **direction** or **time** 
+
+Both these aspects can be achieved using **coord_polar()** in ggplot2.
+
+<div>
+Note from ggplot2 developers:</br>
+*"Polar coordinates should be used with EXTREME caution because of the potential perceptual problems."* 
+</div>
+
+
+
+# Changing the scale
+
+## Types of scale
+
+We deal with three types of scale:
+  
+* **Numerical:** Speed, Age, etc.
+
+* **Categorical: ** Ratings, Sites, etc. 
+  
+* **Time: ** Months, Years, etc.
+
+When we create plots, knowing the type is important when deciding on the type of plot.
+
+
+## Changing numerical scales {.build}
+
+<div>
+- Plots may sometimes be dominated by a couple of data points or outliers
+
+- Changing the scale may provide better insight 
+</div>
+
+<div>
+- The function **coord_trans()** is one option to change it:
+
+    * ggplot(..) + coord_trans( x="log10" ) logarithmic scale
+    
+    * ggplot(..) + coord_trans( x="sqrt" ) square root scale
+</div>
+
+## Examples
+
+Let's look at two examples:
+
+1. Body vs brain weight of mammals.
+
+2. Number of followers and likes on Facebook
+
+We will also demonstrate how to change font sizes of labels.
+
+# Changing the colour scheme
+
+## Overview
+
+The ggplot2 package has a default colour scheme. Here are some of the alternatives: 
+```{r, fig.align='center', out.width='85%', warning=FALSE}
+par( mai=c(0.1,0.6,0.1,0.1))
+library( RColorBrewer )
+display.brewer.all( colorblindFriendly = TRUE )
+```
+
+## How to use these colour schemes
+
+```{r, warning=F, out.width='60%', fig.align='center', echo=TRUE}
+AUS <- read.csv( "WeatherAustralia.csv" )
+ggplot( AUS, aes( x=Location,y=WindGustSpeed ) ) +
+  geom_boxplot( aes(fill=Location) ) + 
+  labs( y="Speed of wind gust in km/h", fill="City" ) + 
+  scale_fill_brewer( palette="Oranges" )
+```
+
+# Changing the data struture
+
+## Switching data formats
+
+- ggplot2 is based on one variable being plotted against another
+
+- In some cases, we have to alter the data structure to create the plot we want
+
+- The **tidyr** package provides two important functions
+
+    * **pivot_wider()**
+
+    * **pivot_longer()**
+    
+    
+## Switching data formats - Example    
+    
+We have monthly average temperature data for Manaus, Brazil 
+
+* Each column refers to a month
+
+* Each row refers to a year
+
+**For which plots is this format useful?**
+
+**For which plots do we need to change the data format?**
+
+## Summary
+
+Today we
+
+- Studied the plot elements **coordinate system**, **scale** and **context**
+
+- Learned how to change the coordinate system and scale
+
+- Set axis labels, font size and colour scheme
+
+- Changed the data structure using pivot_wider() and pivot_longer
+
+- **Remember:** Plots should also help others to make meaningful comparisons
+
+
+## Coursework 1
+
+* Released at 15:00 on Friday 21 February on Moodle
+
+* Due at 17:00 on Friday 28 February
+
+* Submission via Moodle only
+
+**Support:**
+
+* Work on it in the tutorial and in your own time
+
+* Office Hour Monday 9:00-11:00
+
+* Q&A session 10:15-11:05 on Wednesday 26 February 
+
+* Questions should be posted on the Padlet board

@@ -1,0 +1,32 @@
+Question
+========
+Does the semi-variogram suggest that dependence decreases with an increasing distance between spatial sites?
+
+Answerlist
+----------
+* Yes
+* No
+
+Solution
+========
+
+We can create the semi-variogram using
+
+```{r, eval=FALSE}
+Meuse <- read.csv("Meuse.csv")
+
+coordinates( Meuse ) <- ~Lon+Lat
+gamma_hat <- variogram( zinc~1, Meuse )
+
+ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 
+  theme_bw() + labs( x="Distance", y="Semi-variogram" )
+```
+
+We find that the value in the semi-variogram increases with increasing spatial distance. We thus conclude that the dependence decreases with an increasing distance between sites.
+
+Meta-information
+================
+exname: Q2a
+extype: schoice
+exsolution: 10
+extol: 0.01

@@ -1,0 +1,21 @@
+Question
+========
+
+What was the largest difference in the monthly average temperatures for Sao Paulo and Rio de Janeiro?
+
+Solution
+========
+
+We find that the answer is 5.44 degree Celsius using the following R code:
+```{r, eval=FALSE, echo=TRUE}
+Temperature %>%
+  mutate( Difference = abs( SaoPaulo - Rio ) ) %>%
+  summarise( "Maximum Difference" = max( Difference, na.rm = TRUE ) )
+```
+
+
+Meta-information
+================
+exname: Q2b
+extype: num
+exsolution: 5.44

@@ -1,0 +1,35 @@
+Question
+========
+Which sector of the UK economy produced the most CO$_2$ emissions over the observation period?
+
+Answerlist
+----------
+* Domestic Aviation
+* Ground Transport
+* Industry
+* International Aviation
+* Power
+* Residential
+
+Solution
+========
+
+To identify of the UK economy which produced the most CO$_2$ emissions, we can use functions from dplyr:
+
+```{r, eval=FALSE, echo=TRUE}
+CO2_UK <- CO2 %>%
+  filter( country=="UK" ) %>%
+  group_by( sector ) %>%
+  summarize( Total=sum(emissions) )
+CO2_UK
+```
+
+We find that ground transport is the corect answer.
+
+
+Meta-information
+================
+exname: Q1b
+extype: schoice
+exsolution: 010000
+exshuffle: 6

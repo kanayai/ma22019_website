@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+
+<question type="category">
+<category>
+<text>$course$/PS8/Exercise 1</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q1 : Q1a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following countries are not amongst the three countries which were the worst affected in terms of the total number of outbreaks of African swine fever?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We find the top three countries using the following code</p>
+<pre><code>Outbreaks &lt;- read.csv(&quot;Outbreaks.csv&quot;)
+
+SwineFever &lt;- filter( Outbreaks, disease == &quot;African swine fever&quot; )
+
+SwineFever %&gt;% 
+  count( country, sort=TRUE) %&gt;%
+  slice_head( n=3 )</code></pre>
+<p>We find that the three counties worst affected were Estonia, Latvia and Lithuania.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Belarus
+</p>]]></text>
+</answer>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+Estonia
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Finland
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Germany
+</p>]]></text>
+</answer>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+Latvia
+</p>]]></text>
+</answer>
+<answer fraction="25" format="html">
+<text><![CDATA[<p>
+Poland
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS8/Exercise 2</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q2 : Q1b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Based on your plot produced for Exercise 1 part b), which of the following statements is true?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We can produce the map of cases for the Baltic states using the following code:</p>
+<pre><code>SwineFever_Baltic &lt;- SwineFever %&gt;%
+  filter( country %in% c( &quot;Estonia&quot;, &quot;Latvia&quot;, &quot;Lithuania&quot; ) )
+
+ggplot( SwineFever_Baltic, aes( x=longitude,y=latitude ) ) +
+  annotation_map_tile( zoom=6 ) + geom_spatial_point( ) + 
+  labs( x=&quot;Longitude&quot;, y=&quot;Latitude&quot; )</code></pre>
+<p>From this plot we conclude that most of the cases are located in the east of the Baltic states, with almost no cases observed in the western half of Latvia.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+Most of the swine fever cases are located in the west of the Baltic states.
+</p>]]></text>
+</answer>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+Most of the swine fever cases are located in the east of the Baltic states.
+</p>]]></text>
+</answer>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+There are almost no cases in the West of Latvia
+</p>]]></text>
+</answer>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+Most cases are located in Latvia
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS8/Exercise 3</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q3 : Q1c </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Is it reasonable to conclude that the point process describing outbreaks of African swine fever across Latvia is homogeneous?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first create a ppp object by adapting the code in Section 4.6.4 of the lecture notes:</p>
+<pre><code>Latvia &lt;- read_sf( &quot;Shapefiles/gadm41_LVA_0.shp&quot; )
+Latvia &lt;- Latvia %&gt;% 
+  st_simplify( dTolerance = 1000 ) %&gt;%
+  st_transform( crs=3857 )
+
+SwineFever_transformed &lt;- SwineFever_Latvia %&gt;%
+  st_as_sf( coords=c(&quot;longitude&quot;,&quot;latitude&quot;), crs=4326 ) %&gt;%
+  st_transform( crs=3857 ) %&gt;% 
+  st_coordinates( )
+
+Latvia_ppp &lt;- ppp( SwineFever_transformed[,1], 
+                   SwineFever_transformed[,2], 
+                   window = as.owin(Latvia) )</code></pre>
+<p>We can then derive and visualize the quadrat counting estimate:</p>
+<pre><code>par( mai=c(0.01,0.01,0.5,0.01) )
+Latvia_Quadrants &lt;- quadratcount( Latvia_ppp, nx=7, ny=5 )
+plot( Latvia_Quadrants, 
+      main=&quot;Quadrat counting for swine fever outbreaks across Latvia&quot; )</code></pre>
+<p>From this plot we conclude that there are large spatial differences in the intensity with almost all cases located in north-eastern Latvia. Consequently, we conclude that the process is non-homogeneous.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Yes
+</p>]]></text>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+No
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS8/Exercise 4</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q4 : Q2a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following statements is true when considering the rate of violence per 1000 people per départment?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We can produce the map using</p>
+<pre><code>France &lt;- read_sf( &quot;Shapefiles/gadm41_FRA_2.shp&quot; ) %&gt;% st_simplify( dTolerance = 1000 )
+
+Crime_France &lt;- read.csv( &quot;Crimes France.csv&quot;, header=TRUE, fileEncoding = &quot;UTF-8&quot; )
+
+France &lt;- inner_join( x=France, y=Crime_France, by=c(&quot;NAME_2&quot;=&quot;Department&quot;) )
+
+ggplot( ) + 
+  annotation_map_tile( zoom=6 ) +
+  geom_sf( data=France, aes(fill=Violence.per.1000.pop) ) + theme_bw() +
+  scale_fill_distiller( palette=&quot;Reds&quot;, trans=&quot;reverse&quot; ) + 
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) ) + 
+  labs( x=&quot;Longitude&quot;, y=&quot;Latitude&quot;, color=&quot;Violence per 1000 people&quot; )</code></pre>
+<p>The map shows that the highest violence rates were observed for Paris. High rates were also recorded along the French Riviera, around Paris, and in the northern départments close to the border with Belgium.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+Brittany is a hotspot for violence
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+Departments close to the border with Belgium recorded quite a high rate of violence
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+High rates were recorded along the French Riviera
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+The highest rates were observed in and around Paris
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS8/Exercise 5</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q5 : Q2b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following statements is true when considering the rate of burglaries per 1000 people per départment?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We can produce the map using</p>
+<pre><code>France &lt;- read_sf( &quot;Shapefiles/gadm41_FRA_2.shp&quot; ) %&gt;% st_simplify( dTolerance = 1000 )
+
+Crime_France &lt;- read.csv( &quot;Crimes France.csv&quot;, header=TRUE, fileEncoding = &quot;UTF-8&quot; )
+
+France &lt;- inner_join( x=France, y=Crime_France, by=c(&quot;NAME_2&quot;=&quot;Department&quot;) )
+
+ggplot( ) + 
+  annotation_map_tile( zoom=6 ) +
+  geom_sf( data=France, aes(fill=Burglaries.per.1000.pop) ) + theme_bw() +
+  scale_fill_distiller( palette=&quot;Reds&quot;, trans=&quot;reverse&quot; ) + 
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) ) + 
+  labs( x=&quot;Longitude&quot;, y=&quot;Latitude&quot;, color=&quot;Violence per 1000 people&quot; )</code></pre>
+<p>We find that higher rates of burglaries were observed in southern France, with south-west France and the area around Lyon as the hotspots.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+Burglaries seem to be more common in southern than northern France
+</p>]]></text>
+</answer>
+<answer fraction="50" format="html">
+<text><![CDATA[<p>
+Lyon is a hotspot for burglaries
+</p>]]></text>
+</answer>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+The highest rates were observed in and around Paris
+</p>]]></text>
+</answer>
+<answer fraction="-50" format="html">
+<text><![CDATA[<p>
+The rate of burglaries varies between 10 and 20 across départments
+</p>]]></text>
+</answer>
+</question>
+
+</quiz>

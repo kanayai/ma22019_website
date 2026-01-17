@@ -1,0 +1,482 @@
+---
+title: "MA22019 2025 - Solutions for Problem Sheet 8"
+author: "Analysis of point pattern and lattice/areal data"
+output:
+  html_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+This week's problem sheet focuses on the methods for analyzing point pattern and lattice/areal unit data in Sections 4.5-4.7 in the lecture notes. Exercises 1-2 help you with revising the content of the lecture in Week 9, and Tutorial Questions 1 and 2 provide some more advanced questions. 
+
+Your answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 24 April 2025. You should submit a single PDF or Word file that provides your R code, any created R output and all your comments.
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( ggplot2 )
+library( tidyr )
+library( sf )
+library( ggspatial )
+library( prettymapr )
+library( spatstat )
+library( raster )
+```
+
+When working on a University PC, you will have to first install some of these packages. 
+
+### **Exercise 1 - Swine fever outbreaks across Europe**
+
+The file "Outbreaks.csv" contains the data for animal disease outbreaks between September 2015 and August 2017 as provided by the EMPRES Global Animal Disease Information System. Each entry in the data set specifies the location, date and type of disease for an individual outbreak. In this question we want to focus on the African swine fever that has affected large parts of Europe in the past years. Address the following three research tasks / questions and then complete the Moodle quiz.
+
+a. Which three countries were the worst affected in terms of the total number of outbreaks of African swine fever?
+
+<p style="color:blue"> *We start by loading the data frame containing the information about outbreaks:* </p>
+
+```{r}
+Outbreaks <- read.csv("Outbreaks.csv")
+```
+
+<p style="color:blue"> *Since we want to focus on African swine fever, we have to remove all observations on other diseases from the data set:* </p>
+
+```{r}
+SwineFever <- filter( Outbreaks, disease == "African swine fever" )
+```
+
+<p style="color:blue"> *Similar to the operations for data wrangling and text data analysis, we now count how iften each country appears in the data set, and we then print out the top three:* </p>
+
+
+```{r}
+SwineFever %>% 
+  count( country, sort=TRUE) %>%
+  slice_head( n=3 )
+```
+
+<p style="color:blue"> *We find that the three Baltic states (Estonia, Latvia and Lithuania) had the highest number of outbreaks.* </p>
+
+b. Visualize the locations of outbreaks of African swine fever for the Baltic states (Estonia, Latvia and Lithuania). What do you conclude?
+
+<p style="color:blue"> *We want to focus on the Baltic states, and thus we have to extract the observations related to these countries from the data* </p>
+
+```{r}
+SwineFever_Baltic <- SwineFever %>%
+  filter( country %in% c( "Estonia", "Latvia", "Lithuania" ) )
+```
+
+<p style="color:blue"> *We can now create a map using the techniques we covered in the lecture, and which already used for visualizing point-referenced data:* </p>
+
+```{r, message=FALSE, warning=FALSE, fig.align='center'}
+ggplot( SwineFever_Baltic, aes( x=longitude,y=latitude ) ) +
+  annotation_map_tile( zoom=6 ) + geom_spatial_point( ) + 
+  labs( x="Longitude", y="Latitude" )
+```
+
+<p style="color:blue"> *The map indicates that most outbreaks are in the eastern half of the Baltic states, with a particularly high numbers in Estonia and Latvia.* </p>
+
+c. Latvia has recorded a high number of outbreaks. Identify the parts of Latvia that observed a high frequency of swine fever outbreaks using quadrat counting or the kernel smoothed intensity function. Is it reasonable to conclude that the point process describing outbreaks of African swine fever across Latvia is homogeneous?
+
+<p style="color:blue"> *We now only focus on Latvia, so we have to extract the relevant data:* </p>
+
+```{r}
+SwineFever_Latvia  <- SwineFever %>% filter( country == "Latvia" )
+```
+
+<p style="color:blue"> *Using a shapefile for Latvia, we can construct the ppp object as demonstrated in the lecture notes:* </p>
+
+```{r, warning=FALSE}
+Latvia <- read_sf( "Shapefiles/gadm41_LVA_0.shp" )
+Latvia <- Latvia %>% 
+  st_simplify( dTolerance = 1000 ) %>%
+  st_transform( crs=3857 )
+
+SwineFever_transformed <- SwineFever_Latvia %>%
+  st_as_sf( coords=c("longitude","latitude"), crs=4326 ) %>%
+  st_transform( crs=3857 ) %>% 
+  st_coordinates( )
+
+Latvia_ppp <- ppp( SwineFever_transformed[,1], 
+                   SwineFever_transformed[,2], 
+                   window = as.owin(Latvia) )
+```
+
+<p style="color:blue"> *Let's start by deriving the quadrat counting estimate:* </p>
+
+```{r, out.width='60%', fig.align='center'}
+par( mai=c(0.01,0.01,0.5,0.01) )
+Latvia_Quadrats <- quadratcount( Latvia_ppp, nx=7, ny=5 )
+plot( Latvia_Quadrats, 
+      main="Quadrat counting for swine fever outbreaks across Latvia" )
+```
+
+<p style="color:blue"> *While the plot above already provides sufficient information to answer the question, we also produce the kernel smoothed intensity function estimate fr illustration (in practice we only provide either the quadrat counting or kernel smoothed intensity plot):*</p>
+
+```{r, out.width='70%', fig.align='center'}
+par( mai=c(0.01,0.5,0.2,0.5) )
+lambdaC <- density.ppp( Latvia_ppp, edge=TRUE )
+plot( lambdaC, main="Swine fever outbreaks across Latvia" )
+```
+
+<p style="color:blue"> *Both plots support our observations from part b) that hardly any outbreaks occur in the West of Latvia, while a high number of outbreaks is in the eastern half, in particular the north-eastern part of Latvia. Due to these large differences, we can conclude that the point process is non-homogeneous.* </p>
+
+
+### **Exercise 2 - Crime rates across France**
+
+The file “Crimes France.csv” contains crime statistics from 2015 for all French départments (except Corsica). Specifically, for each department we are provided with the rate of burglaries and violence per 1,000 people. The file uses the UTF-8 encoding and you should ensure to specify this when loading the file. A shapefile for France with the départment boundaries is provided in the file "gadm41_FRA_2.shp". Use the techniques for areal unit data to complete the following tasks and then go to Moodle and answer the quiz questions.
+
+a) Import the shapefile and create a map for France which includes the boundaries for the départments.
+
+<p style="color:blue"> *We start by loading the shapefile:*</p>
+
+```{r}
+France <- read_sf( "Shapefiles/gadm41_FRA_2.shp" )
+```
+
+<p style="color:blue"> *We reduce the complexity of the shapefile using st_simplify():*</p>
+
+```{r}
+France <- France %>% st_simplify( dTolerance = 1000 )
+```
+
+<p style="color:blue"> *We are now ready to plot the shapefile on top of a map:*</p>
+
+```{r, fig.align='center', out.width='60%', message=FALSE, warning=FALSE}
+ggplot( France ) + theme_bw() +
+  annotation_map_tile( zoom=6 ) +
+  geom_sf( data=France, alpha=0.7 ) +
+  labs( x="Longitude", y="Latitude" )
+```
+
+b) Visualize the rate of violence per 1000 people per départment. Which areas should we have avoided in 2015 if we were concerned about violence?
+
+<p style="color:blue"> *We first load the data file and we have to specify the encoding in this case (otherwise the accents are not imported correctly):*</p>
+
+```{r}
+Crime_France <- read.csv( "Crimes France.csv", header=TRUE, fileEncoding = "UTF-8" )
+```
+
+<p style="color:blue"> *Time to match the department names in the shapefile with that in the data file:*</p>
+
+```{r}
+France <- inner_join( x=France, y=Crime_France, by=c("NAME_2"="Department") )
+```
+
+<p style="color:blue"> *We can now produce the map as seen in the data examples for lattice data in Section 4.7 of the lecture notes:*</p>
+
+```{r, message=FALSE, warning=FALSE, fig.align='center', out.width='60%'}
+ggplot( ) + 
+  annotation_map_tile( zoom=6 ) +
+  geom_sf( data=France, aes(fill=Violence.per.1000.pop) ) + theme_bw() +
+  scale_fill_distiller( palette="Reds", trans="reverse" ) + 
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) ) + 
+  labs( x="Longitude", y="Latitude", color="Violence per 1000 people" )
+```
+
+<p style="color:blue"> *The map shows that the highest violence rates were observed for Paris. High rates were also recorded along the French Riviera, around Paris, and in the northern départments close to the border with Belgium.*</p> 
+
+
+c) Visualize the rate of burglaries per 1000 people per départment. What do you conclude?
+
+<p style="color:blue"> *We just need to change the variable we are plotting to create the plot for the rate of burglaries:*</p>
+
+```{r, message=FALSE, warning=FALSE, fig.align='center', out.width='60%'}
+ggplot( ) + 
+  annotation_map_tile( zoom=6 ) +
+  geom_sf( data=France, aes(fill=Burglaries.per.1000.pop) ) + theme_bw() +
+  scale_fill_distiller( palette="Reds", trans="reverse" ) + 
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) ) + 
+  labs( x="Longitude", y="Latitude", color="Violence per 1000 people" )
+```
+
+<p style="color:blue"> *We find that higher rates of burglaries were observed in southern France, with south-west France and the area around Lyon as the hotspots.*</p>
+
+
+### **Tutorial Question 1 - Crime across Utopia**
+
+Utopia's police department needs your help with analyzing their 2015-2021 data regarding certain crimes. The data is provided in the file "UtopiaCrimes.csv". Note, longitude and latitude coordinates are only available for drug possession offences across District 44.
+
+Utopia consists of 59 districts and a shapefile of Utopia is provided as "UtopiaShapefile.shp". To hide Utopia’s location, constants have been added to the latitude and longitude coordinates, but the shapes they define are correct. The population for each district is provided in the file "UtopiaPopulation.csv".
+
+a) Identify the three most common crimes in Utopia for the period 2015-2021.
+
+<p style="color:blue"> *To extract the three most common crimes, we only need to consider in "UtopiaCrimes.csv"*</p> 
+
+```{r}
+Crimes <- read.csv( "UtopiaCrimes.csv" )
+```
+
+<p style="color:blue"> *We then count the number of incidents for each crime category*</p>
+
+```{r}
+Crimes %>% 
+  count( Category, sort=TRUE ) %>%
+  slice_head( n=3 )
+```
+
+<p style="color:blue"> *We find that burglaries, drug possession and assault were the most common crimes for 2015-2021.*</p>
+
+b) Visualize the rate per 1,000 population for the most common crime for 2015-2021 for the different districts. What do you conclude from your plot?
+
+<p style="color:blue"> *Given the results in part a), we have to create a map for burglaries. We start by calculating the number of burglaries for each district:*</p>
+
+```{r}
+Burglaries <- Crimes %>%
+  filter( Category == "Burglary" ) %>%
+  count( District )
+```
+
+<p style="color:blue"> *We then derive the number of cases per 1,000 population for each district*</p>
+```{r}
+Population <- read.csv( "UtopiaPopulation.csv" )
+Burglaries <- Burglaries %>%
+  inner_join( Population, by="District" ) %>%
+  mutate( Rate = 1000 * n / Population )
+```
+
+<p style="color:blue"> *We next load the shape file*</p>
+
+```{r}
+Utopia <- read_sf( "Shapefiles/UtopiaShapefile.shp" )
+```
+
+<p style="color:blue"> *Finally, we add the calculated rate of burglaries to the data frame provided by the shapefile and visualize the lattice data*</p>
+
+```{r, fig.align='center', out.width='80%', fig.height=3, fig.width=6}
+Utopia <- Utopia %>% inner_join( Burglaries, by=c("NAME_1"="District") )
+  
+ggplot( Utopia, aes(fill=Rate) ) + geom_sf() + theme_bw() +
+  labs( title="Rate of Burglaries per 1000 people", 
+        x="Longitude", y="Latitude", fill="Rate" )
+```
+
+<p style="color:blue"> *The plot reveals that northern / north-western Utopia is worst affected in terms of the rate of burglaries.*</p>
+
+c) You are told that District 44 is notorious for drug possession. The police is planning to conduct a raid to tackle the issue, but they are unsure which areas of the district are the most seriously affected. Use spatial data analysis techniques to identify the parts of District 44 they should be focusing on. **Hint:** You may want to consider the function **st_reverse()** should you get an error message regarding orientation/direction.
+
+<p style="color:blue"> *To address this question, we have to perform point pattern analysis. We start by filtering out the observations of drug possession for District 44 and we only consider the two most recent years:*</p>
+
+```{r}
+District44_Drugs <- filter( Crimes, Category == "Drug Possession", 
+                            District == "District 44", Year>=2020  )
+```
+
+<p style="color:blue"> *We next extract the shapefile for District 44 and define a ppp object. We introduced two methods and the code for both is provided below. Option 1 is to use the approach from Section 4.6.2 in the lecture notes, but here we need to use the function st_reserve() to make it work: *</p>
+
+```{r}
+District44 <- filter( Utopia, NAME_1 == "District 44" )
+District44 <- st_reverse( District44 )
+District44_ppp <- ppp( District44_Drugs$Longitude, District44_Drugs$Latitude, 
+                       poly = District44$geometry[[1]][[1]] )
+```
+
+<p style="color:blue"> *The second option is to employ the approach in Section 4.6.4 - the approaches give a different scale in terms of values, but the conclusions are identical (so you use whichever you prefer): *</p>
+
+```{r}
+Drugs_transformed <- District44_Drugs %>%
+  st_as_sf( coords=c("Longitude","Latitude"), crs=4326 ) %>%
+  st_transform( crs=3857 ) %>% 
+  st_coordinates( )
+
+District44 <- District44 %>% st_transform( crs=3857 )
+
+District44_ppp <- ppp( Drugs_transformed[,1], 
+                       Drugs_transformed[,2], 
+                       window = as.owin(District44) )
+```
+
+<p style="color:blue"> *Finally, we estimate and plot the kernel smoothed intensity function to identify the area with the highest intensity*</p>
+
+```{r, fig.align='center', fig.height=5, fig.width=5, out.width='50%'}
+par( mai=c(0.01,0.01,0.5,0.01) )
+plot( density.ppp(District44_ppp, edge = TRUE), 
+      main="Drug Possession across District 44" )
+```
+
+<p style="color:blue"> *The plot suggests that the police should focus on the centre of District 44 since this is the area with the highest intensity. There is also a second area in the north-east of District 44 where a raid may also be quite successful.*</p>
+
+
+
+### **Tutorial Question 2 - Cost of living crisis in Texas**
+
+As many other countries around the world, the United States have seen high inflation over the past years. In the following we want to analyze socioeconomic data for the state of Texas. We have access to two data files:
+
+* "Cost_Texas.csv" gives the cost for essentials (food, rent, healthcare,etc.) in 2023 for a single household for each county in Texas based on the Family Budget Calculator by the Economic Policy Institute.
+
+* "Income_Texas.csv" gives the median income per capita for each county in Texas as reported by the Bureau of Economic Analysis of the US government for 2021.
+
+Perform the following tasks and answer the research questions:
+
+a) Load the two data files and calculate the difference between median income and cost of living for each county.
+
+<p style="color:blue">*We start by loading the two data sets*</p>
+
+```{r}
+Cost_Texas <- read.csv("Cost_Texas.csv", fileEncoding = "UTF-8")
+Income_Texas <- read.csv("Income Texas.csv", fileEncoding = "UTF-8")
+```
+
+<p style="color:blue">*A look at the data reveals that the numbers on income include a comma, which prevents this variable from being recognized as a numerical variable. So we have to do some data cleaning first*</p>
+
+```{r} 
+Income <- Income_Texas %>%
+  mutate( Income.per.capita = gsub("\\,","",Income.per.capita) ) %>%
+  mutate( Income.per.capita = as.numeric(Income.per.capita) )
+```
+
+<p style="color:blue">*We can now merge the two data sets based on county names:*</p>
+
+```{r}
+Texas_money <- inner_join( Income, Cost_Texas, by=c("County"="county") )
+```
+
+<p style="color:blue">*Finally, we can calculate the difference between income and cost as required:*</p>
+
+```{r}
+Texas_money <- Texas_money %>% mutate( Diff = Income.per.capita - total_cost )
+```
+
+b) The file "Texas.Rdata" provides a shapefile of Texas, called **Texas**,  with all county boundaries. Use the shapefile to create a map which visualizes the variable calculated in part a). What do you conclude?
+
+<p style="color:blue">*We first load the shapefile for Texas*</p>
+
+```{r}
+load( "Shapefiles/Texas.RData" )
+```
+
+<p style="color:blue">*We can now attach the information retrieved in part a) to the data frame in* **Texas**</p>
+
+```{r}
+TX <- inner_join( x=Texas, y=Texas_money, by="County" )
+```
+
+<p style="color:blue">*The map can then, for instance, be created with ggspatial*</p>
+
+```{r, message=FALSE, warning=FALSE, fig.align='center', out.width='50%'}
+ggplot( ) + 
+  annotation_map_tile( zoom=5 ) +
+  geom_sf( data=TX, aes(fill=Diff) ) + theme_bw() +
+  scale_fill_distiller( palette="Reds", trans="reverse" ) + 
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) ) + 
+  labs( x="Longitude", y="Latitude", fill="Income - Cost" )
+```
+
+<p style="color:blue">*We see quite a difference in values ranging from values around zero (the smallest value is about -1,900\$), to over \$80,000. So we would conclude that there are counties where the income of a single household is pretty much entirely spent on the essential costs, while there are some counties where people can continue saving.*</p>
+
+c) How reliable are our results found in part b)? **Hint:** You may want to extract the two counties with the highest median income and see what you find out about them on Wikipedia.
+
+<p style="color:blue">*There are at least two aspects that may affect reliability. The first is that the income and cost data are not for the same year. So we should not conclude that the values are fully accurate, but they give some indications on which we can comment with some certainty. The second aspect is that the income data is for people working in that area, while the cost data is representative for people living in the area. Let's retrieve the two counties with the highest difference:*</p>
+
+```{r}
+slice_max( Texas_money, Income.per.capita, n=2 )
+```
+
+<p style="color:blue">*We find that that the two counties with the highest median income are Midland and Glasscock, and these counties also have a difference above \$80,000. Looking at Wikipedia, these two counties are centres of the oil industry in Texas. One feature of these jobs is that the people working in the oil industry are not necessarily living in that area permanently. Consequently, our analysis for these counties may biased due to this feature.*</p>
+
+### **Homework Question - Tracking grey squirrels across the UK**
+
+The grey squirrel is classified as an invasive species in the UK, and it has displaced the native red squirrel across large parts of the UK. A wildlife conservation charity has collected data on reported sightings of grey squirrels for 2020-2022. The data they provided includes the following:
+
+**GreySquirrels.csv:** Sightings of grey squirrels reported to the wildlife conservation charity for 2020-2022:
+
+* Year: Year the sighting happened
+
+* Lon: Longitude coordinate of the sighting
+
+* Lat: Latitude coordinate of the sighting
+
+* Admin: Name of the administrative area, where the grey squirrel was sighted
+
+**UK Shapefile:** Folder containing shapefiles for the UK
+
+* UK.shp: Shapefile without administrative boundaries
+
+* UK admin.shp: Shapefile with boundaries for the administrative areas named in the file "GreySquirrels.csv"
+
+The charity assured us that the data is representative of the spatial distribution of squirrels across Great Britain for all years. They ask you to use the data to investigate the following aspects:
+
+a) What can we say about the spatial distribution of grey squirrels across Great Britain in 2022?
+
+b) Are there any areas of Great Britain that saw a notable change in the number of grey squirrels when we compare the data for 2020 and 2022?
+
+<p style="color:blue">*We start by loading the data and the shapefiles*</p>
+
+```{r}
+UK <- read_sf( "UK Shapefile/UK.shp" )
+UK_county <- read_sf( "UK Shapefile/UK_admin.shp" )
+Squirrels <- read.csv( "GreySquirrels.csv" )
+```
+
+<p style="color:blue">*To explore the spatial distribution of the grey squirrel for 2022, we extract the relevant observations*</p>
+
+```{r}
+Squirrels2022 <- filter( Squirrels, Year == 2022 )
+```
+
+<p style="color:blue">*Since we are working with point pattern data, we use techniques for analyzing point pattern data and create a ppp object*</p>
+
+```{r}
+UK <- st_reverse( UK )
+Squirrels2022_ppp <- ppp( Squirrels2022$Lon, Squirrels2022$Lat, poly = UK$geometry[[1]][[1]] )
+```
+
+<p style="color:blue">**Note:** *Some of the points are lying outside the area, because we only took the largest polygon. The omission of these few points will not affect our results due to there being about 10,800 observations in the data.*</p>
+
+<p style="color:blue">*We can now use the smoothed kernel intensity function to explore the spatial distribution*</p>
+
+```{r}
+lambdaC <- density.ppp( Squirrels2022_ppp, edge=TRUE, sigma=0.1 )
+plot( lambdaC, main="Grey Squirrels across Great Britain" )
+```
+
+<p style="color:blue">*The plot suggests that the highest density of grey squirrels can be found in the East Midlands, with a high intensity observed throughout England (except for Cornwall and Devon). On the other hand, we hardly observe any squirrels in West Wales and Scotland.*</p>
+
+<p style="color:blue">*To measure the change in numbers, one option is to focus on the administrative areas and calculate the number of grey squirrels for 2020 and 2022 for each of them*</p>
+
+```{r}
+Squirrels_county <- Squirrels %>% 
+  count( Year, County ) %>%
+  filter( Year %in% c(2020,2022) ) %>%
+  rename( Count = n ) %>%
+  ungroup()
+```
+
+<p style="color:blue">*Let's visualize the counts within each administrative boundary*</p>
+
+```{r, message=FALSE, fig.align='center', out.width='80%'}
+Squirrels2022 <- filter( Squirrels_county, Year == 2022 )
+UK_county <- full_join( UK_county, Squirrels2022, by=c("NAME_2"="County") )
+
+ggplot( UK_county, aes(fill=Count) ) + 
+  annotation_map_tile(zoom=5) + 
+  theme_bw() + geom_sf() + 
+  scale_fill_distiller( palette="Reds", trans="reverse" )
+```
+
+<p style="color:blue">*We see that North Yorkshire had the highest count in 2022, although it was not the area with the highest intensity - these differences are due to the different areas sizes.*</p>
+
+<p style="color:blue">*The next step is to calculate the raw change in numbers for each administrative boundary*</p>
+
+```{r}
+Squirrels_county <- Squirrels_county %>%
+  pivot_wider( names_from = Year, values_from = Count ) %>%
+  mutate( `2020` = replace_na(`2020`,0), `2022` = replace_na(`2022`,0)  ) %>%
+  mutate( Change = `2022` - `2020` )
+```
+
+<p style="color:blue">*Finally, we visualize the calculated numbers:*</p>
+
+```{r, fig.align='center', out.width='80%', message=FALSE}
+UK_county <- UK_county %>% full_join( Squirrels_county, by=c("NAME_2"="County") )
+ggplot( UK_county, aes(fill=Change) ) +  
+  annotation_map_tile(zoom=5) + 
+  geom_sf() + theme_bw() +  
+  scale_fill_distiller( palette="Reds", trans="reverse" )
+```
+
+<p style="color:blue">*We find that the areas that had the largest change in raw numbers are all located in northern England, in particular Cumbria saw a big increase in the number of grey squirrels.*</p>

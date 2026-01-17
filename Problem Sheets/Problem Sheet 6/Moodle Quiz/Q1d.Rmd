@@ -1,0 +1,21 @@
+Question
+========
+When considering the damage caused by the great spruce bark beetle across Western England, which type of spatial data (point-referenced, point pattern or lattice/areal data) are mostly likely working with?
+
+Answerlist
+----------
+		
+* Point-referenced
+* Point pattern
+* Lattice/areal
+
+Solution
+========
+
+It is not feasible to investigate each individual tree. Instead, we will be given information on whether a woodland area is affected by the bark beetle or not. This would result in lattice / areal data.
+
+Meta-information
+================
+exname: Q1d
+extype: schoice
+exsolution: 001

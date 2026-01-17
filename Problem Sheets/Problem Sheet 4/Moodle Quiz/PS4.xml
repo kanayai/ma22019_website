@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 1</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q1 : Q1b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following words are not amongst the five most common words across the short stories in <em>The Works of Edgar Allan Poe - Volume 1</em>?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We extract the information using</p>
+<pre><code>## Part a)
+Poe &lt;- Poe_raw %&gt;%
+  unnest_tokens( word, text ) %&gt;%
+  mutate( word = gsub( &quot;\\_&quot;, &quot;&quot;, word ) ) 
+
+## Part b)
+Poe %&gt;% 
+  count( word, sort=TRUE ) %&gt;% 
+  slice_head(n=5)</code></pre>
+<p>We find that “the”, “of”, “and”, “to” and “a” are the most common words across the short stories.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="-25" format="html">
+<text><![CDATA[<p>
+the
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+I
+</p>]]></text>
+</answer>
+<answer fraction="-25" format="html">
+<text><![CDATA[<p>
+and
+</p>]]></text>
+</answer>
+<answer fraction="-25" format="html">
+<text><![CDATA[<p>
+of
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+on
+</p>]]></text>
+</answer>
+<answer fraction="-25" format="html">
+<text><![CDATA[<p>
+to
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+they
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 2</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q2 : Q1c </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which of the following words are the most common in one of the short stories in <em>The Works of Edgar Allan Poe - Volume 1</em>?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>Using the data from part a), we first remove the stop words in the list provided by the tidytext package:</p>
+<pre><code>data( stop_words )
+Poe &lt;- Poe %&gt;% anti_join( stop_words, by=&quot;word&quot; )</code></pre>
+<p>Finally, we apply the count() function again, but we need to do it for each story. So we combine count() with group_by():</p>
+<p>```
+Poe %&gt;%
+group_by( story ) %&gt;%
+count( word, sort=TRUE ) %&gt;%
+slice_head( n=1 )</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+ship
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+voice
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+machine
+</p>]]></text>
+</answer>
+<answer fraction="33.33333" format="html">
+<text><![CDATA[<p>
+balloon
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+king
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+body
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 3</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q3 : Q2a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which was the most coming baby name over the period 1880-2017?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We start by loading the data set:</p>
+<pre><code>Babies &lt;- read.csv(&quot;Babynames.csv&quot;)</code></pre>
+<p>To find the most common name, we have to sum up the counts across the different years:</p>
+<pre><code>Babies %&gt;%
+  group_by( Name=name ) %&gt;%
+  summarise( Count = sum(n) ) %&gt;%
+  arrange( desc(Count) ) %&gt;%
+  slice_head( n=1 )</code></pre>
+<p>We find that “James” was the most common baby name.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+James
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+John
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Michael
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Robert
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 4</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q4 : Q2b </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>According to you wor cloud, which name was the most popular for girls over the period 1880-2017?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first calculate the counts for each name:</p>
+<pre><code>Names_Girls &lt;- Babies %&gt;%
+  filter( sex==&quot;F&quot; ) %&gt;%
+  group_by( name ) %&gt;%
+  summarize( Count=sum(n) )</code></pre>
+<p>Using the code in Section 3.1.2, we create a word cloud as follows:</p>
+<pre><code>Names_Girls %&gt;% with( wordcloud( name, Count, max.words=30 ) )</code></pre>
+<div class="figure" style="text-align: center">
+<img src="@@PLUGINFILE@@/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" width="60%" />
+<p class="caption">
+plot of chunk unnamed-chunk-2
+</p>
+</div>
+<p>We find that Mary was the most popular name over the period, as it has the largest font size.</p>
+</p>]]></text>
+<file name="unnamed-chunk-2-1.png" encoding="base64">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</file>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Dorothy
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Elizabeth
+</p>]]></text>
+</answer>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+Mary
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+Patricia
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 5</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q5 : Q2c </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>In which decade did the popularity of the name “Mary” peak?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>One way is to create a plot for the proportions over time:</p>
+<pre><code>Babies %&gt;% 
+  filter( sex==&quot;F&quot;, name==&quot;Mary&quot; ) %&gt;%
+  ggplot( aes(&quot;x&quot;=year, &quot;y&quot;=prop) ) + geom_line( linewidth=1 ) + 
+  labs( x=&quot;Year&quot;, y=&quot;Proportion of newborn girls named Mary&quot; ) + theme_bw()</code></pre>
+<p>From the plot, we conclude that “Mary” has become less popular over the period, falling from a peak of more than 7% in 1880 to 0.1-0.2% in the 2010s. SO the correct answer is 1880-1889.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>true</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="100" format="html">
+<text><![CDATA[<p>
+1880-1889
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+1920-1929
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+1950-1959
+</p>]]></text>
+</answer>
+<answer fraction="0" format="html">
+<text><![CDATA[<p>
+1980-1989
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 6</text>
+</category>
+</question>
+
+
+<question type="multichoice">
+<name>
+<text> Q6 : Q3a </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which words (exclusing stop words) are not among the five most common words in the book <em>Frankenstein</em>?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We first split the lines of text and remove any punctuation:</p>
+<pre><code>Frankenstein &lt;- Frankenstein_raw %&gt;% unnest_tokens( word, text )
+Frankenstein &lt;- Frankenstein %&gt;% mutate( word = gsub( &quot;_&quot;, &quot;&quot;, word ) )</code></pre>
+<p>We then count the number of occurrences for each word and remove any words that are categorized as stop words. Finally, we print the five most common words (excluding stop words):</p>
+<pre><code>Frankenstein %&gt;% 
+  count( word, sort=TRUE ) %&gt;%
+  anti_join( stop_words, by=c(&quot;word&quot;) ) %&gt;% 
+  slice_head( n=5 )</code></pre>
+<p>We conclude that that five most common words (excluding stop words) are “life”, “father”, “eyes”, “time” and “night”.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<shuffleanswers>false</shuffleanswers>
+<single>false</single>
+<answernumbering>abc</answernumbering>
+<answer fraction="20" format="html">
+<text><![CDATA[<p>
+day
+</p>]]></text>
+</answer>
+<answer fraction="20" format="html">
+<text><![CDATA[<p>
+mind
+</p>]]></text>
+</answer>
+<answer fraction="20" format="html">
+<text><![CDATA[<p>
+the
+</p>]]></text>
+</answer>
+<answer fraction="20" format="html">
+<text><![CDATA[<p>
+on
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+father
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+life
+</p>]]></text>
+</answer>
+<answer fraction="-33.33333" format="html">
+<text><![CDATA[<p>
+time
+</p>]]></text>
+</answer>
+<answer fraction="20" format="html">
+<text><![CDATA[<p>
+elizabeth
+</p>]]></text>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 7</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q7 : Q3bi </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which chapter has the highest sentiment score?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We follow the same steps as in Section 3.2.2 and find that Chapter 6 has the highest sentiment, with a value of 157.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>6</text>
+<tolerance>0.2</tolerance>
+</answer>
+</question>
+
+
+<question type="category">
+<category>
+<text>$course$/PS4/Exercise 8</text>
+</category>
+</question>
+
+
+<question type="numerical">
+<name>
+<text> Q8 : Q3bii </text>
+</name>
+<questiontext format="html">
+<text><![CDATA[
+<style type="text/css" rel="stylesheet">
+/* tables with alternating shading */
+.table_shade {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.table_shade th {
+    border:1px solid #FFFFFF;
+    background: #D5D5D5;
+}
+.table_shade td {
+    border:1px solid #FFFFFF;
+}
+.table_shade .odd {
+    background: #EEEEEE;
+}
+.table_shade .even {
+    background: #FBFBFB;
+}
+</style>
+<p>
+<p>Which chapter has the lowest sentiment score?</p>
+</p>]]></text>
+</questiontext>
+<generalfeedback format="html">
+<text><![CDATA[<p>
+<p>We follow the same steps as in Section 3.2.2 and find that Chapter 24 has the lowest sentiment, with a value of -290.</p>
+</p>]]></text>
+</generalfeedback>
+<penalty>0</penalty>
+<defaultgrade>1</defaultgrade>
+<answer fraction="100" format="moodle_auto_format">
+<text>24</text>
+<tolerance>0.2</tolerance>
+</answer>
+</question>
+
+</quiz>

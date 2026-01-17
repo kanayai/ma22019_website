@@ -1,0 +1,25 @@
+Question
+========
+In which year between 1965 and 2016 were the most earthquakes recorded?
+
+
+Solution
+========
+The most earthquakes were recorded in 2011. We extract this information using
+
+```{r, echo=TRUE, eval=FALSE}
+Earthquakes$Date <- as_date( Earthquakes$Date, format='%m/%d/%Y' )
+
+Earthquakes %>% 
+  group_by( year(Date) ) %>%
+  summarize( "Number_Earthquakes" = n() ) %>%
+  arrange( desc(Number_Earthquakes) ) %>%
+  slice_head( n=2 )
+```
+
+
+Meta-information
+================
+exname: Q3a
+extype: num
+exsolution: 2011

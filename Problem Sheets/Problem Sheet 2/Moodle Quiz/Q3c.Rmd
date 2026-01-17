@@ -1,0 +1,23 @@
+Question
+========
+Identify the date for which the difference in recorded daily minimum and maximum temperatures was at its highest in 2019. Enter your answer in the Day/Month format via the quiz on Moodle.
+
+Solution
+========
+We first create a new variable which represents the difference in minimum and maximum temperature on the day and then find the day with the largest difference:
+
+```{r, eval=FALSE, echo=TRUE}
+NYC <- read.csv( "NYC Weather 2019.csv" )
+NYC %>% 
+  mutate( Difference = Tmax - Tmin ) %>%
+  arrange( desc(Difference) ) %>%
+  slice_head( n=1 )
+```
+
+We find that the correct answer is 08/04.
+
+Meta-information
+================
+exname: Q3c
+extype: string
+exsolution: 08/04

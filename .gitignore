@@ -1,0 +1,15 @@
+.DS_Store
+*.aux
+*.log
+_book/
+_main_files/
+
+# Ignore large data folders and files
+**/Data/
+*.shp
+*.shx
+*.dbf
+*.prj
+*.csv
+*.zip
+*.nc

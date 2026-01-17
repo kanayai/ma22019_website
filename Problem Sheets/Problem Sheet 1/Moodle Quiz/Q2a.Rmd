@@ -1,0 +1,17 @@
+Question
+========
+How many flights does the data set contain?
+
+Solution
+========
+The data set contains 336,776 flights. We can get this information, for instance, using
+```{r, eval=FALSE, echo=TRUE}
+glimpse( NYCFlights )
+```
+
+Meta-information
+================
+exname: Q2a
+extype: num
+exsolution: 336776
+extol: 0.01

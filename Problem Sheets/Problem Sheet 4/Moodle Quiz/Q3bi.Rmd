@@ -1,0 +1,15 @@
+Question
+========
+Which chapter has the highest sentiment score?
+
+Solution
+========
+
+We follow the same steps as in Section 3.2.2 and find that Chapter 6 has the highest sentiment, with a value of 157.
+
+Meta-information
+================
+exname: Q3bi
+extype: num
+exsolution: 6
+extol: 0.2
