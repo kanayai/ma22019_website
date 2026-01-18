@@ -1,0 +1,23 @@
+# Quarto
+/.quarto/
+/_book/
+**/*.quarto_ipynb
+*_cache/
+*_files/
+
+# Quarto output (uncomment if you want to ignore rendered output)
+# *.html
+# *.pdf
+# *.tex
+# *.toc
+# *.aux
+# *.log
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# OS
+.DS_Store

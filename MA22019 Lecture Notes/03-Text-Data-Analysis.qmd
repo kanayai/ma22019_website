@@ -39,7 +39,7 @@ Consider the following quote by Hermann Hesse (a German-Swiss poet):
 The text is stored in the file "Hesse quote.txt" on Moodle, with the quote being split into two lines as above. To load the data into R, we use the function **readLines()**:
   
 ```{r}
-text_Hesse <- readLines( "Data/Hesse quote.txt" )
+text_Hesse <- readLines("Data/Hesse quote.txt")
 text_Hesse
 ```
 
@@ -48,7 +48,7 @@ We see that **text_Hesse** is a vector with two entries, each entry correspondin
 Let's store the data as a data frame:
 
 ```{r}
-quote_Hesse <- data.frame( line=1:2, text=text_Hesse )
+quote_Hesse <- data.frame(line = 1:2, text = text_Hesse)
 ```
 
 The text data in its current format is of little use, because we usually want to analyze single words within a text. As such, we need to separate the strings into individual words. Further, any punctuation should be removed because we are not interested in it.
@@ -58,8 +58,8 @@ The function **unnest_tokens()** in the **tidytext** R package does all of this 
 ```{r, warning=FALSE, message=FALSE}
 library(tidytext)
 library(dplyr)
-Hesse_tidy <- quote_Hesse %>% unnest_tokens( output=word, input=text )
-Hesse_tidy %>% slice_head( n=5 )
+Hesse_tidy <- quote_Hesse %>% unnest_tokens(output = word, input = text)
+Hesse_tidy %>% slice_head(n = 5)
 ```
 
 The data are now stored in the column **word**. This format is known as the **tidy text** format and it follows two principles:
@@ -81,14 +81,14 @@ The full text for *Jane Eyre* is freely available from <a href="https://www.gute
 
 ```{r, warning=FALSE, message=FALSE}
 URL <- "https://www.gutenberg.org/cache/epub/1260/pg1260.txt"
-JaneEyre_raw <- readLines( URL, encoding = "UTF-8" )
+JaneEyre_raw <- readLines(URL, encoding = "UTF-8")
 ```
 
 We have to remove the meta data and disclaimers at the beginning and end of the file. We do this by detecting the lines containing the word "EBOOK", which signals the beginning and end of the book:
 
 ```{r}
-ind <- grep( "EBOOK", JaneEyre_raw )
-JaneEyre_raw<- data.frame( text=JaneEyre_raw[ (ind[1]+1):(ind[2]-1) ] )
+ind <- grep("EBOOK", JaneEyre_raw)
+JaneEyre_raw <- data.frame(text = JaneEyre_raw[(ind[1] + 1):(ind[2] - 1)])
 ```
 
 The individual rows in **JaneEyre_raw** represent one line from the book, as provided in the printed version stored on the Project Gutenberg website, with the first lines being from the title page.
@@ -96,13 +96,13 @@ The individual rows in **JaneEyre_raw** represent one line from the book, as pro
 After importing the data, we separate the lines of text into individual words using unnest_tokens():
 
 ```{r}
-JaneEyre <- JaneEyre_raw %>% unnest_tokens( word, text )
+JaneEyre <- JaneEyre_raw %>% unnest_tokens(word, text)
 ```
 
 A bit more data cleaning is required before starting the analysis. Specifically, some of the extracted words appear with an "_", such as the eighth extracted word - "`r JaneEyre$word[8]`". This indicates that the word is printed in italics, but we do not want to tread "the" and "*the*" differently. To remove these underscores, we apply the **gsub()** function we saw in Problem Class 1:
 
 ```{r, warning=FALSE, message=FALSE}
-JaneEyre$word <- gsub( "_", "", JaneEyre$word )
+JaneEyre$word <- gsub("_", "", JaneEyre$word)
 ```
 
 #### Calculating the term frequency {-}
@@ -110,10 +110,10 @@ JaneEyre$word <- gsub( "_", "", JaneEyre$word )
 With the data in the tidy text format, the function **count()** from the dplyr R package can be used to extract the number of times each word was used. We further calculate each word's proportion amongst the total number of words, called the **term frequency**, and its rank:
 
 ```{r}
-JaneEyre_Count <- JaneEyre %>% 
-  count( word, sort=TRUE ) %>%
-  mutate( 'term frequency' = n / sum(n), rank = row_number() )
-slice_head( JaneEyre_Count, n=5 )
+JaneEyre_Count <- JaneEyre %>%
+    count(word, sort = TRUE) %>%
+    mutate("term frequency" = n / sum(n), rank = row_number())
+slice_head(JaneEyre_Count, n = 5)
 ```
 
 Looking at the output, the words with the highest term frequency are the ones we usually use when writing a longer piece of text.
@@ -124,9 +124,11 @@ Before analyzing the words most commonly used in *Jane Eyre* in more detail, we 
   
 ```{r, out.width='50%', fig.height=4, fig.width=5, fig.align='center', fig.cap="Plot of rank versus term frequency for the words in Jane Eyre, illustrating the negative proportionality stated by Zipf's Law.", warning=FALSE, message=FALSE}
 library(ggplot2)
-ggplot( JaneEyre_Count, aes( x=rank, y=`term frequency` ) ) + 
-  geom_point(size=1.5) + coord_trans( x="log10", y="log10" ) + 
-  theme_bw() + theme( axis.title=element_text(size=15) )
+ggplot(JaneEyre_Count, aes(x = rank, y = `term frequency`)) +
+    geom_point(size = 1.5) +
+    coord_trans(x = "log10", y = "log10") +
+    theme_bw() +
+    theme(axis.title = element_text(size = 15))
 ```
 
 There is pretty much a linear relationship between rank and term frequency on logarithmic scale (apart from the words with the highest term frequency). This is known as **Zipf's Law** which states that empirically a word's term frequency is inversely proportional to its rank.
@@ -142,9 +144,9 @@ This has led to the concept of **stop words**. The idea is to specify words that
 The tidytext R package provides its own list, **stop_words**, which includes 1149 stop words. We can remove these stop words from **JaneEyre_Count** using the function **anti_join()** from the dplyr R package:
   
 ```{r, message=FALSE}
-data( stop_words )
-JaneEyre_Count <- JaneEyre_Count %>% anti_join( stop_words )
-slice_head( JaneEyre_Count, n=5 )
+data(stop_words)
+JaneEyre_Count <- JaneEyre_Count %>% anti_join(stop_words)
+slice_head(JaneEyre_Count, n = 5)
 ```
 
 #### Visualizing word frequency using bar plots {-}
@@ -153,11 +155,13 @@ Let's create a bar plot for the most commonly used words in *Jane Eyre* that are
 
 ```{r, out.width='65%', fig.align='center', fig.cap="Word frequency of the most commonly used words in Jane Eyre.", fig.height=4, fig.width=7}
 JaneEyre_Count %>%
-  slice_head( n=10 ) %>%
-  mutate( word = reorder(word,n) ) %>%
-  ggplot( aes( x=n, y=word ) ) + geom_col() + 
-  labs( x="Count", y="Word" ) + theme_bw() +
-  theme( axis.title=element_text(size=17), axis.text=element_text(size=15) )
+    slice_head(n = 10) %>%
+    mutate(word = reorder(word, n)) %>%
+    ggplot(aes(x = n, y = word)) +
+    geom_col() +
+    labs(x = "Count", y = "Word") +
+    theme_bw() +
+    theme(axis.title = element_text(size = 17), axis.text = element_text(size = 15))
 ```
 
 We see that the names of two main characters, Jane Eyre and Edward Rochester, and their titles appear the most often, followed by "time", "day", "looked" and "night".
@@ -173,7 +177,7 @@ The R package **wordcloud** provides a function to produce a word cloud. For *Ja
 ```{r, fig.align='center', fig.cap="Word cloud illustrating the frequency of the 40 most common words in Jane Eyre.", warning=FALSE, message=FALSE, out.width='65%'}
 library(wordcloud)
 JaneEyre_Count %>%
-  with( wordcloud( word, n, max.words=40, colors=topo.colors(n=40) ) )
+    with(wordcloud(word, n, max.words = 40, colors = topo.colors(n = 40)))
 ```
 
 **Remark:** Word clouds are good when we want to visualize term frequency for a large number of words. In all other cases, a bar plot is the better choice in terms of accessibility and the amount of information it provides.
@@ -198,22 +202,24 @@ Words not listed within the lexicon are considered "neutral" in terms of sentime
 To load the AFINN sentiment lexicon, we use the **get_sentiments()** function in the tidytext package: 
 
 ```{r}
-AFINN <- get_sentiments( "afinn" )
+# library(textdata)
+# lexicon_afinn()
+AFINN <- get_sentiments("afinn")
 ```
 
 Let's again prepare the data and store the line number for later use:
   
 ```{r}
 JaneEyre <- JaneEyre_raw %>%
-  mutate( line = row_number() ) %>%
-  unnest_tokens( word, text ) %>%
-  mutate( word = gsub( "_", "", word ) )
+    mutate(line = row_number()) %>%
+    unnest_tokens(word, text) %>%
+    mutate(word = gsub("_", "", word))
 ```
 
 The next step is to extract the words that are in both *Jane Eyre* and the AFINN sentiment lexicon:
   
 ```{r, message=FALSE}
-JaneEyre_AFINN <- inner_join( JaneEyre, AFINN )
+JaneEyre_AFINN <- inner_join(JaneEyre, AFINN)
 ```
 
 It is important to note that sentiment lexicons have certain limitations. For instance, the word "miss" is associated with a negative sentiment within the AFINN sentiment lexicon, but in *Jane Eyre* it is usually used as the title of a young, unmarried woman - so we should better ignore the word "miss" in the analysis.
@@ -223,11 +229,13 @@ It is important to note that sentiment lexicons have certain limitations. For in
 Let's create a plot to see how the aggregated sentiment evolves over the course of the novel, and we filter out the word "miss" based on our previous argument: 
 
 ```{r AFINN, out.width='60%', fig.align='center', fig.cap="Evolution of the AFINN sentiment score over the course of the book Jane Eyre. Negative values at the start indicate negative sentiment, but the sentiment becomes higher as the book comes to its conclusion.", fig.height=3.2, fig.width=5}
-JaneEyre_AFINN %>% 
-  filter( word != "miss" ) %>%
-  mutate( sentiment = cumsum( value ) ) %>%
-  ggplot( aes( x=line, y=sentiment ) ) + geom_line( linewidth=1.2 ) +
-  theme_bw() + labs( x="Line number", y="Sentiment" )
+JaneEyre_AFINN %>%
+    filter(word != "miss") %>%
+    mutate(sentiment = cumsum(value)) %>%
+    ggplot(aes(x = line, y = sentiment)) +
+    geom_line(linewidth = 1.2) +
+    theme_bw() +
+    labs(x = "Line number", y = "Sentiment")
 ```
 
 The plot suggests that the first chapters of *Jane Eyre* have a more "negative" sentiment, while, as the story progresses, the novel develops a more "positive" sentiment. 
@@ -237,31 +245,32 @@ Another way to visualize sentiment is to group lines into sections and to derive
 ```{r, warning=FALSE, message=FALSE}
 library(stringr)
 JaneEyre_chapters <- JaneEyre_raw %>%
-  mutate( chapter = cumsum( 
-    str_detect( text, regex("^chapter ", ignore_case = TRUE) )
-    ) )
+    mutate(chapter = cumsum(
+        str_detect(text, regex("^chapter ", ignore_case = TRUE))
+    ))
 ```
 
 We now remove any lines that do not belong to one of the chapters and then split the book as before:
 
 ```{r}
 JaneEyre_chapters <- JaneEyre_chapters %>%
-  filter( chapter > 0 ) %>%
-  unnest_tokens( word, text ) %>%
-  mutate( word = gsub( "_", "", word ) ) %>% 
-  filter( word != "miss" )
+    filter(chapter > 0) %>%
+    unnest_tokens(word, text) %>%
+    mutate(word = gsub("_", "", word)) %>%
+    filter(word != "miss")
 ```
 
 Finally, we calculate and visualize the aggregated sentiment for each chapter
 
 ```{r, out.width='70%', fig.align='center', fig.cap="AFINN sentiment score for the chapters of Jane Eyre.", fig.height=3, fig.width=5, message=FALSE}
 JaneEyre_chapters %>%
-  inner_join( AFINN ) %>%
-  group_by( chapter ) %>%
-  summarise( sentiment = sum(value) ) %>%
-  ggplot( aes( x=chapter, y=sentiment ) ) + 
-  geom_col() + theme_bw() +
-  labs( x="Chapter", y="AFINN sentiment score" )
+    inner_join(AFINN) %>%
+    group_by(chapter) %>%
+    summarise(sentiment = sum(value)) %>%
+    ggplot(aes(x = chapter, y = sentiment)) +
+    geom_col() +
+    theme_bw() +
+    labs(x = "Chapter", y = "AFINN sentiment score")
 ```
 
 The plot shows a similar pattern to that identified for Figure \@ref(fig:AFINN). If we consider a chapter with an AFINN score above 0 as "positive", and "negative" otherwise, we find that the sentiment tends to remain "positive" across multiple consecutive chapters. 
@@ -269,16 +278,17 @@ The plot shows a similar pattern to that identified for Figure \@ref(fig:AFINN).
 When working with the Bing sentiment lexicon, we may count the numbers of "positive" and "negative" words in each chapter and visualize their proportions numbers using a stacked bar plot:
   
 ```{r, warning=FALSE, out.width='80%', fig.align='center', fig.cap="Bing sentiment score for the chapters of Jane Eyre.", fig.height=3, fig.width=6, message=FALSE}
-Bing <- get_sentiments( "bing" )
+Bing <- get_sentiments("bing")
 
 JaneEyre_chapters %>%
-  inner_join( Bing ) %>%
-  group_by( chapter ) %>%
-  count( chapter, sentiment ) %>%
-  ggplot( aes( x=chapter, y=n, fill=sentiment ) ) + 
-  geom_col(position="fill") + 
-  geom_hline( yintercept = 0.5, color="black", linewidth=1.1 ) +
-  theme_bw() + labs( x="Chapter", y="Proportion" )
+    inner_join(Bing) %>%
+    group_by(chapter) %>%
+    count(chapter, sentiment) %>%
+    ggplot(aes(x = chapter, y = n, fill = sentiment)) +
+    geom_col(position = "fill") +
+    geom_hline(yintercept = 0.5, color = "black", linewidth = 1.1) +
+    theme_bw() +
+    labs(x = "Chapter", y = "Proportion")
 ```
 
 When comparing the two bar plots, and assuming that a chapter with a proportion of "positive" words above 50% is "positive", we find good agreement in terms of whether a chapter has a "positive" or "negative" sentiment.
@@ -295,44 +305,50 @@ Let's compare *Jane Eyre* to the novel *Wuthering Heights* by Emily Brontë, Cha
 
 ```{r, message=FALSE}
 URL <- "https://www.gutenberg.org/files/768/768-0.txt"
-WutheringHeights_raw <- readLines( URL, encoding = "UTF-8" )
-ind <- grep( "EBOOK", WutheringHeights_raw )
-WutheringHeights_raw<- data.frame( text=WutheringHeights_raw[ (ind[1]+1):(ind[2]-1) ] )
+WutheringHeights_raw <- readLines(URL, encoding = "UTF-8")
+ind <- grep("EBOOK", WutheringHeights_raw)
+WutheringHeights_raw <- data.frame(text = WutheringHeights_raw[(ind[1] + 1):(ind[2] - 1)])
 
-WutheringHeights <- WutheringHeights_raw %>% 
-  unnest_tokens(word, text) %>%
-  mutate( word = gsub( "_", "", word ) ) %>%
-  count( word, sort=TRUE ) %>%
-  mutate( 'term frequency' = n / sum(n) ) %>%
-  anti_join( stop_words )
+WutheringHeights <- WutheringHeights_raw %>%
+    unnest_tokens(word, text) %>%
+    mutate(word = gsub("_", "", word)) %>%
+    count(word, sort = TRUE) %>%
+    mutate("term frequency" = n / sum(n)) %>%
+    anti_join(stop_words)
 ```
 
 To compare term frequencies, we combine the two data frames for *Jane Eyre* and *Wuthering Heights*:
 
 ```{r}
-frequency_combined <- 
-  full_join( JaneEyre_Count, WutheringHeights, by="word" ) %>%
-  rename( JaneEyre='term frequency.x', Heights='term frequency.y' )
+frequency_combined <-
+    full_join(JaneEyre_Count, WutheringHeights, by = "word") %>%
+    rename(JaneEyre = "term frequency.x", Heights = "term frequency.y")
 ```
 
 Before analyzing the term frequencies, we have to account for words that only appear in one book being given a value of **NA**, such as the word "Jane". Therefore, we replace any $\mathrm{\texttt{NA}}$ entry with  with a value of 0 (as we did in Problem Sheet 2, Tutorial Question 2):
 
 ```{r, warning=FALSE, message=FALSE}
 frequency_combined <- frequency_combined %>%
-  mutate( JaneEyre = case_when( is.na(JaneEyre) == TRUE ~ 0, .default = JaneEyre),
-          Heights = case_when( is.na(Heights) == TRUE ~ 0, .default = Heights) )
+    mutate(
+        JaneEyre = case_when(is.na(JaneEyre) == TRUE ~ 0, .default = JaneEyre),
+        Heights = case_when(is.na(Heights) == TRUE ~ 0, .default = Heights)
+    )
 ```
 
 Finally, we create our scatter plot of the term frequencies
 
 ```{r, warning=FALSE, out.width='65%', fig.align='center', fig.cap='Comparison of the term frequencies for the words in Jane Eyre and Wuthering Heights.'}
-ggplot( frequency_combined, aes( x=JaneEyre, y=Heights ) ) +
-  geom_point() + 
-  geom_text( aes(label=word), check_overlap = TRUE, vjust=1.5 ) + 
-  xlim( c(0,0.003) ) + ylim( c(0,0.003) ) + 
-  coord_trans( x="sqrt", y="sqrt" ) + theme_bw() +
-  labs( x="Term Frequency in Jane Eyre",
-        y="Term Frequency in Wuthering Heights" )
+ggplot(frequency_combined, aes(x = JaneEyre, y = Heights)) +
+    geom_point() +
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+    xlim(c(0, 0.003)) +
+    ylim(c(0, 0.003)) +
+    coord_trans(x = "sqrt", y = "sqrt") +
+    theme_bw() +
+    labs(
+        x = "Term Frequency in Jane Eyre",
+        y = "Term Frequency in Wuthering Heights"
+    )
 ```
 
 Words close to the line, such as "door" or "time", have a similar frequency in the two books while words that are far from the line, for instance, "Catherine" and "John", are more specific to one of the books. 
@@ -372,32 +388,32 @@ So the term frequency-inverse document frequency is useful to assess how importa
 Suppose our corpus comprises four books by Charles Dickens: *A Christmas Carol*, *A Tale of Two Cities*, *Great Expectations* and *Oliver Twist*. The text for the books from Project Gutenberg is available as "Dickens.csv" on Moodle:
   
 ```{r, warning=FALSE, message=FALSE}
-Dickens_raw <- read.csv( "Data/Dickens.csv" )
+Dickens_raw <- read.csv("Data/Dickens.csv")
 ```
 
 As in the analysis of *Jane Eyre* and *Wuthering Heights*, we use the unnest_tokens() function to separate the text into individual words, and we use gsub() to remove any underscores:
   
 ```{r}
 Dickens <- Dickens_raw %>%
-  unnest_tokens( word, text ) %>% 
-  mutate( word = gsub( "_", "", word ) )
+    unnest_tokens(word, text) %>%
+    mutate(word = gsub("_", "", word))
 ```
 
 Next we count the number of appearances of each word separately for each of the books:
   
 ```{r}
-DickensCount <- Dickens %>% count( title, word, sort=TRUE )
-head( DickensCount )
+DickensCount <- Dickens %>% count(title, word, sort = TRUE)
+head(DickensCount)
 ```
 
 The quantities $\mathrm{tf}(t,d)$, $\mathrm{idf}(t,D)$ and $\mathrm{tf.idf}(t,d,D)$ for all terms and books are then calculated from this table using the function **bind_tf_idf()** in the tidytext package:
   
 ```{r}
-Dickens_tf.idf <- DickensCount %>% 
-  bind_tf_idf( word, title, n ) %>%
-  arrange( desc(tf_idf) ) %>%
-  mutate( idf=round(idf,2) )
-head( Dickens_tf.idf )
+Dickens_tf.idf <- DickensCount %>%
+    bind_tf_idf(word, title, n) %>%
+    arrange(desc(tf_idf)) %>%
+    mutate(idf = round(idf, 2))
+head(Dickens_tf.idf)
 ```
 
 We see that the words with the highest tf-idf are the names of the protagonists in the four books, while the term "the", that had the highest count, is not there. It's also common to say that "scrooge" is the most specific term across the considered set of books. The names with the highest tf-idf are also specific to a book and that's why they have an idf of $\log 4 \approx 1.39$.
@@ -449,9 +465,11 @@ To illustrate LDA we first consider an example where we know the 'truth'. Here w
 We consider the books *Great Expectations* and *A Tale of Two Cities* we studied previously:
 
 ```{r}
-Dickens_raw <- read.csv( "Data/Dickens.csv" )
-Dickens <- filter( Dickens_raw, 
-                   title %in% c( "Great Expectations","A Tale of Two Cities" ) )
+Dickens_raw <- read.csv("Data/Dickens.csv")
+Dickens <- filter(
+    Dickens_raw,
+    title %in% c("Great Expectations", "A Tale of Two Cities")
+)
 ```
 
 #### Preparing the data {-}
@@ -460,10 +478,10 @@ We want to split the books into their chapters, with each chapter being handled 
 
 ```{r}
 Dickens_chapters <- Dickens %>%
-  group_by( title ) %>%
-  mutate( chapter = cumsum( 
-    str_detect( text, regex( "^chapter ", ignore_case = TRUE ) ) 
-  ) )
+    group_by(title) %>%
+    mutate(chapter = cumsum(
+        str_detect(text, regex("^chapter ", ignore_case = TRUE))
+    ))
 ```
 
 The next step is to remove any text before the first chapter, and we further us the unite() function from the tidyr R package to create an identifier **document** from the book title and chapter number:
@@ -471,18 +489,18 @@ The next step is to remove any text before the first chapter, and we further us 
 ```{r}
 library(tidyr)
 Dickens_chapters <- Dickens_chapters %>%
-  filter( chapter > 0 ) %>%
-  unite( col=document, title, chapter )
+    filter(chapter > 0) %>%
+    unite(col = document, title, chapter)
 ```
 
 Finally, we split the documents into words, remove any stop words, and count the frequency for each word within each document, as we did when analyzing word frequency:
 
 ```{r}
 Dickens_chapters <- Dickens_chapters %>%
-  unnest_tokens( word, text ) %>%
-  mutate( word = gsub( "_", "", word ) ) %>%
-  anti_join( stop_words, by="word" ) %>%
-  count( document, word, sort = TRUE )
+    unnest_tokens(word, text) %>%
+    mutate(word = gsub("_", "", word)) %>%
+    anti_join(stop_words, by = "word") %>%
+    count(document, word, sort = TRUE)
 ```
 
 **Remark:** Stop words are removed because they usually perform poorly at explaining differences in the underlying topics. Further, their high prevalence in all topics leads to topics appearing more similar than they are.    
@@ -501,7 +519,7 @@ The R package we are using for topic modelling requires the data to be stored as
 The tidytext package provides the **cast_dtm()** function to create such a matrix, but we need to install the **tm** R package to do this:
 
 ```{r}
-Dickens_dtm <- Dickens_chapters %>% cast_dtm( document, word, n )
+Dickens_dtm <- Dickens_chapters %>% cast_dtm(document, word, n)
 ```
 
 
@@ -510,8 +528,8 @@ Dickens_dtm <- Dickens_chapters %>% cast_dtm( document, word, n )
 With everything in place, we now use the **LDA()** function in the **topicmodels** R package. One key decision we have to make is specifying the number $K$ of topics. For the purpose of this analysis, it seems logical to set the number of topics to $K=2$:
 
 ```{r, warning=FALSE, message=FALSE}
-library( topicmodels )
-Dickens_LDA <- LDA( Dickens_dtm, k=2, method = "Gibbs", control=list(seed=123) )
+library(topicmodels)
+Dickens_LDA <- LDA(Dickens_dtm, k = 2, method = "Gibbs", control = list(seed = 123))
 ```
 
 **Remark:** The estimates are sensitive to the value we specify in **control=list(seed=...)**. In this course you may ignore the sensitivity and focus on analyzing the results obtained. 
@@ -528,8 +546,8 @@ Having fitted the model, we want to explore the estimated model parameters. Reca
 To extract the $K$ proportions for each of the documents, we use the following R code:
 
 ```{r}
-Dickens_topics <- tidy( Dickens_LDA , matrix = "gamma" ) 
-Dickens_topics %>% slice_head( n=4 )
+Dickens_topics <- tidy(Dickens_LDA, matrix = "gamma")
+Dickens_topics %>% slice_head(n = 4)
 ```
 
 The values in the column **gamma** correspond to the estimated proportions. We see that Chapter 7, 17, 38 and 57 from *Great Expectations* feature more of Topic 2 than Topic 1.
@@ -538,10 +556,11 @@ Given the high number of chapters, it's better to visualize the estimates in ord
 
 ```{r, fig.cap='Illustration of the estimated proportions for each chapter within each book.', fig.align='center', out.width='70%'}
 Dickens_topics %>%
-  separate( document, c("title", "chapter"), sep="_", convert=TRUE ) %>%
-  ggplot( aes( x=factor(topic), y=gamma ) ) + 
-  facet_wrap( ~title ) + geom_boxplot() + 
-  labs( x="Topic", y="Proportion" )
+    separate(document, c("title", "chapter"), sep = "_", convert = TRUE) %>%
+    ggplot(aes(x = factor(topic), y = gamma)) +
+    facet_wrap(~title) +
+    geom_boxplot() +
+    labs(x = "Topic", y = "Proportion")
 ```
 
 We see a clear difference in the plots for the two books. Most of the chapters from *A Tale of Two Cities* mostly consist of words that belong to Topic 1, while for *Great Expectations* the chapters are composed of words from Topic 2. As such, the topics could be used to classify the individual chapters. 
@@ -551,21 +570,23 @@ Suppose we would label a chapter as "A Tale of Two Cities" if the proportion of 
 Let's look at the words most common in the different topics. We extract the top five words for each topic:
 
 ```{r}
-tidy( Dickens_LDA , matrix = "beta" ) %>%
-  group_by( topic ) %>%
-  slice_max( beta, n=3 )
+tidy(Dickens_LDA, matrix = "beta") %>%
+    group_by(topic) %>%
+    slice_max(beta, n = 3)
 ```
 
 It seems that character names plan an important role when deciding whether a text belongs to Topic 1 or Topic 2, which is kind of what we expect. Let's produce a plot to compare the term frequencies for the different words in more detail:
 
 ```{r, fig.align='center', out.width='60%', fig.height=5, fig.width=6, fig.cap='Comparison of term frequencies for the two topics.'}
-tidy( Dickens_LDA , matrix = "beta" ) %>%
-  mutate( topic = case_when( topic==1 ~ "Topic1", topic==2 ~ "Topic2") ) %>%
-  pivot_wider( names_from = topic, values_from = beta, values_fill = 0 ) %>%
-  ggplot( aes(x=Topic1, y=Topic2) ) + geom_point() +  
-  geom_text( aes(label=term), check_overlap = TRUE, vjust=1 ) + 
-  coord_trans( x="sqrt", y="sqrt" ) + theme_bw() +
-  labs( x="Term Frequency in Topic 1", y="Term Frequency in Topic 2" )
+tidy(Dickens_LDA, matrix = "beta") %>%
+    mutate(topic = case_when(topic == 1 ~ "Topic1", topic == 2 ~ "Topic2")) %>%
+    pivot_wider(names_from = topic, values_from = beta, values_fill = 0) %>%
+    ggplot(aes(x = Topic1, y = Topic2)) +
+    geom_point() +
+    geom_text(aes(label = term), check_overlap = TRUE, vjust = 1) +
+    coord_trans(x = "sqrt", y = "sqrt") +
+    theme_bw() +
+    labs(x = "Term Frequency in Topic 1", y = "Term Frequency in Topic 2")
 ```
 
 The plot shows some very interesting patterns. In particular, the two topics seem to mainly differ in terms of the term frequency of a subset of words (the ones located close to the axes), while the term frequencies are very similar for the majority of words.
@@ -575,7 +596,7 @@ The plot shows some very interesting patterns. In particular, the two topics see
 Let's look at an example where there is no 'truth' as such. The file "NYT.csv" provides metadata for 1289 articles published by the New York Times in their "Europe" subsection between 01/01/2023 and 01/11/2024: 
 
 ```{r}
-NYT <- read.csv( "Data/NYT.csv" )
+NYT <- read.csv("Data/NYT.csv")
 ```
 
 Specifically, the data file gives for each article the lead paragraph and the date it was published. We want to explore the results we obtain when applying LDA.
@@ -585,28 +606,28 @@ Specifically, the data file gives for each article the lead paragraph and the da
 Since we take each article to be a separate document, we first assign a unique identifier to each article:
 
 ```{r}
-NYT <- NYT %>% mutate( ID=1:nrow(NYT) )
+NYT <- NYT %>% mutate(ID = 1:nrow(NYT))
 ```
 
 Now we follow the same procedure as in the previous analysis. As such, we start by splitting the sentences into individual words, remove any stop words and count the number of occurrences for each article individually:
 
 ```{r}
 NYT_count <- NYT %>%
-  unnest_tokens( word, lead_paragraph ) %>%
-  anti_join( stop_words, by="word" ) %>%
-  count( ID, word, sort = TRUE )
+    unnest_tokens(word, lead_paragraph) %>%
+    anti_join(stop_words, by = "word") %>%
+    count(ID, word, sort = TRUE)
 ```
 
 The next step is to convert the counts into a document term matrix:
 
 ```{r}
-NYT_dtm <- NYT_count %>% cast_dtm( ID, word, n )
+NYT_dtm <- NYT_count %>% cast_dtm(ID, word, n)
 ```
 
 Finally, we are ready to run the LDA() function and we choose to set $K=2$:
 
 ```{r}
-NYT_LDA <- LDA( NYT_dtm, k = 2, method="Gibbs", control = list(seed=2024) )
+NYT_LDA <- LDA(NYT_dtm, k = 2, method = "Gibbs", control = list(seed = 2024))
 ```
 
 #### Analysis of the results {-}
@@ -614,9 +635,11 @@ NYT_LDA <- LDA( NYT_dtm, k = 2, method="Gibbs", control = list(seed=2024) )
 Let's start by investigating the make-up of the articles. This requires us to explore with which proportions the two topics feature in the different articles. One option is to again create a box plot:
 
 ```{r, fig.cap='Boxplot of the estimated proportions for the articles.', fig.align='center', out.width='40%', fig.height=2.5, fig.width=4}
-tidy( NYT_LDA , matrix = "gamma" ) %>%
-  ggplot( aes( y=gamma ) ) + theme_bw() + 
-  geom_boxplot() + labs( y="Proportion" )
+tidy(NYT_LDA, matrix = "gamma") %>%
+    ggplot(aes(y = gamma)) +
+    theme_bw() +
+    geom_boxplot() +
+    labs(y = "Proportion")
 ```
 
 The result seems a bit unsatisfying as the make-up only varies between a 65-35 and 35-65 split. Consequently, the estimates suggests that there are very little differences in the language used within the topics.
@@ -624,13 +647,15 @@ The result seems a bit unsatisfying as the make-up only varies between a 65-35 a
 To explore the topics in more detail, we plot the estimated term frequencies for the two topics against each other:
 
 ```{r, fig.align='center', out.width='60%', fig.height=5, fig.width=6, fig.cap='Comparison of term frequencies for the two topics.'}
-tidy( NYT_LDA , matrix = "beta" ) %>%
-  mutate( topic = case_when( topic==1 ~ "Topic1", topic==2 ~ "Topic2") ) %>%
-  pivot_wider( names_from = topic, values_from = beta, values_fill = 0 ) %>%
-  ggplot( aes(x=Topic1, y=Topic2) ) +  coord_trans( x="sqrt", y="sqrt" ) + 
-  geom_point() + theme_bw() +
-  geom_text( aes(label=term), check_overlap = TRUE, vjust=1 ) + 
-  labs( x="Term Frequency in Topic 1", y="Term Frequency in Topic 2" )
+tidy(NYT_LDA, matrix = "beta") %>%
+    mutate(topic = case_when(topic == 1 ~ "Topic1", topic == 2 ~ "Topic2")) %>%
+    pivot_wider(names_from = topic, values_from = beta, values_fill = 0) %>%
+    ggplot(aes(x = Topic1, y = Topic2)) +
+    coord_trans(x = "sqrt", y = "sqrt") +
+    geom_point() +
+    theme_bw() +
+    geom_text(aes(label = term), check_overlap = TRUE, vjust = 1) +
+    labs(x = "Term Frequency in Topic 1", y = "Term Frequency in Topic 2")
 ```
 
 This plot provides some more insight. We see that Topic 1 seems to feature more of the words related to the War in Ukraine, but it's not a perfect plot - we note that for instance "missile" features more in Topic 2 although this topic mainly occurred in the context of the war.
