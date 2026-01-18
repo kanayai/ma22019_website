@@ -1,0 +1,128 @@
+---
+title: "Setup: Using University Drives (H: Drive)"
+---
+
+# Where to Save Your Project for this Course
+
+When working on course assignments, **where** you save your files is as important as **what** you write.
+
+::: {.callout-important}
+## CRITICAL: Avoid OneDrive for Git Projects
+**Do not** save your RStudio Projects or Git repositories in your OneDrive, Dropbox, or Google Drive folders.
+
+**Why?**
+Cloud sync services (like OneDrive) and Git fight for control over your files.
+
+1.  Git creates thousands of tiny hidden files in `.git/`.
+2.  OneDrive tries to sync them instantly.
+3.  **Result:** "Corrupt Index" errors, "Fatal" Git crashes, and potential loss of your project history.
+
+**The Solution:** Use your **H: Drive** (University Network Drive).
+:::
+
+## The H: Drive Advantage
+
+Your **H: Drive** (`\\myfiles.campus.bath.ac.uk\username`) is a personal network storage space provided by the specific University.
+
+*   ✅ **Persistent:** Accessible from any campus PC and your personal laptop.
+*   ✅ **Backed Up:** University IT backs it up regularly.
+*   ✅ **Git-Safe:** It behaves like a standard hard drive, avoiding OneDrive sync conflicts.
+
+---
+
+## 1. On Campus (Windows Lab PCs)
+When you log in to a University computer, your H: Drive should be mapped automatically.
+
+1.  Open **File Explorer** (Win+E).
+2.  Click **This PC** in the left sidebar.
+3.  Look for a drive labelled **(H:)** under "Network Locations".
+4.  **Action:** Create a folder here named `MA22019` to store all your work.
+
+---
+
+## 2. Remote Access (Personal Laptop)
+To access your H: Drive from your own laptop (at home or in the library), you must be connected to the University network.
+
+### Step A: Connect to VPN (Required)
+You generally cannot see university drives from the public internet. You must use the VPN (Virtual Private Network).
+
+*   **Action:** Download and install the GlobalProtect VPN client from the [University of Bath VPN Guide](https://www.bath.ac.uk/guides/setting-up-vpn-on-your-device/).
+*   **Verify:** Ensure the VPN shows "Connected" before proceeding.
+
+### Step B: Map the Drive
+Select the instructions for your Operating System:
+
+::: {.panel-tabset}
+## Windows
+1.  Ensure VPN is connected.
+2.  Open **File Explorer**.
+3.  Right-click on **This PC** (left sidebar) > **Map network drive...**
+4.  **Drive:** Select **H:** from the dropdown.
+5.  **Folder:** Type `\\myfiles.campus.bath.ac.uk\username` (replace `username` with your username, e.g., `abc123`).
+6.  Check **Connect using different credentials**.
+7.  Click **Finish**.
+8.  **Credentials:**
+    *   **User:** `CAMPUS\username` (e.g., `CAMPUS\abc123`)
+    *   **Password:** Your university password.
+
+## macOS
+1.  Ensure VPN is connected.
+2.  Open **Finder**.
+3.  In the menu bar, click **Go** > **Connect to Server...** (or press `Cmd+K`).
+4.  **Server Address:** Type `smb://myfiles.campus.bath.ac.uk/username` (replace `username` with your username).
+5.  Click **Connect**.
+6.  **Credentials:**
+    *   Select "Registered User".
+    *   **Name:** `username` (or `CAMPUS\username` if that fails)
+    *   **Password:** Your university password.
+
+## Linux (Ubuntu/GNOME)
+1.  Ensure VPN is connected.
+2.  Open **File Manager (Nautilus)**.
+3.  Click **Other Locations** in the sidebar.
+4.  **Connect to Server:** Type `smb://myfiles.campus.bath.ac.uk/username` (replace `username` with your username).
+5.  Click **Connect**.
+6.  **Credentials:**
+    *   **Domain:** `CAMPUS`
+    *   **Username:** Your username
+    *   **Password:** Your university password.
+:::
+
+---
+
+## 3. Web Access (files.bath) - Emergency Only!
+
+You may discover **files.bath.ac.uk** (WebDrive).
+
+*   ❌ **Do NOT use this for your RStudio Project.**
+*   **Why?** RStudio cannot "see" files inside a web browser. You cannot run code, save plots, or use Git directly from this website.
+*   **Use Case:** Only use `files.bath` if you forgot your laptop and need to quickly download a single file to a public or shared computer.
+
+---
+
+---
+
+## 5. What about the W: Drive (WebDrive)?
+
+You may also see a **W: Drive** (`\\waltz.campus.bath.ac.uk\wwwgroup`).
+
+*   ⚠️ **DANGER:** This is your **Personal Web Space**.
+*   **Public Risk:** Files you save here may be visible to the entire world on the internet.
+*   **Coursework:**
+    *   **NEVER** save your RStudio projects or homework solutions here.
+    *   **WHY?** If your solution is google-able, you could be flagged for Academic Misconduct (collusion/sharing solutions).
+    *   **Only** use this drive if you are explicitly asked to host a final HTML webpage.
+
+---
+
+## 6. Cloning into H: Drive
+When you follow "Step 2: Clone to Your Computer" in the [Assignment Workflow](computing-assignments.qmd):
+
+1.  In RStudio > New Project > Version Control > Git...
+2.  **Create project as subdirectory of:** Click **Browse...**
+3.  Navigate to your **H: Drive**.
+    *   *Windows:* Select `H:\MA22019`.
+    *   *Mac:* Select the mounted server drive from the sidebar.
+4.  Click **Create Project**.
+
+Your code is now safe, backed up, and accessible from anywhere!
