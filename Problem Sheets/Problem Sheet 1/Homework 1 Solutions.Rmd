@@ -1,0 +1,113 @@
+---
+title: "MA22019 2025 - Solutions for Homework 1"
+author: "The dplyr R package"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Before starting the exercises, make sure to load the dplyr and lubridate R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+```
+
+If you are using your own laptop, you may have to first run the code in "InstallPackages.R" (available from Moodle) to install all the packages essential for this course.
+
+### **Homework Question - Salaries for Data Scientists**
+
+The file "Salary Data Scientists.csv" provides data for 603 employees working in Data Science / Machine Learning /AI. For each employee, we are given the following information
+
+* **work_year** - Year the data were collected for the employee
+
+* **experience_level** - Experience Level: Entry-level (EN), Junior (MI), Senior (SE) or Expert (EX)
+
+* **employment_type** - Full-time (FT), Part-time (PT) or Contingent Workers (CT)
+
+* **salary, salary_currency** - Nominal salary and currency in which it was paid
+
+* **salary_in_usd** - Nominal salary in U.S. Dollars
+
+* **employee_residence** - Country the employee is residing
+
+* **remote_ratio** - Proportion of time the employee may work from home
+
+* **company_location** - Location of the company's headquarters
+
+* **company_size** - Size of the company: Small (S), Medium (M) or Large (L)
+
+An undergraduate is considering to take units in Data Science / Machine Learning / AI. However, they are unsure about the working conditions they are likely to experience if they decide to work in the sector. Specifically, the student plans to work full-time for an U.S. company, and they want to get some insight into the differences between small-/medium-sized and large companies. After a discussion with the student, the following three aspects have been identified as important for them: 
+
+a) Opportunity to work remotely for at least 50% of the time.
+
+b) Salaries for Entry-Level positions.
+
+c) Structure of the workforce in terms of experience level.
+
+Perform an analysis which considers the three aspects above. Make sure to clearly describe your approach and conclusions.
+
+<p style="color:blue">*We start by loading the data:*</p>
+  
+```{r}
+Salary <- read.csv("Salary Data Scientists.csv")
+```
+
+<p style="color:blue">*Since the student wants to work full-time for a US company, we have to remove any observations that don't refer to a US company and full-time employment:*</p>
+
+```{r}
+Salary_USA <- Salary %>% 
+  filter(  company_location=="US", employment_type=="FT" ) %>% 
+  select( work_year, experience_level, salary_in_usd, remote_ratio, company_size )
+```
+
+<p style="color:blue">*The final step is to convert the information on company size into a binary variable, because we want to compare large companies against the rest:*</p>
+
+```{r}
+Salary_USA <- Salary_USA %>%
+  mutate( size = case_when( company_size=="L" ~ "L", .default = "S/M" )  )
+```
+
+<p style="color:blue">*We are now ready to address the three aspects. Let's start with the ratio of employees that work remotely *</p>
+  
+```{r}
+Salary_USA %>% 
+  group_by( size ) %>% 
+  summarise( "Remote Working" = round( mean( remote_ratio>=50 ), 3 ) )
+```
+
+<p style="color:blue">*We find that there are only small differences in the proportion of people that work remotely when comparing companies of different size.*</p>
+  
+<p style="color:blue">*For the second part we derive some summaries for the salary in U.S. Dollars:*</p>
+  
+```{r}
+Salary_USA %>% 
+  filter( experience_level=="EN" ) %>%
+  group_by( size ) %>% 
+  summarise( "Median Salary" = quantile( salary_in_usd, 0.5 ), 
+             "Average Salary" = mean( salary_in_usd ),
+             "Standard Deviation" = sd( salary_in_usd ) )
+```
+
+<p style="color:blue">*We see that the medium salary for small-/medium-sized companies is larger than for large companies, and that the reverse is true for the average salary. Looking at the standard deviation we see that there is quite a bit of variation in the salary for entry-level positions.*</p>
+  
+  
+<p style="color:blue">*Finally, we extract the number of employees at the different experience levels for the different company sizes:*</p>
+  
+```{r}
+Salary_USA %>% 
+  group_by( size, experience_level ) %>%
+  summarise( Number=n() ) %>%
+  mutate( Proportion = Number / sum(Number) )
+```
+
+<p style="color:blue">*Looking at the numbers, the main difference between small/medium-sized and larger companies seems to lie in the proportion of junior/senior staff. For small/medium-sized companies about 2/3 of employees in the sector are at senior level, while it is less than 1/2 for larger companies.*</p>
+
+<p style="color:blue">**Here is were you should provide a conclusion which addressess the question!**</p>

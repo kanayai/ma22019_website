@@ -1,0 +1,74 @@
+---
+title: "MA22019 2025 -Computer Lab 1"
+author: "The dplyr R package"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+
+The tutorial questions ask you to apply functions from the dplyr and lubridate R packages to analyse real-world data sets, and also introduce some important functions we did not use so far.
+
+
+Before starting the exercises, make sure to load the dplyr and lubridate R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+```
+
+If you are using your own laptop, you may have to first run the code in "InstallPackages.R" (available from Moodle) to install all the packages essential for this course.
+
+
+### **Tutorial Question 1 - Honey production in the United States**
+
+In 2006, global concern was raised over the rapid decline in the U.S. honeybee population, an integral component to American honey agriculture. Large numbers of hives were lost to Colony Collapse Disorder, a phenomenon of disappearing worker bees causing the remaining hive colony to collapse. Speculation to the cause of this disorder points to hive diseases and pesticides harming the pollinators, though no overall consensus has been reached.
+
+The data collected by the National Agricultural Statistics Service (NASS) for 1998-2012 is provided in the file "HoneyProductionUS.csv". The following information is provided:
+
+* state	- Initial of the U.S state
+
+* numcol - Number of honey producing colonies	
+
+* yieldpercol	- Honey yield per colony in pounds
+
+* priceperlb - Average price per pound in dollars based on expanded sales
+
+* year - Year to which the data relates
+
+We are asked to extract some information on the amount of honey produced and its price.  
+
+a) For each state calculate the total amount of honey produced (in pounds) for the period 1998-2012. Identify the states which had the lowest and highest production. 
+
+b) How has the yield per colony of honey bees in the U.S. evolved from 1998 to 2012?
+
+c) By which factor has the average price of honey increased in the state of Alabama between 1998 and 2012? 
+
+
+### **Tutorial Question 2 - Price of Bitcoin** 
+
+The file "Bitcoin.csv" provides hourly data on the price of Bitcoin and the level of trade for the period 17 August 2017 - 19 October 2023. There are four variables:
+
+* **date** - Day and time of the observation
+
+* **close** - The value of one Bitcoin token at the end of the hour
+
+* **volume.usdt** - The trading volume during the hour in Tether (USDT). This provides a stable reference point for trading volume because the value of USDT is supposed to be roughly equivalent to $1 USD.
+
+* **tradecount** - The total number of individual trades or transactions that have occurred within the hour. This variable counts the actual number of separate buy and sell transactions.
+
+Use the data to address the following questions:
+
+a) Load the data and use the function as_datetime() in the lubridate package to convert the variable representing the date and time to its correct type. Explore how the value of one Bitcoin token has evolved between 17 August 2017 and 19 October 2023 (which is the period covered by the data).
+
+b)  Does the number of tokens traded per day follow the same pattern as that found in part a) for the price of one token?
+
+

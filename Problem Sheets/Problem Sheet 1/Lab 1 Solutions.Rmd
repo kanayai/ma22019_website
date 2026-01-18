@@ -1,0 +1,182 @@
+---
+title: "MA22019 2025 - Solutions for Computer Lab 1"
+author: "The dplyr R package"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Before starting the exercises, make sure to load the dplyr and lubridate R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+```
+
+If you are using your own laptop, you may have to first run the code in "InstallPackages.R" (available from Moodle) to install all the packages essential for this course.
+
+
+### **Tutorial Question 1 - Honey production in the United States**
+
+In 2006, global concern was raised over the rapid decline in the U.S. honeybee population, an integral component to American honey agriculture. Large numbers of hives were lost to Colony Collapse Disorder, a phenomenon of disappearing worker bees causing the remaining hive colony to collapse. Speculation to the cause of this disorder points to hive diseases and pesticides harming the pollinators, though no overall consensus has been reached.
+
+The data collected by the National Agricultural Statistics Service (NASS) for 1998-2012 is provided in the file "HoneyProductionUS.csv". The following information is provided:
+
+* state	- Initial of the U.S state
+
+* numcol - Number of honey producing colonies	
+
+* yieldpercol	- Honey yield per colony in pounds
+
+* priceperlb - Average price per pound in dollars based on expanded sales
+
+* year - Year to which the data relates
+
+
+We are asked to extract some information on the amount of honey produced and its price.  
+
+
+a) For each state calculate the total amount of honey produced (in pounds) for the period 1998-2012. Identify the states which had the lowest and highest production. 
+
+<p style="color:blue">*We start by loading the data from the .csv file*</p>
+
+```{r}
+Honey_Raw <- read.csv( "HoneyProductionUS.csv" )
+```
+
+<p style="color:blue">*Since we are interested in total production, we first derive the total production (number of colonies x yield per colony) for each state. This information can be calculated and attached to the data frame using mutate()*</p>
+
+```{r}
+Honey_Raw <- Honey_Raw %>% 
+  mutate( "Total" = numcol * yieldpercol )
+```
+
+<p style="color:blue">*We can use the group_by() and summarize() functions to calculate the total amount of honey produced for each state*</p>
+
+```{r}
+Tot_Production <- Honey_Raw %>% 
+  group_by( state ) %>%
+  summarize( "Total_1998_to_2012" = sum(Total) )
+```
+
+<p style="color:blue">*To find the states with the lowest and highest production, we sort the data and then use slice() to access the first and last element in the sorted data frame:*</p>
+
+```{r}
+Tot_Production %>%
+  arrange( desc( Total_1998_to_2012 ) ) %>% 
+  slice( c( 1, n() ) )
+```
+
+<p style="color:blue">*We conclude that South Carolina produced the least amount of honey in 1998-2012 with a total of 1.03 million pounds, while North Dakota was the largest producer with about 475 million pounds of honey.*</p>
+
+
+b) How has the yield per colony of honey bees in the U.S. evolved from 1998 to 2012?
+
+<p style="color:blue">*We need to derive the yield per colony across the U.S. based on the data for the individual state. The average yield per colony across the U.S. for each year can be calculated using *</p>
+
+```{r}
+US_Production <- Honey_Raw %>%
+  group_by( year ) %>%
+  summarise( Yield = sum(yieldpercol * numcol) / sum(numcol) )
+```
+
+<p style="color:blue">*Let's create a plot which illustrates how the yield has changed over the years:*</p>
+
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( US_Production$year, US_Production$Yield ,
+      xlab="Year", ylab="Yield per colony", type='h' )
+```
+
+<p style="color:blue">*The plot implies that there was a marked decrease in yield per colony from around 85 pounds in 1998 to less than 60 pounds in 2012. This agrees with the substantial decline in the honeybee population observed around 2006.*</p>
+
+
+c) By which factor has the average price of honey increased in the state of Alabama  between 1998 and 2012? 
+
+<p style="color:blue">*We first use filter() to only keep the data for Alabama and we calculate the ratio between the price in any year and the price in 1998:*</p>
+
+```{r}
+Price_Alabama <- Honey_Raw %>% 
+  select( state, year, priceperlb ) %>%
+  filter( state == "Alabama" ) %>%
+  mutate( Factor =  priceperlb / priceperlb[1] )
+```
+
+<p style="color:blue">*Let's create a plot of the calculated ratios:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( Price_Alabama$year, Price_Alabama$Factor, pch=19,
+      xlab="Year", ylab="Increase in price compared to 1998" )
+```
+
+<p style="color:blue">*We see that the price has increased by a factor of around 3.5, i.e., the data suggests a 250% increase in the price of honey between 1998 and 2012.*</p>
+
+
+### **Tutorial Question 2 - Price of Bitcoin**
+
+The file "Bitcoin.csv" provides hourly data on the price of Bitcoin and the level of trade for the period 17 August 2017 - 19 October 2023. There are four variables:
+
+* **date** - Day and time of the observation
+
+* **close** - The value of one Bitcoin token at the end of the hour
+
+* **volume.usdt** - The trading volume during the hour in Tether (USDT). This provides a stable reference point for trading volume because the value of USDT is supposed to be roughly equivalent to $1 USD.
+
+* **tradecount** - The total number of individual trades or transactions that have occurred within the hour. This variable counts the actual number of separate buy and sell transactions.
+
+Use the data to address the following questions:
+
+a) Load the data and use the function as_datetime() in the lubridate package to convert the variable representing the date and time to its correct type. Explore how the value of one Bitcoin token has evolved between 17 August 2017 and 19 October 2023 (which is the period covered by the data).
+
+<p style="color:blue">*We start by loading the data:*</p>
+
+```{r}
+Bitcoin <- read.csv("Bitcoin.csv")
+```
+
+<p style="color:blue">*To convert the variabe representing day and time to its correct type, we use the function as_datetime():*</p>
+
+```{r}
+Bitcoin <- Bitcoin %>% mutate( date = as_datetime(date) )
+```
+
+<p style="color:blue">*After cleaning the data, we can create a plot as we did for the river flow data in Lecture 1:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( Bitcoin$date, Bitcoin$close, type='l', xlab="Date", ylab="Value of one Bitcoin")
+```
+
+<p style="color:blue">*We find that the value of one token stayed around 10,000 USDT until 2021, when it rose to values of above 60,000 USDT. Over the year 2022, the value fell from this peak to values between 20,000 and 30,000 USDT for the rest of the observation period.*</p>
+
+b)  Does the number of tokens traded per day follow the same pattern as that found in part a) for the price of one token?
+
+<p style="color:blue">*The first step is to calculate the number of tokens traded from the other variables:*</p>
+
+```{r}
+Bitcoin <- Bitcoin %>% mutate( Volume = volume.usdt / close )
+```
+
+<p style="color:blue">*Since we are asked to analyse daily volume, we have to aggregate the numbers according to date, which we can achiev using*</p>
+
+```{r}
+BitcoinDay <- Bitcoin %>%
+  group_by( Date = as_date(date) ) %>%
+  summarise( VolumeDay = sum( Volume ) )
+```
+
+<p style="color:blue">*Finally, we can plot date against number of tokens traded on the day:*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=6}
+plot( BitcoinDay$Date, BitcoinDay$VolumeDay, type='l',
+      xlab="Date", ylab="Amount of traded Bitcoin" )
+```
+
+<p style="color:blue">*We find that the the pattern is not the same as that for the price. Specifically, the number of trades peaks around the time the price is on a downward trend, in particular when it reached its lowest value across 2022.*</p>
+

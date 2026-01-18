@@ -13,3 +13,4 @@ _main_files/
 *.csv
 *.zip
 *.nc
+.Rhistory

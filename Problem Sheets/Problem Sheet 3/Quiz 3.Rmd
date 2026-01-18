@@ -1,0 +1,68 @@
+---
+title: "MA22019 2025 - Quiz 3"
+author: "Data visualization with ggplot2"
+output:
+  html_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+Exercises 1-3 help you with revising some of the techniques covered in Week 3, and to also get some more pratice on data wrangling. There are no tutorial and homework questions as Coursework 1 will be released at 15:00 on Friday, 21 February 2025. 
+
+Before starting the questions, make sure to load the different packages we considered so far: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(patchwork)
+library(tidyr)
+```
+
+### **Exercise 1 - CO$_2$ emissions across the globe**
+
+The file "CO2 Emissions.csv" provides the recorded daily CO$_2$ emissions across six different sectors between 1 January 2019 and 31 May 2023 for 11 countries, the EU, the rest of the world (ROW) and across and the planet (WORLD). Enter your answers to the questions below via the quiz on Moodle.
+
+a) Which two countries recorded the highest total CO$_2$ emissions across all sectors for the considered time window? 
+
+b) Create a pie chart that illustrates the total emissions per sector for the UK between 1 January 2019 and 31 May 2023. Which sector of the UK economy produced the most CO$_2$ emissions over the observation period?
+
+
+### **Exercise 2 - Traffic between Minneapolis and St Paul**
+
+The file "Traffic Minnesota.csv" contains hourly data on the traffic volume for westbound I-94, a major interstate highway in the US that connects Minneapolis and Saint Paul, Minnesota. The data was collected by the Minnesota Department of Transportation from 2012 to 2018 at a station roughly midway between the two cities.
+
+The variables are
+
+* **traffic_volume:** Hourly I-94 reported westbound traffic volume.
+
+* **holiday:** Indicates whether the date is a US national holiday or a regional holiday (such as the Minnesota State Fair).
+
+* **date_time:** Shows the hour of the data collected in local CST time.
+
+a) Use the function **dmy_hm()** in the lubridate R package to convert the variable **date_time** to its correct type. Apply the function **weekdays()** to extract the day of the week and store this information as a separate variable within the data frame.
+
+b) Answer the following two questions using the data and submit your solutions via the Moodle quiz on Moodle:
+
+    (i) What is the average traffic volume on a Saturday?
+    
+    (ii) What is the difference in average traffic volume between work days and the weekend/ a holiday?
+
+c) Create a plot which visualizes how the traffic volume changes throughout the day on Mondays.
+
+
+
+
+### **Exercise 3 - Weather in Brisbane and Gold Coast**
+
+The file "BrisbaneGoldCoast.csv" contains daily weather measurements for Brisbane and Gold Coast in Australia. 
+
+a) Explore how the daily maximum temperature for Gold Coast varies throughout the year. Use the results from your analysis to answer the Moodle quiz.
+
+b) Create a scatter plot of the daily maximum temperature for Brisbane and Gold Coast using the ggplot2 R package. What do you conclude?
