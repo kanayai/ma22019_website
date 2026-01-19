@@ -1,0 +1,10 @@
+---
+title: "Slides"
+listing:
+  contents: Slides
+  type: table
+  fields: [title, date]
+  sort: "date"
+---
+
+Lecture slides are available below.

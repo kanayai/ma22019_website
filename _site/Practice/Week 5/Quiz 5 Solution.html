@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MA22019 2025 - Solutions for Quiz 5</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Quiz 5 Solution_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/popper.min.js"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Quiz 5 Solution_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Quiz 5 Solution_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Quiz 5 Solution_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Quiz 5 Solution_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Quiz 5 Solution_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Quiz 5 Solution_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MA22019 2025 - Solutions for Quiz 5</h1>
+<p class="subtitle lead">Mise en place</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quiz</div>
+    <div class="quarto-category">Solutions</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h3>
+<p>This week’s problem sheet focuses on the text data analysis techniques covered in Sections 3.1-3.3.1 in the lecture notes. Exercises 1-3 are designed to help you with revising the content of the lecture from Week 5. You can check your solutions to these questions yourself by answering the Moodle quiz.</p>
+<p>Tutorial Question 1 is similar to Exercises 1-3, while Tutorial Question 2 explores how well the type of sentiment analysis we introduced performs at assessing sentiment for product reviews. Should time permit, you may want to work on the Homework Question during the tutorial.</p>
+<p>Your answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 13 March 2025. You should submit a single PDF or Word file that provides your R code, any created R output and all your comments.</p>
+<p>You may want to load the following packages before starting the exercise:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( dplyr )</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( ggplot2 )</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidytext )</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( wordcloud )</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( stringr )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>When working on a University PC, you have to first install the tidytext and wordcloud packages. The installation of the textdata package is quite cumbersome, and thus I provide the AFINN and Bing sentiment lexicons as .csv files for your convenience. You can load them using</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AFINN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AFINN Sentiment Lexicon.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Bing <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Bing Sentiment Lexicon.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="exercise-1---short-stories-by-edgar-allan-poe" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1---short-stories-by-edgar-allan-poe"><strong>Exercise 1 - Short stories by Edgar Allan Poe</strong></h3>
+<p>The file “Poe.csv” contains the book <em>The Works of Edgar Allan Poe - Volume 1</em> which includes eight short stories by the American author Edgar Allen Poe. Each row in the data set gives a line from the book and the name of the short story that line belongs to. To load the data, we use</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Poe_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Poe.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The following exercises are designed to help you with revising the steps we used for extracting the most common words for <em>Jane Eyre</em> in the lecture.</p>
+<ol type="a">
+<li>Extract the individual words from the text and remove any underscores.</li>
+</ol>
+<p style="color:blue">
+<em>Looking at Section 3.1.2, we identify that we need to use unnest_tokens() and gsub():</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Poe <span class="ot">&lt;-</span> Poe_raw <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"</span><span class="sc">\\</span><span class="st">_"</span>, <span class="st">""</span>, word ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="a">
+<li>Which are the five most common words (including stop words) across all stories?</li>
+</ol>
+<p style="color:blue">
+<em>We apply the count() function we used for calculating the term frequency in Section 3.1.2 and output the five words with the highest count:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Poe <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  word    n
+1  the 6585
+2   of 3788
+3  and 2112
+4   to 2055
+5    a 1890</code></pre>
+</div>
+</div>
+<p style="color:blue">
+<em>We find that “the”, “of”, “and”, “to” and “a” are the most common words across the short stories.</em>
+</p>
+<ol start="3" type="a">
+<li>For each short story, identify the word most commonly used within it (excluding stop words).</li>
+</ol>
+<p style="color:blue">
+<em>We first remove the stop words in the list provided by the tidytext package:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>( stop_words )</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Poe <span class="ot">&lt;-</span> Poe <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>( stop_words, <span class="at">by=</span><span class="st">"word"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Finally, we apply the count() function again, but we need to do it for each story. So we combine count() with group_by():</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Poe <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( story ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> ) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>( <span class="at">n=</span><span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+# Groups:   story [8]
+  story                         word         n
+  &lt;chr&gt;                         &lt;chr&gt;    &lt;int&gt;
+1 Four Beasts in one            thousand    16
+2 Hans Pfaal                    earth       61
+3 MS. Found in a Bottle         ship        27
+4 The Baloon-Hoax               balloon     38
+5 The Gold-Bug                  de          73
+6 The Murders in the Rue Morgue voice       42
+7 The Mystery of Marie Roget    marie       75
+8 The Oval Portrait             deep         7</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-2---baby-names-in-the-usa-between-1880-and-2017" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2---baby-names-in-the-usa-between-1880-and-2017"><strong>Exercise 2 - Baby names in the USA between 1880 and 2017</strong></h3>
+<p>The file “Babynames.csv” provides a comprehensive record of the names given to newborns in the United States between 1880 and 2017 according to the Social Security Administration. For each name, year and sex, we are given the number of newborn babies given that name (as long as the name was used at least five times in that year). We are further provided with the proportion of newborn babies who were given that name amongst babies of the same sex.</p>
+<ol type="a">
+<li>What was the most common baby name over the period 1880-2017?</li>
+</ol>
+<p style="color:blue">
+<em>We start by loading the data set:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Babies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Babynames.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>To find the most common name, we have to sum up the counts across the different years:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Babies <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( <span class="at">Name=</span>name ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="at">Count =</span> <span class="fu">sum</span>(n) ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="fu">desc</span>(Count) ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>( <span class="at">n=</span><span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  Name    Count
+  &lt;chr&gt;   &lt;int&gt;
+1 James 5173828</code></pre>
+</div>
+</div>
+<p style="color:blue">
+<em>We find that “James” was the most common name given to a baby over the period 1880-2017.</em>
+</p>
+<ol start="2" type="a">
+<li>Create a word cloud which visualizes the 30 most common baby names (in terms of total number) for a girl between 1880 and 2017.</li>
+</ol>
+<p style="color:blue">
+<em>We start by calculating for each name how many girls were given that name.</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Names_Girls <span class="ot">&lt;-</span> Babies <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( sex<span class="sc">==</span><span class="st">"F"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( name ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">Count=</span><span class="fu">sum</span>(n) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Using the code in Section 3.1.2, we create a word cloud as follows:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Names_Girls <span class="sc">%&gt;%</span> <span class="fu">with</span>( <span class="fu">wordcloud</span>( name, Count, <span class="at">max.words=</span><span class="dv">30</span> ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Explore how the popularity of the girl name “Mary” evolved over the period 1880-2017. When did its popularity peak?</li>
+</ol>
+<p style="color:blue">
+<em>One way is to create a plot for the proportions over time</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Babies <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( sex<span class="sc">==</span><span class="st">"F"</span>, name<span class="sc">==</span><span class="st">"Mary"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="st">"x"</span><span class="ot">=</span>year, <span class="st">"y"</span><span class="ot">=</span>prop) ) <span class="sc">+</span> <span class="fu">geom_line</span>( <span class="at">linewidth=</span><span class="dv">1</span> ) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span><span class="st">"Proportion of newborn girls named Mary"</span> ) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>From the plot, we conclude that “Mary” has become less popular over the period, falling from a peak of more than 7% in 1880 to 0.1-0.2% in the 2010s.</em>
+</p>
+</section>
+<section id="exercise-3---analysis-of-the-book-frankenstein" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3---analysis-of-the-book-frankenstein"><strong>Exercise 3 - Analysis of the book</strong> <em>Frankenstein</em></h3>
+<p>The novel <em>Frankenstein</em> by Mary Shelley tells the story of a young scientist who creates a creature via an experiment and is subsequently horrified by what he has made. The book is provided in the file “Frankenstein.csv” and can be loaded using</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Frankenstein_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/Frankenstein.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Perform an analysis that addresses the following questions for <em>Frankenstein</em>:</p>
+<ol type="a">
+<li>Which five words appear the most often (excluding stop words)?</li>
+</ol>
+<p style="color:blue">
+<em>We first split the lines of text and remove any punctuation:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Frankenstein <span class="ot">&lt;-</span> Frankenstein_raw <span class="sc">%&gt;%</span> <span class="fu">unnest_tokens</span>( word, text )</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Frankenstein <span class="ot">&lt;-</span> Frankenstein <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"_"</span>, <span class="st">""</span>, word ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>We now count the number of occurrences for each word and remove any words that are categorized as stop words. Finally, we print the five most common words (excluding stop words):</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Frankenstein <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>( stop_words, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"word"</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>( <span class="at">n=</span><span class="dv">5</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    word   n
+1   life 115
+2 father 113
+3   eyes 104
+4   time  98
+5  night  92</code></pre>
+</div>
+</div>
+<p style="color:blue">
+<em>We conclude that that five most common words (excluding stop words) are “life”, “father”, “eyes”, “time” and “night”.</em>
+</p>
+<ol start="2" type="a">
+<li>Calculate the AFINN sentiment score (sum of the AFINN score of all words) for each chapter. Which chapter has the highest/lowest sentiment score?</li>
+</ol>
+<p style="color:blue">
+<em>We want to study chapters, and thus we take the code from Section 3.2.2 to derive the chapter the individual lines belong to:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Frankenstein_chapters <span class="ot">&lt;-</span> Frankenstein_raw <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">chapter =</span> <span class="fu">cumsum</span>( <span class="fu">str_detect</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    text, <span class="fu">regex</span>(<span class="st">"^chapter "</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  ) ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>The next step is to remove all the text before the first chapter begins, and to then split the remaining text into the indiviudal words:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Frankenstein_chapters <span class="ot">&lt;-</span> Frankenstein_chapters <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( chapter <span class="sc">&gt;</span> <span class="dv">0</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"</span><span class="sc">\\</span><span class="st">_"</span>, <span class="st">""</span>, word ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Since we are asked to use the AFINN sentiment lexicon, we load it:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>AFINN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/AFINN Sentiment Lexicon.csv"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>We can now use the code from Section 3.2.2 to derive the sentiment score for each chapter:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Frankenstein_sentiment <span class="ot">&lt;-</span> Frankenstein_chapters <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( chapter ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="at">sentiment =</span> <span class="fu">sum</span>(value) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Finally, let’s extract the chapters with the lowest and highest AFINN sentiment score:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_min</span>( Frankenstein_sentiment, sentiment, <span class="at">n=</span><span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  chapter sentiment
+    &lt;int&gt;     &lt;int&gt;
+1      24      -290</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_max</span>( Frankenstein_sentiment, sentiment, <span class="at">n=</span><span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  chapter sentiment
+    &lt;int&gt;     &lt;int&gt;
+1       6       157</code></pre>
+</div>
+</div>
+<p style="color:blue">
+<em>We conclude that Chapter 6 has the highest score (157), while Chapter 24 has the lowest score (-290).</em>
+</p>
+</section>
+<section id="tutorial-question-1---word-frequency-analysis-for-les-misérables" class="level3">
+<h3 class="anchored" data-anchor-id="tutorial-question-1---word-frequency-analysis-for-les-misérables"><strong>Tutorial Question 1 - Word frequency analysis for</strong> <em>Les Misérables</em></h3>
+<p>We want to analyse the book <em>Les Misérables</em> by Victor Hugo in terms of the words used therein. The file “LesMis.csv” contains the data as provided by Project Gutenberg, but with the metadata at the beginning and end already removed. Consider the following questions:</p>
+<ol type="a">
+<li>Extract the individual words from the text, and remove any stop words and underscores.</li>
+</ol>
+<p style="color:blue">
+<em>We adapt the code from the lectures and use the functions unnest_tokens(), gsub() and anti_join():</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>LesMis_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/LesMis.csv"</span>, <span class="at">fileEncoding=</span><span class="st">"UTF-8"</span> )</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>( stop_words )</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>LesMis <span class="ot">&lt;-</span> LesMis_raw <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"</span><span class="sc">\\</span><span class="st">_"</span>, <span class="st">""</span>, word ) )  <span class="sc">%&gt;%</span> </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>( stop_words, <span class="at">by=</span><span class="st">"word"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="a">
+<li>Find the 10 most common in <em>Les Misérables</em> (excluding stop words) and create a bar plot which visualizes their number of occurrences.</li>
+</ol>
+<p style="color:blue">
+<em>We first create a data frame that gives the number of times each word appeared in the text and we sort the words based on this count</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>LesMis_Count <span class="ot">&lt;-</span> LesMis <span class="sc">%&gt;%</span> <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>We now extract and reorder the top 10 words before creating a bar plot as in Section 3.1.2 of the lecture notes:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>LesMis_Count <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>( <span class="at">n=</span><span class="dv">10</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">reorder</span>(word,n) ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">x=</span>n, <span class="at">y=</span>word) ) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Count"</span>, <span class="at">y=</span><span class="st">""</span> ) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>We find that the four most frequent words (excluding stop words) refer to three of the protagonists in the book. We also see that the word “chapter” appears very often. This finding results from the chapter titles being labeled “Chapter..” and thus this is not really accurate (the book also provides a table of contents that uses “chapter” a lot).</em>
+</p>
+<ol start="3" type="a">
+<li>Create a word cloud for the 30 most frequently used words (excluding stop words).</li>
+</ol>
+<p style="color:blue">
+<em>We adapt the code from Section 3.1.2 in the lecture notes:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>LesMis_Count <span class="sc">%&gt;%</span> <span class="fu">with</span>( <span class="fu">wordcloud</span>( word, n, <span class="at">max.words=</span><span class="dv">30</span> ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>We again see that the 30 most common words include the main characters and the city of Paris, where most of the story takes place. The remaining words are hard to group within a single theme.</em>
+</p>
+</section>
+<section id="tutorial-question-2---amazon-reviews" class="level3">
+<h3 class="anchored" data-anchor-id="tutorial-question-2---amazon-reviews"><strong>Tutorial Question 2 - Amazon Reviews</strong></h3>
+<p>One important application area for sentiment analysis concerns the analysis of customer reviews. To explore how good the AFINN lexicon performs at capturing the overall sentiment of a review, we consider 1,000 Amazon product reviews. The data is stored in the file “AmazonReviews.csv”.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Reviews_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/AmazonReviews.csv"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The data provides the rating (“1 Star” to “5 Stars”) and the accompanying text for each review. We want to derive the sentiment for each review and then compare it to the given score to assess how well we perform at capturing the sentiment of the text.</p>
+<ol type="a">
+<li>Using the AFINN sentiment lexicon, for each review, calculate the average sentiment per word.</li>
+</ol>
+<p style="color:blue">
+<em>We start by splitting the reviews into individual words:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>Reviews <span class="ot">&lt;-</span> Reviews_raw <span class="sc">%&gt;%</span> <span class="fu">unnest_tokens</span>( word, Text )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>The question asks us to use th AFINN sentiment lexicon, and so we have to load it:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>AFINN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AFINN Sentiment Lexicon.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Instead of calculating the aggregate sentiment, we are asked to consider average sentiment per word. This means we cannot simply remove the words that are not in the sentiment lexicon, i.e, the anti_join() function would be a poor choice. Instead, we need to keep all the words and replace any NA entries by 0. This can, for instance, be achieved using the following code</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Reviews_Sentiment <span class="ot">&lt;-</span> Reviews <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">value =</span> <span class="fu">case_when</span>( <span class="fu">is.na</span>(value)<span class="sc">==</span><span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>, <span class="at">.default =</span> value ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Review ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="at">Sentiment=</span><span class="fu">mean</span>(value) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="2" type="a">
+<li>Plot the average sentiments calculated in part a) against the star ratings. What do you conclude?</li>
+</ol>
+<p style="color:blue">
+<em>To create the plot, we first need to link up the sentiment score derived in part a) with the star ratings:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Reviews_Sentiment <span class="ot">&lt;-</span> Reviews_Sentiment <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="at">Score =</span> Reviews_raw<span class="sc">$</span>Score )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Now we can create box plots of the calculated sentiment scores for each category of the star rating:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( Reviews_Sentiment, <span class="fu">aes</span>(<span class="at">x=</span>Score, <span class="at">y=</span>Sentiment) ) <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Star Rating"</span>, <span class="at">y=</span><span class="st">"Sentiment Score"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>We see that higher star ratings are associated with slightly higher sentiment scores. However, we should note that sentiment scores are quite variable, and thus the sentiment score is not necessarily a great predictor in terms of star rating.</em>
+</p>
+</section>
+<section id="homework-question---the-work-of-h.g.-wells" class="level3">
+<h3 class="anchored" data-anchor-id="homework-question---the-work-of-h.g.-wells"><strong>Homework Question - The work of H.G. Wells</strong></h3>
+<p>We want to analyze and compare the novels <em>The Time Machine</em> and <em>War of the Worlds</em> by the British author Herbert George Wells. The books are provided in the files “Time Machine.csv” and “War of Worlds.csv”.</p>
+<ol type="a">
+<li>Compare the two books in terms of the words used within them.</li>
+</ol>
+<p style="color:blue">
+<em>We start by loading the two text data sets:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>Time_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/Time Machine.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>, <span class="at">as.is =</span> <span class="cn">TRUE</span> )</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>War_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"data/War of Worlds.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>, <span class="at">as.is =</span> <span class="cn">TRUE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>As in previous analyses, we split the texts into individual words and remove any underscores:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Time <span class="ot">&lt;-</span> Time_raw <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"</span><span class="sc">\\</span><span class="st">_"</span>, <span class="st">""</span>, word ) ) </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>War <span class="ot">&lt;-</span> War_raw <span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"</span><span class="sc">\\</span><span class="st">_"</span>, <span class="st">""</span>, word ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>With the data ready for analysis, we calculate the number of occurrences and term frequency for each word before removing stop words:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Time <span class="ot">&lt;-</span> Time <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">tf =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>( stop_words, <span class="at">by=</span><span class="st">"word"</span>) </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>War <span class="ot">&lt;-</span> War <span class="sc">%&gt;%</span> </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>( word, <span class="at">sort=</span><span class="cn">TRUE</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">tf =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>( stop_words, <span class="at">by=</span><span class="st">"word"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>To compare the two books, we merge the calculated term frequencies into one data frame and replace any missing entries (corresponding to the word only occurring in one book) with a value of 0:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>Time_War <span class="ot">&lt;-</span> <span class="fu">full_join</span>( Time, War, <span class="at">by =</span> <span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="at">tf.Time=</span>tf.x, <span class="at">tf.War=</span>tf.y ) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">tf.Time =</span> <span class="fu">case_when</span>( <span class="fu">is.na</span>(tf.Time) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>, <span class="at">.default =</span> tf.Time ),</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">tf.War =</span> <span class="fu">case_when</span>( <span class="fu">is.na</span>(tf.War) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>, <span class="at">.default =</span> tf.War ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>As in Section 3.3.1, we plot the term frequencies for the different words against each other:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( Time_War, <span class="fu">aes</span>( <span class="at">x=</span>tf.Time, <span class="at">y=</span>tf.War ) ) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>( <span class="at">color=</span><span class="st">"gray40"</span>, <span class="at">linetype=</span><span class="dv">2</span> ) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>( <span class="fu">aes</span>(<span class="at">label=</span>word), <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">vjust=</span><span class="dv">1</span> ) <span class="sc">+</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_trans</span>( <span class="at">x=</span><span class="st">"sqrt"</span>, <span class="at">y=</span><span class="st">"sqrt"</span> ) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Term Frequency in The Time Machine"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span><span class="st">"Term Frequency in The War of the Worlds"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>We see that the term frequency of the most common words is quite similar across the two books. The plot also shows some points along the axes, which indicates that some words only occur relatively frequently in one of the books (of they occur in two books at all). To explore some aspects in more detail, we remove stop words and extract the ten most common words (excluding stop words) for each book:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Time_Machine <span class="ot">&lt;-</span> Time_War <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>( tf.Time, <span class="at">n=</span><span class="dv">10</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">reorder</span>(word,tf.Time) ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">x=</span>tf.Time, <span class="at">y=</span>word ) ) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Term frequency"</span>, <span class="at">y=</span><span class="st">"Word"</span>, <span class="at">title =</span> <span class="st">"Most common words in The Time Machine"</span> ) <span class="sc">+</span> </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>), <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>War_of_Worlds <span class="ot">&lt;-</span> Time_War <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>( tf.War, <span class="at">n=</span><span class="dv">10</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">reorder</span>(word,tf.War) ) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">x=</span>tf.War, <span class="at">y=</span>word ) ) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Term frequency"</span>, <span class="at">y=</span><span class="st">"Word"</span>, <span class="at">title =</span> <span class="st">"Most common words in War of the Worlds"</span> ) <span class="sc">+</span> </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">17</span>), <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Let’s place the two plots next to each other:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>Time_Machine <span class="sc">+</span> War_of_Worlds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>We find some words which may be quite specific to one of the two books: “martian”, “morlocks” and “weena”. The other words are likely less specific and occur in both books. So we may conclude that the two books differ in terms of words describing the setting and the character names, but the other words exhibit a similar term frequency.</em>
+</p>
+<ol start="2" type="a">
+<li>How do “The Time Machine” and “The War of the Worlds” differ regarding their sentiment?</li>
+</ol>
+<p style="color:blue">
+<em>We take the AFINN sentiment lexicon (but you can also take the Bing lexicon):</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>AFINN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AFINN Sentiment Lexicon.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>We aim to explore how the AFINN sentiment score, which we take as the sum of sentiments up to that point, evolves across the book. One option (not necessarily the best) is to produce plots as in Section 3.2.2:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>Time_sentiment <span class="ot">&lt;-</span> Time_raw <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">line =</span> <span class="fu">row_number</span>() ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"_"</span>, <span class="st">""</span>, word ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">sentiment =</span> <span class="fu">cumsum</span>( value ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">x=</span>line, <span class="at">y=</span>sentiment ) ) <span class="sc">+</span> <span class="fu">geom_line</span>( <span class="at">linewidth=</span><span class="fl">1.2</span> ) <span class="sc">+</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Line number"</span>, <span class="at">y=</span><span class="st">"Sentiment"</span>,</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title=</span><span class="st">"The Time Machine"</span> )</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>War_sentiment <span class="ot">&lt;-</span> War_raw <span class="sc">%&gt;%</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">line =</span> <span class="fu">row_number</span>() ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>( <span class="st">"_"</span>, <span class="st">""</span>, word ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">sentiment =</span> <span class="fu">cumsum</span>( value ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>( <span class="at">x=</span>line, <span class="at">y=</span>sentiment ) ) <span class="sc">+</span> <span class="fu">geom_line</span>( <span class="at">linewidth=</span><span class="fl">1.2</span> ) <span class="sc">+</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Line number"</span>, <span class="at">y=</span><span class="st">"Sentiment"</span>, </span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title=</span><span class="st">"War of the Worlds"</span> )</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>Time_sentiment <span class="sc">+</span> War_sentiment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p style="color:blue">
+<em>Looking at the plots, the analysis suggests that the two books are markedly different in terms of sentiment: The first half of “The Time Machine” seems positive, before turning “negative”, while “War of the Worlds” seems to have a “negative” sentiment throughout. However, we have to be careful since the sentiment has been aggregated. For those of you familiar with the books, you may argue that these plots are not reflective of how the sentiment evolves and that it would be better to calculate sentiment for the individual chapters.</em>
+</p>
+<section id="bonus" class="level4">
+<h4 class="anchored" data-anchor-id="bonus">Bonus</h4>
+<p style="color:blue">
+<em>Another option is to create bar plots which gives a sentiment score for every chapter of the book. Producing these plots is a bit challenging here since chapters do not start with the word “chapter”. A close look at the text data, suggests that each chapter starts with string of the form “I.”, “II.”, .., that is, they are numbered using roman numerals. We can create these strings using </em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ChapterNumber <span class="ot">&lt;-</span> <span class="fu">as.roman</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">99</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>ChapterNumber <span class="ot">&lt;-</span> <span class="fu">paste</span>( ChapterNumber, <span class="st">"."</span>, <span class="at">sep=</span><span class="st">""</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Having created these strings, we can now identify the lines which correspond to the start of a chapter and subsequently derive the chapter number for each line of text</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>War <span class="ot">&lt;-</span> War_raw <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Chapter =</span> <span class="fu">case_when</span>( text <span class="sc">%in%</span> ChapterNumber <span class="sc">~</span> <span class="dv">1</span>, <span class="at">.default =</span> <span class="dv">0</span>) ) <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Chapter =</span> <span class="fu">cumsum</span>(Chapter) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>In the same way wee find that in “The Time Machine” chapters start with ” I.”, ” II.”. So we follow a very similar strategy as for “War of the Worlds”:</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ChapterNumber <span class="ot">&lt;-</span> <span class="fu">paste</span>( <span class="st">" "</span>, ChapterNumber, <span class="at">sep=</span><span class="st">""</span> )</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Time <span class="ot">&lt;-</span> Time_raw <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Chapter =</span> <span class="fu">case_when</span>( text <span class="sc">%in%</span> ChapterNumber <span class="sc">~</span> <span class="dv">1</span>, <span class="at">.default =</span> <span class="dv">0</span>) ) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Chapter =</span> <span class="fu">cumsum</span>(Chapter) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Now we can derive the sentiment scores for each of the two books using the same approach as in Section 3.2.2 of the lecture notes</em>
+</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Time_AFINN   <span class="ot">&lt;-</span> Time <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">""</span>, word ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Chapter ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="at">sentiment =</span> <span class="fu">sum</span>( value ) )</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>War_AFINN   <span class="ot">&lt;-</span> War <span class="sc">%&gt;%</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>( word, text ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">word =</span> <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">""</span>, word ) ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>( AFINN, <span class="at">by=</span><span class="st">"word"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Chapter ) <span class="sc">%&gt;%</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="at">sentiment =</span> <span class="fu">sum</span>( value ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p style="color:blue">
+<em>Having derived the sentiment score for each book and chapter, we visualize the results:</em>
+</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Time_AFINN_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>( Time_AFINN, <span class="fu">aes</span>( <span class="at">x=</span>Chapter, <span class="at">y=</span>sentiment ) ) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Chapter"</span>, <span class="at">y=</span><span class="st">"AFINN sentiment score"</span>, <span class="at">title =</span> <span class="st">"The Time Machine"</span> )</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>War_AFINN_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>( War_AFINN, <span class="fu">aes</span>( <span class="at">x=</span>Chapter, <span class="at">y=</span>sentiment ) ) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Chapter"</span>, <span class="at">y=</span><span class="st">"AFINN sentiment score"</span>, <span class="at">title=</span><span class="st">"War of the Worlds"</span> )</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>Time_AFINN_plot <span class="sc">+</span> War_AFINN_plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Quiz-5-Solution_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

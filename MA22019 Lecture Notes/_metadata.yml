@@ -1,0 +1,9 @@
+bibliography: 
+  - book.bib
+  - packages.bib
+
+format:
+  html:
+    theme: cosmo
+    css: style.css
+    toc: true

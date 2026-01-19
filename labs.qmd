@@ -1,0 +1,11 @@
+---
+title: "Labs"
+listing:
+  contents: 
+    - "Practice/Week */Lab*.qmd"
+  type: table
+  fields: [title, subtitle]
+  sort: "title"
+---
+
+Weekly practice labs.

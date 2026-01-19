@@ -1,0 +1,10 @@
+---
+title: "Coursework"
+listing:
+  contents: Coursework
+  type: table
+  fields: [title]
+  sort: "title"
+---
+
+Major coursework assignments.

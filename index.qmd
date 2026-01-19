@@ -1,0 +1,16 @@
+---
+title: "MA22019: Spatial Statistics"
+subtitle: "University of Dundee"
+---
+
+# Welcome
+
+Welcome to the course website for MA22019.
+
+## Course Overview
+
+This module introduces students to the statistical analysis of spatial data.
+
+## Computing
+
+We will be using R and RStudio for all data analysis. Please see the [Computing](computing-setup.qmd) page for setup instructions.

@@ -15,3 +15,6 @@ _main_files/
 *.nc
 .Rhistory
 rosm.cache/
+
+/.quarto/
+**/*.quarto_ipynb

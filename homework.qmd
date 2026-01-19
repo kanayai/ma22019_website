@@ -1,0 +1,12 @@
+---
+title: "Homework & Quizzes"
+listing:
+  contents: 
+    - "Practice/Week */Homework*.qmd"
+    - "Practice/Week */Quiz*.qmd"
+  type: table
+  fields: [title, subtitle]
+  sort: "title"
+---
+
+Homework assignments and quizzes.

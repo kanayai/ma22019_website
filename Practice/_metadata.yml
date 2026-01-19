@@ -1,6 +1,6 @@
 format:
   html:
-    theme: [cosmo, sta199.scss]
+    theme: [cosmo, ../style/sta199.scss]
     mainfont: "Atkinson Hyperlegible"
     highlight-style: a11y-light
     linkcolor: "#005871"
