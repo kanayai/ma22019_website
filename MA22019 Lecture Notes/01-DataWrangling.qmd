@@ -495,12 +495,13 @@ lines_to_ignore <- c( 19, 20, 20)
 The next step is to load the data from the different files, store the data frames in a list we call **RF_individual**, and update the variable names.
 
 ```{r, warning=FALSE, message=FALSE}
-setwd("Data/")
+# setwd("Data/") <--- REMOVED: Bad practice in RMarkdown/Quarto
 RF_individual <- list()
 for( k in 1:length(gauges) ){
   
   ## Load the data from the .csv file
-  file_name <- paste( gauges[k], "River Flow.csv" )
+  # Construct path relative to project root (or file location)
+  file_name <- paste0( "Data/", gauges[k], " River Flow.csv" ) 
   RF_individual[[k]] <- read.csv( file_name, skip=lines_to_ignore[k], header=FALSE,
                                   colClasses = c("character","numeric","NULL") )
   

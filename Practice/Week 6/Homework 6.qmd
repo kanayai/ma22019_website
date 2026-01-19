@@ -1,0 +1,64 @@
+---
+title: "MA22019 2025 - Homework 6"
+subtitle: "Mise en place"
+description: "Due"
+categories: "Homework"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+
+Your answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 20 March 2025. You should submit a single PDF or Word file that provides your R code, any created R output and all your comments.
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( ggplot2 )
+library( tidytext )
+library( stringr )
+library( tidyr )
+library( topicmodels )
+```
+
+When working on a University PC, you have to first install the tidytext package and any dependencies using
+
+```{r, eval=FALSE}
+install.packages( "tidytext", dependencies = TRUE )
+```
+
+For the sentiment analysis you can load the sentiment lexicons using
+
+```{r}
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
+```
+
+
+
+### **Homework Question - Sentiment Analysis vs Latent Dirichlet Allocation**
+
+So far we have used sentiment analysis to explore whether a statement has a positive or negative emotional intent. The purpose of this exercise is to apply sentiment analysis to another data set and to explore whether Latent Dirichlet Allocation (LDA) is able to identify differences in the language used for positive and negative reviews. 
+
+We will be working with customer reviews for British Airways. The reviews are stored in the file "British Airways Reviews.csv" and the following information is provided:
+
+* **rating** - Score given by the customer (1="very poor", 10="very good")
+
+* **country** - The country where the customer resides
+
+* **review** - Written comment provided by the customer
+
+Perform the following tasks using the techniques introduced in Chapter 3 of the lecture notes:
+
+a) Derive a sentiment score for each review based on the written comments. Explore how the score you obtain compares with the numerical rating given by the customer. 
+
+b) Estimate a LDA model with $K=2$ topics. Explore the relation between the proportions $\psi_{1,1},\ldots,\psi_{N,1}$ and the numerical score given by the customer. In your analysis you should carefully consider which words to include in the analysis. 
+
+c) Based on your results in parts a) and b), discuss the performance of sentiment analysis and LDA in terms of identifying whether a review by a British Airways customer is more positive or more negative.   
+
+
+

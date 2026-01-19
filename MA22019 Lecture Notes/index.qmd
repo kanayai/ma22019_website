@@ -1,6 +1,6 @@
 ---
 title: "MA22019 Introduction to Data Science - Lecture Notes"
-author: "Dr Christian Rohrbeck"
+author: "Dr. Karim Anaya-Izquierdo"
 date: "February 2025"
 bibliography:
 - book.bib

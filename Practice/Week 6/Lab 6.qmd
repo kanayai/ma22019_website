@@ -1,0 +1,75 @@
+---
+title: "MA22019 2025 - Computer Lab 6"
+subtitle: "Mise en place"
+description: "To work on the lab on date xx"
+categories: "Lab"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+Tutorial Question 1 is quite extensive and will require you to apply most of the techniques from Chapter 3. Tutorial Question 2 focuses on the function grep(), which was used before, but we never explored its full potential. Should time permit, you may want to work on the Homework Question during the tutorial. 
+
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( ggplot2 )
+library( tidytext )
+library( stringr )
+library( tidyr )
+library( topicmodels )
+```
+
+When working on a University PC, you have to first install the tidytext package and any dependencies using
+
+```{r, eval=FALSE}
+install.packages( "tidytext", dependencies = TRUE )
+```
+
+For the sentiment analysis you can load the sentiment lexicons using
+
+```{r}
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
+```
+
+
+
+
+### **Tutorial Question 1 - Comparing books**
+
+We are asked to explore and compare the books *Anne of Green Gables* by L.M. Montgomery and *Rebecca of Sunnybrook Farm* by Kate Douglas Wiggin. The two books are provided together in the file "Books Tutorial Question 1.csv" and the following information is provided:
+
+* **text** - Text as printed in the book
+
+* **title** - Book the text comes from
+
+* **chapter** - Chapter the text belongs to
+
+Perform the following tasks using the techniques described in Chapter 3 of the lecture notes. 
+
+a) Extract the two words with the highest term frequency-inverse document frequency for each book, with the corpus only containing *Anne of Green Gables* and *Rebecca of Sunnybrook Farm*.
+
+b) Use sentiment analysis to explore how the emotional intent has evolved over the two books. How do the two books compare?
+
+c) Suppose each book chapter is considered as a separate document (as we did in Section 3.4.3 in the lecture notes). Use Latent Dirichlet Allocation to derive $K=2$ topics, and then study the estimated proportions provided by the model. What do you conclude?
+
+d) Some scholars claim that *Anne of Green Gables* is patterned after *Rebecca of Sunnybrook Farm*. Discuss whether your results in parts a)-c) support this claim or not. 
+
+
+### **Tutorial Question 2 - The function grep()**
+
+We so far only used the function grep() when extracting the text data from the files provided by Project Gutenberg. Specifically, we used it to identify the lines containing the word "EBOOK", signalling the beginning and end of the book. The following exercise will require you to use grep() to identify all lines which contain a specific phrase:
+
+The Police of Utopia sent us data on burglaries which were reported between 2015 and 2021, including a short description providing information on the number of criminals and their victims. Victims are classified into six groups: "young single", "young couple", "middle-aged single", "middle-aged couple", "elderly single" and "elderly couple". The data are available in the file "UtopiaCrimes.csv". Extract the following information using the functions grep():
+
+a) For which group of people did the police record the most burglaries?
+
+b) What is the proportion of burglaries that involved more than two criminals?
+
+

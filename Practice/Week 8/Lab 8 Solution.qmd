@@ -1,0 +1,239 @@
+---
+title: "MA22019 2025 - Solutions for Computer Lab 8"
+subtitle: "Mise en place"
+categories: ["Lab", "Solutions"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( lubridate )
+library( ggplot2 )
+library( tidyr )
+library( sf )
+library( ggspatial )
+library( prettymapr )
+library( sp )
+library( gstat )
+```
+
+When working on a University PC, you will have to first install some of these packages. 
+
+
+
+
+### **Tutorial Question 1 - Spatial dependence in soil moisture**
+
+The file "SoilMoisture.csv" contains soil moisture measurements for 1 July 2022 for the Iberian peninsula (i.e. Spain and Portugal). Data were collected using satellites and each point corresponds to the soil moisture recorded for an area of $0.25°\times 0.25°$. We want to visualize the data and estimate the semi-variogram:
+  
+a) Load the data into R and create a spatial plot which shows the soil moisture for each point, that is, the $x$ and $y$ axis should correspond to longitude and latitude respectively, with colour being used as a visual cue representing soil moisture. What do you conclude?
+  
+<p style="color:blue"> *We start by loading the data:*</p>
+    
+```{r}
+Soil <- read.csv( "data/SoilMoisture.csv" )
+```
+  
+<p style="color:blue"> *There are a few options for visualizing the data. One option is to use the function geom_tile() in the ggplot2 package:*</p>
+    
+```{r, fig.align='center', out.width='60%', fig.height=4, fig.width=5}
+ggplot( Soil, aes(x = Longitude, y = Latitude, fill = Soil_Moisture) ) +
+  geom_tile() + scale_fill_viridis_c() + theme_bw() +
+  labs( x="Longitude", y="Latitude", fill="Soil Moisture" )
+```
+  
+<p style="color:blue"> *We see that soil moisture on 1 July 2022 was lower in western Spain and southern Portugal than in southern and Eastern Spain. We also see that soil moisture is only changing slowly over space, with a few exceptions, such as in the north-west of the Iberian peninsula.*</p>
+    
+    
+b) Remove any grid cells with missing data from the data set using the function na.omit(). Why is this step necessary for estimating the semi-variogram?
+  
+<p style="color:blue"> *We can directly apply the function to the data frame and any rows with missing values will be removed:*</p>
+    
+```{r}
+Soil <- na.omit( Soil )
+```
+  
+<p style="color:blue"> *There are two reasons for removing these data points from the analysis. Firstly, the function variogram() we are using to estimate the semi-variogram cannot deal with missing data. Secondly, missing values usually occur for the grid cells which correspond to the Atlantic Ocean or Mediterranean Sea, for which it does not make sense to measure soil moisture. The few missing values across the land may be due to the satellite being unable to measure soil moisture, for instance due to continuous cloud cover.*</p>
+    
+c) Estimate the semi-variogram using the function variogram() from the gstat R package. Visualize your estimate. What do you conclude?
+  
+<p style="color:blue"> *The first step is to convert the longitude and latitude variables into spatial coordinates:*</p>
+    
+```{r}
+coordinates( Soil ) <- ~Longitude+Latitude
+```
+  
+<p style="color:blue"> *We are now ready to estimate and visualize the semi-variogram:*</p>
+    
+```{r, fig.align='center', out.width='60%', fig.height=3, fig.width=5}
+gamma_hat <- variogram( Soil_Moisture~1, Soil, width=0.2, cutoff=7  )
+ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 
+theme_bw() + labs( x="Distance", y="Semi-variogram" )
+```
+  
+<p style="color:blue"> *The estimated semi-variogram shows that spatial dependence decreases with spatial distance. We further see that the semi-variogram does not level off at large distances, which suggests that some dependence even exists at larger distances. This may be explained by soil moisture being dependent on the weather which tends to affect larger spatial regions.*</p>
+
+d) Discuss whether it is reasonable to assume that the value of the semi-variogram is fully specified by the distance between spatial sites, which is the key assumption we make when using the variogram() function.
+
+<p style="color:blue"> *Looking at the plot in part a), the assumption seems not unreasonable. While there are some areas where values change suddenly, for the vast majority of the Iberian peninsula, the values change slowly and there is little suggestion that theer is a directional affect.*</p>
+
+<p style="color:blue"> *To explore this is a bit more, we split the data into two halfs - West and East - and compare the estimate semi-variograms. This is not a sufficient condition, but it allows for some more in-depth assessment of the assumption.*</p>
+
+<p style="color:blue"> *We start by splitting the data based on Longitude:*</p>
+
+```{r}
+Soil <- read.csv( "data/SoilMoisture.csv" )
+Soil_West <- filter(Soil, Longitude < -4 ) %>% na.omit( )
+Soil_East <- filter(Soil, Longitude >= -4 ) %>% na.omit( )
+```
+
+<p style="color:blue"> *Next we estimate the semi-variogram for each of the two regions:*</p>
+
+```{r}
+coordinates( Soil_West ) <- ~Longitude+Latitude
+gamma_West <- variogram( Soil_Moisture~1, Soil_West, width=0.1, cutoff=4  )
+
+coordinates( Soil_East ) <- ~Longitude+Latitude
+gamma_East <- variogram( Soil_Moisture~1, Soil_East, width=0.1, cutoff=4  )
+```
+
+<p style="color:blue"> *Let's plot the two semi-variograms in the same plot to compare them :*</p>
+
+```{r, fig.align='center', out.width='60%', fig.height=3, fig.width=5}
+ggplot( gamma_West, aes( x=dist, y=gamma/2 ) ) + 
+  geom_point( size=2, aes(color="West") ) + 
+  geom_point( data=gamma_East, aes( x=dist, y=gamma/2, color = "East"), size=2 ) +
+  theme_bw() + labs( x="Distance", y="Semi-variogram" ) + 
+  scale_color_manual( values = c("black", "red"), name = "Region", breaks = c("West", "East") )
+```
+
+<p style="color:blue"> *There is a small difference between the two estimates, but it is not too large as to draw our conclusions into doubt, as we can see that the value of the semi-variogram increases with spatial distance - so we again conclude that dependence between sites gets weaker the further they are apart.*</p>
+
+
+
+### **Tutorial Question 2 - Maximum monthly temperature across Germany**
+
+The file "Temperature Germany.csv" contains maximum monthly temperatures recorded for 20 sites in the northern half of Germany for 2000-2023. The longitude and latitude coordinates for the sites can be found in the file "Sites Germany.csv". In the following we will visualize the data and analyse its spatial structure.
+
+a) For all sites calculate their median monthly maximum temperature for June across the period 2000-2023. Create a plot to visualize the values you obtained. What do you conclude? 
+
+<p style="color:blue"> *Let's first load the two data sets:*</p>
+
+```{r}
+Sites <- read.csv("data/Sites Germany.csv")
+Temperature <- read.csv("data/Temperature Germany.csv")
+```
+
+<p style="color:blue"> *The first step is to calculate the median value for each site and we need to be aware that there are some missing values:*</p>
+
+```{r}
+Median_June <- Temperature %>%
+  filter( month(Date) == 6 ) %>%
+  group_by( Site ) %>%
+  summarise( Median = quantile(Temperature, 0.5, na.rm = TRUE) )
+```
+
+<p style="color:blue"> *We can now attach the calculated values to the data frame with the locations of the sites:*</p>
+
+```{r}
+Sites <- Sites %>% full_join( Median_June, by="Site" )
+```
+
+<p style="color:blue"> *Now we are ready to plot the extracted values:*</p>
+
+```{r, message=FALSE, out.width='70%', fig.height=5, fig.width=6, fig.align='center'}
+ggplot( Sites, aes(x=Longitude, y=Latitude) ) + 
+  annotation_map_tile( zoom=7 ) + 
+  geom_spatial_point( aes(color=Median), size=3 ) + 
+  labs( color="Temperature", title="Median monthly maximum temperature in June")
+```
+
+<p style="color:blue"> *We find that median monthly maximum temperature in June is lower along the coast (about 26 degree Celsius) than further inland (with temperature of 30 degree Celsius and above).*</p>
+
+
+b) We now want to use principal component analysis to analyse the spatial structure in the data. One difference to the example from the lecture notes is that we standardize the data per month and site, rather than just per site. Formally, we standardize the data using
+\[
+\tilde{x}_{i,j,t} = (x_{i,j,t} - \bar{x}_{i,j})/\hat{\sigma}_{i,j},
+\]
+where $x_{i,j,t}$ is the maximum temperature for site $i$ in month $j$ and year $t$. We will have to perform this standardization "by hand" and can no longer rely on prcomp() to do it for us. Perform the following steps to perform PCA in this case and interpret your outputs:
+
+    1. Standardize the data per site and month using the equation above.
+  
+    2. Use the pivot_wider() function to convert the data to a data frame such that each column contains the standardized observations for one side. Use the function na.omit() to remove any rows with missing data.
+
+    3. Apply the prcomp() function using the values obtained in Step 2.
+    
+    4. Using the eigenvalues, decide on the number $m$ of eigenvectors we should study.
+    
+    5. Visualize the first $m$ eigenvectors, where $m$ is the number you decided on in part Step 4. What do you conclude?
+  
+<p style="color:blue"> *For Step 1 we need to group observation based on site and month and then scale the data for each subset:*</p>
+
+```{r}
+Temperature <- Temperature %>%
+  group_by( Site, Month=month(Date) ) %>%
+  mutate( Temp_Scaled = ( Temperature - mean(Temperature, na.rm = TRUE)) /
+            sd(Temperature, na.rm=TRUE) ) %>%
+  ungroup()
+```
+
+<p style="color:blue"> *To obtain a matrix as we require for PCA, we need to turn the single column with the standardized temperatures to separate columns for the different sites. We can achieve using pivot_wider():*</p>
+
+```{r}
+Temperature_wide <- Temperature %>%
+  select( Date, Site, Temp_Scaled ) %>%
+  pivot_wider( names_from = Site, values_from = Temp_Scaled )
+```
+
+<p style="color:blue"> *What is left is to remove any variables that don't correspond to a site and to remove any rows with missing values:*</p>
+
+```{r}
+Temp_PCA <- Temperature_wide %>%
+  select(-Date) %>%
+  na.omit()
+```
+
+<p style="color:blue"> *Now we are ready to calculate the empirical covariance matrix and to derive the eigenvectors and eigenvalues:*</p>
+
+```{r}
+PCA <- prcomp( Temp_PCA )
+```
+
+<p style="color:blue"> *To find the number of eigenvector we should consider, we are looking for the smallest* $m$ *such that at least 90% of the structure are explained. One way to find this value is plotting* $m$ *against the ratio considered in the lectures:*</p>
+
+```{r, fig.align='center', out.width='45%', fig.height=3.5, fig.width=5}
+TempEV <- data.frame( m=1:20, Ratio = cumsum(PCA$sdev^2) / sum(PCA$sdev^2) )
+ggplot( TempEV, aes(x=m, y=Ratio) ) + geom_point() + 
+  geom_abline( intercept = 0.9, slope = 0, linewidth=1.5 ) + 
+  theme_bw() + labs(x="Number m of eigenvectors")
+```
+
+<p style="color:blue"> *We find that the first three eigenvectors help to explain slightly above 90% of the structure and we thus we visualize these three:*</p>
+
+```{r , fig.align='center', out.width='100%', fig.width=12, fig.height=4, message=FALSE}
+Sites <- Sites %>%
+  mutate( PC1 = PCA$rotation[,1], PC2 = PCA$rotation[,2], PC3 = PCA$rotation[,3] ) %>%
+  pivot_longer( cols=PC1:PC3, names_to="PC" )
+
+ggplot( Sites, aes( x=Longitude, y=Latitude) ) + 
+  facet_wrap( ~PC ) +
+  annotation_map_tile() + 
+  geom_spatial_point( aes(color=value), size=5 ) + 
+  scale_color_distiller( palette="RdYlBu" ) +
+  labs( x="Longitude", y="Latitude", color="value" )
+```
+
+<p style="color:blue"> *The plots can be interpreted as follows:*</p>
+
+* <p style="color:blue"> *The plot of the first eigenvector shows that all entries are positive. Consequently, this eigenvector suggests that temperatures exceeding the average for the month are often observed across all sites.*</p>
+
+* <p style="color:blue"> *The second eigenvector shows a north-west to south-east trend. This eigenvector may represent exposure to the weather coming from the North Sea.*</p>
+
+* <p style="color:blue"> *The third eigenvector shows a north-east to south-west trend. This may reflect that very high temperatures in western Germany are often due to weather pattern across Western Europe, while these have less influence on the weather close to the Baltic Sea.*</p>
+

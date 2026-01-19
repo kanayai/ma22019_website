@@ -1,0 +1,57 @@
+---
+title: "Homework 3"
+subtitle: "Mise en place"
+description: "Due on ..."
+categories: "Homework"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+
+Your answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 20 February 2025. You should submit a single Word, PDF or HTML file that provides your R code, any created R output and all your comments.
+
+Before starting the questions, please make sure to load the relevant R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(patchwork)
+```
+
+
+### **Homework Question - Optimizing growing conditions for orchids**
+
+A research institute set up an experiment in 2024 to determine the best growing conditions for two types of Orchids: Cymbidium and Dendrobium. The design of the experiment was as follows:
+
+* All orchids were planted in March or April 2024. Each individual orchid was exposed to constant temperature and phosphate levels, but levels differed across orchids. 
+
+* The height (in inches) and quality of each orchid were measured on 20 October 2024. Plant quality was assessed using a score between 1 and 10 (1=very poor, 10=excellent). Any orchid with a score above 6 is considered of "good" quality.
+
+The research institute approached us to analyze their collected data which provides:
+
+* **Type** - Type of the orchid.
+
+* **Height** - Height of the orchid on 22 October 2024.
+
+* **Quality** - Quality as measured on 22 October 2024.
+
+* **Phosphate** - The level of phosphate in ppm (parts per million) the orchid was exposed to since it had been planted.
+
+* **Temperature** - The temperature (in degree Celsius) the orchid was exposed to since it had been planted.
+
+* **Planting** - The date the orchid was planted.
+
+The full data are provided in the file “Orchids.csv” and the research institute is interested in:
+
+a) How do the two types of orchids compare in terms of the heights measured on 22 October 2024?
+
+b) What are the effects of phosphate and temperature on the height of the orchids?
+
+c) Did the date when the orchid was planted have any effect on whether their quality was at least "good" on 22 October 2024?
+
+Perform an analysis which considers the three aspects above. Make sure to clearly state your approach and conclusions.

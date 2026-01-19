@@ -1,0 +1,246 @@
+---
+title: "Coursework 1 Data Generation"
+author: "Dr. Karim Anaya-Izquierdo"
+date: "December 2024"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Air pollution levels - PM10
+
+```{r}
+Sites <- rep(NA, 6)
+for( i in 1:6 )
+  Sites[i] <- paste("Site", i, sep="" )
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+set.seed(2025)
+alpha_PM10 <- c( rnorm( 2, 20, 5), rnorm( 4, 50, 10) )
+beta_PM10 <- c( runif(2,0,5), runif(2,0,10), runif(2,0,20) ) 
+
+PM10 <- matrix( 0, 3652, 6 )
+
+library(mvtnorm)
+Sigma_trend <- matrix(0.045,10,10)
+diag(Sigma_trend) <- 0.05
+trend <- rmvnorm(3652, mean = rep(-0.01,10), sigma = Sigma_trend )
+trend <- apply( trend, 2, cumsum )
+for( i in 1:6 )
+  trend[,i] <- 0.8 + 0.2 * ( trend[,i] - min( trend[,i] ) ) / 
+  ( max(trend[,i]) - min( trend[,i] ) )
+
+Sigma_noise <- matrix(0.3,10,10)
+diag(Sigma_noise) <- 1
+noise <- rmvnorm(3652, mean = rep(0,10), sigma = Sigma_noise )
+
+for( i in 1:6 ){
+  PM10[,i] <- ( alpha_PM10[i] + beta_PM10[i] * cos( 2 * pi * (1:3652) / 365 ) ) * 
+    trend[,i] + beta_PM10[i] * noise[,i]
+}
+```
+
+```{r}
+set.seed( 2020 )
+for( i in c(3,5) ){
+  temp <- sample( x=1:3652, size=sample(size = 1,x=3:10) )
+  m <- length( temp )
+  for( j in 1:m ){
+    z <- rpois( 1, runif(1,5,15) ) 
+    temp <- c( temp, temp[j]+(1:z) )
+  }
+  PM10[temp,i] <- NA
+}
+```
+
+```{r}
+PM10 <- PM10[,sample(1:6,6)]
+PM10 <- as.data.frame( round(PM10,1) )
+names(PM10) <- Sites
+```
+
+```{r}
+library(dplyr)
+library(lubridate)
+Date0 <- as_date("2014-12-31")
+PM10 <- PM10 %>% 
+  mutate( Date = Date0 + (1:3652) ) %>%
+  relocate( Date, .before="Site1" )
+```
+
+```{r}
+write.csv(PM10, "PM10.csv", row.names = FALSE)
+```
+
+
+# Energy Consumption
+
+```{r}
+Utopia <- read.csv("AEP_hourly.csv")
+```
+
+```{r}
+Utopia <- Utopia %>% mutate( Date = ymd_hms(Datetime) )
+```
+
+```{r}
+Utopia <- Utopia %>% mutate( Date = Date %m+% years(6) %m+% minutes(30) )
+```
+
+```{r}
+Utopia <- Utopia %>% filter( year(Date) < 2024, year(Date)>2010 )
+```
+
+```{r}
+Utopia <- Utopia %>% mutate( Date = Date %m+% years(1) )
+```
+
+```{r}
+Utopia <- Utopia %>% 
+  relocate( Date, .before = Datetime ) %>%
+  select( -Datetime ) %>%
+  rename( Demand = AEP_MW )
+write.csv(Utopia, "Utopia Energy Consumption.csv", row.names = FALSE)
+```
+
+## Simulate energy production
+
+```{r}
+Utopia <- Utopia %>% mutate( Day = date(Date) )
+```
+
+```{r}
+Utopia_daily <- Utopia %>%
+  group_by( Day ) %>%
+  summarise( Demand =sum(Demand) )
+```
+
+```{r}
+Utopia_daily <- Utopia_daily %>%
+  mutate( Solar=Demand, Wind=Demand, Coal=Demand )
+```
+
+```{r}
+Utopia_daily$Solar <- 500000 * ( 0.06 + 0.05 * 
+  sin( pi * yday(Utopia_daily$Day)/365 ) + 
+    (year(Utopia_daily$Day) > 2017) * (year(Utopia_daily$Day) - 2017) * 0.012 )
+```
+
+```{r}
+set.seed(2025)
+Utopia_daily$Solar <- Utopia_daily$Solar * exp(rnorm(4745,0,0.3) )
+```
+
+```{r}
+set.seed(2025)
+Utopia_daily$Wind <- 424300 * ( 0.06 + 
+    (year(Utopia_daily$Day) > 2015) * (year(Utopia_daily$Day) - 2015) * 0.015 ) * exp(rnorm(4745,-0.1,0.3) )
+```
+
+```{r}
+plot( (Utopia_daily$Wind+Utopia_daily$Solar) / Utopia_daily$Demand)
+```
+
+```{r}
+set.seed(2025)
+Utopia_daily$Coal <- Utopia_daily$Demand - Utopia_daily$Solar - Utopia_daily$Wind
+Utopia_daily$Coal <- 0.975 * (Utopia_daily$Coal) * (Utopia_daily$Coal>0) 
+
+Utopia_daily$Coal <- Utopia_daily$Coal * exp( rnorm( length(Utopia_daily$Coal),0.1,0.05) )
+Utopia_daily$Nuclear <- Utopia_daily$Demand - Utopia_daily$Solar - Utopia_daily$Wind - Utopia_daily$Coal
+
+Utopia_daily$Nuclear <- rnorm(length(Utopia_daily$Coal), 10000, 10) + Utopia_daily$Nuclear * (Utopia_daily$Nuclear>0)
+```
+
+
+```{r}
+plot( (Utopia_daily$Solar+Utopia_daily$Wind+Utopia_daily$Coal+Utopia_daily$Nuclear) / Utopia_daily$Demand)
+```
+
+```{r}
+Utopia_daily <- Utopia_daily %>% select(-Demand)
+```
+
+```{r}
+write.csv(Utopia_daily, "Utopia Energy Production.csv", row.names = FALSE)
+```
+
+```{r}
+Houses <- read.csv( "Housing Register.csv" )
+```
+
+```{r}
+n <- nrow( Houses )
+```
+
+```{r}
+set.seed(2025)
+ind <- sample( 1:n, size=50000 )
+Houses <- Houses[ind,]
+```
+
+```{r}
+Houses <- Houses %>% select( Year, Type )
+```
+
+```{r}
+expit <- function(x) return( exp(x) / (1+exp(x)) )
+```
+
+```{r}
+set.seed(2025)
+Houses <- Houses %>% mutate( ERC2014 = "A" )
+Types <- unique( Houses$Type )
+
+for( j in Types ){
+
+  ind <- which( Houses$Type == j )
+  Houses_j <- Houses[ind,]
+  n_j <- nrow( Houses_j )
+
+  a <- 10
+  b <- 1 + rbeta( 1, 20,80 )
+  c <- runif(1,0.9,1.5)
+  
+  prob_A <- a - b * (Houses_j$Year - 1900) / 14
+  prob_A <- expit( prob_A )
+  prob_B <- c - b * (Houses_j$Year - 1900) / 40
+  prob_B <- expit( prob_B )
+  
+  prob     <- matrix(0,n_j,3)
+  prob[,1] <- 1- prob_A
+  prob[,2] <- prob_A - prob_B
+  prob[,3] <- prob_B
+  
+  for( i in 1:n_j )
+    Houses$ERC2014[ind[i]] <- sample( x=c("A","B","C"), size=1, 
+                                      prob = prob[i,] )
+}
+```
+
+
+```{r}
+Houses <- Houses %>% 
+  mutate( ERC2018 = ERC2014 ) %>%
+  mutate( ERC2018 = case_when( Year>2018 ~ NA, .default = ERC2018 ),
+          ERC2014 = case_when( Year>2014 ~ NA, .default = ERC2014,) ) %>%
+  filter( is.na(ERC2018) == FALSE )
+```
+
+```{r}
+set.seed(2025)
+ind <- which( Houses$ERC2014 == "B" )
+j <- rbinom( length(ind), 1, 0.0312 )
+Houses$ERC2018[ind[j]] <- "A"
+ind <- which( Houses$ERC2014 == "C" )
+j <- rbinom( length(ind), 1, 0.0632 )
+Houses$ERC2018[ind[j]] <- "B"
+```
+
+```{r}
+write.csv( Houses, "Utopia Energy Efficiency.csv", row.names = FALSE )
+```

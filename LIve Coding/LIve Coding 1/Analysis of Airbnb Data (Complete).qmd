@@ -1,0 +1,144 @@
+---
+title: "Problem Class 1 - Solution"
+author: "Dr. Karim Anaya-Izquierdo"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Overview and Aims
+
+We have seen a few short examples in this week's lectures that illustrated the application of some functions in the dplyr R package. In this problem class we now study a more complex data set. We will also consider a few functions we did not cover so far, but which are useful in a wide range of applications.
+
+In April 2018, all the information for properties listed on the online platform Airbnb for Rio de Janeiro, Brazil, was extracted. The data set is stored in the file "Airbnb Rio April 2018.csv" on Moodle and contains six variables:
+
+* **host_id** - ID of the host on Airbnb
+
+* **host_since** - Date the host started to list their property on Airbnb
+
+* **neighbourhood** - Neighbourhood where the property is located
+
+* **guests_included** - Number of people included in the price
+
+* **price** - Price per night
+
+* **review_scores_rating** - Average rating for the property
+
+Our aim is to address two research questions using the methods we covered so far:
+
+1) Which neighbourhoods have a high number of listed properties?
+
+2) How does the price one would expect to pay vary across neighbourhoods?
+
+Before starting the exercise, let's load the dplyr R package:
+
+```{r, warning=FALSE, message=FALSE}
+library( dplyr )
+```
+
+
+### Data Cleaning
+
+We start by loading the data into our R Workspace using the read.csv() function and looking at the loaded data,
+
+```{r, echo=TRUE}
+Airbnb_raw <- read.csv( "Airbnb Rio April 2018.csv", header=TRUE )
+glimpse( Airbnb_raw )
+```
+
+**Task 1:** Which variables are required for addressing the research questions? Define a data frame **Airbnb** which only contains the necessary variables.
+
+<p style="color:blue">*The two research questions ask us to analyse the number of listed properties and their prices. As such, we require at least the information on the neighbourhood where a property is located, as well as, the price, that is the variables* **neighbourhood** *and* **price**. *We also keep the number of guests included as it may be more informative to consider price per guest rather than price per property. The other three variables are less important and we thus remove them:*</p>
+
+```{r}
+Airbnb <- Airbnb_raw %>% 
+  select( neighbourhood, guests_included, price )
+```
+
+**Task 2:** Convert the remaining variables to the correct type. **Hint:** You may want to consider the function **gsub()** to remove special symbols from a string of characters.
+
+<p style="color:blue">*The only variable we need to convert is* **price**. *However, this conversion is tricky, because we have to first remove the dollar sign and comma. This is where we use gsub(), which allows us to remove these special symbols from the strings before we use as.numeric() to convert them to numerical values:*<p>
+
+```{r}
+Airbnb <- Airbnb %>%
+  mutate( price = gsub(pattern="\\$", replacement="", price) ) %>%
+  mutate( price = gsub(pattern=",", replacement="", price) ) %>%
+  mutate( price = as.numeric(price) )
+```
+
+
+### Research Question 1
+
+With the data now being ready, we can turn to our first research question:
+
+**Task 3:** Use the functions in the dplyr package to extract the number of properties per neighbourhood. **Hint:** You may want to consider the function **n()** which returns the number of rows in a data frame when combined with **summarise()**. Alternatively, you can also look up the function **count()**.
+
+<p style="color:blue">*One approach is to group observations using the variable* **neighbourhood** *and to then count the number of properties in each group. This requires us to use the functions group_by() and summarise(), with the new function n() being used to extract the number of properties:*<p>
+
+```{r}
+Airbnb_Numbers <- Airbnb %>% 
+  group_by( neighbourhood ) %>%
+  summarise( Number = n() )
+```
+
+<p style="color:blue">*The same result can be achieved with count():*<p>
+
+```{r}
+Airbnb_Numbers <- Airbnb %>% 
+  count( neighbourhood ) %>%
+  rename( Number = n )
+```
+
+<p style="color:blue">*The final line with rename() just changes the name of the variable representing the counts per neighbourhood - count() stores the counts as a variable named* **n** *(which is arguably an uninformative variable name we may want to change).*<p>
+
+**Task 4:** Sort the neighbourhoods based on the number of listed properties. For all neighbourhoods with more than 1000 listed properties, print the name of the neighbourhood and the number of listed properties. What do we conclude?
+
+<p style="color:blue">*We now need the function arrange() to sort observations. Further, we require the function filter() to only extract the neighbourhoods with more than 1000 listed properties. We combine these operations using the pipe:*<p>
+
+```{r}
+Airbnb_Numbers %>% 
+  arrange( desc(Number) ) %>%
+  filter( Number > 1000 )
+```
+
+<p style="color:blue">*The R output shows that there were 10 neighbourhoods in Rio de Janeiro in April 2018 with more than 1,000 listed properties on Airbnb. The most properties, by quite a distance, are located in the Copacabana neighbourhood, followed by Barra da Tijuca and Ipanema. A look at the map of Rio de Janeiro reveals that these three neighbourhoods are located in the south/south-east of Rio and at the coast (which presumably makes them attractive to tourists).*<p>
+
+### Research Question 2
+
+This research question is a bit more open-ended than Research Question 1. So we should first consider which information may be best suited for addressing the research question. 
+
+One possible answer is to study price per guest, as properties that can house a larger number of guests are likely to be more expensive. Summaries that may be helpful to extract are the average and median price per guest for a listed property within the neighbourhood. 
+
+**Task 5:** Why may it be good to also consider the median, instead of just the mean?
+
+<p style="color:blue">*Property prices tend to be skewed, where we have a small number of properties with a very high price. The median is more robust to these outliers than the mean and thus provides a better picture of the price guests likely have to pay.*<p>
+
+<p style="color:blue">*We can also illustrate this skewness by creating a histogram:*<p>
+
+```{r, fig.align='center', out.width='60%'}
+hist( Airbnb$price, xlab="Price in US Dollars", 
+      main="Histogram of price per property",
+      xlim=c(0,3000), breaks = 300 )
+```
+
+<p style="color:blue">*We see that the majority of prices lie below 500 US Dollars, but we also have a few listed properties with a price in excess of 1000 US Dollars. There is even a property with a price of $40000, which is not shown in the plot.*<p>
+
+**Task 6:** Create a data frame which provides the number of listed properties, and the average and median price per guest, for each neighbourhood with more than 1000 listed properties. What do we conclude?
+
+<p style="color:blue">*We have to combine multiple operations. The first is to calculate the price per guest. Next, we again group observations based on their neighbourhood and calculate the summaries for each neighbourhood. Finally, we have to output the values for the neighbourhoods with more than 1000 listed properties. All these steps can be combined using the pipe: *<p>
+
+```{r}
+Airbnb %>%
+  mutate( Price_per_Guest = price / guests_included ) %>%
+  group_by( neighbourhood ) %>%
+  summarise( Number=n(),
+             Mean_Price_per_Guest = mean(Price_per_Guest),
+             Median_Price_per_Guest = quantile(Price_per_Guest, 0.5)
+             ) %>%
+  filter( Number > 1000 ) %>%
+  arrange( desc(Median_Price_per_Guest) )
+```
+
+<p style="color:blue">*The R output shows that Jacarepaguá and Barra da Tijuca command the highest median and average price per guest respectively. We also see that there is quite a range in the median value, with the median value for Jacarepaguá being three times that of Centro. Finally, we note the marked differences between median and mean price per guest. While the ranking does not change too much when we consider the average price, these values would be less representative of the price a visitor may be expected to pay.*<p>

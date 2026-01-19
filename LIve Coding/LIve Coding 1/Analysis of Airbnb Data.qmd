@@ -1,0 +1,129 @@
+---
+title: "Problem Class 1"
+author: "Dr. Karim Anaya-Izquierdo"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+We have seen a few short examples in this week's lectures that illustrated the application of some functions in the dplyr R package. In this problem class we now study a more complex data set. We will also consider a few functions we did not cover so far, but which are useful in a wide range of applications.
+
+### Overview and Aims
+
+In April 2018, all the information for properties listed on the online platform Airbnb for Rio de Janeiro, Brazil, was extracted. The data set is stored in the file "Airbnb Rio April 2018.csv" on Moodle and contains six variables:
+
+* **host_id** - ID of the host on Airbnb
+
+* **host_since** - Date the host started to list their property on Airbnb
+
+* **neighbourhood** - Neighbourhood where the property is located
+
+* **guests_included** - Number of people included in the price
+
+* **price** - Price per night
+
+* **review_scores_rating** - Average rating for the property
+
+Our aim is to address two research questions using the methods we covered so far:
+
+1) Which neighbourhoods have a high number of listed properties?
+
+2) How does the price one would expect to pay vary across neighbourhoods?
+
+Before starting the exercise, let's load the dplyr R package:
+
+```{r, warning=FALSE, message=FALSE}
+library( dplyr )
+```
+
+
+### Data Cleaning
+
+We start by loading the data into our R Workspace using the read.csv() function and looking at the loaded data,
+
+```{r, echo=TRUE}
+Airbnb_raw <- read.csv( "Airbnb Rio April 2018.csv", header=TRUE )
+glimpse( Airbnb_raw )
+```
+
+**Task 1:** Which variables are required for addressing the research questions? Define a data frame **Airbnb** which only contains the necessary variables.
+
+
+```{r}
+Airbnb <- Airbnb_raw %>%
+  select( neighbourhood, guests_included, price )
+glimpse( Airbnb )
+```
+
+**Task 2:** Convert the remaining variables to the correct type. **Hint:** You may want to consider the function **gsub()** to remove special symbols from a string of characters.
+
+
+```{r}
+Airbnb <- Airbnb %>%
+  mutate( price = gsub(replacement = "", pattern="\\$", price) )
+glimpse( Airbnb )
+```
+```{r}
+Airbnb <- Airbnb %>%
+  mutate( price = gsub(replacement = "", pattern=",", price) )
+glimpse( Airbnb )
+```
+
+```{r}
+Airbnb <- Airbnb %>%
+  mutate( price = as.numeric(price) )
+glimpse( Airbnb )
+```
+
+### Research Question 1
+
+With the data now being ready, we can turn to our first research question:
+
+**Task 3:** Use the functions in the dplyr package to extract the number of properties per neighbourhood. **Hint:** You may want to consider the function **n()** which returns the number of rows in a data frame when combined with **summarise()**. Alternatively, you can also look up the function **count()**.
+
+```{r}
+Airbnb_Numbers <- Airbnb %>%
+  group_by( neighbourhood ) %>%
+  summarise( "Number" = n() )
+glimpse( Airbnb_Numbers )
+```
+
+
+**Task 4:** Sort the neighbourhoods based on the number of listed properties. For all neighbourhoods with more than 1000 listed properties, print the name of the neighbourhood and the number of listed properties. What do we conclude?
+
+
+```{r}
+Airbnb_Numbers %>%
+  arrange( desc(Number) ) %>%
+  filter( Number>1000 )
+```
+
+
+### Research Question 2
+
+This research question is a bit more open-ended than Research Question 1. So we should first consider which information may be best suited for addressing the research question. 
+
+One possible answer is to study price per guest, as properties that can house a larger number of guests are likely to be more expensive. Summaries that may be helpful to extract are the average and median price per guest for a listed property within the neighbourhood. 
+
+**Task 5:** Why may it be good to also consider the median, instead of just the mean?
+
+
+**Task 6:** Create a data frame which provides the number of listed properties, and the average and median price per guest, for each neighbourhood with more than 1000 listed properties. What do we conclude?
+
+```{r}
+Airbnb <- Airbnb %>%
+  mutate( Price_per_Guest = price/guests_included )
+glimpse( Airbnb )
+```
+
+```{r}
+Airbnb %>%
+  group_by( neighbourhood ) %>%
+  summarise( "Number"=n(),
+             Average = mean(Price_per_Guest),
+             Median = quantile(Price_per_Guest, 0.5) ) %>%
+  filter( Number>1000 )
+
+```

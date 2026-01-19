@@ -8,11 +8,7 @@ book:
   date: "February 2025"
   chapters:
     - index.qmd
-    - part: "Computing Setup"
-      chapters:
-        - computing-setup/setup-university-drive.qmd
-        - computing-setup/project-structure.qmd
-        - computing-setup/computing-assignments.qmd
+
     - 01-DataWrangling.qmd
     - 02-DataVisualization.qmd
     - 03-Text-Data-Analysis.qmd

@@ -1,0 +1,78 @@
+---
+title: "Computer Lab 3"
+subtitle: "Mise en place"
+description: "To work on lab xxx"
+categories: "Lab"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+
+The tutorial questions ask you to apply functions from the dplyr, lubridate and ggplot2 packages. You should prioritize Tutorial Question 1, and only after completing it consider Tutorial Questions 2 and 3. Please make sure to use R Markdown for all your analyses.
+
+Before starting the questions, please make sure to load the relevant R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(patchwork)
+```
+
+
+
+### **Tutorial Question 1 - Utopia's Ambulance Service**
+
+The health department of *Utopia* has collected data on the response time of their ambulance service, including whether patients were admitted to the country's hospitals and how long they stayed. All the data are stored across the files "Ambulance.csv" and "Hospital.csv". The variables in "Ambulance.csv" are
+
+* **Call** -  Day and time at which the ambulance service was notified
+
+* **Category** - Ambulance response category (1=”Life threatening”, 4=”non-urgent”)
+
+* **Arrival** -  Time of arrival of the ambulance at the patient's location
+
+* **PatientID** -  Health insurance number of the patient
+
+* **Hospital** -  Time patient arrived at the hospital (missing values indicate that no hospitalization was required)
+
+The file "Hospitals.csv" provides the following information:
+
+* **PatientID** -  Health insurance number of the patient
+
+* **Age** - Age of the patient
+
+* **Length** - Number of days the patient stayed in hospital
+
+We are asked by the Utopian government to perform an analysis which only considers the patients who were brought to hospital by the ambulance service. For these patients, they ask us to address the following two questions:
+
+a) When considering patients within the different response categories, are there any differences in terms of time spent in hospital?
+
+b) What is the relation between a patient's waiting time for the ambulance and their length of stay in hospital? **Hint:** You may want to consult the lubridate cheat sheet to help with converting dates to their correct type.
+
+
+### **Tutorial Question 2 - 2021/22 UEFA Champions League**
+  
+The files "UEFA goals.csv" and "UEFA attacking.csv" contain all the player stats on goals and assists for the UEFA Champions League season 2021-22. Use the data to extract the following information:
+
+a) Which two teams scored the most goals in the 2021/22 UEFA Champions League? How many goals did they score?
+
+b) When ranking attackers, the sum of goals and assists is a widely used metric. Extract the top 10 players in terms of this metric. **Hint:** Not every player in the data recorded at least one goal and one assist. 
+
+
+### **Tutorial Question 3 - Working with discrete variables**
+
+When plotting values of discrete variables (such as number of sales) some information may not be visible because points may lie on top of each other. We will explore how the functions **geom_count()** and **geom_jitter()** facilitate handling such situations.
+
+NOAA in the United States has recorded 332 billion-dollar natural disasters between 1980 and 2022, that is, each event caused overall damages in excess of $1 billion US dollars. The types of natural disasters include flooding, severe storms, droughts, etc. In this analysis we focus on the number of natural disasters per type and year and the data are provided in the file "US Billion Dollar Disasters.csv".
+
+a) Create a scatter plot for number of flood events against severe storms per year. Discuss which information can be drawn from the plot?
+
+b) Replace the function geom_point() in part a) by geom_count(). Which conclusions can be drawn from this new plot?
+
+c) Replace the function geom_point() in part a) by geom_jitter(). What does this function do? Which conclusions can be drawn from this new plot?
+
+

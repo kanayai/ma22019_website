@@ -1,0 +1,153 @@
+---
+title: "MA22019 2025 - Solutions for Quiz 6"
+subtitle: "Mise en place"
+categories: ["Quiz", "Solutions"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( ggplot2 )
+library( tidytext )
+library( stringr )
+library( tidyr )
+library( topicmodels )
+```
+
+When working on a University PC, you have to first install the tidytext package and any dependencies using
+
+```{r, eval=FALSE}
+install.packages( "tidytext", dependencies = TRUE )
+```
+
+For the sentiment analysis you can load the sentiment lexicons using
+
+```{r}
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
+```
+
+### **Exercise 1 - Comparing Moby Dick and Robinson Crusoe**
+
+We want to consider the books *Moby Dick* and *The Life and Adventures of Robinson Crusoe*. The text for both books is provided in the file "AdventureBooks.csv" and we load it using 
+
+```{r}
+Books <- read.csv( "data/AdventureBooks.csv" )
+```
+
+Consider the following two questions:
+
+a) Which five words (excluding stop words) are the most common in *Moby Dick*?
+
+<p style="color:blue"> *Let's start by extracting the lines from the book Moby Dick:*</p>
+
+```{r}
+MobyDick_raw <- filter( Books, title == "Moby Dick" )
+```
+
+<p style="color:blue"> *We then combine the different steps from Section 3.1.2 and extract the five most common words(excluding stop words) using the following code:*</p>
+
+```{r}
+MobyDick_raw %>% 
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "_", "", word ) ) %>%
+  count( word, sort=TRUE ) %>%
+  anti_join( stop_words, by="word" ) %>%
+  slice_head( n=5 )
+```
+
+<p style="color:blue"> *We find that "whale", "ahab", "sea", "ship" and "ye" are the five most common words excluding stop words).*</p>
+
+b) When considering a corpus which only includes *Moby Dick* and *The Life and Adventures of Robinson Crusoe*, which five words have the highest term frequency - inverse document frequency (tf-idf)?
+
+<p style="color:blue"> *We combine the different steps from Section 3.3.2 and extract the five words with the highest term frequency -inverse document frequency using the following code:*</p>
+
+```{r}
+Books %>%
+  unnest_tokens( word, text ) %>% 
+  mutate( word = gsub( "_", "", word ) ) %>% 
+  count( title, word, sort=TRUE ) %>%
+  bind_tf_idf( word, title, n ) %>%
+  arrange( desc(tf_idf) ) %>%
+  slice_head( n=6 ) 
+```
+
+<p style="color:blue"> *The output shows that "whale", "ahab", "friday", "sperm" and "stubb" have the highest term frequency - inverse document frequency. Here we ignored the word "whales" because it's the plural of a word with higher tf-idf.*</p>
+
+
+### **Exercise 2 - Analysis of news articles**
+
+In Section 4.4 we applied topic modelling to articles published in the New York Times. We now study another example. The file “Articles.csv” on Moodle provides the text for 2692 news articles from 2015. The articles were published either in the "business" or the "sports" category. In this exercise you will first repeat the steps from Section 4.4, and then explore how well your fitted model performs at identifying whether an article belongs to the "business" or "sports" category.
+
+a) Treading each article as a separate document, derive the document term matrix for the set of articles and store it as **Articles_dtm**. 
+
+<p style="color:blue"> *We start by loading the text data:*</p>
+
+```{r}
+Articles <- read.csv( "data/Articles.csv" )
+```
+
+<p style="color:blue"> *The next step is to create an identifier for each article. To aid the analysis in the next steps, we use the unite() function to create an identifier which includes the news category:*</p>
+
+```{r}
+Articles <- Articles %>% 
+  mutate( ID=1:nrow(Articles) ) %>%
+  unite( col=document, NewsType, ID )
+```
+
+<p style="color:blue"> *We are now ready to remove stop words and count the number of occurrences for each word and article*</p>
+
+```{r}
+Articles_count <- Articles  %>%
+  unnest_tokens( word, Article ) %>%
+  anti_join( stop_words, by="word" ) %>%
+  count( document, word )
+```
+
+<p style="color:blue"> *The last step is create the document term matrix:*</p>
+
+```{r}
+Articles_dtm <- Articles_count %>% cast_dtm( document, word, n )
+```
+
+With the document term matrix having been derived, we estimate the parameters of an LDA model with $K=2$ topics using:
+
+```{r}
+Articles_LDA <- LDA( Articles_dtm, k = 2, method="Gibbs", control = list(seed=2024) )
+```
+
+b) For each article, extract the proportions with which the different topics feature. Is there a difference in proportions between "business" and "sports" articles?
+
+<p style="color:blue"> *From the fitted model, we can extract the proportions, together with news category, using*</p>
+
+```{r}
+Articles_topics <- tidy( Articles_LDA , matrix = "gamma" ) %>% 
+  separate( document, c("NewsType", "ID"), sep="_", convert=TRUE )
+```
+
+<p style="color:blue"> *All that is left is to create a facet plot, which visualizes the estimated proportions for the two news categories:*</p>
+
+```{r, out.width='70%', fig.height=4, fig.width=8, fig.align='center'}
+ggplot( Articles_topics, aes( x=factor(topic), y=gamma ) ) + 
+  facet_wrap( ~NewsType ) + geom_boxplot() + 
+  labs( x="Topic", y="Proportion" )
+```
+
+<p style="color:blue"> *The box plots indicate that the two topics tend to reflect the differences in content. More precisely, documents which predominately feature Topic 1 belong to the "sports" category, while documents mostly made up of Topic 2 fall usually into the "business" category. Consequently, there is a difference in proportions between "business" and "sports" articles*</p>
+
+c) Which are the five most common words in each of the two topics?
+
+<p style="color:blue"> *We adapt the code used in Section 4.3 to extract the most common words for each category:*</p>
+
+```{r}
+tidy( Articles_LDA , matrix = "beta" ) %>%
+  group_by( topic ) %>%
+  slice_max( beta, n=5 )
+```
+
+

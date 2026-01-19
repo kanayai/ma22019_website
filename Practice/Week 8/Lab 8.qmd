@@ -1,0 +1,69 @@
+---
+title: "MA22019 2025 - Computer Lab 8"
+subtitle: "Mise en place"
+description: "To work on the lab on date xx"
+categories: "Lab"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+
+Tutorial Questions 1 and 2 each consider one of the two techniques we covered in Week 8. 
+
+You may want to load the following packages before starting the exercise:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( lubridate )
+library( ggplot2 )
+library( tidyr )
+library( sf )
+library( ggspatial )
+library( prettymapr )
+library( sp )
+library( gstat )
+```
+
+When working on a University PC, you will have to first install some of these packages. 
+
+
+
+
+### **Tutorial Question 1 - Spatial dependence in soil moisture**
+
+The file "SoilMoisture.csv" contains soil moisture measurements for 1 July 2022 for the Iberian peninsula (i.e. Spain and Portugal). Data were collected using satellites and each point corresponds to the soil moisture recorded for an area of $0.25°\times 0.25°$. We want to visualize the data and estimate the semi-variogram:
+  
+a) Load the data into R and create a spatial plot which shows the soil moisture for each point, that is, the $x$ and $y$ axis should correspond to longitude and latitude respectively, with colour being used as a visual cue representing soil moisture. What do you conclude?
+
+b) Remove any grid cells with missing data from the data set using the function na.omit(). Why is this step necessary for estimating the semi-variogram?
+  
+c) Estimate the semi-variogram using the function variogram() from the gstat R package. Visualize your estimate. What do you conclude?
+
+d) Discuss whether it is reasonable to assume that the value of the semi-variogram is fully specified by the distance between spatial sites, which is the key assumption we make when using the variogram() function.
+
+### **Tutorial Question 2 - Maximum monthly temperature across Germany**
+
+The file "Temperature Germany.csv" contains maximum monthly temperatures recorded for 20 sites in the northern half of Germany for 2000-2023. The longitude and latitude coordinates for the sites can be found in the file "Sites Germany.csv". In the following we will visualize the data and analyse its spatial structure.
+
+a) For all sites calculate their median monthly maximum temperature for June across the period 2000-2023. Create a plot to visualize the values you obtained. What do you conclude? 
+
+b) We now want to use principal component analysis to analyse the spatial structure in the data. One difference to the example from the lecture notes is that we standardize the data per month and site, rather than just per site. Formally, we standardize the data using
+\[
+\tilde{x}_{i,j,t} = (x_{i,j,t} - \bar{x}_{i,j})/\hat{\sigma}_{i,j},
+\]
+where $x_{i,j,t}$ is the maximum temperature for site $i$ in month $j$ and year $t$. We will have to perform this standardization "by hand" and can no longer rely on prcomp() to do it for us. Perform the following steps to perform PCA in this case and interpret your outputs:
+
+    1. Standardize the data per site and month using the equation above.
+  
+    2. Use the pivot_wider() function to convert the data to a data frame such that each column contains the standardized observations for one side. Use the function na.omit() to remove any rows with missing data.
+
+    3. Apply the prcomp() function using the values obtained in Step 2.
+    
+    4. Using the eigenvalues, decide on the number $m$ of eigenvectors we should study.
+    
+    5. Visualize the first $m$ eigenvectors, where $m$ is the number you decided on in part Step 4. What do you conclude?
+

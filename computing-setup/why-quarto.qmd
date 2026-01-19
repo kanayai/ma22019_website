@@ -1,0 +1,45 @@
+---
+title: "Why we use Quarto"
+format: html
+---
+
+In this course, we have transitioned from RMarkdown to **Quarto**. You might be wondering: *"Why learn a new tool when RMarkdown already exists?"* or *"Is this relevant to my future career?"*
+
+The short answer is: **Yes, Quarto is a massive upgrade for your data science toolkit.** Here is why.
+
+## 1. It is "Language Agnostic" (The Biggest Career Advantage)
+
+RMarkdown is tied heavily to **R**. However, in the modern tech industry, data teams rarely use just one language. You will likely work on teams where:
+
+*   Some people use **Python** (pandas, scikit-learn).
+*   Others use **R** (tidyverse, ggplot2).
+*   Others use **Julia** or **Observable JS**.
+
+**Quarto works natively with all of them.**
+
+This allows the entire team to use the **same publishing system** regardless of their preferred coding language. Being able to document Python projects with the same tool you use for R is a massive skills multiplier that makes you a more versatile and valuable asset to any data team.
+
+## 2. It is the "Next Generation" Standard
+
+Quarto is built by **Posit** (formerly RStudio), the same team that created RMarkdown. They have explicitly stated that **Quarto is the successor**.
+
+*   While RMarkdown will be supported for maintenance, **all new features and innovations are going into Quarto**.
+*   Learning Quarto now puts you **ahead of the curve**.
+*   Sticking with RMarkdown means learning "legacy" technology that will slowly fade away.
+
+## 3. Better Tooling & IDE Support
+
+*   **RMarkdown** is great in RStudio but can be clunky in other editors.
+*   **Quarto** is designed to work perfectly in **VS Code**, **Jupyter Lab**, and standard text editors.
+
+Many professional data scientists prefer **VS Code** over RStudio (especially for Python, cloud computing, or software engineering work). Knowing a publishing tool that works smoothly in the industry-standard editor (VS Code) is highly valuable.
+
+## 4. Direct Skill Transfer
+
+The best news is that **95% of RMarkdown syntax works in Quarto**. You aren't "re-learning" from scratch; you are essentially upgrading to "RMarkdown 2.0".
+
+The transition is easy, but the ceiling for what you can build—websites, blogs, interactive dashboards, and books—is much higher with Quarto.
+
+---
+
+**Verdict:** Teaching you Quarto is preparing you for the real-world, polyglot (multi-language) data science environment that is the standard in modern tech companies.

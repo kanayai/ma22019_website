@@ -1,0 +1,61 @@
+---
+title: "MA22019 2025 - Quiz 7"
+subtitle: "Mise en place"
+description: "To work after"
+categories: "Quiz"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Overview**
+
+This week's exercises help you with revising Sections 4.1 and 4.2 in the lecture notes. Exercises 1 asks you to identify the correct type of spatial data. Exercises 2 and 3 provide additional opportunities to visualize spatial data using shapefiles and maps, and to interpret the plots.
+
+
+You may want to load the following packages before starting the exercises:
+
+```{r, message=FALSE, warning=FALSE}
+library( dplyr )
+library( ggplot2 )
+library( sf )
+library( ggspatial )
+library( prettymapr )
+```
+
+
+### **Exercise 1 - Types of spatial data**
+
+For each of the following applications, decide whether the data will be point-referenced, point pattern or lattice/areal data: 
+
+a) Occurrence of tornadoes across Europe
+
+b) Air pollution levels across a city
+
+c) Strength of mobile phone signal
+
+d) Damage caused by the great spruce bark beetle across Western England
+
+e) Sightings of Type Ia supernova
+
+### **Exercise 2 - Rainfall across New Zealand**
+
+The file "NewZealandRain.csv" provides the aggregated rainfall between 01/09/2019 and 30/11/2019 for various locations across New Zealand. A shapefile for New Zealand is provided in the file "ShapeFileNZ.Rdata".
+
+a) Load the shapefile and create a plot of New Zealand. 
+
+b) Load the data in "NewZealandRain.csv". Add points to the plot in part a) which represent the locations contained in "NewZealandRain.csv", and use the visual cue colour to visualize the  amount of precipitation on logarithmic scale recorded at the various locations
+
+c) Use inverse distance weighting with power parameter $p=2$ to estimate the amount of precipitation between 01/09/2019 and 30/11/2019 for the following two locations: (i) 177°E Longitude and 38°S Latitude; (ii) 166°E Longitude and 51°S Latitude. You should use the original data and not apply the logarithmic scale from part b). Submit your answers (to two decimal places) in the Moodle quiz.
+
+### **Exercise 3 - Earthquakes across Japan**
+
+The files "Japan earthquakes.csv" contains data for earthquakes which affected Japan between 2011 and 2018. The data has been collected by the United States Geological Survey. We want to use spatial data analysis to investigate the locations of the strongest earthquakes. 
+
+a) Load the data and extract the earthquakes with a magnitude of 6 or higher. 
+
+b) Create a map to visualize the locations and magnitude of the earthquakes extracted in part a). 
+
+c) Go to Moodle and complete the quiz.
+

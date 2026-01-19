@@ -1,0 +1,29 @@
+---
+title: "Test"
+author: "Dr. Karim Anaya-Izquierdo"
+date: "2025-01-13"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("C:/Users/cr777/Desktop/Teaching 2024-2025/MA22019/Problem Sheets/Problem Sheet 6/Moodle Quiz/")
+```
+
+
+```{r}
+library(exams)
+```
+
+```{r}
+elearn_exam <- c( "Q1a.Rmd", "Q1b.Rmd", "Q1c.Rmd", "Q1d.Rmd", "Q1e.Rmd", 
+                  "Q2ci.Rmd", "Q2cii.Rmd", "Q3ci.Rmd", "Q3cii.Rmd" )
+```
+
+```{r}
+set.seed(2025)
+rxm <- exams2moodle( elearn_exam, n=1, name="PS6" )
+```

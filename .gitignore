@@ -14,3 +14,4 @@ _main_files/
 *.zip
 *.nc
 .Rhistory
+rosm.cache/
