@@ -26,7 +26,7 @@ library(patchwork)
 An analysis of the Australian weather data, considered in the lecture, produced the following plot:
 
 ```{r, echo=F, out.width='83%', fig.height=3, fig.width=7, fig.align='center'}
-AUS      <- read.csv("WeatherAustralia.csv" )
+AUS      <- read.csv("data/WeatherAustralia.csv" )
 AUS$Date <- as_date( AUS$Date, format="%d/%m/%Y" )
 MS       <- filter( AUS, Location %in% c("Darwin","Sydney") )
 ggplot( MS, aes( x=Date, y=Rainfall ) ) + facet_wrap(~Location) +
@@ -54,8 +54,8 @@ a) Join the temperature data for Sao Paulo and Rio de Janeiro into a single data
 <p style="color:blue">*We first load the two data sets:*</p>
 
 ```{r}
-Rio <- read.csv( "Rio Temperature.csv" )
-SaoPaulo <- read.csv( "Sao Paulo Temperature.csv" )
+Rio <- read.csv( "data/Rio Temperature.csv" )
+SaoPaulo <- read.csv( "data/Sao Paulo Temperature.csv" )
 ```
 
 <p style="color:blue">*We then apply full_join() to merge the two data sets, and data points are to be merged based on both year and month:*</p>
@@ -116,7 +116,7 @@ a) Create a density plot to visualize the distribution of the maximum daily temp
 <p style="color:blue">*Let's first load the data*</p> 
 
 ```{r}
-NYC <- read.csv( "NYC Weather 2019.csv" )
+NYC <- read.csv( "data/NYC Weather 2019.csv" )
 ```
 
 <p style="color:blue">*We then use the functions ggplot() and geom_density() introduced in the lecture:*</p> 

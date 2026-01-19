@@ -7,7 +7,7 @@ Solution
 We first perform the data operations from part a):
 
 ```{r, eval=FALSE, echo=TRUE}
-Traffic <- read.csv( "Traffic Minnesota.csv" )
+Traffic <- read.csv( "data/Traffic Minnesota.csv" )
 Traffic <- Traffic %>% mutate( date_time = dmy_hm(date_time) )
 Traffic <- Traffic %>% mutate( Weekday = weekdays(date_time) )
 ```

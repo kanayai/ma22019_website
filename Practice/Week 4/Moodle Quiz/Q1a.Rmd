@@ -23,7 +23,7 @@ Solution
 We extract the information using
 
 ```{r, eval=FALSE, echo=TRUE}
-CO2 <- read.csv( "CO2 Emissions.csv", header=TRUE )
+CO2 <- read.csv( "data/CO2 Emissions.csv", header=TRUE )
 
 CO2 %>%
   group_by( country ) %>%

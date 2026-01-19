@@ -7,7 +7,7 @@ Solution
 We first create a new variable which represents the difference in minimum and maximum temperature on the day and then find the day with the largest difference:
 
 ```{r, eval=FALSE, echo=TRUE}
-NYC <- read.csv( "NYC Weather 2019.csv" )
+NYC <- read.csv( "data/NYC Weather 2019.csv" )
 NYC %>% 
   mutate( Difference = Tmax - Tmin ) %>%
   arrange( desc(Difference) ) %>%

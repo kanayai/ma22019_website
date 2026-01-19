@@ -15,7 +15,7 @@ Solution
 We can for instance produce a plot which plots day of the year against temperature:
 
 ```{r, eval=FALSE, echo=TRUE}
-BrisbaneGoldCoast <- read.csv("BrisbaneGoldCoast.csv")
+BrisbaneGoldCoast <- read.csv("data/BrisbaneGoldCoast.csv")
 
 BrisbaneGoldCoast <- BrisbaneGoldCoast %>% 
   mutate( Date = as_date( Date, format="%d/%m/%Y" ) )

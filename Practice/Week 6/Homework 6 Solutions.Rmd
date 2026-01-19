@@ -32,8 +32,8 @@ install.packages( "tidytext", dependencies = TRUE )
 For the sentiment analysis you can load the sentiment lexicons using
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
-Bing <- read.csv("Bing Sentiment Lexicon.csv")
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
 ```
 
 
@@ -61,14 +61,14 @@ c) Based on your results in parts a) and b), discuss the performance of sentimen
 <p style="color:blue"> *We start by loading the data and by creating an index for each review:*</p>
   
 ```{r}
-BA <- read.csv( "British Airways Reviews.csv" )
+BA <- read.csv( "data/British Airways Reviews.csv" )
 BA <- BA %>% mutate( Index=1:nrow(BA) ) 
 ```
 
 <p style="color:blue"> *To perform sentiment analysis, we will consider the AFINN sentiment lexicon:*</p>
   
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
 ```
 
 <p style="color:blue"> *The first step is to split the reviews into individual words and assign each word its sentiment score:*</p>
@@ -95,7 +95,7 @@ BA_sentiment %>%
   <p style="color:blue"> *Let's move on the second part. The first task is to decide which words should be considered when estimating topics. While we should remove stop words when performing LDA, in this particular case we may want to keep the ones that represent emotional intent. One option is thus to define a new stop list which contains all the words from our standard stop list excluding the ones in the Bing sentiment lexicon (we use it because it includes more words than AFINN)*</p>
 
 ```{r}
-Bing <- read.csv("Bing Sentiment Lexicon.csv") 
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv") 
 stop_words_sentiment <- stop_words %>% anti_join( Bing, by="word") 
 ```
 

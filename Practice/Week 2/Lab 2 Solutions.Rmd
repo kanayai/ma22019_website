@@ -48,7 +48,7 @@ a) For each state calculate the total amount of honey produced (in pounds) for t
 <p style="color:blue">*We start by loading the data from the .csv file*</p>
 
 ```{r}
-Honey_Raw <- read.csv( "HoneyProductionUS.csv" )
+Honey_Raw <- read.csv( "data/HoneyProductionUS.csv" )
 ```
 
 <p style="color:blue">*Since we are interested in total production, we first derive the total production (number of colonies x yield per colony) for each state. This information can be calculated and attached to the data frame using mutate()*</p>
@@ -138,7 +138,7 @@ a) Load the data and use the function as_datetime() in the lubridate package to 
 <p style="color:blue">*We start by loading the data:*</p>
 
 ```{r}
-Bitcoin <- read.csv("Bitcoin.csv")
+Bitcoin <- read.csv("data/Bitcoin.csv")
 ```
 
 <p style="color:blue">*To convert the variabe representing day and time to its correct type, we use the function as_datetime():*</p>

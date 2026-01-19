@@ -33,7 +33,7 @@ a) Visualize the measured lead concentrations. What do you conclude?
 <p style="color:blue">*We start by loading the patient data and the shapefile*</p>
 
 ```{r}
-Patients <- read.csv( "Amaurot Lead.csv" )
+Patients <- read.csv( "data/Amaurot Lead.csv" )
 Amaurot <- read_sf( "Shapefiles/Amaurot.shp" )
 ```
 
@@ -68,7 +68,7 @@ IDW <- function( X, S, s_star, p){
 <p style="color:blue">*We make use of the provided grid as it provides information on the district each grid cell is located in. We further introduce a new variable to store the predicted lead concentrations:*</p>
 
 ```{r}
-Amaurot_Grid <- read.csv("Amaurot Grid.csv")
+Amaurot_Grid <- read.csv("data/Amaurot Grid.csv")
 Amaurot_Grid <- Amaurot_Grid %>% mutate( Lead = NA )
 ```
 

@@ -38,7 +38,7 @@ a) Identify the three most common crimes in Utopia for the period 2015-2021.
 <p style="color:blue"> *To extract the three most common crimes, we only need to consider in "UtopiaCrimes.csv"*</p> 
 
 ```{r}
-Crimes <- read.csv( "UtopiaCrimes.csv" )
+Crimes <- read.csv( "data/UtopiaCrimes.csv" )
 ```
 
 <p style="color:blue"> *We then count the number of incidents for each crime category*</p>
@@ -63,7 +63,7 @@ Burglaries <- Crimes %>%
 
 <p style="color:blue"> *We then derive the number of cases per 1,000 population for each district*</p>
 ```{r}
-Population <- read.csv( "UtopiaPopulation.csv" )
+Population <- read.csv( "data/UtopiaPopulation.csv" )
 Burglaries <- Burglaries %>%
   inner_join( Population, by="District" ) %>%
   mutate( Rate = 1000 * n / Population )
@@ -147,8 +147,8 @@ a) Load the two data files and calculate the difference between median income an
 <p style="color:blue">*We start by loading the two data sets*</p>
 
 ```{r}
-Cost_Texas <- read.csv("Cost_Texas.csv", fileEncoding = "UTF-8")
-Income_Texas <- read.csv("Income Texas.csv", fileEncoding = "UTF-8")
+Cost_Texas <- read.csv("data/Cost_Texas.csv", fileEncoding = "UTF-8")
+Income_Texas <- read.csv("data/Income Texas.csv", fileEncoding = "UTF-8")
 ```
 
 <p style="color:blue">*A look at the data reveals that the numbers on income include a comma, which prevents this variable from being recognized as a numerical variable. So we have to do some data cleaning first*</p>

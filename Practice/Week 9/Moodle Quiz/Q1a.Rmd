@@ -18,7 +18,7 @@ Solution
 We find the top three countries using the following code
 
 ```{r, eval=FALSE}
-Outbreaks <- read.csv("Outbreaks.csv")
+Outbreaks <- read.csv("data/Outbreaks.csv")
 
 SwineFever <- filter( Outbreaks, disease == "African swine fever" )
 

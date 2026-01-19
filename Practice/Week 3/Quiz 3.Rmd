@@ -29,7 +29,7 @@ library(patchwork)
 An analysis of the Australian weather data, considered in the lecture, produced the following plot:
 
 ```{r, echo=F, out.width='83%', fig.height=3, fig.width=7, fig.align='center'}
-AUS      <- read.csv("WeatherAustralia.csv" )
+AUS      <- read.csv("data/WeatherAustralia.csv" )
 AUS$Date <- as_date( AUS$Date, format="%d/%m/%Y" )
 MS       <- filter( AUS, Location %in% c("Darwin","Sydney") )
 ggplot( MS, aes( x=Date, y=Rainfall ) ) + facet_wrap(~Location) +

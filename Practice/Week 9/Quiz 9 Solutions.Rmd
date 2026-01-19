@@ -39,7 +39,7 @@ a. Which three countries were the worst affected in terms of the total number of
 <p style="color:blue"> *We start by loading the data frame containing the information about outbreaks:* </p>
 
 ```{r}
-Outbreaks <- read.csv("Outbreaks.csv")
+Outbreaks <- read.csv("data/Outbreaks.csv")
 ```
 
 <p style="color:blue"> *Since we want to focus on African swine fever, we have to remove all observations on other diseases from the data set:* </p>
@@ -156,7 +156,7 @@ b) Visualize the rate of violence per 1000 people per départment. Which areas s
 <p style="color:blue"> *We first load the data file and we have to specify the encoding in this case (otherwise the accents are not imported correctly):*</p>
 
 ```{r}
-Crime_France <- read.csv( "Crimes France.csv", header=TRUE, fileEncoding = "UTF-8" )
+Crime_France <- read.csv( "data/Crimes France.csv", header=TRUE, fileEncoding = "UTF-8" )
 ```
 
 <p style="color:blue"> *Time to match the department names in the shapefile with that in the data file:*</p>

@@ -40,7 +40,7 @@ a) Load the data into R and create a spatial plot which shows the soil moisture 
 <p style="color:blue"> *We start by loading the data:*</p>
     
 ```{r}
-Soil <- read.csv( "SoilMoisture.csv" )
+Soil <- read.csv( "data/SoilMoisture.csv" )
 ```
   
 <p style="color:blue"> *There are a few options for visualizing the data. One option is to use the function geom_tile() in the ggplot2 package:*</p>
@@ -91,7 +91,7 @@ d) Discuss whether it is reasonable to assume that the value of the semi-variogr
 <p style="color:blue"> *We start by splitting the data based on Longitude:*</p>
 
 ```{r}
-Soil <- read.csv( "SoilMoisture.csv" )
+Soil <- read.csv( "data/SoilMoisture.csv" )
 Soil_West <- filter(Soil, Longitude < -4 ) %>% na.omit( )
 Soil_East <- filter(Soil, Longitude >= -4 ) %>% na.omit( )
 ```
@@ -129,8 +129,8 @@ a) For all sites calculate their median monthly maximum temperature for June acr
 <p style="color:blue"> *Let's first load the two data sets:*</p>
 
 ```{r}
-Sites <- read.csv("Sites Germany.csv")
-Temperature <- read.csv("Temperature Germany.csv")
+Sites <- read.csv("data/Sites Germany.csv")
+Temperature <- read.csv("data/Temperature Germany.csv")
 ```
 
 <p style="color:blue"> *The first step is to calculate the median value for each site and we need to be aware that there are some missing values:*</p>

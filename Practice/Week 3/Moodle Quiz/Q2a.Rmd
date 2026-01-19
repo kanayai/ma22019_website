@@ -9,8 +9,8 @@ Solution
 We first load and combine the data sets
 
 ```{r, eval=FALSE, echo=TRUE}
-Rio <- read.csv( "Rio Temperature.csv" )
-SaoPaulo <- read.csv( "Sao Paulo Temperature.csv" )
+Rio <- read.csv( "data/Rio Temperature.csv" )
+SaoPaulo <- read.csv( "data/Sao Paulo Temperature.csv" )
 
 Temperature <- full_join( SaoPaulo, Rio, by=c("YEAR"="YEAR", "MONTH"="MONTH") )
 Temperature <- Temperature %>%

@@ -20,7 +20,7 @@ We can produce the map using
 ```{r, eval=FALSE}
 France <- read_sf( "Shapefiles/gadm41_FRA_2.shp" ) %>% st_simplify( dTolerance = 1000 )
 
-Crime_France <- read.csv( "Crimes France.csv", header=TRUE, fileEncoding = "UTF-8" )
+Crime_France <- read.csv( "data/Crimes France.csv", header=TRUE, fileEncoding = "UTF-8" )
 
 France <- inner_join( x=France, y=Crime_France, by=c("NAME_2"="Department") )
 

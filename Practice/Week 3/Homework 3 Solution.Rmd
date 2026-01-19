@@ -58,7 +58,7 @@ Perform an analysis which considers the three aspects above. Make sure to clearl
 <p style="color:blue">*We start by loading the data:*</p>
   
 ```{r}
-Orchids <- read.csv( "Orchids.csv" )
+Orchids <- read.csv( "data/Orchids.csv" )
 ```
 
 <p style="color:blue">*One approach to compare the heights is to create a box plot of height for each of the two types:*</p>

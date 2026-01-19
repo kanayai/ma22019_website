@@ -31,7 +31,7 @@ a) Visualize the locations of the weather stations and average daily temperature
 
 ```{r}
 Brazil <- read_sf( "Shapefiles/Brazil.shp" )
-Temperature <- read.csv( "Brazil Temperature.csv" )
+Temperature <- read.csv( "data/Brazil Temperature.csv" )
 ```
 
 <p style="color:blue"> *Using the code from Section 4.1.2 and the functions xlim() and ylim() we produce the plot as required:* </p>
@@ -129,7 +129,7 @@ ggplot( Alaska ) + geom_sf() + theme_bw() +
 We now want to explore the spatial data contained in "Crabs.csv". Run the following piece of R code
 
 ```{r, out.width='50%', fig.align='center', fig.height=4}
-Crabs <- read.csv( "Crabs.csv" )
+Crabs <- read.csv( "data/Crabs.csv" )
 ggplot( data=Alaska ) + theme_bw() + geom_sf() + 
   geom_point( data=Crabs, aes(x=longitude, y=latitude), colour=2 ) 
 ```

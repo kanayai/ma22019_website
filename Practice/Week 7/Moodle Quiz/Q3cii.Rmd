@@ -14,7 +14,7 @@ Solution
 
 We produce the map using 
 ```{r, eval=FALSE}
-Earthquakes <- read.csv( "Japan earthquakes.csv" )
+Earthquakes <- read.csv( "data/Japan earthquakes.csv" )
 
 Earthquakes_strong <- filter( Earthquakes, mag>=6.0 )
 

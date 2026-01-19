@@ -36,8 +36,8 @@ install.packages( "tidytext", dependencies = TRUE )
 For the sentiment analysis you can load the sentiment lexicons using
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
-Bing <- read.csv("Bing Sentiment Lexicon.csv")
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
 ```
 
 
@@ -46,7 +46,7 @@ Bing <- read.csv("Bing Sentiment Lexicon.csv")
 We want to consider the books *Moby Dick* and *The Life and Adventures of Robinson Crusoe*. The text for both books is provided in the file "AdventureBooks.csv" and we load it using 
 
 ```{r}
-Books <- read.csv( "AdventureBooks.csv" )
+Books <- read.csv( "data/AdventureBooks.csv" )
 ```
 
 Consider the following two questions:

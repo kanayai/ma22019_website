@@ -16,7 +16,7 @@ Solution
 We start by loading the data set:
 
 ```{r, eval=FALSE, echo=TRUE}
-Babies <- read.csv("Babynames.csv")
+Babies <- read.csv("data/Babynames.csv")
 ```
 
 To find the most common name, we have to sum up the counts across the different years:

@@ -13,7 +13,7 @@ Solution
 We can create the semi-variogram using
 
 ```{r, eval=FALSE}
-Meuse <- read.csv("Meuse.csv")
+Meuse <- read.csv("data/Meuse.csv")
 
 coordinates( Meuse ) <- ~Lon+Lat
 gamma_hat <- variogram( zinc~1, Meuse )

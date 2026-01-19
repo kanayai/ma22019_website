@@ -57,7 +57,7 @@ a) Create a plot of the provided shapefile. Is the WGS84 coordinate reference sy
 We now want to explore the spatial data contained in "Crabs.csv". Run the following piece of R code
 
 ```{r, out.width='50%', fig.align='center', fig.height=4, eval=FALSE}
-Crabs <- read.csv( "Crabs.csv" )
+Crabs <- read.csv( "data/Crabs.csv" )
 ggplot( data=Alaska ) + theme_bw() + geom_sf() + 
   geom_point( data=Crabs, aes(x=longitude, y=latitude), colour=2 ) 
 ```

@@ -35,7 +35,7 @@ a) Estimate the semi-variogram for the data. What do you conclude about the spat
 <p style="color:blue"> *We estimate the semi-variogram using the variogram() function and then plot it:*</p>
 
 ```{r, fig.align='center', out.width='60%', fig.height=3, fig.width=5}
-Brazil <- read.csv( "Brazil Temperature.csv" )
+Brazil <- read.csv( "data/Brazil Temperature.csv" )
 coordinates( Brazil ) <- ~Lon+Lat
 gamma_hat <- variogram( MeanTemp~1, data = Brazil, width=0.5 )
 ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 
@@ -49,7 +49,7 @@ b) Discuss whether it is reasonable to assume that the spatial random process ha
 <p style="color:blue"> *Let's create a plot of the data:* </p>
 
 ```{r, warning=FALSE, message=FALSE, fig.align='center', out.width='70%'}
-Temperature <- read.csv( "Brazil Temperature.csv" )
+Temperature <- read.csv( "data/Brazil Temperature.csv" )
 
 ggplot( Temperature, aes( x=Lon, y=Lat ) ) + 
   annotation_map_tile( zoom=5 ) + 
@@ -70,7 +70,7 @@ X(\mathbf{s}) = \beta_0  + \beta_1\mathrm{Longitude}(\mathbf{s}) + \beta_2\mathr
 where $\{Z(\mathbf{s}) : \mathbf{s}\in\mathcal{S}\}$ is termed the residual random process. The semi-variogram estimated by the variogram() function then corresponds to that for the residual random process. In R, we derive and visualize this estimate using
 
 ```{r, fig.align='center', out.width='60%', fig.height=3, fig.width=5}
-Brazil <- read.csv( "Brazil Temperature.csv" )
+Brazil <- read.csv( "data/Brazil Temperature.csv" )
 coordinates( Brazil ) <- ~Lon+Lat
 gamma_hat <- variogram( MeanTemp ~Lon+Lat, data = Brazil, width=0.5 )
 ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 

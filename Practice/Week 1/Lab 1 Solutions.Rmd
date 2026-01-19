@@ -72,7 +72,7 @@ We are interested in exploring how tuition fees for private college have evolved
 The file "Private College Costs.csv" gives for each U.S. state (except Wyoming) the average annual tuition fee (in U.S. Dollars) charged to full-time students enrolled across private colleges located in each of the U.S. states for 2013--2020. We can load the data file into R using 
 
 ```{r}
-Fees <- read.csv( "Private College Costs.csv" )
+Fees <- read.csv( "data/Private College Costs.csv" )
 ```
 
 Note, the data file needs to be in the same folder as the R Markdown file. Use the data to address the following questions:

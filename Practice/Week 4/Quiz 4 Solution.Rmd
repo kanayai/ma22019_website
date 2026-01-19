@@ -34,7 +34,7 @@ a) Which two countries recorded the highest total CO$_2$ emissions across all se
 <p style="color:blue"> *We start by loading the data:*</p>
 
 ```{r, warning=FALSE, message=FALSE}
-CO2 <- read.csv( "CO2 Emissions.csv", header=TRUE )
+CO2 <- read.csv( "data/CO2 Emissions.csv", header=TRUE )
 ```
 
 <p style="color:blue"> *We sum up all the observed values separately for each country using functions from the dplyr package: *</p>
@@ -90,7 +90,7 @@ a) Use the function **dmy_hm()** in the lubridate R package to convert the varia
 <p style="color:blue">*We start by loading the data.*</p>
 
 ```{r}
-Traffic <- read.csv( "Traffic Minnesota.csv" )
+Traffic <- read.csv( "data/Traffic Minnesota.csv" )
 ```
 
 <p style="color:blue">*We then use the functions* **dmy_hm()** *(from the lubridate package)* *and* **weekdays()** *as required*:</p>
@@ -174,7 +174,7 @@ a) Explore how the daily maximum temperature for Gold Coast varies throughout th
 <p style="color:blue">*Let's load the data:*</p>
 
 ```{r}
-BrisbaneGoldCoast <- read.csv("BrisbaneGoldCoast.csv")
+BrisbaneGoldCoast <- read.csv("data/BrisbaneGoldCoast.csv")
 ```
 
 <p style="color:blue">*As we want to plot values over time, the first step is to convert the variable* **Date** *to its correct type:*</p>

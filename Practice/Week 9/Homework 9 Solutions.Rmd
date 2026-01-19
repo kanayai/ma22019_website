@@ -57,7 +57,7 @@ b) Are there any areas of Great Britain that saw a notable change in the number 
 ```{r}
 UK <- read_sf( "UK Shapefile/UK.shp" )
 UK_county <- read_sf( "UK Shapefile/UK_admin.shp" )
-Squirrels <- read.csv( "GreySquirrels.csv" )
+Squirrels <- read.csv( "data/GreySquirrels.csv" )
 ```
 
 <p style="color:blue">*To explore the spatial distribution of the grey squirrel for 2022, we extract the relevant observations*</p>

@@ -30,8 +30,8 @@ install.packages( "tidytext", dependencies = TRUE )
 For the sentiment analysis you can load the sentiment lexicons using
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
-Bing <- read.csv("Bing Sentiment Lexicon.csv")
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
+Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
 ```
 
 
@@ -52,7 +52,7 @@ a) Extract the two words with the highest term frequency-inverse document freque
 <p style="color:blue"> *Let's start by loading the data:*</p>
 
 ```{r}
-Books_raw <- read.csv( "Books Tutorial Question 1.csv" )
+Books_raw <- read.csv( "data/Books Tutorial Question 1.csv" )
 ```
 
 <p style="color:blue"> *We first split the text into individual words and remove any underscores, before counting the number of occurrences of each word per book:*</p>
@@ -81,7 +81,7 @@ b) Use sentiment analysis to explore how the emotional intent has evolved over t
 <p style="color:blue"> *To begin with, we require a sentiment lexicon, such as AFINN:*</p>
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
+AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
 ```
 
 <p style="color:blue"> *We want to consider sentiment per chapter. Before calculating the sentiment score, we need to split and clean the text data :*</p>
@@ -183,7 +183,7 @@ a) For which group of people did the police record the most burglaries?
 <p style="color:blue">*We start by loading the date:*</p>
 
 ```{r}
-Crimes <- read.csv("UtopiaCrimes.csv")
+Crimes <- read.csv("data/UtopiaCrimes.csv")
 ```
 
 <p style="color:blue">*Looking at the data, we see that the description states the group affected by the burglary. So we need for each group to extract the lines of text in which they are mentioned and count the number of occurrences. The function grep() extracts the indices of the lines and length() then counts them:*</p>

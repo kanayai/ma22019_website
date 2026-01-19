@@ -57,7 +57,7 @@ Perform an analysis which considers the three aspects above. Make sure to clearl
 <p style="color:blue">*We start by loading the data:*</p>
   
 ```{r}
-Salary <- read.csv("Salary Data Scientists.csv")
+Salary <- read.csv("data/Salary Data Scientists.csv")
 ```
 
 <p style="color:blue">*Since the student wants to work full-time for a US company, we have to remove any observations that don't refer to a US company and full-time employment:*</p>

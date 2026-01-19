@@ -51,8 +51,8 @@ a) When considering patients within the different response categories, are there
 <p style="color:blue"> *The first step is to load the two data sets:*</p> 
 
 ```{r}
-Ambulance <- read.csv("Ambulance.csv")
-Hospitals <- read.csv("Hospital.csv") 
+Ambulance <- read.csv("data/Ambulance.csv")
+Hospitals <- read.csv("data/Hospital.csv") 
 ```
 
 <p style="color:blue"> *Since the analysis focuses on the patients admitted to hospital, we combine the two data sets using inner_join() and use the patient ID as the key:*</p>
@@ -117,8 +117,8 @@ a) Which two teams scored the most goals in the 2021/22 UEFA Champions League? H
 <p style="color:blue">*We start by loading the two data sets: *</p>
 
 ```{r}
-Goals <- read.csv( "UEFA goals.csv" )
-Assists <- read.csv( "UEFA attacking.csv" )
+Goals <- read.csv( "data/UEFA goals.csv" )
+Assists <- read.csv( "data/UEFA attacking.csv" )
 ```
 
 <p style="color:blue">*For the first question we only need to consider goals, and we aggregate the goals of the individual players according to their club:*</p>
@@ -176,7 +176,7 @@ a) Create a scatter plot for number of flood events against severe storms per ye
 <p style="color:blue">*We use the* **geom_point()** *function to create the scatter plot.*</p>
 
 ```{r, fig.align='center', out.width='40%', fig.height=4, fig.width=4}
-Disasters <- read.csv( "US Billion Dollar Disasters.csv" )
+Disasters <- read.csv( "data/US Billion Dollar Disasters.csv" )
 ggplot( Disasters, aes(x=Flooding, y=SevereStorm) ) + geom_point() +
   labs( x="Number of floods", y="Number of severe storms" )
 ```

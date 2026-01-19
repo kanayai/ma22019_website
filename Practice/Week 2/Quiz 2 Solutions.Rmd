@@ -65,7 +65,7 @@ If you are unsure about a function, you can use the **help()** function in R, or
 The file "NYCFlights.csv" provides data for flights in 2013 that departed from any of the three main airports servicing New York City: John F Kennedy (JFK), LaGuardia (LGA) and Newark (EWR). To load the data into your R Workspace, you can use
 
 ```{r}
-NYCFlights <- read.csv( "NYCFlights.csv" )
+NYCFlights <- read.csv( "data/NYCFlights.csv" )
 ```
 
 Answer the following questions using the provided data and submit your answers via the Moodle quiz:
@@ -127,7 +127,7 @@ The data set "Earthquakes.csv" contains the location and size of all significant
 We can load the data using 
 
 ```{r}
-Earthquakes <- read.csv( "Earthquakes.csv" )
+Earthquakes <- read.csv( "data/Earthquakes.csv" )
 ```
 
 Answer the following questions and submit your answers via the Moodle quiz:

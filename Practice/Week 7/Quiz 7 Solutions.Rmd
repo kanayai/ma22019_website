@@ -65,7 +65,7 @@ b) Load the data in "NewZealandRain.csv". Add points to the plot in part a) whic
 <p style="color:blue"> *We first load the weather observations:*</p>
 
 ```{r}
-Rain <- read.csv( "NewZealandRain.csv" )
+Rain <- read.csv( "data/NewZealandRain.csv" )
 ```
 
 <p style="color:blue"> *We again slightly adapt the code from Setion 4.1.2 in the lecture notes to combine the shapefile and the points in a single plot:*</p>
@@ -113,7 +113,7 @@ a) Load the data and extract the earthquakes with a magnitude of 6 or higher.
 <p style="color:blue">*We start by loading the data*</p>
 
 ```{r}
-Earthquakes <- read.csv( "Japan earthquakes.csv" )
+Earthquakes <- read.csv( "data/Japan earthquakes.csv" )
 ```
 
 <p style="color:blue">*We can now apply the filter() function from dplyr to extract the earthquakes we are interested in:*</p>

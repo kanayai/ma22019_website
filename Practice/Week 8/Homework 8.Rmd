@@ -50,7 +50,7 @@ X(\mathbf{s}) = \beta_0  + \beta_1\mathrm{Longitude}(\mathbf{s}) + \beta_2\mathr
 where $\{Z(\mathbf{s}) : \mathbf{s}\in\mathcal{S}\}$ is termed the residual random process. The semi-variogram estimated by the variogram() function then corresponds to that for the residual random process. In R, we derive and visualize this estimate using
 
 ```{r, fig.align='center', out.width='60%', fig.height=3, fig.width=5}
-Brazil <- read.csv( "Brazil Temperature.csv" )
+Brazil <- read.csv( "data/Brazil Temperature.csv" )
 coordinates( Brazil ) <- ~Lon+Lat
 gamma_hat <- variogram( MeanTemp ~Lon+Lat, data = Brazil )
 ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 
