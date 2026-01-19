@@ -1,0 +1,11 @@
+format:
+  html:
+    theme: [cosmo, sta199.scss]
+    mainfont: "Atkinson Hyperlegible"
+    highlight-style: a11y-light
+    linkcolor: "#005871"
+    lightbox: true
+    toc: true
+    code-copy: hover
+    code-link: true
+    code-overflow: wrap
