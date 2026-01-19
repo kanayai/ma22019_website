@@ -47,7 +47,7 @@ In Section 4.1.3 we covered the topic of projections. The following tasks showca
 The data file “Crabs.csv” contains catch per unit effort (CPUE) data of commercial horsehair crab landings for various locations across the Alaskan Eastern Bering Sea for 2010-2018. CPUE is an indirect measure of the abundance of a species. We want to visualize the data using the shapefile for Alaska:
 
 ```{r}
-Alaska <- read_sf( "Shapefiles/Alaska.shp" )
+Alaska <- read_sf( "Data/Shapefiles/Alaska.shp" )
 ```
 
 a) Create a plot of the provided shapefile. Is the WGS84 coordinate reference system being used for the plot?

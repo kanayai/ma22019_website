@@ -52,7 +52,7 @@ a) Load the shapefile and create a plot of New Zealand.
 <p style="color:blue"> *We load and plot the data as we did for the shapefile of Germany in Section 4.1.2 of the lecture notes:*</p>
 
 ```{r, out.width='80%', fig.height=4, fig.width=7, fig.align='center'}
-NewZealand <- read_sf( "Shapefiles/NZ.shp" )
+NewZealand <- read_sf( "Data/Shapefiles/NZ.shp" )
 ggplot( NewZealand ) + geom_sf() + theme_bw() + 
   labs( x="Longitude", y="Latitude" )
 ```

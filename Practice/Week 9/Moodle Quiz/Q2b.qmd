@@ -55,8 +55,8 @@ b) Are there any areas of Great Britain that saw a notable change in the number 
 <p style="color:blue">*We start by loading the data and the shapefiles*</p>
 
 ```{r}
-UK <- read_sf( "UK Shapefile/UK.shp" )
-UK_county <- read_sf( "UK Shapefile/UK_admin.shp" )
+UK <- read_sf( "Data/Shapefiles/UK_Shapefile/UK.shp" )
+UK_county <- read_sf( "Data/Shapefiles/UK_Shapefile/UK_admin.shp" )
 Squirrels <- read.csv( "data/GreySquirrels.csv" )
 ```
 

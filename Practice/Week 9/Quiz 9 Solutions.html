@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <em>Using a shapefile for Latvia, we can construct the ppp object as demonstrated in the lecture notes:</em>
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Latvia <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Shapefiles/gadm41_LVA_0.shp"</span> )</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Latvia <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Data/Shapefiles/gadm41_LVA_0.shp"</span> )</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Latvia <span class="ot">&lt;-</span> Latvia <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_simplify</span>( <span class="at">dTolerance =</span> <span class="dv">1000</span> ) <span class="sc">%&gt;%</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>( <span class="at">crs=</span><span class="dv">3857</span> )</span>
@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <em>We start by loading the shapefile:</em>
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>France <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Shapefiles/gadm41_FRA_2.shp"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>France <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Data/Shapefiles/gadm41_FRA_2.shp"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p style="color:blue">
 <em>We reduce the complexity of the shapefile using st_simplify():</em>

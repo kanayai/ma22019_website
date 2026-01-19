@@ -69,7 +69,7 @@ Burglaries <- Burglaries %>%
 <p style="color:blue"> *We next load the shape file*</p>
 
 ```{r}
-Utopia <- read_sf( "Shapefiles/UtopiaShapefile.shp" )
+Utopia <- read_sf( "Data/Shapefiles/UtopiaShapefile.shp" )
 ```
 
 <p style="color:blue"> *Finally, we add the calculated rate of burglaries to the data frame provided by the shapefile and visualize the lattice data*</p>
@@ -173,7 +173,7 @@ b) The file "Texas.Rdata" provides a shapefile of Texas, called **Texas**,  with
 <p style="color:blue">*We first load the shapefile for Texas*</p>
 
 ```{r}
-load( "Shapefiles/Texas.RData" )
+load( "Data/Shapefiles/Texas.RData" )
 ```
 
 <p style="color:blue">*We can now attach the information retrieved in part a) to the data frame in* **Texas**</p>

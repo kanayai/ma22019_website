@@ -19,7 +19,8 @@ In this short exercise we consider the average sea surface temperature for the N
 Let's import the data
 
 ```{r}
-Sea_raw <- read.csv("SeaSurface.csv")
+library(dplyr)
+Sea_raw <- read.csv("Data/SeaSurface.csv")
 glimpse(Sea_raw)
 ```
 

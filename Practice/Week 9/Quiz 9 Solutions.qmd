@@ -86,7 +86,7 @@ SwineFever_Latvia  <- SwineFever %>% filter( country == "Latvia" )
 <p style="color:blue"> *Using a shapefile for Latvia, we can construct the ppp object as demonstrated in the lecture notes:* </p>
 
 ```{r, warning=FALSE}
-Latvia <- read_sf( "Shapefiles/gadm41_LVA_0.shp" )
+Latvia <- read_sf( "Data/Shapefiles/gadm41_LVA_0.shp" )
 Latvia <- Latvia %>% 
   st_simplify( dTolerance = 1000 ) %>%
   st_transform( crs=3857 )
@@ -130,7 +130,7 @@ a) Import the shapefile and create a map for France which includes the boundarie
 <p style="color:blue"> *We start by loading the shapefile:*</p>
 
 ```{r}
-France <- read_sf( "Shapefiles/gadm41_FRA_2.shp" )
+France <- read_sf( "Data/Shapefiles/gadm41_FRA_2.shp" )
 ```
 
 <p style="color:blue"> *We reduce the complexity of the shapefile using st_simplify():*</p>

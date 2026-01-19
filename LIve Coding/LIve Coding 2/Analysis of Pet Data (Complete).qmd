@@ -31,7 +31,7 @@ This problem class is inspired by a question on last year's MA20277 Coursework 1
 
 We are provided with two data files for the analysis:
 
-**Pets.csv**: Information on the number of registered pets at the beginning of each month for January 1990 until September 2023:
+**Data/Pets.csv**: Information on the number of registered pets at the beginning of each month for January 1990 until September 2023:
 
 * **Year**, **Month**: Year and month
 
@@ -44,7 +44,7 @@ We are provided with two data files for the analysis:
 * **Cats**: Number of cats
 
 
-**Cases.csv:** Number of Maltese treated by a vet for respiratory issues for 1990-2022:
+**Data/Cases.csv:** Number of Maltese treated by a vet for respiratory issues for 1990-2022:
 
 * **Date**: Date (day, month and year)
 
@@ -58,7 +58,7 @@ We are provided with two data files for the analysis:
 We start by loading the data into our R Workspace using the read.csv() function and looking at the loaded data,
 
 ```{r}
-Pets <- read.csv("Pets.csv")
+Pets <- read.csv("Data/Pets.csv")
 glimpse( Pets )
 ```
 
@@ -142,10 +142,10 @@ g1 + g2 + g3
 
 ## Effect of temperature on respiratory issues
 
-The file "Cases.csv" provides information on the daily temperature and number of Maltese with respiratory issues. So we start by loading this file:
+The file "Data/Cases.csv" provides information on the daily temperature and number of Maltese with respiratory issues. So we start by loading this file:
 
 ```{r}
-Cases <- read.csv( "Cases.csv", header=TRUE )
+Cases <- read.csv( "Data/Cases.csv", header=TRUE )
 ```
 
 **Task 7:** Explain why plotting the daily temperature against the number of dogs admitted with respiratory issues is not a good approach. What may be a better approach to address this question?

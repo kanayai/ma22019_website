@@ -135,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In Section 4.1.3 we covered the topic of projections. The following tasks showcase one important aspect we should keep in mind when working with projections and demonstrates how we may handle it.</p>
 <p>The data file “Crabs.csv” contains catch per unit effort (CPUE) data of commercial horsehair crab landings for various locations across the Alaskan Eastern Bering Sea for 2010-2018. CPUE is an indirect measure of the abundance of a species. We want to visualize the data using the shapefile for Alaska:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Alaska <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Shapefiles/Alaska.shp"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Alaska <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Data/Shapefiles/Alaska.shp"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol type="a">
 <li>Create a plot of the provided shapefile. Is the WGS84 coordinate reference system being used for the plot?</li>

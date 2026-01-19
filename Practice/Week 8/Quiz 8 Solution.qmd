@@ -38,7 +38,7 @@ Loc <- read.csv("data/Locations River Flow.csv")
 Loc <- Loc %>%
   mutate( PC1 = PCA$rotation[,1], PC2 = PCA$rotation[,2], PC3 = PCA$rotation[,3] ) %>%
   pivot_longer( cols=PC1:PC3, names_to="PC" )
-GB <- read_sf( "gadm41_GBR_shp (1)/gadm41_GBR_2.shp" )
+GB <- read_sf( "Data/Shapefiles/gadm41_GBR/gadm41_GBR_2.shp" )
 GB <- GB %>% st_simplify( dTolerance = 500 )
 ggplot( GB ) + geom_sf(fill="white") + theme_bw() +
   geom_point(data=Loc, aes(x=Lon,y=Lat,color=value), size=5 ) + 

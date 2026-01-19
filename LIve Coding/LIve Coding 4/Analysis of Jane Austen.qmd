@@ -20,10 +20,10 @@ library(stringr)
 
 Jane Austen wrote seven novels, and we consider six of these: *Emma*, *Mansfield Park*, *Northanger Abbey*, *Persuasion*, *Pride and Prejudice* and *Sense and Sensibility*. 
 
-All novels are available via Project Gutenberg and we will analyze similarities and differences of the different books in the following. We start by loading the text data which is available in the file "JaneAusten.csv" on Moodle:
+All novels are available via Project Gutenberg and we will analyze similarities and differences of the different books in the following. We start by loading the text data which is available in the file "Data/JaneAusten.csv" on Moodle:
   
 ```{r}
-JaneAusten_raw <- read.csv( "JaneAusten.csv" )
+JaneAusten_raw <- read.csv( "Data/JaneAusten.csv" )
 ```
 
 We will analyze the six books and
@@ -92,7 +92,7 @@ JaneAusten_Count %>%
 Let's study the sentiment of the books using the AFINN sentiment lexicon:
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
+AFINN <- read.csv("Data/AFINN Sentiment Lexicon.csv")
 ```
 
 We want to derive the sentiment score for each chapter in each book. To do this, we first need to identify which chapter each line belongs to. We can do this by adapting the code from Section 3.2 in the lecture notes:

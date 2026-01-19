@@ -185,7 +185,7 @@ window.Quarto = {
 <em>We load and plot the data as we did for the shapefile of Germany in Section 4.1.2 of the lecture notes:</em>
 </p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>NewZealand <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Shapefiles/NZ.shp"</span> )</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>NewZealand <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Data/Shapefiles/NZ.shp"</span> )</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( NewZealand ) <span class="sc">+</span> <span class="fu">geom_sf</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Longitude"</span>, <span class="at">y=</span><span class="st">"Latitude"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">

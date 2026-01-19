@@ -31,7 +31,7 @@ a) Visualize the measured lead concentrations. What do you conclude?
 
 ```{r}
 Patients <- read.csv( "data/Amaurot Lead.csv" )
-Amaurot <- read_sf( "Shapefiles/Amaurot.shp" )
+Amaurot <- read_sf( "Data/Shapefiles/Amaurot.shp" )
 ```
 
 <p style="color:blue">*Combining the shapefile with the data allows us to visualize the recorded lead levels:*</p>

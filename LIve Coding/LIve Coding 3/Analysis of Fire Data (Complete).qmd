@@ -33,7 +33,7 @@ We will explore how we can apply the techniques seen so far to address the three
 
 We are provided with two data files for the analysis:
 
-**Fires.csv**: List of fires recorded by the Utopian Fire Department for 2022
+**Data/Fires.csv**: List of fires recorded by the Utopian Fire Department for 2022
 
 * **Date**: Day and time the fire was reported
 
@@ -41,7 +41,7 @@ We are provided with two data files for the analysis:
 
 * **RegisterNumber**: Identification number of the property as listed in the register of houses/properties
 
-**Housing Register.csv:** Register of houses/properties for Utopia at the beginning of 2022
+**Data/Housing Register.csv:** Register of houses/properties for Utopia at the beginning of 2022
 
 * **ID**: Identification number of the property
 
@@ -54,10 +54,10 @@ We are provided with two data files for the analysis:
 
 ## Number of fires over time
 
-We start by loading the data set "Fires.csv" and converting the variable **Date** to the correct type:
+We start by loading the data set "Data/Fires.csv" and converting the variable **Date** to the correct type:
 
 ```{r}
-Fires <- read.csv( "Fires.csv" )
+Fires <- read.csv( "Data/Fires.csv" )
 Fires <- Fires %>% mutate( Date = ymd_hm( Date ) )
 ```
 
@@ -95,7 +95,7 @@ We now move onto analyzing the risk of fire.
 Let's load the data from the housing register and combine the two data sets
 
 ```{r}
-Houses    <- read.csv( "Housing Register.csv" )
+Houses    <- read.csv( "Data/Housing Register.csv" )
 Fire_Risk <- full_join( Fires, Houses, by=c("RegisterNumber"="ID") )
 ```
 

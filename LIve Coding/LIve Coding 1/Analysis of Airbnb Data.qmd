@@ -12,7 +12,7 @@ We have seen a few short examples in this week's lectures that illustrated the a
 
 ### Overview and Aims
 
-In April 2018, all the information for properties listed on the online platform Airbnb for Rio de Janeiro, Brazil, was extracted. The data set is stored in the file "Airbnb Rio April 2018.csv" on Moodle and contains six variables:
+In April 2018, all the information for properties listed on the online platform Airbnb for Rio de Janeiro, Brazil, was extracted. The data set is stored in the file "Data/Airbnb Rio April 2018.csv" on Moodle and contains six variables:
 
 * **host_id** - ID of the host on Airbnb
 
@@ -44,7 +44,7 @@ library( dplyr )
 We start by loading the data into our R Workspace using the read.csv() function and looking at the loaded data,
 
 ```{r, echo=TRUE}
-Airbnb_raw <- read.csv( "Airbnb Rio April 2018.csv", header=TRUE )
+Airbnb_raw <- read.csv( "Data/Airbnb Rio April 2018.csv", header=TRUE )
 glimpse( Airbnb_raw )
 ```
 
