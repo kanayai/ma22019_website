@@ -1,0 +1,263 @@
+---
+title: "MA22019 - Data Cleaning and Wrangling"
+author: "Christian Rohrbeck"
+date: "5 February 2025"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Data Cleaning
+
+## Converting data into a useable format
+
+```{r, echo=FALSE, fig.align='center', out.width = '55%'}
+knitr::include_graphics("DataCleaning.jpg")
+```
+
+<p style="color:Blue">**What do you think is part of data cleaning?**</p>
+
+## Why do we perform data cleaning?
+
+Two key reasons are:
+
+* Data are not of the correct type and thus incompatible with available R functions 
+
+* Uninformative variable names
+  
+We now explore how the dplyr and lubridate R packages can help us.
+
+  
+## Example - River Flow Data
+  
+
+  
+Let's have a look at the data in "Bathford River Flow.csv".
+
+<p style="color:Blue"> **What do we notice?**</p>
+
+
+
+1. The provided variables represent the date and mean river flow
+
+2. Data is not in a nice format
+
+3. No variable names
+
+
+## River Flow Data - Loading the Data 
+
+
+We use the **read.csv()** function to load the data:
+```{r, echo=T, warning=FALSE, message=FALSE}
+Bathford <- read.csv( "Bathford River Flow.csv", skip=20, header=FALSE,
+                      colClasses = c("character","numeric","NULL") )
+```
+
+
+
+We use **glimpse()** to check the variable names and data types:
+```{r, warning=FALSE, message=FALSE, echo=T}
+library( dplyr )
+glimpse( Bathford )
+```
+
+
+
+## Converting Variables I 
+
+The loaded data may not have the correct type:
+
+- Numerical data were read as a **character**:
+
+```{r, echo=T, warning=FALSE, message=FALSE}
+Example1 <- read.csv( "DataCleaningExample1.csv" )
+glimpse( Example1 )
+mean( Example1 )
+```
+
+## Converting Variables II
+
+We use the function **as.numeric()** to convert the type:
+
+```{r, echo=T, warning=FALSE, message=FALSE}
+Example1$Value <- as.numeric( Example1$Value )
+glimpse( Example1 )
+mean( Example1$Value, na.rm=TRUE )
+```
+
+## Converting Variables III 
+
+-   Binary answers were recorded as "yes" or "no":
+
+```{r, echo=T, warning=FALSE, message=FALSE}
+responses <- c( "Y", "Y", "N", "Y", "N", "Y", "N", "N", "N", "Y" )
+responses <- case_when( responses == "Y" ~ 1, responses == "N" ~ 0 )
+responses
+```
+
+```{r, echo=T, warning=FALSE, message=FALSE}
+mean( responses )
+```
+
+## Converting Variables IV
+
+-    Convert from character to **date**
+
+```{r, echo=T, message=FALSE, warning=FALSE}
+library(lubridate)
+date_observed  <- c( "01/10/2022", "15/10/2023" )
+date_converted <- as_date( date_observed, format="%d/%m/%Y" )
+date_converted
+```
+
+## Why do we convert to a date object? 
+
+
+
+-   Extraction of month and year from a Date object using **month()** and **year()** respectively:
+
+```{r, echo=T}
+year( date_converted )
+```
+
+
+
+
+
+-   Calculate differences between dates
+
+```{r, echo=T}
+as_date( "20/04/2025", format="%d/%m/%Y" ) - as_date( "2025-02-05" )
+```
+
+
+
+
+
+-   Create plot with time being one of the axis.
+
+
+
+
+
+
+
+## River Flow Data - Converting variables 
+
+-   We see that the first variable should be of type **date**
+
+```{r, echo=T}
+Bathford$V1 <- as_date( Bathford$V1, format="%Y-%m-%d" )
+glimpse( Bathford )
+```
+
+
+## Renaming Variables 
+
+
+
+Uninformative variable names can cause problems!
+
+```{r, echo=FALSE, fig.align='center', out.width = '90%'}
+knitr::include_graphics("Dilbert.gif")
+```
+
+## River Flow Data - Renaming variables
+
+The **rename()** function in the dplyr package can be used to change variable names.
+
+```{r, echo=T}
+Bathford <- rename( Bathford, Date=V1, RiverFlow=V2 )
+glimpse( Bathford )
+```
+
+
+
+
+
+## River Flow Data - Plotting the data
+
+```{r, fig.align='center', out.width='65%', echo=-1, fig.height=3, fig.width=5}
+par(mai=c(0.8, 0.8, 0, 0.8) )
+plot( Bathford$Date, Bathford$RiverFlow, type='l', 
+      xlab="Date", ylab="River Flow" )
+```
+
+
+
+## Exercise
+
+**Which conclusions should we report when asked to comment on the frequency of river flow levels above 100m$^3$/s and the magnitude of river flow levels?**
+
+1) Recorded river flow levels were as high as approximately 250m$^3$/s.
+
+2) The data exhibits seasonality, with river flow levels being higher in winter than in summer.
+
+3) The data covers the years 1969 to 2023.
+
+4) There is at least one day with river flow levels exceeding 100m$^3$/s for most years.
+
+
+# Data Wrangling for a single data frame
+
+## Motivation
+
+```{r, echo=FALSE, fig.align='center', out.width = '100%'}
+knitr::include_graphics("pipeline2.jpg")
+```
+
+## Why is data wrangling useful? 
+
+
+**We want to use the available data to address a research question.**
+
+
+
+When working with large data sets, we usually have to:
+
+* Identify and extract the relevant data points / variables 
+
+* Create new variables from the collected data
+
+* Summarize / sort the data
+
+**Data wrangling** refers to restructuring the raw data to aid with addressing specific research questions.
+
+
+
+## The dplyr R package
+
+We will now introduce several functions provided by the dplyr package for data wrangling:
+
+* **filter()** and **select()**
+
+* **mutate()**
+
+* **summarize()** and **group_by()**
+
+* **arrange()** 
+
+* the pipe **%>%**
+
+## Summary
+
+
+We covered some general aims of the data cleaning process:
+
+-   Converting expressions to a useful format using as.numeric(), case_when() and as_date()
+
+-   Give variables informative names using rename()
+
+
+
+
+We also explored how to use the dplyr package to:
+
+-   Extract the relevant observations and variables
+
+-   Add new variables to a data frame
+
+-   Summarize and sort the data
+

@@ -1,0 +1,73 @@
+---
+title: "Comparison of Jane Eyre and Wuthering Heights"
+author: "Christian Rohrbeck"
+date: '05/03/2025'
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+```
+
+### Loading and cleaning the text data
+
+```{r}
+JaneEyre_raw <- readLines( "JaneEyre.txt", encoding = "UTF-8" )
+JaneEyre_raw <- data.frame( text = JaneEyre_raw )
+
+JaneEyre <- JaneEyre_raw %>% 
+  unnest_tokens(word, text) %>%
+  mutate( word = gsub( "_", "", word ) ) %>%
+  count( word, sort=TRUE ) %>%
+  mutate( 'term frequency' = n / sum(n) ) %>%
+  anti_join( stop_words )
+```
+
+```{r}
+WutheringHeights_raw <- readLines( "WutheringHeights.txt", encoding = "UTF-8" )
+WutheringHeights_raw <- data.frame( text = WutheringHeights_raw )
+
+WutheringHeights <- WutheringHeights_raw %>% 
+  unnest_tokens(word, text) %>%
+  mutate( word = gsub( "_", "", word ) ) %>%
+  count( word, sort=TRUE ) %>%
+  mutate( 'term frequency' = n / sum(n) ) %>%
+  anti_join( stop_words )
+```
+
+
+### Create a single data frame with all the words and term frequencies
+
+```{r}
+tf <- full_join( JaneEyre, WutheringHeights, by="word" ) %>%
+  rename( JaneEyre='term frequency.x', Heights='term frequency.y' )
+```
+
+```{r}
+glimpse(tf)
+```
+
+### Replace NAs by 0
+
+```{r, warning=FALSE, message=FALSE}
+tf <- tf %>%
+  mutate( JaneEyre = case_when( is.na(JaneEyre) == TRUE ~ 0, .default = JaneEyre),
+          Heights = case_when( is.na(Heights) == TRUE ~ 0, .default = Heights) )
+```
+
+### Scatter plot to compare term frequencies
+
+```{r, out.width='65%', fig.align='center', fig.height=6, fig.width=6}
+ggplot( tf, aes( x=JaneEyre, y=Heights ) ) +
+  geom_point() + 
+  geom_text( aes(label=word), check_overlap = TRUE, vjust=1.5 ) + 
+  coord_trans( x="sqrt", y="sqrt" ) + theme_bw() +
+  labs( x="Term Frequency in Jane Eyre",
+        y="Term Frequency in Wuthering Heights" )
+```

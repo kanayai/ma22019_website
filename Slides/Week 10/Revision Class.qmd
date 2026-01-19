@@ -1,0 +1,140 @@
+---
+title: "MA22019 - Revision Class"
+author: "Christian Rohrbeck"
+date: "23 April 2025"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, warning=FALSE, message=FALSE}
+colorize <- function(x, color="blue") {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color,
+      x)
+  } else x
+}
+```
+
+## Important information
+
+1. Coursework 2 will be released on Friday 25 April at 9:00am, and the deadline is Tuesday 6 May at 12:00pm (noon).
+
+2. This is our final lecture - there will be a 10:00-12:30 office hour instead of a lecture next week. 
+
+3. Tutorials in Week 11 will be there for you to work on the coursework and to ask questions.
+
+4. Questions can be posted to the Padlet board - please don't expect answers to questions posted after 17:00 on Friday 2 May.
+
+5. No 9:00-11:00 office hour on Monday 28 April.
+
+## Plan for Today
+
+The most requested topics (based on 3 responses) were
+
+- Topic modelling / LDA
+
+- Semi-variogram
+
+We will spend about 20 minutes on each of the two topics.
+
+
+# Topic Modelling / LDA
+
+## Setup 
+
+
+We have $N$ documents and $M$ unique words.
+
+Our aim is to structure the text data into $K$ topics with:
+
+* Each document can feature multiple topics (with varying proportions)
+
+* Each word can feature in multiple topics (with varying proportions)
+
+
+
+We introduced LDA to estimate: 
+
+1. The topics;
+
+2. The proportions with which topics feature in each document.
+
+
+## LDA as a generative model 
+
+Let's consider from a different angle.
+
+`r colorize("Generation of new documents:")`
+
+**STEP 1:** Sample the proportion with which each topic features.
+
+**STEP 2:** Sample the words.
+
+## What to remember
+
+- Topic modelling can be a powerful tool to analyse, structure and classify documents. 
+
+- The topics produced by LDA may not be what we expect </br> `r colorize("-> hard to interpret our findings")`
+
+- Stop words should be removed
+
+Let's have a look at the example in Section 3.4.4, which we did not consider in Week 6.
+
+
+# Semi-variogram
+
+## Definition and Assumption 1 
+
+
+We explore the dependence between sites $\mathbf{s}$ and $\tilde{\mathbf{s}}$ using the semi-variogram
+\[
+\gamma(\mathbf{s},\tilde{\mathbf{s}}) = \frac{1}{2}\mathbb{E}\left[X(\mathbf{s}) - X(\tilde{\mathbf{s}})\right]
+\]
+under the assumption that $X(\mathbf{s})$ and $X(\tilde{\mathbf{s}})$ have the same mean (**constant mean**).
+
+`r colorize("How do we check the constant mean assumption?")`
+
+
+
+-> We have to discuss the assumption in the context of the data and application.
+
+
+
+## Estimation and Assumption 2 
+
+
+We assume that $\gamma(\mathbf{s},\tilde{\mathbf{s}})$ is fully defined by the distance between $\mathbf{s}$ and $\tilde{\mathbf{s}}$.
+
+`r colorize("How do we check this assumption?")`
+
+
+
+-> Differences in levels should be similar for all areas and directions.
+
+
+
+
+So we can define a function $\tilde{\gamma}:\mathbb{R}_+\to\mathbb{R}_+$ with
+\[
+\gamma(\mathbf{s} , \tilde{\mathbf{s}}) = \tilde{\gamma}(||\mathbf{s}-\tilde{\mathbf{s}}||),
+\]
+
+The function $\tilde{\gamma}()$ is estimated from the data.
+
+
+## What to look out for?
+
+* Are the assumptions sensible? -> Visualize the data and, if possible, discuss the assumptions in context.
+
+* Does the estimate increase with distance? -> spatial dependence weakens with increasing distance
+
+* Is there a point at which the estimate is close to flat? -> Marks the distance at which outcomes are close to independent
+
+* Did we set suitable values for the **width** and **cutoff**? -> Check number of points per estimate. 
+
+Let's look at one more example: air pollution across Manchester.
+
