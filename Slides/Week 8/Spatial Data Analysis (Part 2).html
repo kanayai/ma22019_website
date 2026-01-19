@@ -165,29 +165,19 @@ Christian Rohrbeck
 <p>Today we introduce two techniques for exploring this <strong><span style="color: blue;">spatial dependence</span>.</strong></p>
 </section></section><section><section id="the-semi-variogram" class="title-slide slide level1 center"><h1>The (semi-)variogram</h1>
 
-</section><section id="mathematical-definition" class="slide level2 build"><h2>Mathematical definition</h2>
-<div>
+</section><section id="mathematical-definition" class="slide level2"><h2>Mathematical definition</h2>
 <p>Let <span class="math inline">\(X(\mathbf{s})\)</span> denote random variable at <span class="math inline">\(\mathbf{s}\in\mathcal{S}\)</span>.</p>
 <p>We assume that <span class="math inline">\(E[X(\mathbf{s})]\)</span> is constant. <strong><span style="color: blue;">Is this reasonable for our data?</span></strong></p>
-</div>
-<div>
 <p>We measure dependence between <span class="math inline">\(X(\mathbf{s})\)</span> and <span class="math inline">\(X(\tilde{\mathbf{s}})\)</span> via the <strong>semi-variogram</strong> [ (,) = . ]</p>
-</div>
 </section><section id="properties" class="slide level2"><h2>Properties</h2>
 <p>The semi-variogram satisfies</p>
 <ul>
 <li><p><span class="math inline">\(\gamma(\mathbf{s},\tilde{\mathbf{s}})\geq 0\)</span> and <span class="math inline">\(\gamma(\mathbf{s},\mathbf{s})=0\)</span>.</p></li>
 <li><p>For <span class="math inline">\(X(\mathbf{s})\)</span> and <span class="math inline">\(X(\tilde{\mathbf{s}})\)</span> i.i.d., <span class="math inline">\(\gamma(\mathbf{s},\tilde{\mathbf{s}})=\mathrm{Var}[X(\mathbf{s})].\)</span></p></li>
-</ul></section><section id="estimation-i" class="slide level2 build"><h2>Estimation I</h2>
-<div>
+</ul></section><section id="estimation-i" class="slide level2"><h2>Estimation I</h2>
 <p><strong>Why can we not easily estimate <span class="math inline">\(\gamma(\mathbf{s},\tilde{\mathbf{s}})\)</span>?</strong></p>
-</div>
-<div>
 <p>To estimate <span class="math inline">\(\gamma(\mathbf{s},\tilde{\mathbf{s}})\)</span>, we assume that the spatial random process is <span class="math inline">\(X(\mathbf{s})\)</span> <strong>stationary</strong> and <strong>isotropic</strong>.</p>
-</div>
-<div>
 <p>As such there exists <span class="math inline">\(\tilde{\gamma}:\mathbb{R}_+\to\mathbb{R}_+\)</span> with [ ( , ) = (||-||), ] where <span class="math inline">\(||\mathbf{s}-\tilde{\mathbf{s}}||\)</span> denotes the distance between the sites.</p>
-</div>
 </section><section id="estimation-ii" class="slide level2"><h2>Estimation II</h2>
 <p>If our assumptions hold, we can estimate <span class="math inline">\(\tilde{\gamma}(h)\)</span>, <span class="math inline">\(h&gt;0\)</span>, as follows:</p>
 <ol type="1">
@@ -214,20 +204,15 @@ Christian Rohrbeck
 <p>You will learn more about the mathematical details in Year 3 Statistics.</p>
 </section></section><section><section id="principal-component-analysis-pca" class="title-slide slide level1 center"><h1>Principal Component Analysis (PCA)</h1>
 
-</section><section id="motivation-1" class="slide level2 build"><h2>Motivation</h2>
-<div>
+</section><section id="motivation-1" class="slide level2"><h2>Motivation</h2>
 <p>Let’s assume we have multiple observations per spatial location.</p>
 <p>We use <span class="math inline">\(x_{i,t}\)</span> to denote the <span class="math inline">\(t\)</span>-th observation for site <span class="math inline">\(i\)</span>.</p>
 <p><strong><span style="color: blue;">How could we visualize such data?</span></strong></p>
-</div>
-<div>
 <p>In many applications we want to</p>
 <ul>
 <li><p>Understand the spatial structure of the data</p></li>
 <li><p>Perform dimension reduction</p></li>
-</ul>
-</div>
-</section><section id="motivation---data-for-two-sites" class="slide level2"><h2>Motivation - Data for two sites</h2>
+</ul></section><section id="motivation---data-for-two-sites" class="slide level2"><h2>Motivation - Data for two sites</h2>
 
 <img data-src="Spatial-Data-Analysis--Part-2-_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section><section id="can-we-reduce-it-to-a-single-variable" class="slide level2"><h2>Can we reduce it to a single variable?</h2>
 
@@ -236,19 +221,15 @@ Christian Rohrbeck
 <li><p>Calculate <span class="math inline">\(\tilde{x}_{i,t} = (x_{i,t} - \bar{x}_i)/\hat\sigma_i\)</span>.</p></li>
 <li><p>Derive the matrix [ = _{t=1}^T _t _t^{}. ] This matrix is also known as the <strong>empirical covariance matrix</strong>.</p></li>
 <li><p>Derive and study the eigenvalues and eigenvectors of <span class="math inline">\(\Sigma\)</span>, <span class="math inline">\(\Sigma = \mathbf{UDU}^{\mathrm{T}}\)</span>.</p></li>
-</ol></section><section id="analysis-of-the-eigenvectors" class="slide level2 build"><h2>Analysis of the eigenvectors</h2>
-<div>
+</ol></section><section id="analysis-of-the-eigenvectors" class="slide level2"><h2>Analysis of the eigenvectors</h2>
 <p>Each eigenvector provides insight on the spatial structure in the data.</p>
 <p>-&gt; We create plots of the eigenvectors and interpret them sequentially</p>
-<strong><span style="color: blue;">Do we need to consider all eigenvectors?</span></strong>
-<div>
+<p><strong><span style="color: blue;">Do we need to consider all eigenvectors?</span></strong></p>
 <p>No (usually), the eigenvalues will help us with this.</p>
-<section id="analysis-of-the-eigenvalues" class="slide level2 build"><h2>Analysis of the eigenvalues</h2>
-<div>
+</section><section id="analysis-of-the-eigenvalues" class="slide level2"><h2>Analysis of the eigenvalues</h2>
 <p>We have eigenvalues <span class="math inline">\(\lambda_1 &gt; \lambda_2 &gt; \cdots &gt; \lambda_n\)</span></p>
 <p>Consider the ratio [ . ]</p>
 <p>The smallest <span class="math inline">\(m\)</span> for which the ratio exceeds 0.9 gives the number of eigenvectors we should plot.</p>
-</div>
 <p>This is one of several rules-of-thumb, but you only need to know this one.</p>
 </section><section id="example-1" class="slide level2"><h2>Example</h2>
 <p>Let’s analyse rainfall data for sites across the US state Colorado.</p>
@@ -275,9 +256,6 @@ Christian Rohrbeck
 <li><p>Coursework 2 will be released on the Friday in Week 10</p></li>
 </ul>
 
-</section>
-</div>
-</div>
 </section></section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">

@@ -270,18 +270,14 @@ Christian Rohrbeck
 <p>At the end, I will make some announcements regarding Coursework 1.</p>
 </section><section><section id="coordinate-system" class="title-slide slide level1 center"><h1>Coordinate System</h1>
 
-</section><section id="overview" class="slide level2 build"><h2>Overview</h2>
-<div>
+</section><section id="overview" class="slide level2"><h2>Overview</h2>
 <p>We have to decide which coordinate system is the most suitable for our analysis.</p>
-</div>
-<div>
 <p>The three types we consider in this course are</p>
 <ul>
 <li><p>Cartesian coordinate system</p></li>
 <li><p>Polar coordinate system</p></li>
 <li><p>Geographical / spatial coordinate system</p></li>
 </ul>
-</div>
 <p>For now, we only focus on the fist two types.</p>
 <p>The key function to switch between types is <strong>coord_polar()</strong>.</p>
 </section><section id="example---wind-direction-at-bela-vista" class="slide level2"><h2>Example - Wind direction at Bela Vista</h2>
@@ -294,7 +290,7 @@ Christian Rohrbeck
 <p style="color:Blue">
 <strong>Which types of plot should we be using?</strong>
 </p>
-</section><section id="pie-charts" class="slide level2 build"><h2>Pie charts</h2>
+</section><section id="pie-charts" class="slide level2"><h2>Pie charts</h2>
 <p>In ggplot2, we have to create a bar plot with polar coordinates</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="st">"prob"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>), <span class="st">"group"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>) )</span>
@@ -309,9 +305,7 @@ Christian Rohrbeck
 <li><p>To visualize variables such as <strong>direction</strong> or <strong>time</strong></p></li>
 </ol>
 <p>Both these aspects can be achieved using <strong>coord_polar()</strong> in ggplot2.</p>
-<div>
 <p>Note from ggplot2 developers: <em>“Polar coordinates should be used with EXTREME caution because of the potential perceptual problems.”</em></p>
-</div>
 </section></section><section><section id="changing-the-scale" class="title-slide slide level1 center"><h1>Changing the scale</h1>
 
 </section><section id="types-of-scale" class="slide level2"><h2>Types of scale</h2>
@@ -322,15 +316,10 @@ Christian Rohrbeck
 <li><p><strong>Time: </strong> Months, Years, etc.</p></li>
 </ul>
 <p>When we create plots, knowing the type is important when deciding on the type of plot.</p>
-</section><section id="changing-numerical-scales" class="slide level2 build"><h2>Changing numerical scales</h2>
-<div>
+</section><section id="changing-numerical-scales" class="slide level2"><h2>Changing numerical scales</h2>
 <ul>
 <li><p>Plots may sometimes be dominated by a couple of data points or outliers</p></li>
 <li><p>Changing the scale may provide better insight</p></li>
-</ul>
-</div>
-<div>
-<ul>
 <li>
 <p>The function <strong>coord_trans()</strong> is one option to change it:</p>
 <ul>
@@ -338,9 +327,7 @@ Christian Rohrbeck
 <li><p>ggplot(..) + coord_trans( x=“sqrt” ) square root scale</p></li>
 </ul>
 </li>
-</ul>
-</div>
-</section><section id="examples" class="slide level2"><h2>Examples</h2>
+</ul></section><section id="examples" class="slide level2"><h2>Examples</h2>
 <p>Let’s look at two examples:</p>
 <ol type="1">
 <li><p>Body vs brain weight of mammals.</p></li>

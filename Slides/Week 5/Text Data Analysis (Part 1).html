@@ -227,15 +227,13 @@ Christian Rohrbeck
 
 </section><section id="what-is-text-data" class="slide level2"><h2>What is text data?</h2>
 <p><img data-src="TextData.png" id="id" class="class" style="width:100.0%;height:100.0%"></p>
-</section><section id="applications" class="slide level2 build"><h2>Applications</h2>
-<div>
+</section><section id="applications" class="slide level2"><h2>Applications</h2>
 <p>Text data is collected widely, for instance, for</p>
 <ul>
 <li><p>Optimizing search engines</p></li>
 <li><p>Crime prevention</p></li>
 <li><p>Customer service</p></li>
 </ul>
-</div>
 <p>In all these applications, we are interested in</p>
 <ul>
 <li><p>The words used within the text</p></li>
@@ -266,23 +264,17 @@ Christian Rohrbeck
 </div>
 </div>
 <p><span style="color: blue;">Does this help?</span></p>
-</section><section id="the-tidy-text-format-i" class="slide level2 build"><h2>The tidy text format I</h2>
-<div>
+</section><section id="the-tidy-text-format-i" class="slide level2"><h2>The tidy text format I</h2>
 <p>We focus on analysing the individual words in a text.</p>
-</div>
-<div>
 <p>As such,</p>
 <ul>
 <li><p>each word is an individual observation</p></li>
 <li><p>we do not care about punctuation</p></li>
 </ul>
-</div>
-<div>
 <p>We use the <strong>unnest_tokens()</strong> function in the tidytext package to extract the individual words</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(tidytext)</span>
 <span id="cb5-2"><a href=""></a>Hesse_tidy <span class="ot">&lt;-</span> quote_Hesse <span class="sc">%&gt;%</span> <span class="fu">unnest_tokens</span>( word, text )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </div>
 </section><section id="the-tidy-text-format-ii" class="slide level2"><h2>The tidy text format II</h2>
 <div class="cell">
@@ -307,19 +299,15 @@ Christian Rohrbeck
 </section><section id="charlotte-brontë" class="slide level2"><h2>Charlotte Brontë</h2>
 
 <img data-src="CharlotteBronte.jfif" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><em>Jane Eyre</em> is a novel that was published in 1847.</p>
-</section><section id="loading-the-data" class="slide level2 build"><h2>Loading the data</h2>
-<div>
+</section><section id="loading-the-data" class="slide level2"><h2>Loading the data</h2>
 <p>We download the full text from Project Gutenberg.</p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
-<div>
 <p>The book has about 21,000 lines of text, and we separate them into individual words:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>JaneEyre <span class="ot">&lt;-</span> JaneEyre_raw <span class="sc">%&gt;%</span> <span class="fu">unnest_tokens</span>( word, text )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There is some data cleaning to be done! </p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
 </section><section id="calcualting-term-frequency" class="slide level2"><h2>Calcualting term frequency</h2>
 <p>Exploring the frequency of the different words in a text is a common approach in text data analysis.</p>
 <p>We use functions in the dplyr R package for this</p>
@@ -340,34 +328,24 @@ Christian Rohrbeck
 <li><p>Relationship between rank and term frequency on logarithmic scale is close to linear</p></li>
 <li><p>The non-linear shape in the top-left is driven by only six words.</p></li>
 <li><p><strong><span style="color: blue;">Zipf’s Law</span></strong> states that empirically a word’s frequency is inversely proportional to its rank.</p></li>
-</ul></section><section id="stop-words" class="slide level2 build"><h2>Stop words</h2>
-<div>
+</ul></section><section id="stop-words" class="slide level2"><h2>Stop words</h2>
 <p>The words “the”, “I” and “and” appear most often in <em>Jane Eyre</em>.</p>
 <p><span style="color: blue;">Is this information useful?</span></p>
-</div>
-<div>
 <p>It is quite common in text data analysis to specify <strong>stop words</strong> which are ignored in the analysis.</p>
-</div>
-<div>
 <p>The tidytext package comes with its own list of stop words:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>( tidytext )</span>
 <span id="cb10-2"><a href=""></a><span class="fu">data</span>( stop_words )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
-</section><section id="visualizing-word-frequency" class="slide level2 build"><h2>Visualizing word frequency</h2>
-<div>
+</section><section id="visualizing-word-frequency" class="slide level2"><h2>Visualizing word frequency</h2>
 <p>There are two options for visualizing the most frequent words:</p>
 <ol type="1">
 <li><p><span style="color: blue;">Bar plots</span> - good to display the actual counts</p></li>
 <li><p><span style="color: blue;">Word clouds</span> - good for many words</p></li>
 </ol>
-</div>
-<div>
 <p>Let’s produce these plots for <em>Jane Eyre</em></p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
 </section></section><section><section id="sentiment-analysis" class="title-slide slide level1 center"><h1>Sentiment Analysis</h1>
 
 </section><section id="what-do-we-mean-by-sentiment" class="slide level2"><h2>What do we mean by sentiment?</h2>
@@ -376,8 +354,7 @@ Christian Rohrbeck
 <li><p>Is a text more positive or negative?</p></li>
 <li><p>Is a review positive or negative?</p></li>
 <li><p>How does the story evolve throughout the book?</p></li>
-</ul></section><section id="measuring-sentiment" class="slide level2 build"><h2>Measuring sentiment</h2>
-<div>
+</ul></section><section id="measuring-sentiment" class="slide level2"><h2>Measuring sentiment</h2>
 <p>We start by assigning a sentiment to each individual word using a <strong><span style="color: blue;">sentiment lexicon</span></strong>.</p>
 <p>The following two lexicons are provided by tidytext:</p>
 <ul>
@@ -385,7 +362,6 @@ Christian Rohrbeck
 <li><p><strong>Bing</strong>: Words are categorized as “positive” or “negative”.</p></li>
 </ul>
 <p>The sentiment of a text is then the sum (or mean) of the sentiment of the words.</p>
-</div>
 <p><strong><span style="color: blue;">Is this a weak, moderate or strong assumption?</span></strong></p>
 <p><strong><span style="color: blue;">For which pieces of text may our approach perform poorly?</span></strong></p>
 </section><section id="sentiment-analysis-for-jane-eyre" class="slide level2"><h2>Sentiment analysis for <em>Jane Eyre</em>
@@ -400,24 +376,18 @@ Christian Rohrbeck
 <p><strong>Remark:</strong> The relative change in sentiment is often more accurate than the actual values.</p>
 </section></section><section><section id="comparing-text-documents" class="title-slide slide level1 center"><h1>Comparing text documents</h1>
 
-</section><section id="motivation" class="slide level2 build"><h2>Motivation</h2>
+</section><section id="motivation" class="slide level2"><h2>Motivation</h2>
 <p>In many applications we are interested in comparing two (or more) pieces of text.</p>
 <p><span style="color: blue;">Can you think of examples?</span></p>
 <p>Using the methods we introduced, we may explore two aspects:</p>
 <ul>
 <li><p>Word frequency</p></li>
 <li><p>Sentiment</p></li>
-</ul></section><section id="comparison-using-term-frequency" class="slide level2 build"><h2>Comparison using term frequency</h2>
-<div>
+</ul></section><section id="comparison-using-term-frequency" class="slide level2"><h2>Comparison using term frequency</h2>
 <p>Interest in exploring two pieces of text in terms of term frequency of the individual words.</p>
-</div>
-<div>
 <p><span style="color: blue;">Why should we not compare the actual counts?</span></p>
-</div>
-<div>
 <p>Let’s compare the novels <em>Jane Eyre</em> and <em>Wuthering Heights</em></p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
 
 </section></section>
 </div>

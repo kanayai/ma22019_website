@@ -154,20 +154,18 @@ Christian Rohrbeck
 <p>We will spend about 20 minutes on each of the two topics.</p>
 </section><section><section id="topic-modelling-lda" class="title-slide slide level1 center"><h1>Topic Modelling / LDA</h1>
 
-</section><section id="setup" class="slide level2 build"><h2>Setup</h2>
-<div>
+</section><section id="setup" class="slide level2"><h2>Setup</h2>
 <p>We have <span class="math inline">\(N\)</span> documents and <span class="math inline">\(M\)</span> unique words.</p>
 <p>Our aim is to structure the text data into <span class="math inline">\(K\)</span> topics with:</p>
 <ul>
 <li><p>Each document can feature multiple topics (with varying proportions)</p></li>
 <li><p>Each word can feature in multiple topics (with varying proportions)</p></li>
 </ul>
-</div>
 <p>We introduced LDA to estimate:</p>
 <ol type="1">
 <li><p>The topics;</p></li>
 <li><p>The proportions with which topics feature in each document.</p></li>
-</ol></section><section id="lda-as-a-generative-model" class="slide level2 build"><h2>LDA as a generative model</h2>
+</ol></section><section id="lda-as-a-generative-model" class="slide level2"><h2>LDA as a generative model</h2>
 <p>Let’s consider from a different angle.</p>
 <p><span style="color: blue;">Generation of new documents:</span></p>
 <p><strong>STEP 1:</strong> Sample the proportion with which each topic features.</p>
@@ -181,26 +179,16 @@ Christian Rohrbeck
 <p>Let’s have a look at the example in Section 3.4.4, which we did not consider in Week 6.</p>
 </section></section><section><section id="semi-variogram" class="title-slide slide level1 center"><h1>Semi-variogram</h1>
 
-</section><section id="definition-and-assumption-1" class="slide level2 build"><h2>Definition and Assumption 1</h2>
-<div>
+</section><section id="definition-and-assumption-1" class="slide level2"><h2>Definition and Assumption 1</h2>
 <p>We explore the dependence between sites <span class="math inline">\(\mathbf{s}\)</span> and <span class="math inline">\(\tilde{\mathbf{s}}\)</span> using the semi-variogram [ (,) = ] under the assumption that <span class="math inline">\(X(\mathbf{s})\)</span> and <span class="math inline">\(X(\tilde{\mathbf{s}})\)</span> have the same mean (<strong>constant mean</strong>).</p>
 <p><span style="color: blue;">How do we check the constant mean assumption?</span></p>
-</div>
-<div>
 <p>-&gt; We have to discuss the assumption in the context of the data and application.</p>
-</div>
-</section><section id="estimation-and-assumption-2" class="slide level2 build"><h2>Estimation and Assumption 2</h2>
-<div>
+</section><section id="estimation-and-assumption-2" class="slide level2"><h2>Estimation and Assumption 2</h2>
 <p>We assume that <span class="math inline">\(\gamma(\mathbf{s},\tilde{\mathbf{s}})\)</span> is fully defined by the distance between <span class="math inline">\(\mathbf{s}\)</span> and <span class="math inline">\(\tilde{\mathbf{s}}\)</span>.</p>
 <p><span style="color: blue;">How do we check this assumption?</span></p>
-</div>
-<div>
 <p>-&gt; Differences in levels should be similar for all areas and directions.</p>
-</div>
-<div>
 <p>So we can define a function <span class="math inline">\(\tilde{\gamma}:\mathbb{R}_+\to\mathbb{R}_+\)</span> with [ ( , ) = (||-||), ]</p>
 <p>The function <span class="math inline">\(\tilde{\gamma}()\)</span> is estimated from the data.</p>
-</div>
 </section><section id="what-to-look-out-for" class="slide level2"><h2>What to look out for?</h2>
 <ul>
 <li><p>Are the assumptions sensible? -&gt; Visualize the data and, if possible, discuss the assumptions in context.</p></li>

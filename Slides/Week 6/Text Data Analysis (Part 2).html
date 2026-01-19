@@ -144,48 +144,37 @@ Christian Rohrbeck
 <li><p>Term frequency - inverse document frequency (Section 3.3.2)</p></li>
 <li><p>Problem Class 4</p></li>
 <li><p>Topic modelling (Section 3.4)</p></li>
-</ul></section><section id="motivation" class="slide level2 build"><h2>Motivation</h2>
-<div>
+</ul></section><section id="motivation" class="slide level2"><h2>Motivation</h2>
 <p>We learned last week that a text can be analysed based on</p>
 <ul>
 <li><p>Frequency of words within it</p></li>
 <li><p>Its emotional intent</p></li>
 </ul>
 <p>These aspects can also be considered when comparing texts.</p>
-</div>
-<div>
 <p><strong>However:</strong> This may not be the best way to:</p>
 <ul>
 <li><p>Identify the key words that best describe a text</p></li>
 <li><p>Group a large number of texts into subgroups</p></li>
 </ul>
 <p>Today we will address these aspects.</p>
-</div>
 </section><section><section id="term-frequency---inverse-document-frequency" class="title-slide slide level1 center"><h1>Term frequency - inverse document frequency</h1>
 
-</section><section id="motivation-1" class="slide level2 build"><h2>Motivation</h2>
-<div>
+</section><section id="motivation-1" class="slide level2"><h2>Motivation</h2>
 <p>Suppose <span class="math inline">\(D\)</span> is a large number of documents / texts / websites, also referred to as a <strong>corpus</strong>.</p>
 <p><strong><span style="color: blue;">How do we decide which words are specific to a text?</span></strong></p>
-</div>
-<div>
 <p>Such information is useful for</p>
 <ul>
 <li><p>Designing search engines</p></li>
 <li><p>Document classification</p></li>
 <li><p>Text summarization</p></li>
-</ul>
-</div>
-</section><section id="tf-and-idf" class="slide level2 build"><h2>tf and idf</h2>
+</ul></section><section id="tf-and-idf" class="slide level2"><h2>tf and idf</h2>
 <p>We have two components:</p>
 <ul>
 <li><p><strong>term frequency</strong> of the word <span class="math inline">\(t\)</span> in the document <span class="math inline">\(d\)</span> [ (t,d)= ]</p></li>
 <li><p><strong>inverse document frequency</strong> of <span class="math inline">\(t\)</span> across <span class="math inline">\(D\)</span> [ (t,D) = (). ]</p></li>
-</ul></section><section id="tf-idf" class="slide level2 build"><h2>tf-idf</h2>
-<div>
+</ul></section><section id="tf-idf" class="slide level2"><h2>tf-idf</h2>
 <p>The <span style="color: blue;">term frequency - inverse document frequency</span> is then defined as [ (t,d,D) = (t,d) (t,D). ]</p>
 <p><strong><span style="color: blue;">What are the properties of tf.idf?</span></strong></p>
-</div>
 <ul>
 <li><p><span class="math inline">\(\mathrm{tf.idf}(t,d,D)=0\)</span> if <span class="math inline">\(t\)</span> occurs in all documents</p></li>
 <li><p><span class="math inline">\(\mathrm{tf.idf}(t,d,D)\)</span> is large if <span class="math inline">\(t\)</span> occurs very often and only in one document</p></li>
@@ -216,32 +205,25 @@ Christian Rohrbeck
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
 </section></section><section><section id="topic-modelling" class="title-slide slide level1 center"><h1>Topic modelling</h1>
 
-</section><section id="motivation---how-do-write-a-text" class="slide level2 build"><h2>Motivation - How do write a text?</h2>
-<div>
+</section><section id="motivation---how-do-write-a-text" class="slide level2"><h2>Motivation - How do write a text?</h2>
 <p>Consider the following aspects:</p>
 <ol type="1">
 <li><p>Will the words we use depend on the topic we want to write about?</p></li>
 <li><p>Can we have several topics in a (longer) piece of text?</p></li>
 </ol>
 <p><span style="color: blue;">How can we adjust for such aspects in a model?</span></p>
-</div>
 </section><section id="framework-and-principles" class="slide level2"><h2>Framework and Principles</h2>
-<div>
 <p>We now have a corpus <span class="math inline">\(D\)</span></p>
 <ul>
 <li><p><span class="math inline">\(N\)</span> documents and</p></li>
 <li><p><span class="math inline">\(M\)</span> unique words across all documents.</p></li>
 </ul>
 <p>The topics nor the term frequency with which words appear within a topic are known to us.</p>
-</div>
-<div>
 <p>Our framework should allow for the following principles:</p>
 <ul>
 <li><p><strong>Every document is a mixture of topics.</strong></p></li>
 <li><p><strong>Every topic is a mixture of words.</strong></p></li>
-</ul>
-</div>
-</section><section id="latent-dirichlet-allocation-lda" class="slide level2 build"><h2>Latent Dirichlet Allocation (LDA)</h2>
+</ul></section><section id="latent-dirichlet-allocation-lda" class="slide level2"><h2>Latent Dirichlet Allocation (LDA)</h2>
 <p>Introduced in the early 2000s, the key aspects are:</p>
 <ol type="1">
 <li><p>We specify the number <span class="math inline">\(K\)</span> of topics.</p></li>

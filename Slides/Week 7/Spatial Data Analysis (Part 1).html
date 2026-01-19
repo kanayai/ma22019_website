@@ -212,7 +212,7 @@ Christian Rohrbeck
 <li><p>Problem Class 5</p></li>
 <li><p>Inverse Distance Weighting (Section 4.2)</p></li>
 <li><p>Comments on Coursework 1</p></li>
-</ul></section><section id="motivation" class="slide level2 build"><h2>Motivation</h2>
+</ul></section><section id="motivation" class="slide level2"><h2>Motivation</h2>
 <p>In many applications we have spatial information:</p>
 <ul>
 <li><p>Air pollution modelling</p></li>
@@ -221,59 +221,41 @@ Christian Rohrbeck
 <li><p>Socioeconomic studies</p></li>
 <li><p>Weather data</p></li>
 </ul>
-<div>
 <p><strong><span style="color: blue;">How can we use this information in a data analysis?</span></strong></p>
-</div>
-</section><section id="types-of-spatial-data-i" class="slide level2 build"><h2>Types of Spatial Data I</h2>
+</section><section id="types-of-spatial-data-i" class="slide level2"><h2>Types of Spatial Data I</h2>
 <p>In spatial data analysis we consider <strong>three</strong> types of spatial data:</p>
-<div>
 <p><strong>Point-referenced data</strong></p>
 <ul>
 <li><p>Data are observed across a number of fixed sites</p></li>
 <li><p>Meteorology and mining are text book examples for this type of data</p></li>
-</ul>
-</div>
-</section><section id="types-of-spatial-data-ii" class="slide level2 build"><h2>Types of Spatial Data II</h2>
-<div>
+</ul></section><section id="types-of-spatial-data-ii" class="slide level2"><h2>Types of Spatial Data II</h2>
 <p><strong>Point-pattern data</strong></p>
 <ul>
 <li><p>Spatial locations are random variables</p></li>
 <li><p>Often found when analyzing disease outbreaks and in ecological studies</p></li>
 </ul>
-</div>
-<div>
 <p><strong>Lattice / Areal unit data</strong></p>
 <ul>
 <li><p>Our sites are fixed areas (countries, counties, etc.)</p></li>
 <li><p>Examples include insurance claims and <strong>image data</strong></p></li>
-</ul>
-</div>
-</section><section><section id="visualizing-point-referenced-data" class="title-slide slide level1 center"><h1>Visualizing point-referenced data</h1>
+</ul></section><section><section id="visualizing-point-referenced-data" class="title-slide slide level1 center"><h1>Visualizing point-referenced data</h1>
 
-</section><section id="motivation-1" class="slide level2 build"><h2>Motivation</h2>
-<div>
+</section><section id="motivation-1" class="slide level2"><h2>Motivation</h2>
 <p>Let’s look at some temperature data for Germany</p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
-<div>
 <p>Just using ggplot2 does not really provide a useful plot.</p>
 <p><strong>Would a map provide additional information?</strong></p>
-</div>
 </section><section id="shapefiles" class="slide level2"><h2>Shapefiles</h2>
 <p>One option is to add the boundaries of Germany.</p>
 <p>Such data is available via the website <a href="https://gadm.org/">gadm.org</a>.</p>
 <p>Let’s see how we can add such shapefile data to our plot </p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</section><section id="projections" class="slide level2 build"><h2>Projections</h2>
-<div>
+</section><section id="projections" class="slide level2"><h2>Projections</h2>
 <p>We used latitude and longitude within a Cartesian coordinate system.</p>
 <p><strong>However</strong>, the earth is not flat!</p>
-</div>
-<div>
 <p>Converting locations on earth to a two-dimensional representation is called a <strong>projection</strong>.</p>
 <p>We can choose a projection using the <strong>coord_sf()</strong> function.</p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
 </section><section id="example" class="slide level2"><h2>Example</h2>
 
 <img data-src="Spatial-Data-Analysis--Part-1-_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section><section id="remarks-about-projections" class="slide level2"><h2>Remarks about projections</h2>
@@ -285,23 +267,19 @@ Christian Rohrbeck
 <li><p>When using projections, we also need to project the points</p></li>
 </ul>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</section><section id="creating-maps-with-ggspatial" class="slide level2 build"><h2>Creating maps with ggspatial</h2>
-<div>
+</section><section id="creating-maps-with-ggspatial" class="slide level2"><h2>Creating maps with ggspatial</h2>
 <p>It may be better to place points on a (colourful) map.</p>
 <p>This will be achieved by importing OpenStreetMap data using the package <strong>ggspatial()</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(ggspatial)</span>
 <span id="cb1-2"><a href=""></a><span class="fu">library</span>(prettymapr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div>
 <p><strong>How to make it work</strong></p>
 <ol type="1">
 <li><p>Add the function “annotation_map_tile()”</p></li>
 <li><p>Replace <strong>geom_point()</strong> by <strong>geom_spatial_point()</strong></p></li>
 </ol>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
 </section></section><section><section id="problem-class-5" class="title-slide slide level1 center"><h1>Problem Class 5</h1>
 
 </section><section id="exercise" class="slide level2"><h2>Exercise</h2>
@@ -319,33 +297,24 @@ Christian Rohrbeck
 <li><p><span class="math inline">\(\mathbf{s}^*\)</span> is the unobserved location for which we want to derive a prediction <span class="math inline">\(x^*\)</span></p></li>
 </ul>
 <p><strong><span style="color: blue;">How could we use the data and location information to get a prediction?</span></strong></p>
-</section><section id="inverse-distance-weighting-1" class="slide level2 build"><h2>Inverse Distance Weighting</h2>
-<div>
+</section><section id="inverse-distance-weighting-1" class="slide level2"><h2>Inverse Distance Weighting</h2>
 <p>Let <span class="math inline">\(d: \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R}_+\)</span> be a distance metric, such as [ d(_1, _2) = ||_1-_2||_2= . ]</p>
-</div>
-<div>
 Inverse distance weighting defines [ x^* =
 <span class="math display">\[\begin{cases}
 \dfrac{\sum_{i=1}^n w(\mathbf{s}_i,\mathbf{s}^*) x_i}{\sum_{i=1}^n, w(\mathbf{s}_i,\mathbf{s}^*)} &amp; \mbox{if}~d(\mathbf{s}^*, \mathbf{s}_i)&gt;0,\\
 x_i &amp; \mathrm{if}~d(\mathbf{s}^*, \mathbf{s}_i)=0,
 \end{cases}\]</span>
 <p>] where <span class="math inline">\(w(\mathbf{s}_i,\mathbf{s}^*) = \left[d(\mathbf{s}_i,\mathbf{s}^*)\right]^{-p}\)</span> and <span class="math inline">\(p&gt;0\)</span> is called the <strong>power parameter</strong>.</p>
-</div>
-</section><section id="effect-of-the-power-parameter" class="slide level2 build"><h2>Effect of the power parameter</h2>
-<div>
+</section><section id="effect-of-the-power-parameter" class="slide level2"><h2>Effect of the power parameter</h2>
 <p>We have to select a suitable value for <span class="math inline">\(p\)</span>.</p>
 <p><strong>Example:</strong> Suppose <span class="math inline">\(\mathbf{s}^* = (13.1, 51.0)\)</span> for the German temperature data.</p>
 <p>Let’s compare <span class="math inline">\(p=0.5\)</span>, <span class="math inline">\(p=2\)</span> and <span class="math inline">\(p=20\)</span>.</p>
 <p><strong><span style="color: blue;">-&gt; R Markdown file</span></strong></p>
-</div>
-<div>
 <p>It may be useful to create a map of predicted values to:</p>
 <ul>
 <li><p>Study spatial pattern of the values</p></li>
 <li><p>Select a suitable value for <span class="math inline">\(p\)</span></p></li>
-</ul>
-</div>
-</section><section id="remarks" class="slide level2"><h2>Remarks</h2>
+</ul></section><section id="remarks" class="slide level2"><h2>Remarks</h2>
 <ul>
 <li><p>We only need a reasonable <span class="math inline">\(p\)</span>, it does not have to optimal</p></li>
 <li>

@@ -215,33 +215,24 @@ Christian Rohrbeck
 <p>There will be a revision class in Week 10 (after the Easter break). Look out for a message about a poll on Moodle.</p>
 </section><section><section id="some-comments-on-last-weeks-content" class="title-slide slide level1 center"><h1>Some comments on last week’s content</h1>
 
-</section><section id="semi-variogram---width-and-cutoff" class="slide level2 build"><h2>Semi-variogram - width and cutoff</h2>
-<div>
+</section><section id="semi-variogram---width-and-cutoff" class="slide level2"><h2>Semi-variogram - width and cutoff</h2>
 <p>The <strong>width</strong> in the variogram() function determines the number of points used to estimate <span class="math inline">\(\hat\gamma(h)\)</span>:</p>
 <ul>
 <li><p>A too small value means that estimates are highly uncertain</p></li>
 <li><p>A too large value means that important aspects may be missed</p></li>
 </ul>
-</div>
-<div>
 <p>The <strong>cutoff</strong> determines which range of distances we consider:</p>
 <ul>
 <li><p>A too small value may imply that we miss important features</p></li>
 <li><p>A too large value increases the risk of spurious relations affecting our conclusions</p></li>
-</ul>
-</div>
-</section><section id="what-to-look-out-for" class="slide level2 build"><h2>What to look out for?</h2>
-<div>
+</ul></section><section id="what-to-look-out-for" class="slide level2"><h2>What to look out for?</h2>
 <p>It may be useful to consider the number of points per estimate:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>gamma_hat<span class="sc">$</span>np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If the number of points is too small, it may be worth changing the width or cutoff.</p>
-</div>
-<div>
 <p>Certain patterns in the semi-variogram may, for instance, be due to the constant mean assumption not being satisfied.</p>
 <p><strong>However</strong>, such features may also be caused by randomness while all assumptions hold.</p>
-</div>
 </section><section id="pca---when-does-it-work-well" class="slide level2"><h2>PCA - when does it work well?</h2>
 <p>Ideally we want the data to lie in a low-dimensional linear subspace:</p>
 <ul>
@@ -255,41 +246,30 @@ Christian Rohrbeck
 <img data-src="Spatial-Data-Analyis--Part-3-_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:95.0%"><p>We find quite a strong correlation and thus there is potential.</p>
 </section></section><section><section id="analysis-of-point-pattern-data" class="title-slide slide level1 center"><h1>Analysis of point pattern data</h1>
 
-</section><section id="visualization" class="slide level2 build"><h2>Visualization</h2>
-<div>
+</section><section id="visualization" class="slide level2"><h2>Visualization</h2>
 <p>We can use the same techniques as for point-referenced data:</p>
 <ul>
 <li><p>Placing points onto a shapefile</p></li>
 <li><p>Creating maps with points on top</p></li>
 </ul>
 <p>Let’s look at an example<strong><span style="color: blue;">-&gt; R Markdown file WildFires.Rmd</span></strong></p>
-</div>
 <p><strong>But</strong>: We may not always see the structure clearly<strong><span style="color: blue;">-&gt; R Markdown file Tornadoes.Rmd</span></strong></p>
 <p>This leads us to the concept of <strong>intensity</strong> of a point process.</p>
-</section><section id="intensity-of-a-point-process" class="slide level2 build"><h2>Intensity of a point process</h2>
-<div>
+</section><section id="intensity-of-a-point-process" class="slide level2"><h2>Intensity of a point process</h2>
 <p>Remember that the locations and their number are <strong>random</strong> when working with point pattern data.</p>
 <p>Let <span class="math inline">\(N(\mathcal{B})\)</span> be the random variable representing the number of points located in <span class="math inline">\(\mathcal{B}\subseteq\mathcal{S}\)</span>.</p>
-</div>
-<div>
 <p>The <strong><span style="color: blue;">intensity</span></strong> then describes <span class="math inline">\(\mathbb{E}\left[N(\mathcal{B})\right]\)</span> for any <span class="math inline">\(\mathcal{B}\subseteq\mathcal{S}\)</span> with [ ({}) = = _{} () . ] We refer to <span class="math inline">\(\lambda:\mathcal{S}\to\mathbb{R}_+=\{x\in\mathbb{R}:x\geq0\}\)</span> as the <strong>intensity function</strong>.</p>
-</div>
-</section><section id="analysis-of-the-intensity-function" class="slide level2 build"><h2>Analysis of the intensity function</h2>
-<div>
+</section><section id="analysis-of-the-intensity-function" class="slide level2"><h2>Analysis of the intensity function</h2>
 <p>We say that that the point process is</p>
 <ul>
 <li><p><strong>homogeneous</strong> when <span class="math inline">\(\lambda(\cdot)\)</span> is constant</p></li>
 <li><p><strong>non-homogeneous</strong> when <span class="math inline">\(\lambda(\cdot)\)</span> is not constant</p></li>
 </ul>
-</div>
-<div>
 <p>In what follows, we descrive two techniques for visualizing the intensity function:</p>
 <ul>
 <li><p>Quadrat counting</p></li>
 <li><p>Kernel smoothed intensity function</p></li>
-</ul>
-</div>
-</section></section><section><section id="quadrat-counting" class="title-slide slide level1 center"><h1>Quadrat Counting</h1>
+</ul></section></section><section><section id="quadrat-counting" class="title-slide slide level1 center"><h1>Quadrat Counting</h1>
 
 </section><section id="overview" class="slide level2 smaller"><h2>Overview</h2>
 <p>Given observed locations <span class="math inline">\(\mathbf{s}_1,\ldots,\mathbf{s}_n\)</span>, we perform three steps:</p>
@@ -307,13 +287,9 @@ Christian Rohrbeck
 <p><strong><span style="color: blue;">-&gt; R Markdown file WildFires.Rmd</span></strong></p>
 </section></section><section><section id="kernel-smoothed-intensity-function" class="title-slide slide level1 center"><h1>Kernel Smoothed Intensity Function</h1>
 
-</section><section id="overview-1" class="slide level2 build"><h2>Overview</h2>
-<div>
+</section><section id="overview-1" class="slide level2"><h2>Overview</h2>
 <p>Suppose we have a probability density (kernel) <span class="math inline">\(K(\cdot)\)</span> and, similar to a density plot, we define [ ^{(K)}() = _{i=1}^{n} K(||-_i||_2), ] where <span class="math inline">\(||\mathbf{s}-\mathbf{s}_i||_2\)</span> is the Euclidian distance.</p>
-</div>
-<div>
 <p>However, this approach assigns positive probability to areas outside <span class="math inline">\(\mathcal{S}\)</span> and thus [ _{} ^{(K)}() n. ]</p>
-</div>
 </section><section id="edge-correction" class="slide level2"><h2>Edge correction</h2>
 <p>The <strong>uniformly corrected smoothed kernel intensity function</strong> is defined as [ ^{(C)}() = _{i=1}^{n} K(||-_i||<em>2), ] where [ g() = </em>{} K(-) . ]</p>
 <p>This correction is available in the spatstat R package.<strong><span style="color: blue;">-&gt; R Markdown file WildFires.Rmd</span></strong></p>

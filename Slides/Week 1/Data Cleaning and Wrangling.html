@@ -218,26 +218,21 @@ Christian Rohrbeck
 <li><p>Uninformative variable names</p></li>
 </ul>
 <p>We now explore how the dplyr and lubridate R packages can help us.</p>
-</section><section id="example---river-flow-data" class="slide level2 build"><h2>Example - River Flow Data</h2>
-<div>
+</section><section id="example---river-flow-data" class="slide level2"><h2>Example - River Flow Data</h2>
 <p>Let’s have a look at the data in “Bathford River Flow.csv”.</p>
 <p style="color:Blue">
 <strong>What do we notice?</strong>
 </p>
-</div>
 <ol type="1">
 <li><p>The provided variables represent the date and mean river flow</p></li>
 <li><p>Data is not in a nice format</p></li>
 <li><p>No variable names</p></li>
-</ol></section><section id="river-flow-data---loading-the-data" class="slide level2 build"><h2>River Flow Data - Loading the Data</h2>
-<div>
+</ol></section><section id="river-flow-data---loading-the-data" class="slide level2"><h2>River Flow Data - Loading the Data</h2>
 <p>We use the <strong>read.csv()</strong> function to load the data:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>Bathford <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"Bathford River Flow.csv"</span>, <span class="at">skip=</span><span class="dv">20</span>, <span class="at">header=</span><span class="cn">FALSE</span>,</span>
 <span id="cb1-2"><a href=""></a>                      <span class="at">colClasses =</span> <span class="fu">c</span>(<span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div>
 <p>We use <strong>glimpse()</strong> to check the variable names and data types:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>( dplyr )</span>
@@ -249,8 +244,7 @@ $ V1 &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1969-1
 $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52…</code></pre>
 </div>
 </div>
-</div>
-</section><section id="converting-variables-i" class="slide level2 build"><h2>Converting Variables I</h2>
+</section><section id="converting-variables-i" class="slide level2"><h2>Converting Variables I</h2>
 <p>The loaded data may not have the correct type:</p>
 <ul>
 <li>Numerical data were read as a <strong>character</strong>:</li>
@@ -283,7 +277,7 @@ $ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
 <pre><code>[1] 4.031667</code></pre>
 </div>
 </div>
-</section><section id="converting-variables-iii" class="slide level2 build"><h2>Converting Variables III</h2>
+</section><section id="converting-variables-iii" class="slide level2"><h2>Converting Variables III</h2>
 <ul>
 <li>Binary answers were recorded as “yes” or “no”:</li>
 </ul>
@@ -315,8 +309,7 @@ $ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
 <pre><code>[1] "2022-10-01" "2023-10-15"</code></pre>
 </div>
 </div>
-</section><section id="why-do-we-convert-to-a-date-object" class="slide level2 build"><h2>Why do we convert to a date object?</h2>
-<div>
+</section><section id="why-do-we-convert-to-a-date-object" class="slide level2"><h2>Why do we convert to a date object?</h2>
 <ul>
 <li>Extraction of month and year from a Date object using <strong>month()</strong> and <strong>year()</strong> respectively:</li>
 </ul>
@@ -326,8 +319,6 @@ $ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
 <pre><code>[1] 2022 2023</code></pre>
 </div>
 </div>
-</div>
-<div>
 <ul>
 <li>Calculate differences between dates</li>
 </ul>
@@ -337,13 +328,9 @@ $ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
 <pre><code>Time difference of 74 days</code></pre>
 </div>
 </div>
-</div>
-<div>
 <ul>
 <li>Create plot with time being one of the axis.</li>
-</ul>
-</div>
-</section><section id="river-flow-data---converting-variables" class="slide level2 build"><h2>River Flow Data - Converting variables</h2>
+</ul></section><section id="river-flow-data---converting-variables" class="slide level2"><h2>River Flow Data - Converting variables</h2>
 <ul>
 <li>We see that the first variable should be of type <strong>date</strong>
 </li>
@@ -358,18 +345,10 @@ $ V1 &lt;date&gt; 1969-10-27, 1969-10-28, 1969-10-29, 1969-10-30, 1969-10-31, 19
 $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52…</code></pre>
 </div>
 </div>
-</section><section id="renaming-variables" class="slide level2 build"><h2>Renaming Variables</h2>
-<div>
+</section><section id="renaming-variables" class="slide level2"><h2>Renaming Variables</h2>
 <p>Uninformative variable names can cause problems!</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="Dilbert.gif" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="river-flow-data---renaming-variables" class="slide level2"><h2>River Flow Data - Renaming variables</h2>
+
+<img data-src="Dilbert.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section><section id="river-flow-data---renaming-variables" class="slide level2"><h2>River Flow Data - Renaming variables</h2>
 <p>The <strong>rename()</strong> function in the dplyr package can be used to change variable names.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>Bathford <span class="ot">&lt;-</span> <span class="fu">rename</span>( Bathford, <span class="at">Date=</span>V1, <span class="at">RiverFlow=</span>V2 )</span>
@@ -387,9 +366,7 @@ $ RiverFlow &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 
 <span id="cb26-2"><a href=""></a>      <span class="at">xlab=</span><span class="st">"Date"</span>, <span class="at">ylab=</span><span class="st">"River Flow"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Data-Cleaning-and-Wrangling_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"></section>
-</div>
-</section><section id="exercise" class="slide level2"><h2>Exercise</h2>
+<img data-src="Data-Cleaning-and-Wrangling_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"></section><section id="exercise" class="slide level2"><h2>Exercise</h2>
 <p><strong>Which conclusions should we report when asked to comment on the frequency of river flow levels above 100m<span class="math inline">\(^3\)</span>/s and the magnitude of river flow levels?</strong></p>
 <ol type="1">
 <li><p>Recorded river flow levels were as high as approximately 250m<span class="math inline">\(^3\)</span>/s.</p></li>
@@ -400,11 +377,8 @@ $ RiverFlow &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 
 
 </section><section id="motivation" class="slide level2"><h2>Motivation</h2>
 
-<img data-src="pipeline2.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section><section id="why-is-data-wrangling-useful" class="slide level2 build"><h2>Why is data wrangling useful?</h2>
-<div>
+<img data-src="pipeline2.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section><section id="why-is-data-wrangling-useful" class="slide level2"><h2>Why is data wrangling useful?</h2>
 <p><strong>We want to use the available data to address a research question.</strong></p>
-</div>
-<div>
 <p>When working with large data sets, we usually have to:</p>
 <ul>
 <li><p>Identify and extract the relevant data points / variables</p></li>
@@ -412,7 +386,6 @@ $ RiverFlow &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 
 <li><p>Summarize / sort the data</p></li>
 </ul>
 <p><strong>Data wrangling</strong> refers to restructuring the raw data to aid with addressing specific research questions.</p>
-</div>
 </section><section id="the-dplyr-r-package" class="slide level2"><h2>The dplyr R package</h2>
 <p>We will now introduce several functions provided by the dplyr package for data wrangling:</p>
 <ul>
@@ -422,21 +395,17 @@ $ RiverFlow &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 
 <li><p><strong>arrange()</strong></p></li>
 <li><p>the pipe <strong>%&gt;%</strong></p></li>
 </ul></section><section id="summary" class="slide level2"><h2>Summary</h2>
-<div>
 <p>We covered some general aims of the data cleaning process:</p>
 <ul>
 <li><p>Converting expressions to a useful format using as.numeric(), case_when() and as_date()</p></li>
 <li><p>Give variables informative names using rename()</p></li>
 </ul>
-</div>
-<div>
 <p>We also explored how to use the dplyr package to:</p>
 <ul>
 <li><p>Extract the relevant observations and variables</p></li>
 <li><p>Add new variables to a data frame</p></li>
 <li><p>Summarize and sort the data</p></li>
 </ul>
-</div>
 
 </section></section>
 </div>

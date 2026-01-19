@@ -143,10 +143,8 @@ Christian Rohrbeck
 </div>
 
   <p class="date">2025-02-12</p>
-</section><section id="motivation" class="slide level2 build"><h2>Motivation</h2>
-<div>
+</section><section id="motivation" class="slide level2"><h2>Motivation</h2>
 <p>Data exploration requires <span style="color: blue;">generating and analyzing plots of the data</span>.</p>
-</div>
 <p>This raises the questions:</p>
 <ul>
 <li><p>What are the general guidelines for data visualization?</p></li>
@@ -180,24 +178,22 @@ Christian Rohrbeck
 <li><p><span style="color: blue;">Shape</span> (category)</p></li>
 <li><p><span style="color: blue;">Area</span> and <span style="color: blue;">Volume</span> (quantity)</p></li>
 <li><p><span style="color: blue;">Shade</span> and <span style="color: blue;">Colour</span> (quantity or category)</p></li>
-</ul></section><section id="example" class="slide level2 build"><h2>Example</h2>
+</ul></section><section id="example" class="slide level2"><h2>Example</h2>
 <p style="color:Blue">
 <strong>Which visual cues are used in the following plot?</strong>
 </p>
 
-<img data-src="Data-Visualization--Part-1-_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><div>
-<p style="color:Blue">
+<img data-src="Data-Visualization--Part-1-_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p style="color:Blue">
 <strong>Which conclusions can we draw?</strong>
 </p>
-</div>
 </section></section><section><section id="creating-plots-in-ggplot2" class="title-slide slide level1 center"><h1>Creating plots in ggplot2</h1>
 
 </section><section id="data" class="slide level2"><h2>Data</h2>
 <p>Daily weather data for five Australian cities:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-d6fb91c74738a73c2a25" style="width:70%;height:432px;"></div>
-<script type="application/json" data-for="htmlwidget-d6fb91c74738a73c2a25">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[-25.3601,130],4,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[-34,-38,-35,-32,-12.5],[151,145,138.5,116,131],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["Sydney","Melbourne","Adelaide","Perth","Darwin"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-38,-12.5],"lng":[116,151]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-9676298873a250d932ce" style="width:70%;height:432px;"></div>
+<script type="application/json" data-for="htmlwidget-9676298873a250d932ce">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[-25.3601,130],4,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[[-34,-38,-35,-32,-12.5],[151,145,138.5,116,131],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["Sydney","Melbourne","Adelaide","Perth","Darwin"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-38,-12.5],"lng":[116,151]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section><section id="the-plots-we-consider" class="slide level2"><h2>The plots we consider</h2>
@@ -208,11 +204,9 @@ Christian Rohrbeck
 <li><p>Histogram and density plot</p></li>
 <li><p>Box plot and violin plot</p></li>
 </ul>
-<div>
 <p style="color:Blue">
 <strong>Which of these have you heard of?</strong>
 </p>
-</div>
 </section><section id="density-plot" class="slide level2"><h2>Density Plot</h2>
 <p>Given data <span class="math inline">\(x_1,\ldots,x_n\)</span> for a random variable <span class="math inline">\(X\)</span>, we estimate the probability density function of <span class="math inline">\(X\)</span> as [ (x) = _{i=1}^{n} K(), ]</p>
 <ul>
@@ -231,15 +225,13 @@ Christian Rohrbeck
 <p><strong>Line plots:</strong> Useful to explore how a variable evolves over time.</p>
 <p><strong>Histogram/Density plots:</strong> Good for exploring the distribution of a variable.</p>
 <p><strong>Box plots/Violin plots:</strong> Good to compare the distributions of multiple variables.</p>
-</section><section id="exercises" class="slide level2 build"><h2>Exercises</h2>
-<div>
+</section><section id="exercises" class="slide level2"><h2>Exercises</h2>
 <p>Decide which plot(s) to use in the following situations:</p>
 <ol type="1">
 <li><p>Association between amount of exercise and sleep.</p></li>
 <li><p>Distribution of annual maximum temperature for Bath.</p></li>
 <li><p>Impact of insulation on energy consumption.</p></li>
 </ol>
-</div>
 <p>Is <strong>length</strong> or <strong>position</strong> better in terms of our ability to perceive differences in magnitude?</p>
 </section><section id="summary" class="slide level2"><h2>Summary</h2>
 <ul>
