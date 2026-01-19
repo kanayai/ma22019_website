@@ -9,7 +9,15 @@ To keep the repository lightweight, this project uses a "Hybrid" workflow:
 
 1.  **Code (Git):** RMarkdown files, scripts, and notes are tracked here.
 2.  **Data (OneDrive):** Large datasets (CSVs, Shapefiles, etc.) reside in your OneDrive folder.
-3.  **The Bridge (Symlink):** The folder `MA22019 Lecture Notes/Data` inside this project is actually a **symbolic link** (shortcut) pointing to your OneDrive.
+3.  **The Bridge (Symlinks):** Each component has a `data/` folder that is a **symbolic link** pointing to OneDrive.
+
+### Symlinked Data Folders
+
+| Component | Local Path | OneDrive Target |
+|-----------|------------|-----------------|
+| Lecture Notes | `MA22019 Lecture Notes/Data/` | `.../MA22019 Lecture Notes/Data` |
+| Coursework 1 | `Coursework/Coursework 1/data/` | `.../Coursework/Coursework 1/data` |
+| Coursework 2 | `Coursework/Coursework 2/data/` | `.../Coursework/Coursework 2/data` |
 
 ### Why this setup?
 *   Prevents the Git repo from becoming huge (2GB+).
