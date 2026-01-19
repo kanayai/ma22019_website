@@ -4,32 +4,29 @@ project:
 website:
   title: "MA22019"
   description: "Spatial Statistics at University of Dundee"
-  navbar:
+  page-navigation: true
+
+  sidebar:
     background: "#005871"
-    left:
-      - href: index.qmd
-        text: Home
-      - href: computing-setup.qmd
-        text: Computing
-      - href: MA22019 Lecture Notes/index.qmd
-        text: Lecture Notes
-      - href: slides.qmd
-        text: Slides
-      - href: labs.qmd
-        text: Labs
-      - href: homework.qmd
-        text: Homework & Quizzes
-      - href: coursework.qmd
-        text: Coursework
-    right:
-      - icon: github
-        href: https://github.com/kanayai/ma22019_website
-        text: GitHub
-    sidebar:
-      - title: "Lecture Notes"
-        style: docked
-        search: true
-        collapse-level: 1
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Course Information"
+        contents:
+          - href: index.qmd
+            text: Overview
+      - section: "Computing"
+        contents:
+          - href: computing-setup/project-structure.qmd
+            text: Project Structure
+          - href: computing-setup/setup-university-drive.qmd
+            text: University Drive Setup
+          - href: computing-setup/computing-assignments.qmd
+            text: Assignments Workflow
+          - href: computing-setup/why-quarto.qmd
+            text: Why Quarto?
+      - section: "Lecture Notes"
         contents:
           - href: MA22019 Lecture Notes/index.qmd
             text: Introduction
@@ -37,6 +34,15 @@ website:
           - MA22019 Lecture Notes/02-DataVisualization.qmd
           - MA22019 Lecture Notes/03-Text-Data-Analysis.qmd
           - MA22019 Lecture Notes/04-SpatialDataAnalysis.qmd
+      - slides.qmd
+      - labs.qmd
+      - homework.qmd
+      - coursework.qmd
+
+  page-footer:
+    background: "#005871"
+    left: "© Copyright 2025, University of Dundee"
+    right: "Built with [Quarto](https://quarto.org/)"
 
 format:
   html:
