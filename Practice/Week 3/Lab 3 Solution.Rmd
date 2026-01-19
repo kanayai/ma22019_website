@@ -1,0 +1,209 @@
+---
+title: "MA22019 2025 - Solutions for Computer Lab 3"
+author: "Working with dplyr and ggplot2"
+output:
+  html_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Before starting the questions, please make sure to load the relevant R packages: 
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(patchwork)
+```
+
+
+
+### **Tutorial Question 1 - Utopia's Ambulance Service**
+
+The health department of *Utopia* has collected data on the response time of their ambulance service, including whether patients were admitted to the country's hospitals and how long they stayed. All the data are stored across the files "Ambulance.csv" and "Hospital.csv". The variables in "Ambulance.csv" are
+
+* **Call** -  Day and time at which the ambulance service was notified
+
+* **Category** - Ambulance response category (1=”Life threatening”, 4=”non-urgent”)
+
+* **Arrival** -  Time of arrival of the ambulance at the patient's location
+
+* **PatientID** -  Health insurance number of the patient
+
+* **Hospital** -  Time patient arrived at the hospital (missing values indicate that no hospitalization was required)
+
+The file "Hospitals.csv" provides the following information:
+
+* **PatientID** -  Health insurance number of the patient
+
+* **Age** - Age of the patient
+
+* **Length** - Number of days the patient stayed in hospital
+
+We are asked by the Utopian government to perform an analysis which only considers the patients who were brought to hospital by the ambulance service. For these patients, they ask us to address the following two questions:
+
+a) When considering patients within the different response categories, are there any differences in terms of time spent in hospital?
+
+<p style="color:blue"> *The first step is to load the two data sets:*</p> 
+
+```{r}
+Ambulance <- read.csv("Ambulance.csv")
+Hospitals <- read.csv("Hospital.csv") 
+```
+
+<p style="color:blue"> *Since the analysis focuses on the patients admitted to hospital, we combine the two data sets using inner_join() and use the patient ID as the key:*</p>
+
+```{r, warning=FALSE, message=TRUE}
+Patients <- inner_join( Ambulance, Hospitals, by="PatientID" )
+```
+
+<p style="color:blue"> *We may then, for instance, use box plots to compare the distribution of length of stay across the different ambulance categories. One tricky bit is that we first need to convert the numerical value for* **Category** *into a categorical variable, either using factor() or case_when():*</p>
+
+```{r}
+Patients <- Patients %>%
+  mutate( Category = case_when( Category==1 ~ "Category 1",
+                                Category==2 ~ "Category 2",
+                                Category==3 ~ "Category 3",
+                                Category==4 ~ "Category 4" )
+        )
+```
+
+<p style="color:blue"> *We are now ready to create the box plots:*</p>
+
+```{r, fig.align='center', out.width='40%', fig.width=5, fig.width=5}
+ggplot( Patients, aes( x=Category, y=Length ) ) + 
+  geom_boxplot() + theme_bw() +
+  labs(x="Ambulance Category", y="Length of Hospital Stay")
+```
+
+<p style="color:blue"> *We see that expected length of stay increases with the level of emergency. The longest hospital times are observed for category 1, life-threatening conditions, with a median time of about 12 days, while the median length of stay for non-urgent cases is 6 days.*</p>
+
+b) What is the relation between a patient's waiting time for the ambulance and their length of stay in hospital? **Hint:** You may want to consult the lubridate cheat sheet to help with converting dates to their correct type.
+
+<p style="color:blue"> *The first step is to convert all the variables representing times to their correct type. This can, for instance, be achieved using the function ymd_hms() from the lubridate R package:*</p> 
+
+```{r}
+Patients <- Patients %>% mutate( Call=ymd_hms(Call), Arrival=ymd_hms(Arrival) ) 
+```
+
+<p style="color:blue"> *The next step is to extract the time the patient had to wait for the ambulance. We have seen that R can compute differences in time and you may use the time difference directly. It's also not wrong to convert the difference in dates to numerical values, which we can achieve using as.numeric():*</p> 
+
+```{r}
+Patients <- Patients %>% mutate( Wait=as.numeric(Arrival-Call) )
+```
+
+
+<p style="color:blue"> *Now we are ready to create adequate plots to address the question. Here we will use scatter plots and geom_smooth(), as we want to explore the relation between two variables. We have to consider the different categories separately, as the seriousness of the situation will have an impact on how waiting time affects health outcomes:*</p> 
+
+```{r, fig.align='center', out.width='70%'}
+ggplot( Patients, aes(x=Wait,y=Length) ) +
+  facet_wrap( ~Category, scales="free_x" ) + 
+  geom_point() + geom_smooth() + theme_bw()
+```
+
+<p style="color:blue"> *We see that the length of stay tends to increase with the length of wait for ambulance categories 1 and 2. For the most urgent category, a waiting time beyond 20 minutes leads to an increase in the average length of stay. For Category 2, waiting times should be kept below 50 minutes, as the average length of stay in hospital tends to be longer for patients who have to wait more than this. We also see a small effect for Category 3, but the response time seems to have very little influence on the length of stay for non-urgent cases. This does of course not mean we should feel comfortable with keeping these patients waiting for days.*</p> 
+
+
+### **Tutorial Question 2 - 2021/22 UEFA Champions League**
+  
+The files "UEFA goals.csv" and "UEFA attacking.csv" contain all the player stats on goals and assists for the UEFA Champions League season 2021-22. Use the data to extract the following information:
+
+a) Which two teams scored the most goals in the 2021/22 UEFA Champions League? How many goals did they score?
+
+<p style="color:blue">*We start by loading the two data sets: *</p>
+
+```{r}
+Goals <- read.csv( "UEFA goals.csv" )
+Assists <- read.csv( "UEFA attacking.csv" )
+```
+
+<p style="color:blue">*For the first question we only need to consider goals, and we aggregate the goals of the individual players according to their club:*</p>
+
+```{r}
+Goals %>% 
+  group_by( club ) %>%
+  summarise( "Total" = sum(goals) ) %>%
+  arrange( desc(Total) ) %>%
+  slice_head( n=2 )
+```
+  
+<p style="color:blue">*We find that Bayern Munich and FC Liverpool are the two clubs who scored the most goals (30 each).*</p>  
+  
+b) When ranking attackers, the sum of goals and assists is a widely used metric. Extract the top 10 players in terms of this metric. **Hint:** Not every player in the data recorded at least one goal and one assist. 
+
+<p style="color:blue">*We now need to combine the player statistics for goals and assists. To avoid merging two players with the same surname, we also use club and position as variables to be considered when merging the data frames*</p>  
+
+```{r}
+Players <- full_join( Goals, Assists, by=c("player_name", "club", "position") )
+```
+
+<p style="color:blue">*The next step is to replace any NA by 0. This can, for instance, be achieved with case_when():*</p> 
+
+```{r}
+Players <- Players %>%
+  mutate( goals = case_when( goals == NA ~ 0, .default = goals ),
+          assists = case_when( assists == NA ~ 0, .default = assists ) )
+```
+
+<p style="color:blue">*We are now ready to calculate the score for each player*</p> 
+
+```{r}
+Players <- Players %>%
+  select( player_name, club, goals, assists ) %>%
+  mutate( score = goals + assists )
+```
+
+<p style="color:blue">*Finally, we rank players based on their score and print the top 10 players in a table:*</p> 
+
+```{r}
+Players %>%
+  arrange( desc(score) ) %>%
+  slice_head( n=10 )
+```
+
+### **Tutorial Question 3 - Working with discrete variables**
+
+When plotting values of discrete variables (such as number of sales) some information may not be visible because points may lie on top of each other. We will explore how the functions **geom_count()** and **geom_jitter()** facilitate handling such situations.
+
+NOAA in the United States has recorded 332 billion-dollar natural disasters between 1980 and 2022, that is, each event caused overall damages in excess of $1 billion US dollars. The types of natural disasters include flooding, severe storms, droughts, etc. In this analysis we focus on the number of natural disasters per type and year and the data are provided in the file "US Billion Dollar Disasters.csv".
+
+a) Create a scatter plot for number of flood events against severe storms per year. Discuss which information can be drawn from the plot?
+
+<p style="color:blue">*We use the* **geom_point()** *function to create the scatter plot.*</p>
+
+```{r, fig.align='center', out.width='40%', fig.height=4, fig.width=4}
+Disasters <- read.csv( "US Billion Dollar Disasters.csv" )
+ggplot( Disasters, aes(x=Flooding, y=SevereStorm) ) + geom_point() +
+  labs( x="Number of floods", y="Number of severe storms" )
+```
+
+<p style="color:blue">*There is no clear pattern visible. The yearly numbers of floods and severe storms appear to be independent.*</p>
+
+b) Replace the function geom_point() in part a) by geom_count(). Which conclusions can be drawn from this new plot?
+
+<p style="color:blue">*The new plot is created using*</p>
+
+```{r, fig.align='center', out.width='40%', fig.height=4, fig.width=4}
+ggplot( Disasters, aes(x=Flooding,y=SevereStorm) ) + geom_count() + 
+  labs( x="Number of floods", y="Number of severe storms" )
+```
+
+<p style="color:blue">*The new plot reveals that the number of floods is usually 0 or 1, and that there is a large number of years with 1 or 2 storms. This was not visible at all in the previous plot.*</p>
+
+c) Replace the function geom_point() in part a) by geom_jitter(). What does this function do? Which conclusions can be drawn from this new plot?
+
+<p style="color:blue">*The new plot is created using*</p>
+
+```{r, fig.align='center', out.width='40%', fig.height=4, fig.width=4}
+ggplot( Disasters, aes(x=Flooding,y=SevereStorm) ) + geom_jitter() + 
+  labs( x="Number of floods", y="Number of severe storms" )
+```
+
+<p style="color:blue"> *The function* **geom_jitter()** *adds some random noise to each point to separate observations. The conclusions are equivalent to that in part b.*</p>
+
+
+
