@@ -18,3 +18,5 @@ rosm.cache/
 
 /.quarto/
 **/*.quarto_ipynb
+_solutions/
+ma22019_solutions/
