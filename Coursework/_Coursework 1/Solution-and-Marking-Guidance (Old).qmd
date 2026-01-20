@@ -33,7 +33,7 @@ This question assesses the student's understanding of key aspects covered in the
 We start by loading the data
 
 ```{r}
-PM10 <- read.csv( "PM10.csv" )
+PM10 <- read.csv("pm10.csv" )
 ```
 
 The first step is to report the amount of missing data

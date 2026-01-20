@@ -1,0 +1,98 @@
+---
+title: "Project Structure & Naming"
+---
+
+## 1. The Golden Rules of Naming
+
+As a Data Scientist, you will generate hundreds of files. If you name them poorly, you will lose them.
+
+::: {.callout-tip}
+## The 3 Principles
+1.  **Machine Readable:** No spaces, punctuation, or accents. Use `_` or `-`.
+2.  **Human Readable:** Meaningful names. `analysis.R` is bad; `01_data_cleaning.R` is good.
+3.  **Sortable:** Use ISO dates (`YYYY-MM-DD`) and numbered prefixes (`01_`, `02_`).
+:::
+
+### Examples
+
+| Bad ❌ | Good ✅ |
+|--------|---------|
+| `my abstract.docx` | `2025-02-15_abstract.docx` |
+| `Joe's Filenames Use Spaces and Punctuation.xlsx` | `joes_filenames_are_constistent.csv` |
+| `figure 1.png` | `fig01_scatterplot_height_weight.png` |
+| `final_final_v2.R` | `04_model_evaluation.R` |
+
+---
+
+## 2. Organizing Your Workspace
+
+Whether you are using a university PC (H: Drive) or your own laptop, you need a dedicated home for this course.
+
+**Where should you put it?**
+*   **Uni PC:** `H:/MA22019/`
+*   **Windows (Personal):** `Documents/MA22019/`
+*   **Mac/Linux:** `~/Documents/MA22019/`
+
+::: {.callout-warning}
+## ⚠️ WARNING: Is your "Documents" folder synced?
+On many Macs (iCloud) and Windows PCs (OneDrive), the **Documents** folder is automatically synced to the cloud.
+**Git + Cloud (iCloud/OneDrive) = Data Loss.**
+
+**Check this:**
+1.  **Mac:** System Settings > Apple ID > iCloud > iCloud Drive > Options > Desktop & Documents Folders. If this is ON, **do not save your work in Documents**. Create a folder in your User Home directory instead (e.g., `/Users/yourname/MA22019`).
+2.  **Windows:** Check if your Documents has a green tick (OneDrive). If so, make a folder directly on your C: drive (e.g., `C:\MA22019`) to be safe.
+:::
+
+### Recommended Folder Structure
+
+We recommend the following structure to handle the **three types of activities** in this course:
+
+```
+MA22019/
+├── 01_Labs/                  # Weekly Computer Labs (Formative)
+│   ├── Week_01_Lab/
+│   │   └── Lab_01.Rproj
+│   ├── Week_02_Lab/
+│   └── ...
+│
+├── 02_Homework/              # Weekly Homework Questions (Formative)
+│   ├── Week_01_HW/
+│   │   └── HW_01.Rproj
+│   └── ...
+│
+├── 03_Coursework/            # Assessed Summative Work (Graded)
+│   ├── CW_1_Wrangling/       # Coursework 1 Repository (Assessed)
+│   └── CW_2_Project/         # Coursework 2 Repository (Assessed)
+│
+└── 04_Resources/             # Lecture notes, cheat sheets
+    ├── ggplot2_cheatsheet.pdf
+    └── ...
+```
+
+### The Three Activity Types
+1.  **Labs (Formative):** These are the exercises we do together in the computer labs. Great for practice.
+2.  **Homework (Formative):** Weekly open-ended questions. These help you verify your understanding.
+3.  **Coursework (Summative):** These are the **two major assessed** pieces of work. These **MUST** be Git repositories (see [Assignment Workflow](computing_assignments.qmd)). Keep them in `03_Coursework` so you don't accidentally mix them up with your weekly practice files.
+
+---
+
+## 3. Inside a Project (The "Tidy" Project)
+
+Every time you start a new RStudio Project (e.g., for a Lab or Coursework), use this internal structure:
+
+```
+my_project/
+├── my_project.Rproj    # RStudio Project file (NEVER delete this)
+├── README.md           # Explanation of what this project does
+├── data/               # Raw and processed data
+│   ├── raw/
+│   └── processed/
+├── R/                  # R scripts (if you have complex functions)
+├── output/             # Plots, tables, and saved results
+└── analysis.qmd        # Your main report/analysis
+```
+
+### Why this matters?
+1.  **Relative Paths:** You can load data with `read.csv( "data/raw/my_data.csv" )`. This works on your computer, your friend's computer, and the marker's computer.
+2.  **Clean Workspace:** `output/` keeps your generated files (which you can delete and regenerate) separate from your source code.
+3.  **Sanity:** You know exactly where to find the raw data vs. the cleaned data.

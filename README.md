@@ -13,7 +13,7 @@ A comprehensive Quarto-based website for the MA22019 (Data Analysis & Visualizat
 | **Homework** | `Practice/Week X/Homework X.qmd` | Weekly homework assignments |
 | **Quizzes** | `Practice/Week X/Quiz X.qmd` | Weekly practice quizzes |
 | **Live Coding** | `LIve Coding/` | In-class coding demonstrations |
-| **Computing Setup** | `computing-setup/` | Student setup guides |
+| **Computing Setup** | `computing_setup/` | Student setup guides |
 
 ## 📁 Folder Overview
 

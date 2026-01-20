@@ -1,0 +1,61 @@
+---
+title: "Analysis of Sea Surface Temperature Anomalies"
+author: "Christian Rohrbeck"
+date: "26/03/2025"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load the data and R packages
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(sf)
+library(sp)
+library(gstat)
+
+SSTA <- read.csv("sea_surface_temperature_anomalies.csv" )
+```
+
+
+## Visualize Data (similar to Problem Class 5)
+
+Convert longitude and latitude to spatial coordinates
+
+```{r}
+SSTA_sf <- st_as_sf( SSTA, coords=c("lon", "lat") ) %>% st_set_crs( 4326 )
+```
+
+We can now visulaize the data
+
+```{r, fig.align='center', out.width='50%', fig.height=5, fig.width=5}
+ggplot( data=SSTA_sf ) + theme_bw() + geom_sf( aes(color=Anomaly) ) + 
+  labs( x="Longitude", y="Latitude", color="SST Anomaly" )
+```
+
+## Estimation of the variogram
+
+We first drop any missing values 
+
+```{r}
+SSTA_gamma <- drop_na( SSTA, Anomaly )
+```
+
+Longitude and latitude are converted to spatial data points (we need the sp package for this):
+
+```{r}
+coordinates( SSTA_gamma ) <- ~lon+lat
+```
+
+Use the variogram() function to estimate the semi-variogram and visualize it:
+
+```{r, out.width='50%', fig.align='center',fig.height=2.5, fig.width=4}
+gamma_hat <- variogram( Anomaly~1, SSTA_gamma, width=0.1, cutoff=2  )
+ggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + 
+  theme_bw() + labs( x="Distance", y="Semi-variogram" )
+```

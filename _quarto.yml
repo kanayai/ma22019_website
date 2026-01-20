@@ -18,22 +18,22 @@ website:
             text: Overview
       - section: "Computing"
         contents:
-          - href: computing-setup/project-structure.qmd
+          - href: computing_setup/project_structure.qmd
             text: Project Structure
-          - href: computing-setup/setup-university-drive.qmd
+          - href: computing_setup/setup_university_drive.qmd
             text: University Drive Setup
-          - href: computing-setup/computing-assignments.qmd
+          - href: computing_setup/computing_assignments.qmd
             text: Assignments Workflow
-          - href: computing-setup/why-quarto.qmd
+          - href: computing_setup/why_quarto.qmd
             text: Why Quarto?
       - section: "Lecture Notes"
         contents:
-          - href: MA22019 Lecture Notes/index.qmd
+          - href: lecture_notes/index.qmd
             text: Introduction
-          - MA22019 Lecture Notes/01-DataWrangling.qmd
-          - MA22019 Lecture Notes/02-DataVisualization.qmd
-          - MA22019 Lecture Notes/03-Text-Data-Analysis.qmd
-          - MA22019 Lecture Notes/04-SpatialDataAnalysis.qmd
+          - lecture_notes/01-DataWrangling.qmd
+          - lecture_notes/02-DataVisualization.qmd
+          - lecture_notes/03-Text-Data-Analysis.qmd
+          - lecture_notes/04-SpatialDataAnalysis.qmd
       - slides.qmd
       - labs.qmd
       - homework.qmd

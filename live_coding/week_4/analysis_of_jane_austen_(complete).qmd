@@ -1,0 +1,164 @@
+---
+title: "Problem Class 4 - Solution"
+author: "Dr. Karim Anaya-Izquierdo"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(stringr)
+```
+
+
+## Background
+
+Jane Austen wrote seven novels, and we consider six of these: "Sense and Sensibility", "Pride and Prejudice", "Mansfield Park", "Emma", "Northanger Abbey" and "Persuasion". 
+
+All novels are available via Project Gutenberg and we will analyze similarities and differences of the different books in the following. We start by loading the text data which is available in the file "Data/JaneAusten.csv" on Moodle:
+  
+```{r}
+JaneAusten_raw <- read.csv("data/janeausten.csv" )
+```
+
+We will analyze the six books and
+
+1) Identify the most common words (except stop words) for each book
+
+2) Compare the six books in terms of their sentiment
+
+
+## Word frequency analysis
+
+As before, we first have to bring the data into a usable format and remove stop words.
+
+**Task 1:** Split the lines of text into individual words and remove all stop words and underscores.
+
+<p style="color:blue">*We copy the code we used for the analysis of the book "Jane Eyre":*</p>
+
+```{r}
+JaneAusten <- JaneAusten_raw %>%
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "\\_", "", word ) ) %>%
+  anti_join( stop_words, by="word" )
+```
+
+With the data in the desired format, we are ready to identify the most common words:
+
+**Task 2:** Extract the ten most common words (excluding stop words) for each book.
+
+<p style="color:blue">*Since we want to consider each book separately, we need to first use the group_by() function before using the functions we used for extracting counts:*</p>
+
+```{r}
+JaneAusten_Count <- JaneAusten %>%
+  group_by( title ) %>%
+  count( word, name = "Count" ) %>%
+  slice_max( Count, n=10 )
+```
+
+After identifying the most frequent words, let's visualize them. The following piece of code produces for each book a bar plot which visualizes the number of occurrences of the words identified in Task 2, i.e., the bar plot for a book provides information on the ten most common words (excluding stop words) contained in that book.
+
+```{r JABP, out.width='100%', fig.cap='Bar plots illustrating the frequency of the ten most common words for each book.', fig.align='center'}  
+ggplot( JaneAusten_Count, 
+        aes( x=Count, y=reorder_within(word,Count,title), fill=title ) ) + 
+  facet_wrap( ~title, scales = "free" ) + 
+  geom_col( show.legend = FALSE ) + 
+  scale_y_reordered() + theme_bw() + 
+  labs( x="Count", y="Word" )
+```
+
+**Task 3:** What is the benefit of using the functions **reorder_within()** and **scale_y_reordered()**? What do we conclude from the plot?
+
+<p style="color:blue">*We have seen that we can use reorder() to order words according to their frequency. The functions reorder_within() and scale_y_reordered() allow us to do the same, but for subgroups. This is useful because we want to have a separate plot for each book.*</p>
+
+<p style="color:blue">*The bar plots show that the names of the characters are used the most often, but a close inspection shows that "time" and "miss" are included in all bar plots.*</p>
+
+To conclude our analysis on the words used within the books, we want to calculate the tf-idf values for each term.
+
+**Task 4:** Calculate the tf-idf value for each word and book. What do we conclude?
+
+<p style="color:blue">*We apply the code as used in the analysis for the books by Charles Dickens:*</p>
+  
+```{r}
+JaneAusten_tf.idf <- JaneAusten %>% 
+  count( word, title, sort=T ) %>%
+  bind_tf_idf( word, title, n ) %>%
+  arrange( desc(tf_idf) )
+slice_head( JaneAusten_tf.idf, n=10 )
+```
+
+<p style="color:blue">*We can also visualize the words with highest tf-idf value by adapting the code used to produce bar plots for word frequency:*</p>
+
+```{r, out.width='100%', fig.cap='Bar plots illustrating the ten words with the highest tf-idf values for each book.', fig.align='center'}
+JaneAusten_tf.idf%>%
+  group_by( title ) %>%
+  slice_max( order_by = tf_idf, n=10 ) %>%
+  ggplot( aes( x=tf_idf, y=reorder_within(word,tf_idf,title), fill=title ) ) + 
+  facet_wrap( ~title, scales="free_y") + 
+  geom_col( show.legend = FALSE ) + 
+  scale_y_reordered() + theme_bw() +
+  labs( x="tf-idf", y="" )
+```
+
+<p style="color:blue">*The displayed words are, as measured by the tf-idf, the most important to each novel and most readers would likely agree. We can also conclude that Jane Austen used similar language across her six novels, because more common words, such as "time" or "sister", are no longer in the plot. Consequently, what distinguishes one novel from the rest within the collection of her works are the names of people and places. This is the point of tf-idf, it identifies words that are important to one document within a collection of documents.*</p>
+
+
+
+## Sentiment analysis
+
+Let's study the sentiment of the books using the AFINN sentiment lexicon:
+
+```{r}
+AFINN <- get_sentiments( "afinn" )
+```
+
+We want to derive the sentiment score for each chapter in each book. To do this, we first need to identify which chapter each line belongs to. We can do this by adapting the code from Section 3.2 in the lecture notes:
+
+```{r}
+JaneAusten_chapters <- JaneAusten_raw %>%
+  group_by( title ) %>%
+  mutate( chapter = cumsum( str_detect(
+    text, regex("^chapter ", ignore_case = TRUE)
+  ) ) ) %>%
+  filter( chapter > 0 ) %>%
+  ungroup()
+```
+
+The next step is to split the lines of text into individual words and to match the words in the AFINN sentiment lexicon with the words in the books. As for Jane Eyre, we remove the word "miss" from the analysis
+
+```{r}
+JaneAusten_AFINN <- JaneAusten_chapters %>%
+  filter( chapter > 0 ) %>%
+  unnest_tokens( word, text ) %>%
+  mutate( word = gsub( "_", "", word ) ) %>%
+  inner_join( AFINN, by = "word" ) %>% 
+  filter( word != "miss" )
+```
+  
+**Task 5:** Derive the aggregated sentiment score for each chapter using the AFINN sentiment lexicon.
+
+<p style="color:blue">*We calculate the aggregate sentiment score as follows:*</p>
+
+```{r, message=FALSE}
+JaneAusten_AFINN   <- JaneAusten_AFINN %>%
+  group_by( title, chapter ) %>%
+  summarise( sentiment = sum( value ) )
+```     
+
+Having derived the sentiment score for each book and chapter, we visualize the results:
+
+```{r, out.width='95%', fig.align='center'}
+ggplot( JaneAusten_AFINN, aes( x=chapter, y=sentiment ) ) +
+  facet_wrap( ~title, scales="free_x" ) +
+  geom_col( aes( fill=title ), show.legend = FALSE ) + 
+  theme_bw() + labs( x="Chapter", y="AFINN sentiment score" ) 
+```
+
+**Task 6:** What do we conclude?
+
+<p style="color:blue">*We see that almost all chapters have a positive sentiment score, i.e., this indicates that Jane Austen used a lot of words that are associated with a "positive" sentiment. However, we should keep in mind that not all parts of these books are actually happy stories, illustrating the limitations of our approach to measure sentiment. However, we can still comment on the differences in sentiment of chapters.*</p>

@@ -1,0 +1,57 @@
+---
+title: "Changing scales - Example"
+author: "Christian Rohrbeck"
+date: "19/02/2025"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(patchwork)
+```
+
+
+## Example 1 - Relation between body and brain weight for mammals {-}
+
+Load the data:
+
+```{r}
+Mammals <- read.csv("mammals.csv" )
+```
+
+Let's compare linear scale (left) and logarithmic scale (right):
+
+```{r, fig.height=4, fig.width=9, out.width='90%', fig.align='center'}
+g1 <- ggplot( Mammals, aes( x=body, y=brain ) ) + geom_point() + 
+  labs( title="Brain vs body weight on linear scale",
+        x="Body Weight in kg", y="Brain weight in g" )
+
+g2 <- g1 + coord_trans( x="log10", y="log10" )
+
+g1 + g2
+```
+
+## Example 2 - Analysis of Facebook Data
+
+```{r, out.width='90%', fig.align='center', fig.width=9, fig.height=4}
+Facebook <- read.csv("facebook.csv", header=TRUE )
+
+g1  <- ggplot( Facebook, aes( x=follow, y=postlikes ) ) + 
+  geom_point() +
+  labs( x="Number of Followers", y="Number of likes" )
+g2 <- g1 + coord_trans( x="log", y="log" )
+g1 + g2
+```
+
+## Change of font size and theme
+
+```{r, out.width='90%', fig.align='center', fig.width=9, fig.height=4}
+g2 <- g2 + theme_bw() +  
+  theme( axis.title=element_text(size=16),
+         axis.text=element_text(size=14) )
+g1 + g2
+```

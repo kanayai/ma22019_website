@@ -13,4 +13,4 @@ This module introduces students to the statistical analysis of spatial data.
 
 ## Computing
 
-We will be using R and RStudio for all data analysis. Please see the [Computing](computing-setup/project-structure.qmd) page for setup instructions.
+We will be using R and RStudio for all data analysis. Please see the [Computing](computing_setup/project_structure.qmd) page for setup instructions.

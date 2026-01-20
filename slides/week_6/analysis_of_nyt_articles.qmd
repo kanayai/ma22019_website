@@ -1,0 +1,79 @@
+---
+title: "Analysis of NYT Articles"
+author: "Christian Rohrbeck"
+date: "12/03/2025"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading the packages and data {-}
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(tidyr)
+library(topicmodels)
+```
+
+We work with 1289 articles published by the New York Times in their “Europe” subsection between 01/01/2023 and 01/11/2024:
+
+```{r}
+NYT <- read.csv("nyt.csv" )
+```
+
+Set identifier for each article:
+
+```{r}
+NYT <- NYT %>% mutate( ID=1:nrow(NYT) )
+```
+
+
+## Constructing the Document Term Matrix {-}
+
+```{r}
+NYT_count <- NYT %>%
+  unnest_tokens( word, lead_paragraph ) %>%
+  anti_join( stop_words, by="word" ) %>%
+  count( ID, word, sort = TRUE )
+```
+
+```{r}
+NYT_dtm <- NYT_count %>% cast_dtm( ID, word, n )
+```
+
+
+## Estimaet the Latent Dirichlet Allocation Model {-}
+
+```{r}
+NYT_LDA <- LDA( NYT_dtm, k = 2, method="Gibbs", control = list(seed=2024) )
+```
+
+
+## Analysis of the results {-}
+
+
+### Make up of articles {-}
+
+```{r, fig.align='center', out.width='40%', fig.height=2.5, fig.width=4}
+tidy( NYT_LDA , matrix = "gamma" ) %>%
+  filter( topic==1 ) %>%
+  ggplot( aes( y=gamma ) ) + theme_bw() + 
+  geom_boxplot() + labs( y="Proportion" )
+```
+
+
+### Make up of topics {-}
+
+```{r, fig.align='center', out.width='60%', fig.height=5, fig.width=6}
+tidy( NYT_LDA , matrix = "beta" ) %>%
+  mutate( topic = case_when( topic==1 ~ "Topic1", topic==2 ~ "Topic2") ) %>%
+  pivot_wider( names_from = topic, values_from = beta, values_fill = 0 ) %>%
+  ggplot( aes(x=Topic1, y=Topic2) ) +  coord_trans( x="sqrt", y="sqrt" ) + 
+  geom_point() + theme_bw() +
+  geom_text( aes(label=term), check_overlap = TRUE, vjust=1 ) + 
+  labs( x="Term Frequency in Topic 1", y="Term Frequency in Topic 2" )
+```

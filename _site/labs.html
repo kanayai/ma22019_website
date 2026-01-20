@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: [],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -195,25 +195,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-setup/project-structure.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing_setup/project_structure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-setup/setup-university-drive.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing_setup/setup_university_drive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">University Drive Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-setup/computing-assignments.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing_setup/computing_assignments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignments Workflow</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computing-setup/why-quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing_setup/why_quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Why Quarto?</span></a>
   </div>
 </li>
@@ -230,31 +230,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA22019 Lecture Notes/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA22019 Lecture Notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA22019 Lecture Notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Visualization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA22019 Lecture Notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Text Data Analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MA22019 Lecture Notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
+  <a href="./lecture_notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Data Analysis</span></a>
   </div>
 </li>
@@ -321,117 +321,19 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<table class="quarto-listing-table table">
+<table class="quarto-listing-table table caption-top">
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Subtitle
-</th>
-
+<tr class="header">
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">Subtitle</th>
 </tr>
 </thead>
 <tbody class="list">
-
-<tr data-index="0" data-categories="TGFi" data-listing-file-modified-sort="1768904963616" data-listing-reading-time-sort="3" data-listing-word-count-sort="573" data-listing-title-sort="Computer Lab 3" data-listing-filename-sort="Lab 3.qmd">
-<td>
-<a href="./Practice/Week 3/Lab 3.html" class="title listing-title">Computer Lab 3</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="TGFi" data-listing-file-modified-sort="1768908242079" data-listing-reading-time-sort="4" data-listing-word-count-sort="618" data-listing-title-sort="MA22019 2025 - Computer Lab 1" data-listing-filename-sort="Lab 1.qmd">
-<td>
-<a href="./Practice/Week 1/Lab 1.html" class="title listing-title">MA22019 2025 - Computer Lab 1</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="TGFi" data-listing-file-modified-sort="1768904963639" data-listing-reading-time-sort="2" data-listing-word-count-sort="363" data-listing-title-sort="MA22019 2025 - Computer Lab 5" data-listing-filename-sort="Lab 5.qmd">
-<td>
-<a href="./Practice/Week 5/Lab 5.html" class="title listing-title">MA22019 2025 - Computer Lab 5</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="TGFi" data-listing-file-modified-sort="1768904963715" data-listing-reading-time-sort="3" data-listing-word-count-sort="485" data-listing-title-sort="MA22019 2025 - Computer Lab 6" data-listing-filename-sort="Lab 6.qmd">
-<td>
-<a href="./Practice/Week 6/Lab 6.html" class="title listing-title">MA22019 2025 - Computer Lab 6</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-categories="TGFi" data-listing-file-modified-sort="1768904963701" data-listing-reading-time-sort="3" data-listing-word-count-sort="512" data-listing-title-sort="MA22019 2025 - Computer Lab 7" data-listing-filename-sort="Lab 7.qmd">
-<td>
-<a href="./Practice/Week 7/Lab 7.html" class="title listing-title">MA22019 2025 - Computer Lab 7</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-categories="TGFi" data-listing-file-modified-sort="1768904963730" data-listing-reading-time-sort="3" data-listing-word-count-sort="559" data-listing-title-sort="MA22019 2025 - Computer Lab 8" data-listing-filename-sort="Lab 8.qmd">
-<td>
-<a href="./Practice/Week 8/Lab 8.html" class="title listing-title">MA22019 2025 - Computer Lab 8</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-categories="TGFi" data-listing-file-modified-sort="1768904963679" data-listing-reading-time-sort="3" data-listing-word-count-sort="469" data-listing-title-sort="MA22019 2025 - Computer Lab 9" data-listing-filename-sort="Lab 9.qmd">
-<td>
-<a href="./Practice/Week 9/Lab 9.html" class="title listing-title">MA22019 2025 - Computer Lab 9</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-categories="TGFi" data-listing-file-modified-sort="1768904963668" data-listing-reading-time-sort="3" data-listing-word-count-sort="504" data-listing-title-sort="MA22019 2025 -Computer Lab 2" data-listing-filename-sort="Lab 2.qmd">
-<td>
-<a href="./Practice/Week 2/Lab 2.html" class="title listing-title">MA22019 2025 -Computer Lab 2</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>

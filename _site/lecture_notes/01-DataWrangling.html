@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>datawrangling – MA22019</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lecture_notes/02-DataVisualization.html" rel="next">
+<link href="../lecture_notes/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture_notes/index.html">Lecture Notes</a></li><li class="breadcrumb-item"><a href="../lecture_notes/01-DataWrangling.html">Data Wrangling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/project_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/setup_university_drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">University Drive Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/computing_assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/why_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture_notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture_notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture_notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture_notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework &amp; Quizzes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coursework</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#data-wrangling" id="toc-data-wrangling" class="nav-link active" data-scroll-target="#data-wrangling">Data Wrangling</a>
+  <ul class="collapse">
+<li>
+<a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data cleaning</a>
+  <ul class="collapse">
+<li><a href="#converting-characters-into-numerical-values" id="toc-converting-characters-into-numerical-values" class="nav-link" data-scroll-target="#converting-characters-into-numerical-values">Converting characters into numerical values</a></li>
+  <li><a href="#converting-characters-into-dates" id="toc-converting-characters-into-dates" class="nav-link" data-scroll-target="#converting-characters-into-dates">Converting characters into dates</a></li>
+  <li><a href="#changing-variable-names" id="toc-changing-variable-names" class="nav-link" data-scroll-target="#changing-variable-names">Changing variable names</a></li>
+  <li><a href="#example-loading-and-cleaning-nrfa-river-flow-data" id="toc-example-loading-and-cleaning-nrfa-river-flow-data" class="nav-link" data-scroll-target="#example-loading-and-cleaning-nrfa-river-flow-data">Example: Loading and cleaning NRFA river flow data</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#working-with-a-single-data-frame" id="toc-working-with-a-single-data-frame" class="nav-link" data-scroll-target="#working-with-a-single-data-frame">Working with a single data frame</a>
+  <ul class="collapse">
+<li><a href="#filtering-observations" id="toc-filtering-observations" class="nav-link" data-scroll-target="#filtering-observations">Filtering observations</a></li>
+  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables">Selecting variables</a></li>
+  <li><a href="#creating-and-attaching-new-variables" id="toc-creating-and-attaching-new-variables" class="nav-link" data-scroll-target="#creating-and-attaching-new-variables">Creating and attaching new variables</a></li>
+  <li><a href="#combining-multiple-operations---the-pipe" id="toc-combining-multiple-operations---the-pipe" class="nav-link" data-scroll-target="#combining-multiple-operations---the-pipe">Combining multiple operations - the pipe</a></li>
+  <li><a href="#summarizing-the-data" id="toc-summarizing-the-data" class="nav-link" data-scroll-target="#summarizing-the-data">Summarizing the data</a></li>
+  <li><a href="#sorting-the-data-frame-based-on-a-variable" id="toc-sorting-the-data-frame-based-on-a-variable" class="nav-link" data-scroll-target="#sorting-the-data-frame-based-on-a-variable">Sorting the data frame based on a variable</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#working-with-multiple-data-sets" id="toc-working-with-multiple-data-sets" class="nav-link" data-scroll-target="#working-with-multiple-data-sets">Working with multiple data sets</a>
+  <ul class="collapse">
+<li><a href="#merging-two-data-sets" id="toc-merging-two-data-sets" class="nav-link" data-scroll-target="#merging-two-data-sets">Merging two data sets</a></li>
+  <li><a href="#merging-multiple-data-sets" id="toc-merging-multiple-data-sets" class="nav-link" data-scroll-target="#merging-multiple-data-sets">Merging multiple data sets</a></li>
+  </ul>
+</li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lecture_notes/index.html">Lecture Notes</a></li><li class="breadcrumb-item"><a href="../lecture_notes/01-DataWrangling.html">Data Wrangling</a></li></ol></nav></header><section id="data-wrangling" class="level1"><h1>Data Wrangling</h1>
+<p>In practice, <strong>raw data</strong> (measurements, etc.) may be provided in a format that hampers its analysis. Common problems include:</p>
+<ul>
+<li><p>Data types are incompatible with available R functions - data may, for instance, be imported as a set of characters, but we require numerical values for most R functions;</p></li>
+<li><p>Variable names are uninformative - we do not want to always go back and look up what the individual variables represent;</p></li>
+<li><p>We are only interested in a subset of the data - a study may have produced a lot of data, but we want to focus on a specific aspect.</p></li>
+</ul>
+<p><strong>Data wrangling</strong> is concerned with restructuring the raw data into a format more useful for the analysis. We also want to extract key information from the data, i.e, performing some <strong>data exploration</strong>.</p>
+<p>In this chapter we will explore how we can perform such tasks in R. Most of the functions we will use are provided by the <strong>dplyr</strong> R package (and other R packages where appropriate). Let’s load the dplyr package,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span> <span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>When we import data into R, the data will usually be stored as a <strong>data frame</strong>, which corresponds to a matrix, where each column has a name. The dplyr package is particularly effective at working with this data format. To access the individual columns for the different variables in the data frame, we can use the $ sign, followed by the name of the column (you will see this syntax at multiple points).</p>
+<section id="data-cleaning" class="level2"><h2 class="anchored" data-anchor-id="data-cleaning">Data cleaning</h2>
+<p>After loading the data, the first step is to check that variables have the correct data type and decide whether the variable names are suitable/informative. If the data type is incorrect, we should convert it, in particular if we want to apply R functions to the data. The most common conversion we will have to make is from the type <strong>character</strong> to the type <strong>numeric</strong> or <strong>date</strong>. In this section, we highlight some of the available R functions for converting and renaming variables, and illustrate their application using publicly available river flow data.</p>
+<section id="converting-characters-into-numerical-values" class="level3"><h3 class="anchored" data-anchor-id="converting-characters-into-numerical-values">Converting characters into numerical values</h3>
+<p>When loading the data for a numerical variable into R, the individual values may be stored as strings/words. Possible reasons include, for instance, that the value 2345.34 is stored as “2,345.34” in the data file (see Problem Class 1) or that missing values are represented via a letter - once R fails to convert a single entry to a numerical value, the whole column (variable) is converted to type <strong>character</strong>. However, this data type is often not useful because only a few functions can work with it.</p>
+<p>We will introduce the functions <strong>as.numeric()</strong> and <strong>case_when()</strong> that may be used to convert a character to a numerical value.</p>
+<p><strong>Example 1:</strong> Suppose we work with a data set where the letter “M” is used to indicate that an observation is missing. A toy example is provided in the data file “DataCleaningExample1.csv”. We load this data and use the function <strong>glimpse()</strong> in the dplyr package to print the data type and values:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Example1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/DataCleaningExample1.csv"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">Example1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 8
+Columns: 1
+$ Value &lt;chr&gt; "1.02", "0.98", "0.79", "M", "2.1", "15.1", "M", "4.2"</code></pre>
+</div>
+</div>
+<p>We find that the values are stored as characters/words, as indicated by the data type being <span class="math inline">\(\mathrm{\texttt{&lt;chr&gt;}}\)</span>. In such a situation, we cannot use the <strong>mean()</strong> function to derive the average value - there is no average of a set of words:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="va">Example1</span><span class="op">$</span><span class="va">Value</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(Example1$Value): argument is not numeric or logical:
+returning NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>Instead, we have to first use the function <strong>as.numeric()</strong> to convert the words to numerical values</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Example1</span><span class="op">$</span><span class="va">Value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span> <span class="va">Example1</span><span class="op">$</span><span class="va">Value</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">Example1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 8
+Columns: 1
+$ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
+</div>
+</div>
+<p>We see that the data type has changed to <span class="math inline">\(\mathrm{\texttt{&lt;dbl&gt;}}\)</span>, which is one data type for numerical values. Further, the R output shows that all entries with the letter “M” were converted to <span class="math inline">\(\mathrm{\texttt{NA}}\)</span> (not available) - this is R’s way to tell us that the conversion did not work or that a value is missing (which is exactly what we want here).</p>
+<p>With the values converted to the correct type, we can now calculate their mean:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="va">Example1</span><span class="op">$</span><span class="va">Value</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span> <span class="co"># na.rm=TRUE to ignore the entries with NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.031667</code></pre>
+</div>
+</div>
+<p><strong>Example 2:</strong> Suppose responses to a survey question were encoded as “Y” (“Yes”) or “N” (“No”) and we received the following data vector:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Y"</span>,<span class="st">"Y"</span>,<span class="st">"N"</span>,<span class="st">"Y"</span>,<span class="st">"N"</span>,<span class="st">"Y"</span>,<span class="st">"N"</span>,<span class="st">"N"</span>,<span class="st">"N"</span>,<span class="st">"Y"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Again, we cannot use <span class="math inline">\(\mathrm{\texttt{mean(responses)}}\)</span> to derive the proportion of participants who answered with “Yes”, because the mean() function requires numerical or logical values.</p>
+<p>One common approach to derive the proportion in practice is to encode the outcomes as numerical values to which the mean() function is then applied. The dplyr package provides the function <strong>case_when()</strong> which allows us to replace “Y” and “N” by 1 and 0 respectively:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span> <span class="va">responses</span> <span class="op">==</span> <span class="st">"Y"</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">responses</span> <span class="op">==</span> <span class="st">"N"</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="va">responses</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<p>We find that 50% of the participants answered the question with “Yes”. One strength of case_when() is that we can define as many cases as we need, there is no limit. The function can also be used to convert other types of data, and it is not limited to converting a character into a numerical value.</p>
+<p><strong>Remark 1:</strong> If you forget to specify a case in case_when(), the converted value for any unspecified case will be <span class="math inline">\(\mathrm{\texttt{NA}}\)</span> by default. The default option can be changed and for our our example we could have also used</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span> <span class="va">responses</span> <span class="op">==</span> <span class="st">"Y"</span> <span class="op">~</span> <span class="fl">1</span>, .default <span class="op">=</span> <span class="fl">0</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Remark 2:</strong> Be aware that case_when() considers the expressions sequentially (just as when you are using if, else if and else statements). The following pieces of code show an example where the result depends on the order of the conditions:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">40</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">10</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">1</span>, <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">20</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1</code></pre>
+</div>
+</div>
+<p>We see that all converted values are all equal to 1. Let’s see what happens when we change the order of the conditions:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">20</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">2</span>, <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">10</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 2</code></pre>
+</div>
+</div>
+<p>This second result seems more intuitive. Consequently, we should proceed from the most specific to the most general condition when using case_when().</p>
+</section><section id="converting-characters-into-dates" class="level3"><h3 class="anchored" data-anchor-id="converting-characters-into-dates">Converting characters into dates</h3>
+<p>In many studies we are provided with the time the data were observed. This information is often important in applications and we cannot simply ignore it. When loading variables representing dates into R, their values are often stored as strings, such as “01/10/2022”.</p>
+<p>The R package <strong>lubridate</strong> provides a range of nice functions to convert data of type <strong>character</strong> into the data type <strong>date</strong> or <strong>date-time</strong>. For instance, to convert the character expressions “01/10/2022” and “15/10/2023”, we use the <strong>as_date()</strong> function,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
+<span><span class="va">date_observed</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"01/10/2022"</span>, <span class="st">"15/10/2023"</span> <span class="op">)</span></span>
+<span><span class="va">date_converted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span> <span class="va">date_observed</span>, format<span class="op">=</span><span class="st">"%d/%m/%Y"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">date_converted</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Date[1:2], format: "2022-10-01" "2023-10-15"</code></pre>
+</div>
+</div>
+<p>We see that the default output format for dates is <strong>year-month-day</strong>.</p>
+<p><strong>Remark 1:</strong> After converting values to <strong>date</strong>, we can extract the year and month using the functions <strong>year()</strong> and <strong>month()</strong> respectively. Let’s extract the year from the dates in <strong>date_converted</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span> <span class="va">date_converted</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2022 2023</code></pre>
+</div>
+</div>
+<p><strong>Remark 2:</strong> We can also calculate the difference between dates. For instance, if we consider the two entries in the vector of converted dates, we find</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">date_converted</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">date_converted</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 379 days</code></pre>
+</div>
+</div>
+<p>So you can now use R to quickly calculate how many days there are left until the Easter break.</p>
+</section><section id="changing-variable-names" class="level3"><h3 class="anchored" data-anchor-id="changing-variable-names">Changing variable names</h3>
+<p>We should avoid using uninformative (or very long) variable names. Let’s generate a data frame with two columns, where each column contains five samples from a standard normal distribution</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span> <span class="fl">2025</span> <span class="op">)</span></span>
+<span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span> <span class="st">"x"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>, <span class="st">"y"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">obs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          x           y
+1 0.6207567 -0.16285434
+2 0.0356414  0.39711189
+3 0.7731545 -0.07998932
+4 1.2724891 -0.34496518
+5 0.3709754  0.70215136</code></pre>
+</div>
+</div>
+<p>We may argue that the variable names <strong>x</strong> and <strong>y</strong> are uninformative and should be changed to <strong>Sample1</strong> and <strong>Sample2</strong> respectively. The function <strong>rename()</strong> in the dplyr R package allows us to do this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">obs</span>, <span class="st">"Sample1"</span><span class="op">=</span><span class="va">x</span>, <span class="st">"Sample2"</span><span class="op">=</span><span class="va">y</span> <span class="op">)</span></span>
+<span><span class="va">obs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sample1     Sample2
+1 0.6207567 -0.16285434
+2 0.0356414  0.39711189
+3 0.7731545 -0.07998932
+4 1.2724891 -0.34496518
+5 0.3709754  0.70215136</code></pre>
+</div>
+</div>
+</section><section id="example-loading-and-cleaning-nrfa-river-flow-data" class="level3"><h3 class="anchored" data-anchor-id="example-loading-and-cleaning-nrfa-river-flow-data">Example: Loading and cleaning NRFA river flow data</h3>
+<p>The National River Flow Archive (<a href="https://nrfa.ceh.ac.uk">www.nrfa.ceh.ac.uk</a>) provides data for hundreds of sites (gauges) across the UK. We want to analyze daily river flow data for the River Avon at Bathford. The data are available in the file “Bathford River Flow.csv”.</p>
+<p>When looking at the data file, we identify two aspects that need to be taken into account when loading the data into R</p>
+<ol type="1">
+<li><p>The first 20 lines are data descriptors (so called <strong>meta data</strong>), while the remaining lines contain the actual data: dates and river flow measurements.</p></li>
+<li><p>The letter “M” appears in the third column whenever the river flow measurement is missing in later years.</p></li>
+</ol>
+<p>To ignore the first 20 lines and avoid importing the data file in a wrong format, we have to use three of the options provided by the read.csv() function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bathford River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>                         colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in read.table(file = file, header = header, sep = sep, quote = quote, :
+cols = 2 != length(data) = 3</code></pre>
+</div>
+</div>
+<p>The option <span class="math inline">\(\mathrm{\texttt{skip=20}}\)</span> means we ignore the first 20 lines, while <span class="math inline">\(\mathrm{\texttt{colClasses= c("character","numeric","NULL")}}\)</span> leads to the third column being ignored when loading the data (you can ignore the warning message in this case). Finally, we set <span class="math inline">\(\mathrm{\texttt{header=FALSE}}\)</span>, because the file does not provide variable names.</p>
+<p><strong>Tip:</strong> Have a look at the data set in the data file before trying to load it. R (in particular recent versions) may load the data into an incorrect format instead of giving an error. As an example, remove the option <span class="math inline">\(\mathrm{\texttt{colClasses=..}}\)</span>. You will find that the number of observations increases, but some of the dates are now listed as “M”.</p>
+<p>Let’s have a look at the imported data using the glimpse() function,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">Bathford_RF</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 19,697
+Columns: 2
+$ V1 &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1969-10-31…
+$ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52…</code></pre>
+</div>
+</div>
+<p>We see that there are 19,697 measurements in the data set. However, the variable names have to be changed - <strong>V1</strong> and <strong>V2</strong> are just not sensible. Further, we have to convert the dates into the <strong>date</strong> format. The river flow measurements are already stored as numeric values, so no conversion is required.</p>
+<p>Let’s start by changing the variable names to <strong>Date</strong> and <strong>RiverFlow</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">Bathford_RF</span>, Date <span class="op">=</span> <span class="va">V1</span>, RiverFlow <span class="op">=</span> <span class="va">V2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>before converting the variable <strong>Date</strong> to the correct type,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span> <span class="va">Bathford_RF</span><span class="op">$</span><span class="va">Date</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With the data having been <strong>cleaned</strong>, i.e., they have the correct type and informative names, we can start the analysis. As a first step, it is good practice to report the proportion of missing data of a variable. We can extract the proportion of missing river flow measurements using the functions mean() and <strong>is.na()</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span> <span class="va">Bathford_RF</span><span class="op">$</span><span class="va">RiverFlow</span> <span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.006244606</code></pre>
+</div>
+</div>
+<p>We find that river flow measurements are missing on about 0.62% of dates and this should be reported.</p>
+<p><strong>Remark:</strong> Missing data is important when building models. In this course, you are only expected to state the proportion of missing data. The handling of missing data will be considered in more detail in the Year 3 unit MA32022 Statistical Modelling and Data Analytics 3A.</p>
+<p>Now that the data frame is in a much better format, we can plot it using the function <strong>plot()</strong> covered in Year 1 Probability &amp; Statistics:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">Bathford_RF</span><span class="op">$</span><span class="va">Date</span>, <span class="va">Bathford_RF</span><span class="op">$</span><span class="va">RiverFlow</span>, type<span class="op">=</span><span class="st">'l'</span>,</span>
+<span>      xlab<span class="op">=</span><span class="st">"Date"</span>, ylab<span class="op">=</span><span class="st">"River Flow"</span>, cex.lab <span class="op">=</span> <span class="fl">1.5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-DataWrangling_files/figure-html/Bathford-1.png" class="img-fluid figure-img" style="width:62.0%"></p>
+<figcaption>River flow measurements at Bathford for 27 October 1969 to 30 September 2023.</figcaption></figure>
+</div>
+</div>
+</div>
+<p><strong>Which of the following conclusions should we report when asked to comment on the frequency of river flow levels above 100m<span class="math inline">\(^3\)</span>/s and the magnitude of river flow levels?</strong></p>
+<ol type="1">
+<li><p>Recorded river flow levels were as high as approximately 250m<span class="math inline">\(^3\)</span>/s.</p></li>
+<li><p>The data exhibits seasonality, with river flow levels being higher in winter than in summer.</p></li>
+<li><p>The data covers the years 1969 to 2023.</p></li>
+<li><p>There is at least one day with river flow levels exceeding 100m<span class="math inline">\(^3\)</span>/s for most years.</p></li>
+</ol></section></section><section id="working-with-a-single-data-frame" class="level2"><h2 class="anchored" data-anchor-id="working-with-a-single-data-frame">Working with a single data frame</h2>
+<p>We now study a range of aspects that frequently come up during the data wrangling process:</p>
+<dl>
+<dt><strong>Selecting subsets of observations and variables:</strong></dt>
+<dd>
+<p>When working with a large data set, not all variables and observations may be relevant. So we may want to reduce the size of our data set and only keep the observations required for our analysis. This process can happen before or after the data cleaning.</p>
+</dd>
+<dt><strong>Deriving new variables from existing data:</strong></dt>
+<dd>
+<p>It may be useful to create new variables which we believe to be interesting to explore in our analysis. These new variables should be stored in the same data frame as the other variables.</p>
+</dd>
+<dt><strong>Summarizing the data:</strong></dt>
+<dd>
+<p>As one of the first steps in the data exploration, we should derive summaries of the different variables to gain a better understanding of the data. For instance, as highlighted in Section <a href="#example-loading-and-cleaning-nrfa-river-flow-data">1.1.4</a>, the proportion of missing data is one useful summary.</p>
+</dd>
+<dt><strong>Sorting the data:</strong></dt>
+<dd>
+<p>In applications, interest may lie in extracting the smallest/largest observations and/or providing a ranking. As such, we need to be able to sort observations based on one, or more, criteria.</p>
+</dd>
+</dl>
+<p>In this section we explore how to perform these operations using the dplyr package. In Problem Class 1 we will use the considered techniques to analyze a relatively large data set from Brazil. Other aspects of data exploration will be discussed in the next chapters.</p>
+<p><strong>Tip:</strong> All steps of the data wrangling / exploration process should be placed in an R (or R Markdown) script, so that we can make modifications quickly if something needs to be changed. It’s also good practice to keep the raw data available in your R Workspace. In the following examples we never replace the raw data.</p>
+<section id="filtering-observations" class="level3"><h3 class="anchored" data-anchor-id="filtering-observations">Filtering observations</h3>
+<p>In an analysis we may only want to focus on a subset of the data. For instance, when modelling the risk of flooding, we are mostly interested in the extremely high river flow measurements.</p>
+<p>The function <strong>filter()</strong> is useful in such cases. Suppose we classified a river flow exceeding 100 m<span class="math inline">\(^3\)</span>/s at the gauge of Bathford in Section <a href="#example-loading-and-cleaning-nrfa-river-flow-data">1.1.4</a> as extremely high. We can then extract the subset of observations exceeding 100m<span class="math inline">\(^3\)</span>/s using filter(), and we use <strong>slice_head()</strong> to print the first five observations:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF_High</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span> <span class="va">Bathford_RF</span>, <span class="va">RiverFlow</span> <span class="op">&gt;</span> <span class="fl">100</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Bathford_RF_High</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date RiverFlow
+1 1970-11-19     104.3
+2 1971-01-21     128.4
+3 1971-01-22     114.8
+4 1971-01-23     115.2
+5 1971-01-24     133.1</code></pre>
+</div>
+</div>
+<p>The function filter() can also handle multiple conditions. For instance, we can extract the days across the period 1991-2023 when the river flow exceeded 100m<span class="math inline">\(^3\)</span>/s using</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF_High</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span> <span class="va">Bathford_RF</span>, <span class="va">RiverFlow</span> <span class="op">&gt;</span> <span class="fl">100</span>, <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">Date</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1990</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Bathford_RF_High</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date RiverFlow
+1 1991-01-10     112.1
+2 1992-11-26     106.9
+3 1992-11-27     100.9
+4 1992-11-28     100.6
+5 1992-11-29     131.6</code></pre>
+</div>
+</div>
+</section><section id="selecting-variables" class="level3"><h3 class="anchored" data-anchor-id="selecting-variables">Selecting variables</h3>
+<p>Not all variables in a data set may be of interest to us. For instance, meteorological data sets often provide measurements for multiple weather variables, but we may only need to analyze precipitation and temperature.</p>
+<p><strong>Example:</strong> Let’s consider the data set “Tuscany.csv” which provides information on the population in Tuscany, Italy, for 2020:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Tuscany.csv"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Year Postal_Code  Town Province Age Men Women
+1 2020       45001 Aulla       MS   0  32    30
+2 2020       45001 Aulla       MS   1  30    34
+3 2020       45001 Aulla       MS   2  43    39
+4 2020       45001 Aulla       MS   3  50    35
+5 2020       45001 Aulla       MS   4  38    29</code></pre>
+</div>
+</div>
+<p>Suppose we only want to compare the population data for the different provinces and towns. As such, we don’t need the variables <strong>Year</strong>, since all data are from 2020, and <strong>Postal_Code</strong>. Let’s look at two possible options to achieve this using the <strong>select()</strong> function in dplyr.</p>
+<p>The first option is to specify the variables we want to keep</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, <span class="va">Town</span><span class="op">:</span><span class="va">Women</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Tuscany</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Town Province Age Men Women
+1 Aulla       MS   0  32    30
+2 Aulla       MS   1  30    34
+3 Aulla       MS   2  43    39
+4 Aulla       MS   3  50    35
+5 Aulla       MS   4  38    29</code></pre>
+</div>
+</div>
+<p>Here, the colon sign indicates that we want to keep all columns from <strong>Town</strong> to <strong>Women</strong>.</p>
+<p>The second option is to specify the variables to be excluded using the minus sign,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, <span class="op">-</span><span class="va">Year</span>, <span class="op">-</span><span class="va">Postal_Code</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Whether we specify the variables to be kept, or the variables to be removed, really depends on the number of variables to be included (or excluded) - we want to write as little code as possible.</p>
+</section><section id="creating-and-attaching-new-variables" class="level3"><h3 class="anchored" data-anchor-id="creating-and-attaching-new-variables">Creating and attaching new variables</h3>
+<p>When analyzing real-world data, it may be useful to create new variables which we believe to be interesting to explore. For instance, for the population from Tuscany, we may want to calculate the total population for each age group and town, and attach this information as a new variable to the data frame.</p>
+<p>The <strong>mutate()</strong> function in the dplyr package is really useful in such situations, as we can produce and directly attach a new variable <strong>Population</strong> using</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> <span class="va">Tuscany</span>, Population <span class="op">=</span> <span class="va">Men</span> <span class="op">+</span> <span class="va">Women</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Tuscany</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Town Province Age Men Women Population
+1 Aulla       MS   0  32    30         62
+2 Aulla       MS   1  30    34         64
+3 Aulla       MS   2  43    39         82
+4 Aulla       MS   3  50    35         85
+5 Aulla       MS   4  38    29         67</code></pre>
+</div>
+</div>
+<p>We see that mutate() requires us to provide a new variable name and to define how the values of this new variable are to be derived. Note, the function mutate() can also be used to attach values stored in another R object to the data frame.</p>
+<p><strong>Important:</strong> If you use a variable name that already exists within the data frame, mutate() will overwrite this column with the new values - so we can also use mutate() to modify the columns in your data frame.</p>
+</section><section id="combining-multiple-operations---the-pipe" class="level3"><h3 class="anchored" data-anchor-id="combining-multiple-operations---the-pipe">Combining multiple operations - the pipe</h3>
+<p>We have already introduced quite a few useful functions for data cleaning and wrangling. Let’s now consider the case that we want to combine these functions. For instance, we may want to derive the population per age group and town, and then remove the variables <strong>Year</strong> and <strong>Postal_Code</strong> from the original data frame.</p>
+<p><strong>How can we do this?</strong></p>
+<p>The first option is to manipulate the data step by step and to always store the R object after finishing one operation (similar to what we have done so far). This would be implemented as</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, Population <span class="op">=</span> <span class="va">Men</span> <span class="op">+</span> <span class="va">Women</span> <span class="op">)</span></span>
+<span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span> <span class="va">Tuscany</span>, <span class="op">-</span><span class="va">Year</span>, <span class="op">-</span><span class="va">Postal_Code</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This is quite a bit of code, because we have to type <span class="math inline">\(\mathrm{\texttt{Tuscany}}\)</span> in each line.</p>
+<p><strong>Can we do better?</strong></p>
+<p>Well, we could place all the operations into a single line</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, Population <span class="op">=</span> <span class="va">Men</span> <span class="op">+</span> <span class="va">Women</span> <span class="op">)</span>, <span class="va">Town</span><span class="op">:</span><span class="va">Population</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>However, such an approach may quickly lead to a large number of brackets, which increases the risk of frustrating syntax errors - remember this may only be the start of our analysis.</p>
+<p>Luckily, we can avoid both these two options by using the <strong>pipe command</strong> <strong>%&gt;%</strong> in the dplyr R package. The same commands as above would be implemented as</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op">&lt;-</span> <span class="va">Tuscany_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> Population <span class="op">=</span> <span class="va">Men</span> <span class="op">+</span> <span class="va">Women</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span> <span class="op">-</span><span class="va">Year</span>, <span class="op">-</span><span class="va">Postal_Code</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Tuscany</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Town Province Age Men Women Population
+1 Aulla       MS   0  32    30         62
+2 Aulla       MS   1  30    34         64
+3 Aulla       MS   2  43    39         82
+4 Aulla       MS   3  50    35         85
+5 Aulla       MS   4  38    29         67</code></pre>
+</div>
+</div>
+<p>The operations are executed from top to bottom: We take the data frame <strong>Tuscany_raw</strong>, then apply the mutate() function to create the column <strong>Population</strong>, and conclude by removing the columns <strong>Year</strong> and <strong>Postal_Code</strong> from the created data frame using the select() function.</p>
+<p><strong>Tip:</strong> Combining multiple R commands can be tricky at first. If you are unsure, try to outline the way you want to manipulate the data before starting to implement it in R.</p>
+</section><section id="summarizing-the-data" class="level3"><h3 class="anchored" data-anchor-id="summarizing-the-data">Summarizing the data</h3>
+<p>For large data sets, we usually want to provide data summaries. For instance, one important summary for the Tuscany data set may be the total number of people within the data. In such situations, we can apply functions such as <strong>sum()</strong> directly</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="va">Tuscany</span><span class="op">$</span><span class="va">Population</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3691409</code></pre>
+</div>
+</div>
+<p>If we want to extract several such summaries, we can either derive each summary individually, or use the <strong>summarize()</strong> function in the dplyr R package. Let’s also extract the proportion of men and women</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span> <span class="st">"Population_Tuscany_2020"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="va">Population</span> <span class="op">)</span>,</span>
+<span>             <span class="st">"Men_Tuscany_2020"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="va">Men</span> <span class="op">)</span>,</span>
+<span>             <span class="st">"Women_Tuscany_2020"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="va">Women</span> <span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Population_Tuscany_2020 Men_Tuscany_2020 Women_Tuscany_2020
+1                 3691409          1787649            1903760</code></pre>
+</div>
+</div>
+<p>The summarize() function really starts to shine when we combine it with the <strong>group_by()</strong> function.</p>
+<p>Suppose we wanted the population numbers for each of the provinces, which requires us to sum up the numbers across towns and age groups while accounting for the variable <strong>Province</strong>. We can do this using group_by() and summarize():</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_Province</span> <span class="op">&lt;-</span> <span class="va">Tuscany</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span> <span class="va">Province</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span> Total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Population</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">Tuscany_Province</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Province  Total
+   &lt;chr&gt;     &lt;int&gt;
+ 1 AR       336450
+ 2 FI       997940
+ 3 GR       217803
+ 4 LI       328855
+ 5 LU       383688
+ 6 MS       189786
+ 7 PI       417799
+ 8 PO       265153
+ 9 PT       290177
+10 SI       263758</code></pre>
+</div>
+</div>
+<p>The group_by() function splits the data subject to the specified variable (<strong>Province</strong> in this case) and, for each subset, the summarize() function then derives the population total.</p>
+<p><strong>Remark:</strong> We can specify multiple variables in group_by() to define the subgroups based on several criteria.</p>
+<p>Let’s consider a slightly more complicated task. Suppose we were asked to study the age profile of women within the population. To extract the proportion of women of a certain age, we need to group women by <strong>Age</strong>, but also keep track of the total number of women within the population. One possible way to extract the proportions is as follows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_Women_Age</span> <span class="op">&lt;-</span> <span class="va">Tuscany</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span> <span class="va">Age</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span> Number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Women</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> Proportion <span class="op">=</span> <span class="va">Number</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Number</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note, we used the fact that the summarize() function returns a data frame, and thus we can perform further operations. Finally, let’s illustrate the calculated proportions using a bar plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span> <span class="va">Proportion</span><span class="op">~</span><span class="va">Age</span>, data<span class="op">=</span><span class="va">Tuscany_Women_Age</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-DataWrangling_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Age profile of living women in Tuscany for the year 2020.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We see that the highest proportions are observed for ages 40-70. The lower proportions for younger ages reflect the decrease in birth rates recorded for many countries over the past years. The decreasing proportion beyond 70 is presumably due to an increased rate of mortality for these age groups.</p>
+</section><section id="sorting-the-data-frame-based-on-a-variable" class="level3"><h3 class="anchored" data-anchor-id="sorting-the-data-frame-based-on-a-variable">Sorting the data frame based on a variable</h3>
+<p>You may have already seen the <strong>sort()</strong> command, which allows you to order the values within a vector. When we consider a data frame, we may want to sort its rows subject to the values in one of the columns. For instance, we may want to sort provinces based on their population.</p>
+<p>The function <strong>arrange()</strong> in the dplyr R package does exactly this job,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span> <span class="va">Tuscany_Province</span>, <span class="va">Total</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   Province  Total
+   &lt;chr&gt;     &lt;int&gt;
+ 1 MS       189786
+ 2 GR       217803
+ 3 SI       263758
+ 4 PO       265153
+ 5 PT       290177
+ 6 LI       328855
+ 7 AR       336450
+ 8 LU       383688
+ 9 PI       417799
+10 FI       997940</code></pre>
+</div>
+</div>
+<p>We see that “FI” (Firenze) has the highest population among the provinces in Tuscany. Further, the output demonstrates that the default setting for arrange() is to sort the values in ascending order. Should we want to sort values in descending order, we have to use the additional command <strong>desc()</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_Province</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Total</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Remark:</strong> If two observations have the same value, they are listed in their original order, regardless of whether we sort in ascending or descending order. If we want to change this (which we sometimes want), we can specify a second variable in arrange(), just as for group_by().</p>
+</section></section><section id="working-with-multiple-data-sets" class="level2"><h2 class="anchored" data-anchor-id="working-with-multiple-data-sets">Working with multiple data sets</h2>
+<p>So far we have focused on analyzing a single data file. In many applications, however, data is stored across multiple data files. For instance, we may have one data file containing weather data and another data file providing insurance data related to weather-related damages. In these cases, we want to combine the different data files into a single data frame for our analysis.</p>
+<p>The dplyr R package provides the functions <strong>inner_join()</strong>, <strong>left_joint()</strong>, <strong>right_join()</strong> and <strong>full_join()</strong> to combine data frames based on a “key”. All these functions combine two data frames and their application is illustrated via an example in Section <a href="Merging two data sets">1.3.1</a>.</p>
+<p>When working with multiple data sets, we may also want to automate the process. Imagine you had weather measurements for over 100 sites - you do not really want to spend hours just to merge the data frames. This aspect is considered in Section <a href="Merging multiple data sets">1.3.2</a>.</p>
+<section id="merging-two-data-sets" class="level3"><h3 class="anchored" data-anchor-id="merging-two-data-sets">Merging two data sets</h3>
+<p>In Section <a href="#example-loading-and-cleaning-nrfa-river-flow-data">1.1.4</a>, we focused on the river flow data collected at Bathford. The National River Flow Archive provides data for another gauge located to the west of Bath city centre; you can find the data file “Bath River Flow.csv” on Moodle. Our aim is to combine the river flow measurements into a single data frame.</p>
+<p>We start by again loading the data for Bathford and renaming the variables,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bathford River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>                         colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">Bathford_RF</span>, Date <span class="op">=</span> <span class="va">V1</span>, RiverFlow <span class="op">=</span> <span class="va">V2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A closer look at data file for the Bath gauge suggests that the data format is similar to that for Bathford. The only difference is that we now have to ignore the first 19 instead of the first 20 lines:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bath_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bath River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">19</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>                     colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">Bath_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">Bath_RF</span>, Date <span class="op">=</span> <span class="va">V1</span>, RiverFlow <span class="op">=</span> <span class="va">V2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s investigate the first element in each data frame:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bath_RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> n<span class="op">=</span><span class="fl">1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date RiverFlow
+1 1976-09-01      3.39</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> n<span class="op">=</span><span class="fl">1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date RiverFlow
+1 1969-10-27     3.998</code></pre>
+</div>
+</div>
+<p>We see that the two gauges started operating in different years - Bath in 1976 and Bathford in 1969. So the number of rows in the two data frames is different.</p>
+<p>When combining the two data frames, we want to match observations based on the variable <strong>Date</strong>, this is our “key”. Here we use the function full_join(), which ensures that all observations for Bath and Bathford are contained in the combined data set, and we specify that observations should be matched based on the variable <strong>Date</strong>,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RF</span> <span class="op">&lt;-</span> <span class="va">Bathford_RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span> <span class="va">Bath_RF</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Date"</span> <span class="op">=</span> <span class="st">"Date"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">RF</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 19,697
+Columns: 3
+$ Date        &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1…
+$ RiverFlow.x &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.…
+$ RiverFlow.y &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+</div>
+</div>
+<p>We see that the values for the first dates are correctly identified as being missing for Bath - the gauge was not in operation at the time. We are left with changing the variable names and converting the data type of <strong>Date</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RF</span><span class="op">$</span><span class="va">Date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span> <span class="va">RF</span><span class="op">$</span><span class="va">Date</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span> <span class="op">)</span></span>
+<span><span class="va">RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">RF</span>, Bathford <span class="op">=</span> <span class="va">RiverFlow.x</span>, Bath <span class="op">=</span> <span class="va">RiverFlow.y</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s plot the observations for Bath and Bathford against each other,</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">RF</span><span class="op">$</span><span class="va">Bath</span>, <span class="va">RF</span><span class="op">$</span><span class="va">Bathford</span>, cex.lab <span class="op">=</span> <span class="fl">1.5</span>, pch<span class="op">=</span><span class="fl">19</span>,</span>
+<span>      xlab<span class="op">=</span><span class="st">"River Flow at Bath"</span>, ylab<span class="op">=</span><span class="st">"River Flow at Bathford"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-DataWrangling_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Comparison of river flow for Bath and Bathford for 1 September 1976 - 30 October 2023.</figcaption></figure>
+</div>
+</div>
+</div>
+<p><strong>What can we conclude from this plot?</strong></p>
+<p><strong>Remark:</strong> If we want the first element in the combined data frame to be 01/09/1976 (the date when the gauge at Bath started operations), we would use the function inner_join(),</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RF_1976_2020</span> <span class="op">&lt;-</span> <span class="va">Bathford_RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span> <span class="va">Bath_RF</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Date"</span> <span class="op">=</span> <span class="st">"Date"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Remark:</strong> The function inner_join() does not remove the dates after 1976 for which the observations for Bath (or Bathford) are missing, but only the days which are not listed in both files.</p>
+</section><section id="merging-multiple-data-sets" class="level3"><h3 class="anchored" data-anchor-id="merging-multiple-data-sets">Merging multiple data sets</h3>
+<p>In practice we may work with <span class="math inline">\(N\)</span> data sets of the same (or a very similar) format. For instance, we may have 20 data sets, and each data set contains the river flow measurements for a gauge in Somerset. Then, we do not want to implement a lot of code of the form in Section <a href="Merging two data sets">1.3.1</a> just to combine all these data sets into a single data frame. Instead, we will use the <strong>for()</strong> loop in R.</p>
+<p><strong>Example:</strong> Suppose that, in addition to the river flow measurements for Bath and Bathford, we also need to consider the observations for Compton Dando, a small village to the west of Bath not located at the River Avon. For our analysis, it may be good to combine all three data sets into a single data frame, and the following piece of code is one way to create it.</p>
+<p>We start by defining the file names and the number of lines that we have to ignore when loading the data files</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gauges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"Bath"</span>, <span class="st">"Bathford"</span>, <span class="st">"Compton Dando"</span> <span class="op">)</span></span>
+<span><span class="va">lines_to_ignore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">19</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next step is to load the data from the different files, store the data frames in a list we call <strong>RF_individual</strong>, and update the variable names.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># setwd("Data/") &lt;--- REMOVED: Bad practice in RMarkdown/Quarto</span></span>
+<span><span class="va">RF_individual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span> <span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">gauges</span><span class="op">)</span> <span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="co">## Load the data from the .csv file</span></span>
+<span>  <span class="co"># Construct path relative to project root (or file location)</span></span>
+<span>  <span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span> <span class="st">"Data/"</span>, <span class="va">gauges</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>, <span class="st">" River Flow.csv"</span> <span class="op">)</span> </span>
+<span>  <span class="va">RF_individual</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="va">file_name</span>, skip<span class="op">=</span><span class="va">lines_to_ignore</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<span>                                  colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">## Change the variable names</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span> <span class="va">RF_individual</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span> <span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"Date"</span>, <span class="va">gauges</span><span class="op">[</span><span class="va">k</span><span class="op">]</span> <span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The code above includes two functions you may not have used so far and so we briefly describe them:</p>
+<ol type="1">
+<li><p><strong>paste()</strong> is used to append “River Flow.csv” to the name of the gauge to get the file name.</p></li>
+<li><p><strong>names()</strong> is used to rename the variable names. In this case, this function was easier to use than rename(); the latter does not like to be given names from a vector.</p></li>
+</ol>
+<p>Now we are ready to merge the different data frames by repeatedly using the function full_join():</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RF</span> <span class="op">&lt;-</span> <span class="va">RF_individual</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="kw">for</span><span class="op">(</span> <span class="va">k</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">gauges</span><span class="op">)</span> <span class="op">)</span></span>
+<span>  <span class="va">RF</span> <span class="op">&lt;-</span> <span class="va">RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span> <span class="va">RF_individual</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Date"</span><span class="op">=</span><span class="st">"Date"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">RF</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 23,955
+Columns: 4
+$ Date            &lt;chr&gt; "1976-09-01", "1976-09-02", "1976-09-03", "1976-09-04"…
+$ Bath            &lt;dbl&gt; 3.39, 2.83, 2.97, 2.81, 2.90, 2.81, 2.59, 3.11, 2.78, …
+$ Bathford        &lt;dbl&gt; 2.811, 2.560, 2.337, 2.385, 2.146, 2.359, 2.367, 2.416…
+$ `Compton Dando` &lt;dbl&gt; 0.188, 0.173, 0.170, 0.172, 0.174, 0.174, 0.176, 0.195…</code></pre>
+</div>
+</div>
+<p>The final step is to convert the type of the variable <strong>Date</strong> and to sort observations by date; we know that Bathford started collecting data in 1969 but the first entry is for 1976. So we obtain the final data frame using</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RF</span> <span class="op">&lt;-</span> <span class="va">RF</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> Date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span> <span class="va">Date</span>, format<span class="op">=</span><span class="st">"%Y-%m-%d"</span> <span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span> <span class="va">Date</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">RF</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Date Bath Bathford Compton Dando
+1 1958-03-01   NA       NA          2.97
+2 1958-03-02   NA       NA          2.32
+3 1958-03-03   NA       NA          1.98
+4 1958-03-04   NA       NA          1.70
+5 1958-03-05   NA       NA          1.42</code></pre>
+</div>
+</div>
+<p>We can now start our analysis, for instance, by plotting the different river flows against each other:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span> mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, cex.lab <span class="op">=</span> <span class="fl">1.5</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">RF</span><span class="op">$</span><span class="va">Bath</span>, <span class="va">RF</span><span class="op">$</span><span class="va">Bathford</span>, pch<span class="op">=</span><span class="fl">19</span>, xlab<span class="op">=</span><span class="st">"Bath"</span>, ylab<span class="op">=</span><span class="st">"Bathford"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">RF</span><span class="op">$</span><span class="va">Bath</span>, <span class="va">RF</span><span class="op">$</span><span class="va">`Compton Dando`</span>, pch<span class="op">=</span><span class="fl">19</span>, xlab<span class="op">=</span><span class="st">"Bath"</span>, ylab<span class="op">=</span><span class="st">"Compton Dando"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">RF</span><span class="op">$</span><span class="va">Bathford</span>, <span class="va">RF</span><span class="op">$</span><span class="va">`Compton Dando`</span>, pch<span class="op">=</span><span class="fl">19</span>, xlab<span class="op">=</span><span class="st">"Bathford"</span>, ylab<span class="op">=</span><span class="st">"Compton Dando"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-DataWrangling_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Scatter plots of river flow measurements for each pair of gauges in the combined data set</figcaption></figure>
+</div>
+</div>
+</div>
+<p><strong>What do you conclude from these plots?</strong></p>
+<p><strong>Remark:</strong> If we wanted to add more gauges to the data, we only need to update the first two lines of R code in this example; the rest of the code can be left unchanged.</p>
+</section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>We have covered some of the key concepts regarding data cleaning and wrangling:</p>
+<ul>
+<li><p>Ensure that variables have the correct type and are given informative names</p></li>
+<li><p>Use the dplyr R package when working with a single data frame. The package allows you to create subsets, sort the data, etc.</p></li>
+<li><p>In many real-world applications we have to combine multiple data sets. The dplyr R package also provides functions to achieve this.</p></li>
+</ul>
+<p><strong>Important:</strong> Hardly any real-world data set is “standard” - we had to use some additional functions/options for the river flow data, as well as the Airbnb data analyzed in Problem Class 1. While we introduced useful functions to perform data wrangling, we still usually have to investigate the data file “by hand” before loading the data into R. In this course we cannot possibly cover all scenarios that may occur when working with real-world data, but you can usually find a satisfying solution using Google (or other search engines).</p>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../lecture_notes/index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lecture_notes/02-DataVisualization.html" class="pagination-link" aria-label="Data Visualization">
+        <span class="nav-page-text">Data Visualization</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
