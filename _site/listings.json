@@ -1,0 +1,72 @@
+[
+  {
+    "listing": "/labs.html",
+    "items": [
+      "/practice/week_1/lab_1.html",
+      "/practice/week_5/lab_5.html",
+      "/practice/week_6/lab_6.html",
+      "/practice/week_7/lab_7.html",
+      "/practice/week_8/lab_8.html",
+      "/practice/week_9/lab_9.html",
+      "/practice/week_2/lab_2.html",
+      "/practice/week_3/lab_3.html"
+    ]
+  },
+  {
+    "listing": "/slides.html",
+    "items": [
+      "/slides/week_7/analysis_of_german_temperature_data.html",
+      "/slides/week_9/London.html",
+      "/slides/week_9/Tornadoes.html",
+      "/slides/week_9/WildFires.html",
+      "/slides/week_1/Overview.html",
+      "/slides/week_1/data_cleaning_and_wrangling.html",
+      "/slides/week_2/combining_data_frames.html",
+      "/slides/week_2/analysis_australian_weather.html",
+      "/slides/week_2/data_visualization_(part_1).html",
+      "/slides/week_3/data_visualization_(part_2).html",
+      "/slides/week_4/notes_week_4.html",
+      "/slides/week_5/text_data_analysis_(part_1).html",
+      "/slides/week_6/text_data_analysis_(part_2).html",
+      "/slides/week_7/spatial_data_analysis_(part_1).html",
+      "/slides/week_8/spatial_data_analysis_(part_2).html",
+      "/slides/week_9/spatial_data_analyis_(part_3).html",
+      "/slides/week_10/revision_class.html",
+      "/slides/week_1/analysis_nrfa_data_for_bathford.html",
+      "/slides/week_1/analysis_tuscany_data.html",
+      "/slides/week_5/comparison_of_jane_eyre_and_wuthering_heights.html",
+      "/slides/week_5/analysis_of_jane_eyre.html",
+      "/slides/week_2/analysis_nrfa_data_for_bathford.html",
+      "/slides/week_6/analysis_of_the_work_by_charles_dickens.html",
+      "/slides/week_6/analysis_of_nyt_articles.html",
+      "/slides/week_3/change_in_scale___examples.html",
+      "/slides/week_3/change_in_data_structure___example.html",
+      "/slides/week_3/analysis_of_wind_speed_and_direction_for_bela_vista.html",
+      "/slides/week_10/analysis_of_nyt_articles.html",
+      "/slides/week_8/analysis_of_colorado_precipitation_data.html",
+      "/slides/week_8/analysis_of_sea_surface_temperature_anomalies.html",
+      "/slides/week_10/semi_variogram_example.html",
+      "/slides/week_1/Example.html"
+    ]
+  },
+  {
+    "listing": "/homework.html",
+    "items": [
+      "/practice/week_2/homework_2.html",
+      "/practice/week_3/homework_3.html",
+      "/practice/week_5/homework_5.html",
+      "/practice/week_6/homework_6.html",
+      "/practice/week_7/homework_7.html",
+      "/practice/week_8/homework_8.html",
+      "/practice/week_9/homework_9.html",
+      "/practice/week_2/quiz_2.html",
+      "/practice/week_4/quiz_4.html",
+      "/practice/week_5/quiz_5.html",
+      "/practice/week_6/quiz_6.html",
+      "/practice/week_7/quiz_7.html",
+      "/practice/week_8/quiz_8.html",
+      "/practice/week_9/quiz_9.html",
+      "/practice/week_3/quiz_3.html"
+    ]
+  }
+]

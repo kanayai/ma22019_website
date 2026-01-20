@@ -80,7 +80,7 @@ write.csv(PM10, "PM10.csv", row.names = FALSE)
 # Energy Consumption
 
 ```{r}
-Utopia <- read.csv( "AEP_hourly.csv" )
+Utopia <- read.csv( "data/aep_hourly.csv" )
 ```
 
 ```{r}
@@ -170,7 +170,7 @@ write.csv(Utopia_daily, "Utopia Energy Production.csv", row.names = FALSE)
 ```
 
 ```{r}
-Houses <- read.csv( "Housing Register.csv" )
+Houses <- read.csv( "data/housing_register.csv" )
 ```
 
 ```{r}

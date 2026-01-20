@@ -2,8 +2,8 @@
 title: "Homework & Quizzes"
 listing:
   contents: 
-    - "Practice/Week */Homework*.qmd"
-    - "Practice/Week */Quiz*.qmd"
+    - "practice/week_*/homework*.qmd"
+    - "practice/week_*/quiz*.qmd"
   type: table
   fields: [title, subtitle]
   sort: "title"

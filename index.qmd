@@ -1,5 +1,5 @@
 ---
-title: "MA22019: Spatial Statistics"
+title: "MA22019: Introduction to Data Science"
 subtitle: "University of Bath"
 ---
 

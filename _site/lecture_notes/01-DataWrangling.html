@@ -334,7 +334,7 @@ window.Quarto = {
 <p>We will introduce the functions <strong>as.numeric()</strong> and <strong>case_when()</strong> that may be used to convert a character to a numerical value.</p>
 <p><strong>Example 1:</strong> Suppose we work with a data set where the letter “M” is used to indicate that an observation is missing. A toy example is provided in the data file “DataCleaningExample1.csv”. We load this data and use the function <strong>glimpse()</strong> in the dplyr package to print the data type and values:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Example1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/DataCleaningExample1.csv"</span> <span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Example1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/datacleaningexample1.csv"</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span> <span class="va">Example1</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 8
@@ -473,7 +473,7 @@ $ Value &lt;dbl&gt; 1.02, 0.98, 0.79, NA, 2.10, 15.10, NA, 4.20</code></pre>
 </ol>
 <p>To ignore the first 20 lines and avoid importing the data file in a wrong format, we have to use three of the options provided by the read.csv() function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bathford River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/bathford_river_flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                         colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in read.table(file = file, header = header, sep = sep, quote = quote, :
@@ -488,8 +488,8 @@ cols = 2 != length(data) = 3</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 19,697
 Columns: 2
-$ V1 &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1969-10-31…
-$ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52…</code></pre>
+$ V1 &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1969-10-31~
+$ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52~</code></pre>
 </div>
 </div>
 <p>We see that there are 19,697 measurements in the data set. However, the variable names have to be changed - <strong>V1</strong> and <strong>V2</strong> are just not sensible. Further, we have to convert the dates into the <strong>date</strong> format. The river flow measurements are already stored as numeric values, so no conversion is required.</p>
@@ -581,7 +581,7 @@ $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 
 <p>Not all variables in a data set may be of interest to us. For instance, meteorological data sets often provide measurements for multiple weather variables, but we may only need to analyze precipitation and temperature.</p>
 <p><strong>Example:</strong> Let’s consider the data set “Tuscany.csv” which provides information on the population in Tuscany, Italy, for 2020:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Tuscany.csv"</span> <span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Tuscany_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/tuscany.csv"</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span> <span class="va">Tuscany_raw</span>, n<span class="op">=</span><span class="fl">5</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Year Postal_Code  Town Province Age Men Women
@@ -688,7 +688,7 @@ $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span> Total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Population</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">Tuscany_Province</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
+<pre><code># A tibble: 10 x 2
    Province  Total
    &lt;chr&gt;     &lt;int&gt;
  1 AR       336450
@@ -729,7 +729,7 @@ $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span> <span class="va">Tuscany_Province</span>, <span class="va">Total</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
+<pre><code># A tibble: 10 x 2
    Province  Total
    &lt;chr&gt;     &lt;int&gt;
  1 MS       189786
@@ -757,13 +757,13 @@ $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 
 <p>In Section <a href="#example-loading-and-cleaning-nrfa-river-flow-data">1.1.4</a>, we focused on the river flow data collected at Bathford. The National River Flow Archive provides data for another gauge located to the west of Bath city centre; you can find the data file “Bath River Flow.csv” on Moodle. Our aim is to combine the river flow measurements into a single data frame.</p>
 <p>We start by again loading the data for Bathford and renaming the variables,</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bathford River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/bathford_river_flow.csv"</span>, skip<span class="op">=</span><span class="fl">20</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                         colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">Bathford_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">Bathford_RF</span>, Date <span class="op">=</span> <span class="va">V1</span>, RiverFlow <span class="op">=</span> <span class="va">V2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A closer look at data file for the Bath gauge suggests that the data format is similar to that for Bathford. The only difference is that we now have to ignore the first 19 instead of the first 20 lines:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bath_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Bath River Flow.csv"</span>, skip<span class="op">=</span><span class="fl">19</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bath_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/bath_river_flow.csv"</span>, skip<span class="op">=</span><span class="fl">19</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                     colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="va">Bath_RF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> <span class="va">Bath_RF</span>, Date <span class="op">=</span> <span class="va">V1</span>, RiverFlow <span class="op">=</span> <span class="va">V2</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -788,9 +788,9 @@ $ V2 &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 19,697
 Columns: 3
-$ Date        &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1…
-$ RiverFlow.x &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.…
-$ RiverFlow.y &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+$ Date        &lt;chr&gt; "1969-10-27", "1969-10-28", "1969-10-29", "1969-10-30", "1~
+$ RiverFlow.x &lt;dbl&gt; 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.~
+$ RiverFlow.y &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~</code></pre>
 </div>
 </div>
 <p>We see that the values for the first dates are correctly identified as being missing for Bath - the gauge was not in operation at the time. We are left with changing the variable names and converting the data type of <strong>Date</strong></p>
@@ -831,7 +831,7 @@ $ RiverFlow.y &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 <span>  </span>
 <span>  <span class="co">## Load the data from the .csv file</span></span>
 <span>  <span class="co"># Construct path relative to project root (or file location)</span></span>
-<span>  <span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span> <span class="st">"Data/"</span>, <span class="va">gauges</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>, <span class="st">" River Flow.csv"</span> <span class="op">)</span> </span>
+<span>  <span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span> <span class="st">"data/"</span>, <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"_"</span>, <span class="va">gauges</span><span class="op">[</span><span class="va">k</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>, <span class="st">"_river_flow.csv"</span> <span class="op">)</span> </span>
 <span>  <span class="va">RF_individual</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="va">file_name</span>, skip<span class="op">=</span><span class="va">lines_to_ignore</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>, header<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                                  colClasses <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="st">"numeric"</span>,<span class="st">"NULL"</span><span class="op">)</span> <span class="op">)</span></span>
 <span>  </span>
@@ -854,10 +854,10 @@ $ RiverFlow.y &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 23,955
 Columns: 4
-$ Date            &lt;chr&gt; "1976-09-01", "1976-09-02", "1976-09-03", "1976-09-04"…
-$ Bath            &lt;dbl&gt; 3.39, 2.83, 2.97, 2.81, 2.90, 2.81, 2.59, 3.11, 2.78, …
-$ Bathford        &lt;dbl&gt; 2.811, 2.560, 2.337, 2.385, 2.146, 2.359, 2.367, 2.416…
-$ `Compton Dando` &lt;dbl&gt; 0.188, 0.173, 0.170, 0.172, 0.174, 0.174, 0.176, 0.195…</code></pre>
+$ Date            &lt;chr&gt; "1976-09-01", "1976-09-02", "1976-09-03", "1976-09-04"~
+$ Bath            &lt;dbl&gt; 3.39, 2.83, 2.97, 2.81, 2.90, 2.81, 2.59, 3.11, 2.78, ~
+$ Bathford        &lt;dbl&gt; 2.811, 2.560, 2.337, 2.385, 2.146, 2.359, 2.367, 2.416~
+$ `Compton Dando` &lt;dbl&gt; 0.188, 0.173, 0.170, 0.172, 0.174, 0.174, 0.176, 0.195~</code></pre>
 </div>
 </div>
 <p>The final step is to convert the type of the variable <strong>Date</strong> and to sort observations by date; we know that Bathford started collecting data in 1969 but the first entry is for 1976. So we obtain the final data frame using</p>

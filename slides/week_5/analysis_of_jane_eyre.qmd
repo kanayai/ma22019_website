@@ -22,7 +22,7 @@ library(stringr)
 We can either download the text from Project Gutenberg (see lecture notes), or directly via the text file provided on Moodle
 
 ```{r}
-JaneEyre_raw <- readLines( "JaneEyre.txt" )
+JaneEyre_raw <- readLines( "jane_eyre.txt" )
 JaneEyre_raw <- data.frame( text = JaneEyre_raw )
 ```
 

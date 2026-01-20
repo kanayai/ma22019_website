@@ -33,7 +33,7 @@ This question assesses the student's understanding of key aspects covered in the
 We start by loading the data
 
 ```{r}
-PM10 <- read.csv("pm10.csv" )
+PM10 <- read.csv("data/pm10.csv")
 ```
 
 The first step is to report the amount of missing data
@@ -139,7 +139,7 @@ This question assesses the student's ability to effectively manipulate a datafra
 We start by loading the data
 
 ```{r}
-Consumption <- read.csv( "Utopia Energy Consumption.csv" )
+Consumption <- read.csv("data/utopia_energy_consumption.csv")
 glimpse( Consumption )
 ```
 
@@ -240,7 +240,7 @@ This question assesses the student's ability to work with more thna one data fra
 We start by considering how much renewable energy sources have contributed to Utopia's energy production and load the relevant data and convert to the correct type
 
 ```{r}
-Production <- read.csv( "Utopia Energy Production.csv" )
+Production <- read.csv("data/utopia_energy_production.csv")
 Production <- Production %>% mutate( Day = as_date(Day) )
 ```
 
@@ -286,7 +286,7 @@ Production_2024_alt <- Production %>%
 We now need to relate this to the daily demand, adn thus we need to combine this data with that for energy demand. Using the same steps as for Question 2a), we have
 
 ```{r}
-Consumption <- read.csv( "Utopia Energy Consumption.csv" )
+Consumption <- read.csv("data/utopia_energy_consumption.csv")
 Consumption_Daily <- Consumption %>% 
   mutate( Date = ymd_hms(Date) ) %>%
   group_by( Date=date(Date) ) %>%

@@ -18,7 +18,7 @@ library(tidytext)
 ### Loading and cleaning the text data
 
 ```{r}
-JaneEyre_raw <- readLines( "JaneEyre.txt", encoding = "UTF-8" )
+JaneEyre_raw <- readLines( "jane_eyre.txt", encoding = "UTF-8" )
 JaneEyre_raw <- data.frame( text = JaneEyre_raw )
 
 JaneEyre <- JaneEyre_raw %>% 
@@ -30,7 +30,7 @@ JaneEyre <- JaneEyre_raw %>%
 ```
 
 ```{r}
-WutheringHeights_raw <- readLines( "WutheringHeights.txt", encoding = "UTF-8" )
+WutheringHeights_raw <- readLines( "wuthering_heights.txt", encoding = "UTF-8" )
 WutheringHeights_raw <- data.frame( text = WutheringHeights_raw )
 
 WutheringHeights <- WutheringHeights_raw %>% 

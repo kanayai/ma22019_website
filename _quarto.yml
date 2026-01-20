@@ -3,7 +3,7 @@ project:
 
 website:
   title: "MA22019"
-  description: "Spatial Statistics at University of Bath"
+  description: "Introduction to Data Science at the University of Bath"
   page-navigation: true
 
   sidebar:

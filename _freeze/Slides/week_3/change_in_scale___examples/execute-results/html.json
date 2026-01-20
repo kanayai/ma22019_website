@@ -1,0 +1,17 @@
+{
+  "hash": "405f88fe0dd7e1fc7e8c8c85c76689e5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Changing scales - Example\"\nauthor: \"Christian Rohrbeck\"\ndate: \"19/02/2025\"\nformat: html\n---\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nlibrary(patchwork)\n```\n:::\n\n\n\n## Example 1 - Relation between body and brain weight for mammals {-}\n\nLoad the data:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nMammals <- read.csv(\"mammals.csv\" )\n```\n:::\n\n\nLet's compare linear scale (left) and logarithmic scale (right):\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ng1 <- ggplot( Mammals, aes( x=body, y=brain ) ) + geom_point() + \n  labs( title=\"Brain vs body weight on linear scale\",\n        x=\"Body Weight in kg\", y=\"Brain weight in g\" )\n\ng2 <- g1 + coord_trans( x=\"log10\", y=\"log10\" )\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: `coord_trans()` was deprecated in ggplot2 4.0.0.\nℹ Please use `coord_transform()` instead.\n```\n\n\n:::\n\n```{.r .cell-code}\ng1 + g2\n```\n\n::: {.cell-output-display}\n![](change_in_scale___examples_files/figure-html/unnamed-chunk-3-1.png){fig-align='center' width=90%}\n:::\n:::\n\n\n## Example 2 - Analysis of Facebook Data\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nFacebook <- read.csv(\"facebook.csv\", header=TRUE )\n\ng1  <- ggplot( Facebook, aes( x=follow, y=postlikes ) ) + \n  geom_point() +\n  labs( x=\"Number of Followers\", y=\"Number of likes\" )\ng2 <- g1 + coord_trans( x=\"log\", y=\"log\" )\ng1 + g2\n```\n\n::: {.cell-output-display}\n![](change_in_scale___examples_files/figure-html/unnamed-chunk-4-1.png){fig-align='center' width=90%}\n:::\n:::\n\n\n## Change of font size and theme\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ng2 <- g2 + theme_bw() +  \n  theme( axis.title=element_text(size=16),\n         axis.text=element_text(size=14) )\ng1 + g2\n```\n\n::: {.cell-output-display}\n![](change_in_scale___examples_files/figure-html/unnamed-chunk-5-1.png){fig-align='center' width=90%}\n:::\n:::\n\n",
+    "supporting": [
+      "change_in_scale___examples_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

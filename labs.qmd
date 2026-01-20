@@ -2,7 +2,7 @@
 title: "Labs"
 listing:
   contents: 
-    - "Practice/Week */Lab*.qmd"
+    - "practice/week_*/lab*.qmd"
   type: table
   fields: [title, subtitle]
   sort: "title"

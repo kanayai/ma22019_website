@@ -27,11 +27,11 @@ library(lubridate)
 ### Create data set of fakes
 
 ```{r, warning=FALSE}
-Fake1 <- readLines("Original Data/Downtrodden Poet.txt", encoding = "UTF-8")
-Fake2 <- readLines("Original Data/Fallen Gentleman.txt", encoding = "UTF-8")
-Fake3 <- readLines("Original Data/MisersToll.txt", encoding = "UTF-8")
-Fake4 <- readLines("Original Data/Orphans Heart.txt", encoding = "UTF-8")
-Fake5 <- readLines("Original Data/Shopkeepers Lament.txt", encoding = "UTF-8")
+Fake1 <- readLines("original_data/downtrodden_poet.txt", encoding = "UTF-8")
+Fake2 <- readLines("original_data/fallen_gentleman.txt", encoding = "UTF-8")
+Fake3 <- readLines("original_data/misers_toll.txt", encoding = "UTF-8")
+Fake4 <- readLines("original_data/orphans_heart.txt", encoding = "UTF-8")
+Fake5 <- readLines("original_data/shopkeepers_lament.txt", encoding = "UTF-8")
 ```
 
 ```{r}

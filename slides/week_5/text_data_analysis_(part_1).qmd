@@ -80,7 +80,7 @@ One way to store text data is as .txt file.
 The file "Hesse quote.txt" contains a short quote that we load with **readLines()**
 
 ```{r, echo=TRUE}
-text_Hesse <- readLines( "Hesse quote.txt" )
+text_Hesse <- readLines( "hesse_quote.txt" )
 text_Hesse
 ```
 

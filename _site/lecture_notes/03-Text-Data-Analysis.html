@@ -336,7 +336,7 @@ window.Quarto = {
   </center>
 <p>The text is stored in the file “Hesse quote.txt” on Moodle, with the quote being split into two lines as above. To load the data into R, we use the function <strong>readLines()</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_Hesse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"Data/Hesse quote.txt"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_Hesse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"data/hesse_quote.txt"</span><span class="op">)</span></span>
 <span><span class="va">text_Hesse</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Some of us think holding on makes us strong,"
@@ -402,11 +402,11 @@ window.Quarto = {
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  word    n term frequency rank
-1  the 7856     0.04169874    1
-2    i 7169     0.03805222    2
-3  and 6632     0.03520189    3
-4   to 5238     0.02780270    4
-5    a 4470     0.02372624    5</code></pre>
+1  the 7856     0.04169475    1
+2    i 7172     0.03806451    2
+3  and 6632     0.03519852    3
+4   to 5238     0.02780004    4
+5    a 4475     0.02375051    5</code></pre>
 </div>
 </div>
 <p>Looking at the output, the words with the highest term frequency are the ones we usually use when writing a longer piece of text.</p>
@@ -438,11 +438,11 @@ window.Quarto = {
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       word   n term frequency rank
-1      jane 341    0.001809988   69
-2 rochester 317    0.001682599   71
-3       sir 316    0.001677291   72
-4      miss 310    0.001645444   73
-5      time 244    0.001295124   98</code></pre>
+1      jane 341    0.001809815   69
+2 rochester 317    0.001682438   71
+3       sir 316    0.001677131   72
+4      miss 310    0.001645287   73
+5      time 244    0.001295000   98</code></pre>
 </div>
 </div>
 </section><section id="visualizing-word-frequency-using-bar-plots" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="visualizing-word-frequency-using-bar-plots">Visualizing word frequency using bar plots</h4>
@@ -650,7 +650,7 @@ window.Quarto = {
 <section id="analyzing-some-books-by-charles-dickens" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="analyzing-some-books-by-charles-dickens">Analyzing some books by Charles Dickens</h4>
 <p>Suppose our corpus comprises four books by Charles Dickens: <em>A Christmas Carol</em>, <em>A Tale of Two Cities</em>, <em>Great Expectations</em> and <em>Oliver Twist</em>. The text for the books from Project Gutenberg is available as “Dickens.csv” on Moodle:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Dickens.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/dickens.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>As in the analysis of <em>Jane Eyre</em> and <em>Wuthering Heights</em>, we use the unnest_tokens() function to separate the text into individual words, and we use gsub() to remove any underscores:</p>
 <div class="cell">
@@ -681,11 +681,11 @@ window.Quarto = {
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Dickens_tf.idf</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 title    word   n          tf  idf      tf_idf
-1    A Christmas Carol scrooge 327 0.011047671 1.39 0.015315323
-2         Oliver Twist  oliver 876 0.005397013 1.39 0.007481849
+1    A Christmas Carol scrooge 327 0.011047297 1.39 0.015314806
+2         Oliver Twist  oliver 876 0.005396980 1.39 0.007481803
 3 A Tale of Two Cities   lorry 369 0.002664549 1.39 0.003693849
-4         Oliver Twist  bumble 397 0.002445907 1.39 0.003390747
-5         Oliver Twist   sikes 354 0.002180985 1.39 0.003023487
+4         Oliver Twist  bumble 397 0.002445892 1.39 0.003390726
+5         Oliver Twist   sikes 354 0.002180971 1.39 0.003023468
 6 A Tale of Two Cities defarge 302 0.002180742 1.39 0.003023150</code></pre>
 </div>
 </div>
@@ -718,7 +718,7 @@ window.Quarto = {
 <p>To illustrate LDA we first consider an example where we know the ‘truth’. Here we will take two books by Charles Dickens and split each up into their individual chapters. We then want to see how well LDA performs at distinguishing between the two books.</p>
 <p>We consider the books <em>Great Expectations</em> and <em>A Tale of Two Cities</em> we studied previously:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Dickens.csv"</span> <span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/dickens.csv"</span> <span class="op">)</span></span>
 <span><span class="va">Dickens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span></span>
 <span>    <span class="va">Dickens_raw</span>,</span>
 <span>    <span class="va">title</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Great Expectations"</span>, <span class="st">"A Tale of Two Cities"</span><span class="op">)</span></span>
@@ -778,13 +778,13 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">Dickens_LDA</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span>
 <span><span class="va">Dickens_topics</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
+<pre><code># A tibble: 4 x 3
   document              topic gamma
   &lt;chr&gt;                 &lt;int&gt; &lt;dbl&gt;
-1 Great Expectations_57     1 0.285
-2 Great Expectations_7      1 0.185
-3 Great Expectations_38     1 0.371
-4 Great Expectations_17     1 0.259</code></pre>
+1 Great Expectations_57     1 0.310
+2 Great Expectations_7      1 0.190
+3 Great Expectations_38     1 0.370
+4 Great Expectations_17     1 0.237</code></pre>
 </div>
 </div>
 <p>The values in the column <strong>gamma</strong> correspond to the estimated proportions. We see that Chapter 7, 17, 38 and 57 from <em>Great Expectations</em> feature more of Topic 2 than Topic 1.</p>
@@ -811,16 +811,16 @@ window.Quarto = {
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">beta</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
+<pre><code># A tibble: 6 x 3
 # Groups:   topic [2]
-  topic term       beta
-  &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
-1     1 lorry   0.00702
-2     1 hand    0.00643
-3     1 defarge 0.00574
-4     2 joe     0.0143 
-5     2 miss    0.00941
-6     2 don     0.00765</code></pre>
+  topic term     beta
+  &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
+1     1 lorry 0.00690
+2     1 hand  0.00634
+3     1 time  0.00600
+4     2 joe   0.0146 
+5     2 miss  0.00951
+6     2 don   0.00812</code></pre>
 </div>
 </div>
 <p>It seems that character names plan an important role when deciding whether a text belongs to Topic 1 or Topic 2, which is kind of what we expect. Let’s produce a plot to compare the term frequencies for the different words in more detail:</p>
@@ -845,7 +845,7 @@ window.Quarto = {
 </section></section><section id="example-2-articles-in-the-new-york-times" class="level3"><h3 class="anchored" data-anchor-id="example-2-articles-in-the-new-york-times">Example 2: Articles in the New York Times</h3>
 <p>Let’s look at an example where there is no ‘truth’ as such. The file “NYT.csv” provides metadata for 1289 articles published by the New York Times in their “Europe” subsection between 01/01/2023 and 01/11/2024:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/NYT.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/nyt.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Specifically, the data file gives for each article the lead paragraph and the date it was published. We want to explore the results we obtain when applying LDA.</p>
 <section id="fitting-the-lda-model" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="fitting-the-lda-model">Fitting the LDA model</h4>

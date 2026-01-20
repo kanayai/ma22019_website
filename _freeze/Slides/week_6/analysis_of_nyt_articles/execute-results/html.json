@@ -1,0 +1,17 @@
+{
+  "hash": "de57a507bb92dc75bd09f77986bce444",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Analysis of NYT Articles\"\nauthor: \"Christian Rohrbeck\"\ndate: \"12/03/2025\"\nformat: html\n---\n\n\n\n## Loading the packages and data {-}\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(tidytext)\nlibrary(tidyr)\nlibrary(topicmodels)\n```\n:::\n\n\nWe work with 1289 articles published by the New York Times in their “Europe” subsection between 01/01/2023 and 01/11/2024:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNYT <- read.csv(\"nyt.csv\" )\n```\n:::\n\n\nSet identifier for each article:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNYT <- NYT %>% mutate( ID=1:nrow(NYT) )\n```\n:::\n\n\n\n## Constructing the Document Term Matrix {-}\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNYT_count <- NYT %>%\n  unnest_tokens( word, lead_paragraph ) %>%\n  anti_join( stop_words, by=\"word\" ) %>%\n  count( ID, word, sort = TRUE )\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNYT_dtm <- NYT_count %>% cast_dtm( ID, word, n )\n```\n:::\n\n\n\n## Estimaet the Latent Dirichlet Allocation Model {-}\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNYT_LDA <- LDA( NYT_dtm, k = 2, method=\"Gibbs\", control = list(seed=2024) )\n```\n:::\n\n\n\n## Analysis of the results {-}\n\n\n### Make up of articles {-}\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ntidy( NYT_LDA , matrix = \"gamma\" ) %>%\n  filter( topic==1 ) %>%\n  ggplot( aes( y=gamma ) ) + theme_bw() + \n  geom_boxplot() + labs( y=\"Proportion\" )\n```\n\n::: {.cell-output-display}\n![](analysis_of_nyt_articles_files/figure-html/unnamed-chunk-7-1.png){fig-align='center' width=40%}\n:::\n:::\n\n\n\n### Make up of topics {-}\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ntidy( NYT_LDA , matrix = \"beta\" ) %>%\n  mutate( topic = case_when( topic==1 ~ \"Topic1\", topic==2 ~ \"Topic2\") ) %>%\n  pivot_wider( names_from = topic, values_from = beta, values_fill = 0 ) %>%\n  ggplot( aes(x=Topic1, y=Topic2) ) +  coord_trans( x=\"sqrt\", y=\"sqrt\" ) + \n  geom_point() + theme_bw() +\n  geom_text( aes(label=term), check_overlap = TRUE, vjust=1 ) + \n  labs( x=\"Term Frequency in Topic 1\", y=\"Term Frequency in Topic 2\" )\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: `coord_trans()` was deprecated in ggplot2 4.0.0.\nℹ Please use `coord_transform()` instead.\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](analysis_of_nyt_articles_files/figure-html/unnamed-chunk-8-1.png){fig-align='center' width=60%}\n:::\n:::\n\n",
+    "supporting": [
+      "analysis_of_nyt_articles_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "1ae872233350beea322cad81dc546081",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"MA22019 2025 - Homework 9\"\nsubtitle: \"Mise en place\"\ndescription: \"Due on ...\"\ncategories: \"Humework\"\n---\n\n\n\n### **Overview**\n\nYour answer to the Homework Question can be submitted on Moodle to your tutor for feedback. The submission deadline is 17:00 on Thursday 24 April 2025. You should submit a single PDF or Word file that provides your R code, any created R output and all your comments.\n\nYou may want to load the following packages before starting the exercise:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary( dplyr )\nlibrary( ggplot2 )\nlibrary( tidyr )\nlibrary( sf )\nlibrary( ggspatial )\nlibrary( prettymapr )\nlibrary( spatstat )\n```\n:::\n\n\nWhen working on a University PC, you will have to first install some of these packages. \n\n\n### **Homework Question - Tracking grey squirrels across the UK**\n\nThe grey squirrel is classified as an invasive species in the UK, and it has displaced the native red squirrel across large parts of the UK. A wildlife conservation charity has collected data on reported sightings of grey squirrels for 2020-2022. The data they provided includes the following:\n\n**GreySquirrels.csv:** Sightings of grey squirrels reported to the wildlife conservation charity for 2020-2022:\n\n* Year: Year the sighting happened\n\n* Lon: Longitude coordinate of the sighting\n\n* Lat: Latitude coordinate of the sighting\n\n* Admin: Name of the administrative area, where the grey squirrel was sighted\n\n**UK Shapefile:** Folder containing shapefiles for the UK\n\n* UK.shp: Shapefile without administrative boundaries\n\n* UK admin.shp: Shapefile with boundaries for the administrative areas named in the file \"GreySquirrels.csv\"\n\nThe charity assured us that the data is representative of the spatial distribution of squirrels across Great Britain for all years. They ask you to use the data to investigate the following aspects:\n\na) What can we say about the spatial distribution of grey squirrels across Great Britain in 2022?\n\nb) Are there any areas of Great Britain that saw a notable change in the number of grey squirrels when we compare the data for 2020 and 2022?\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

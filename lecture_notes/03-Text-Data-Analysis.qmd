@@ -39,7 +39,7 @@ Consider the following quote by Hermann Hesse (a German-Swiss poet):
 The text is stored in the file "Hesse quote.txt" on Moodle, with the quote being split into two lines as above. To load the data into R, we use the function **readLines()**:
   
 ```{r}
-text_Hesse <- readLines("Data/Hesse quote.txt")
+text_Hesse <- readLines("data/hesse_quote.txt")
 text_Hesse
 ```
 

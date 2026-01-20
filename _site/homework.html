@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -321,19 +321,187 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+    </select>
+  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<table class="quarto-listing-table table caption-top">
+<table class="quarto-listing-table table">
 <thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">Title</th>
-<th data-quarto-table-cell-role="th">Subtitle</th>
+<tr>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+
+<th>
+Subtitle
+</th>
+
 </tr>
 </thead>
 <tbody class="list">
+
+<tr data-index="0" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768904963669" data-listing-reading-time-sort="2" data-listing-word-count-sort="341" data-listing-title-sort="Homework 2" data-listing-filename-sort="homework_2.qmd">
+<td>
+<a href="./practice/week_2/homework_2.html" class="title listing-title">Homework 2</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768908241219" data-listing-reading-time-sort="2" data-listing-word-count-sort="342" data-listing-title-sort="Homework 3" data-listing-filename-sort="homework_3.qmd">
+<td>
+<a href="./practice/week_3/homework_3.html" class="title listing-title">Homework 3</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768904963639" data-listing-reading-time-sort="2" data-listing-word-count-sort="202" data-listing-title-sort="MA22019 2025 - Homework 5" data-listing-filename-sort="homework_5.qmd">
+<td>
+<a href="./practice/week_5/homework_5.html" class="title listing-title">MA22019 2025 - Homework 5</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768904963717" data-listing-reading-time-sort="2" data-listing-word-count-sort="355" data-listing-title-sort="MA22019 2025 - Homework 6" data-listing-filename-sort="homework_6.qmd">
+<td>
+<a href="./practice/week_6/homework_6.html" class="title listing-title">MA22019 2025 - Homework 6</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="4" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768908242060" data-listing-reading-time-sort="2" data-listing-word-count-sort="333" data-listing-title-sort="MA22019 2025 - Homework 7" data-listing-filename-sort="homework_7.qmd">
+<td>
+<a href="./practice/week_7/homework_7.html" class="title listing-title">MA22019 2025 - Homework 7</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-categories="SG9tZXdvcms=" data-listing-file-modified-sort="1768904963720" data-listing-reading-time-sort="2" data-listing-word-count-sort="363" data-listing-title-sort="MA22019 2025 - Homework 8" data-listing-filename-sort="homework_8.qmd">
+<td>
+<a href="./practice/week_8/homework_8.html" class="title listing-title">MA22019 2025 - Homework 8</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-categories="SHVtZXdvcms=" data-listing-file-modified-sort="1768908241731" data-listing-reading-time-sort="2" data-listing-word-count-sort="293" data-listing-title-sort="MA22019 2025 - Homework 9" data-listing-filename-sort="homework_9.qmd">
+<td>
+<a href="./practice/week_9/homework_9.html" class="title listing-title">MA22019 2025 - Homework 9</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="7" data-categories="UXVpeg==" data-listing-file-modified-sort="1768917136126" data-listing-reading-time-sort="2" data-listing-word-count-sort="365" data-listing-title-sort="MA22019 2025 - Quiz 2" data-listing-filename-sort="quiz_2.qmd">
+<td>
+<a href="./practice/week_2/quiz_2.html" class="title listing-title">MA22019 2025 - Quiz 2</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="8" data-categories="UXVpeg==" data-listing-file-modified-sort="1768904963626" data-listing-reading-time-sort="3" data-listing-word-count-sort="460" data-listing-title-sort="MA22019 2025 - Quiz 4" data-listing-filename-sort="quiz_4.qmd">
+<td>
+<a href="./practice/week_4/quiz_4.html" class="title listing-title">MA22019 2025 - Quiz 4</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="9" data-categories="UXVpeg==" data-listing-file-modified-sort="1768917136151" data-listing-reading-time-sort="3" data-listing-word-count-sort="507" data-listing-title-sort="MA22019 2025 - Quiz 5" data-listing-filename-sort="quiz_5.qmd">
+<td>
+<a href="./practice/week_5/quiz_5.html" class="title listing-title">MA22019 2025 - Quiz 5</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="10" data-categories="UXVpeg==" data-listing-file-modified-sort="1768917136175" data-listing-reading-time-sort="2" data-listing-word-count-sort="389" data-listing-title-sort="MA22019 2025 - Quiz 6" data-listing-filename-sort="quiz_6.qmd">
+<td>
+<a href="./practice/week_6/quiz_6.html" class="title listing-title">MA22019 2025 - Quiz 6</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="11" data-categories="UXVpeg==" data-listing-file-modified-sort="1768904963699" data-listing-reading-time-sort="2" data-listing-word-count-sort="364" data-listing-title-sort="MA22019 2025 - Quiz 7" data-listing-filename-sort="quiz_7.qmd">
+<td>
+<a href="./practice/week_7/quiz_7.html" class="title listing-title">MA22019 2025 - Quiz 7</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="12" data-categories="UXVpeg==" data-listing-file-modified-sort="1768904963731" data-listing-reading-time-sort="2" data-listing-word-count-sort="370" data-listing-title-sort="MA22019 2025 - Quiz 8" data-listing-filename-sort="quiz_8.qmd">
+<td>
+<a href="./practice/week_8/quiz_8.html" class="title listing-title">MA22019 2025 - Quiz 8</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="13" data-categories="UXVpeg==" data-listing-file-modified-sort="1768904963682" data-listing-reading-time-sort="2" data-listing-word-count-sort="387" data-listing-title-sort="MA22019 2025 - Quiz 9" data-listing-filename-sort="quiz_9.qmd">
+<td>
+<a href="./practice/week_9/quiz_9.html" class="title listing-title">MA22019 2025 - Quiz 9</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
+<tr data-index="14" data-categories="UXVpeg==" data-listing-file-modified-sort="1768917136168" data-listing-reading-time-sort="3" data-listing-word-count-sort="554" data-listing-title-sort="Quiz 3" data-listing-filename-sort="quiz_3.qmd">
+<td>
+<a href="./practice/week_3/quiz_3.html" class="title listing-title">Quiz 3</a>
+</td>
+<td>
+<span class="listing-subtitle">Mise en place</span>
+</td>
+
+</tr>
+
 </tbody>
 </table>
 <div class="listing-no-matching d-none">No matching items</div>

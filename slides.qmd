@@ -1,7 +1,7 @@
 ---
 title: "Slides"
 listing:
-  contents: Slides
+  contents: slides
   type: table
   fields: [title, date]
   sort: "date"

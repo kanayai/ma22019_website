@@ -501,7 +501,7 @@ for( k in 1:length(gauges) ){
   
   ## Load the data from the .csv file
   # Construct path relative to project root (or file location)
-  file_name <- paste0( "Data/", gauges[k], " River Flow.csv" ) 
+  file_name <- paste0( "data/", tolower(gsub(" ", "_", gauges[k])), "_river_flow.csv" ) 
   RF_individual[[k]] <- read.csv( file_name, skip=lines_to_ignore[k], header=FALSE,
                                   colClasses = c("character","numeric","NULL") )
   
