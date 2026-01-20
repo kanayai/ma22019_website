@@ -1,5 +1,5 @@
 ---
-title: "Computer Lab 3"
+title: "MA22019 2025 -Computer Lab 3"
 subtitle: "Mise en place"
 description: "To work on lab xxx"
 categories: "Lab"

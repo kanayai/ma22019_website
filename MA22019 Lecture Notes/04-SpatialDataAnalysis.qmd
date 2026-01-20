@@ -276,7 +276,7 @@ In the examples considered so far, such as the German weather data in Figure \@r
 As a second motivating data example, let's consider the recorded sea surface temperature anomalies for the North Sea for 1 November 2024 (provided in the file "SeaSurface.csv") as recorded by NOAA:  
 
 ```{r}
-SSTA <- read.csv("Data/Sea Surface Temperature Anomalies.csv")
+SSTA <- read.csv( "Data/Sea Surface Temperature Anomalies.csv" )
 ```
 
 Observations are on a 5km resolution. To create a plot of the data, we first have to convert the data frame providing longitude, latitude and sea surface temperature into a spatial data object using **st_as_sf()**:
@@ -470,8 +470,8 @@ The file "PrecipitationColorado.csv" contains the amount of precipitation per mo
 
 Let's import the precipitation data and the information on the spatial sites. 
 ```{r}
-ColoradoPrecip <- read.csv("Data/PrecipitationColorado.csv")
-ColoradoCities <- read.csv("Data/Cities Colorado.csv")
+ColoradoPrecip <- read.csv( "Data/PrecipitationColorado.csv" )
+ColoradoCities <- read.csv( "Data/Cities Colorado.csv" )
 ```
 
 Before we perform PCA, we have to consider the assumption of linearity, which can be difficult to verify in practice. In this example it is sufficient to just plot the data for pairs of sites against each other and to see whether there is a linear pattern

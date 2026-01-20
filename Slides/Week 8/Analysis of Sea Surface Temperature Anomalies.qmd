@@ -19,7 +19,7 @@ library(sf)
 library(sp)
 library(gstat)
 
-SSTA <- read.csv("Sea Surface Temperature Anomalies.csv")
+SSTA <- read.csv( "Sea Surface Temperature Anomalies.csv" )
 ```
 
 

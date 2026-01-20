@@ -2,9 +2,6 @@
 title: "Problem Class 5 - Solution"
 author: "Dr. Karim Anaya-Izquierdo"
 date: "19/03/2025"
-format:
-  html: default
-  pdf: default
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +17,7 @@ In this short exercise we consider the average sea surface temperature for the N
 Let's import the data
 
 ```{r}
-Sea_raw <- read.csv("Data/SeaSurface.csv")
+Sea_raw <- read.csv( "Data/SeaSurface.csv" )
 ```
 
 Our aim is to visualize the spatial distribution, and we load the necessary packages

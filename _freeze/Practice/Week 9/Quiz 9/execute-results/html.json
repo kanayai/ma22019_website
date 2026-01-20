@@ -1,0 +1,15 @@
+{
+  "hash": "d22714370732c63119b36428b8c163bb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"MA22019 2025 - Quiz 9\"\nsubtitle: \"Mise en place\"\ndescription: \"To work after \"\ncategories: \"Quiz\"\n---\n\n\n\n### **Overview**\n\nThis week's problem sheet focuses on the methods for analyzing point pattern and lattice/areal unit data in Sections 4.5-4.7 in the lecture notes. Exercises 1-2 help you with revising the content of the lecture in Week 9\n\nYou may want to load the following packages before starting the exercise:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary( dplyr )\nlibrary( ggplot2 )\nlibrary( tidyr )\nlibrary( sf )\nlibrary( ggspatial )\nlibrary( prettymapr )\nlibrary( spatstat )\n```\n:::\n\n\nWhen working on a University PC, you will have to first install some of these packages. \n\n\n### **Exercise 1 - Swine fever outbreaks across Europe**\n\nThe file \"Outbreaks.csv\" contains the data for animal disease outbreaks between September 2015 and August 2017 as provided by the EMPRES Global Animal Disease Information System. Each entry in the data set specifies the location, date and type of disease for an individual outbreak. In this question we want to focus on the African swine fever that has affected large parts of Europe in the past years. Address the following three research tasks / questions and then complete the Moodle quiz.\n\na. Which three countries were the worst affected in terms of the total number of outbreaks of African swine fever?\n\nb. Visualize the locations of outbreaks of African swine fever for the Baltic states (Estonia, Latvia and Lithuania). What do you conclude?\n\nc. Latvia has recorded a high number of outbreaks. Identify the parts of Latvia that observed a high frequency of swine fever outbreaks using quadrat counting or the kernel smoothed intensity function. Is it reasonable to conclude that the point process describing outbreaks of African swine fever across Latvia is homogeneous?\n\n\n### **Exercise 2 - Crime rates across France**\n\nThe file “Crimes France.csv” contains crime statistics from 2015 for all French départments (except Corsica). The file uses the UTF-8 encoding and you should ensure to specify this when loading the file. A shapefile for France with the départment boundaries is provided in the file \"gadm41_FRA_2.shp\". Use the techniques for areal unit data to complete the following tasks and then go to Moodle and answer the quiz questions.\n\na) Import the shapefile and create a map for France which includes the boundaries for the départments.\n\nb) Visualize the rate of violence per 1000 people per départment. Which areas should we avoid when we are concerned about violence?\n\nc) Visualize the rate of burglaries per 1000 people per départment. What do you conclude?\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

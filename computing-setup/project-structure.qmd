@@ -93,6 +93,6 @@ my_project/
 ```
 
 ### Why this matters?
-1.  **Relative Paths:** You can load data with `read.csv("data/raw/my_data.csv")`. This works on your computer, your friend's computer, and the marker's computer.
+1.  **Relative Paths:** You can load data with `read.csv( "data/raw/my_data.csv" )`. This works on your computer, your friend's computer, and the marker's computer.
 2.  **Clean Workspace:** `output/` keeps your generated files (which you can delete and regenerate) separate from your source code.
 3.  **Sanity:** You know exactly where to find the raw data vs. the cleaned data.

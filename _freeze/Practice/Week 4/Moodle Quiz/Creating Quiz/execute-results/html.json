@@ -1,0 +1,15 @@
+{
+  "hash": "11e32ac85fd25370ec030dc69825d110",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Test\"\nauthor: \"Dr. Karim Anaya-Izquierdo\"\ndate: \"2025-01-13\"\nformat: html\n---\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsetwd(\"C:/Users/cr777/Desktop/Teaching 2024-2025/MA22019/Problem Sheets/Problem Sheet 3/Moodle Quiz/\")\n```\n:::\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(exams)\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nelearn_exam <- c( \"Q1a.Rmd\", \"Q1b.Rmd\", \"Q2bi.Rmd\",\n                  \"Q2bii.Rmd\", \"Q3ai.Rmd\", \"Q3aii.Rmd\")\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(2025)\nrxm <- exams2moodle( elearn_exam, n=1, name=\"PS3\" )\n```\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -92,7 +92,7 @@ JaneAusten_Count %>%
 Let's study the sentiment of the books using the AFINN sentiment lexicon:
 
 ```{r}
-AFINN <- read.csv("Data/AFINN Sentiment Lexicon.csv")
+AFINN <- read.csv( "Data/AFINN Sentiment Lexicon.csv" )
 ```
 
 We want to derive the sentiment score for each chapter in each book. To do this, we first need to identify which chapter each line belongs to. We can do this by adapting the code from Section 3.2 in the lecture notes:

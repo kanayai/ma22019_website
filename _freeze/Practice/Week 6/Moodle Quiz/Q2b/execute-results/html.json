@@ -1,0 +1,15 @@
+{
+  "hash": "350c19e05ddc7562967939efaace6d52",
+  "result": {
+    "engine": "knitr",
+    "markdown": "Question\n========\nWhich of the following statements is correct when you explore the proportions with which the different topics feature?\n\nAnswerlist\n----------\n* Topic 1 is featuring significantly more in articles in the \"business\" category\n* Topic 1 is featuring significantly less in articles in the \"business\" category\n* There is no real difference between the \"sports\" and  \"business\" category in terms of how often Topic 1 features\n\n\nSolution\n========\n\nWe first extract the estimated proportions:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nArticles_topics <- tidy( Articles_LDA , matrix = \"gamma\" ) %>% \n  separate( document, c(\"NewsType\", \"ID\"), sep=\"_\", convert=TRUE )\n```\n:::\n\n\nWe can now create a box plot of proportions for each of the articles\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot( Articles_topics, aes( x=factor(topic), y=gamma ) ) + \n  facet_wrap( ~NewsType ) + geom_boxplot() + \n  labs( x=\"Topic\", y=\"Proportion\" )\n```\n:::\n\n\n\nWe find that articles from \"business\" category are usually made up of 25% Topic 1 and 75% Topic 2. The reverse is true for the \"sports\" category. So we find that that Topic 1 is featuring significantly less in articles in the \"business\" category.\n\nMeta-information\n================\nexname: Q2b\nextype: schoice\nexsolution: 010\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

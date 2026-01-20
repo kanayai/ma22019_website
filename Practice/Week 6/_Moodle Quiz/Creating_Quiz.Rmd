@@ -1,0 +1,15 @@
+---
+title: "Test"
+author: "Christian Rohrbeck"
+date: "2025-01-13"
+output: html_document
+---
+
+
+```{r hh}
+library(exams)
+elearn_exam <- c( "Q1a.Rmd", "Q1b.Rmd", "Q2b.Rmd", "Q2c.Rmd" )
+
+set.seed(2025)
+rxm <- exams2moodle( elearn_exam, n=1, name="PS5" )
+```

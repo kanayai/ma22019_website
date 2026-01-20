@@ -20,7 +20,7 @@ library(patchwork)
 Load the data:
 
 ```{r}
-Mammals <- read.csv("Mammals.csv")
+Mammals <- read.csv( "Mammals.csv" )
 ```
 
 Let's compare linear scale (left) and logarithmic scale (right):

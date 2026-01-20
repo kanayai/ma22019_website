@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Assignment Workflow</title>
+<title>Assignment Workflow – MA22019</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,32 +23,259 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="computing-assignments_files/libs/clipboard/clipboard.min.js"></script>
-<script src="computing-assignments_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="computing-assignments_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="computing-assignments_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="computing-assignments_files/libs/quarto-html/popper.min.js"></script>
-<script src="computing-assignments_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="computing-assignments_files/libs/quarto-html/anchor.min.js"></script>
-<link href="computing-assignments_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="computing-assignments_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="computing-assignments_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="computing-assignments_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="computing-assignments_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="computing-assignments_files/libs/quarto-diagram/mermaid.min.js"></script>
-<script src="computing-assignments_files/libs/quarto-diagram/mermaid-init.js"></script>
-<link href="computing-assignments_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../computing-setup/why-quarto.html" rel="next">
+<link href="../computing-setup/setup-university-drive.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing-setup/project-structure.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing-setup/computing-assignments.html">Assignments Workflow</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/project-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/setup-university-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">University Drive Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/computing-assignments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assignments Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/why-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lecture Notes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework &amp; Quizzes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coursework</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-assignment-submission-works" id="toc-how-assignment-submission-works" class="nav-link active" data-scroll-target="#how-assignment-submission-works">How Assignment Submission Works</a></li>
+  <li><a href="#step-by-step-guide" id="toc-step-by-step-guide" class="nav-link" data-scroll-target="#step-by-step-guide">Step-by-Step Guide</a>
+  <ul class="collapse">
+  <li><a href="#step-1-accept-the-assignment" id="toc-step-1-accept-the-assignment" class="nav-link" data-scroll-target="#step-1-accept-the-assignment">Step 1: Accept the Assignment</a></li>
+  <li><a href="#step-2-clone-into-rstudio" id="toc-step-2-clone-into-rstudio" class="nav-link" data-scroll-target="#step-2-clone-into-rstudio">Step 2: Clone into RStudio</a></li>
+  <li><a href="#step-3-the-edit---commit-loop" id="toc-step-3-the-edit---commit-loop" class="nav-link" data-scroll-target="#step-3-the-edit---commit-loop">Step 3: The “Edit - Commit” Loop</a></li>
+  <li><a href="#step-4-submit-push" id="toc-step-4-submit-push" class="nav-link" data-scroll-target="#step-4-submit-push">Step 4: Submit (Push)</a></li>
+  </ul></li>
+  <li><a href="#assignment-repository-structure" id="toc-assignment-repository-structure" class="nav-link" data-scroll-target="#assignment-repository-structure">Assignment Repository Structure</a></li>
+  <li><a href="#what-gets-graded" id="toc-what-gets-graded" class="nav-link" data-scroll-target="#what-gets-graded">What Gets Graded?</a>
+  <ul class="collapse">
+  <li><a href="#content-80" id="toc-content-80" class="nav-link" data-scroll-target="#content-80">1. Content (80%)</a></li>
+  <li><a href="#workflow-points-20---the-3-commit-rule" id="toc-workflow-points-20---the-3-commit-rule" class="nav-link" data-scroll-target="#workflow-points-20---the-3-commit-rule">2. Workflow Points (20%) - “The 3-Commit Rule”</a></li>
+  </ul></li>
+  <li><a href="#deadlines-and-late-policy" id="toc-deadlines-and-late-policy" class="nav-link" data-scroll-target="#deadlines-and-late-policy">Deadlines and Late Policy</a>
+  <ul class="collapse">
+  <li><a href="#how-to-check-your-submission" id="toc-how-to-check-your-submission" class="nav-link" data-scroll-target="#how-to-check-your-submission">How to Check Your Submission</a></li>
+  </ul></li>
+  <li><a href="#getting-your-own-copy-started" id="toc-getting-your-own-copy-started" class="nav-link" data-scroll-target="#getting-your-own-copy-started">Getting Your Own Copy Started</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-new-repository" id="toc-creating-a-new-repository" class="nav-link" data-scroll-target="#creating-a-new-repository">Creating a New Repository</a></li>
+  </ul></li>
+  <li><a href="#collaboration-on-group-projects" id="toc-collaboration-on-group-projects" class="nav-link" data-scroll-target="#collaboration-on-group-projects">Collaboration on Group Projects</a>
+  <ul class="collapse">
+  <li><a href="#rules-for-group-work" id="toc-rules-for-group-work" class="nav-link" data-scroll-target="#rules-for-group-work">Rules for Group Work</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#i-dont-see-the-git-pane-in-rstudio" id="toc-i-dont-see-the-git-pane-in-rstudio" class="nav-link" data-scroll-target="#i-dont-see-the-git-pane-in-rstudio">“I don’t see the Git Pane in RStudio”</a></li>
+  <li><a href="#push-failed-login-errors" id="toc-push-failed-login-errors" class="nav-link" data-scroll-target="#push-failed-login-errors">“Push Failed” (Login Errors)</a></li>
+  <li><a href="#merge-conflict" id="toc-merge-conflict" class="nav-link" data-scroll-target="#merge-conflict">“Merge Conflict”</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing-setup/project-structure.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing-setup/computing-assignments.html">Assignments Workflow</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Assignment Workflow</h1>
 </div>
@@ -133,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Do NOT</strong> save this project in OneDrive, Dropbox, or Google Drive. Cloud sync services corrupt Git repositories.</p>
-<p><strong>Recommendation:</strong> Use your University <strong>H: Drive</strong> (Network mapped drive). 👉 <strong><a href="setup-university-drive.qmd">Read the H: Drive Setup/Map Guide</a></strong></p>
+<p><strong>Recommendation:</strong> Use your University <strong>H: Drive</strong> (Network mapped drive). 👉 <strong><a href="../computing-setup/setup-university-drive.html">Read the H: Drive Setup/Map Guide</a></strong></p>
 </div>
 </div>
 <ol type="1">
@@ -413,7 +640,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Username:</strong> Your GitHub username.</li>
 <li><strong>Password:</strong> You must use a <strong>Personal Access Token (PAT)</strong>.</li>
-<li><em>See the <a href="computing-git.qmd">Setup Guide/Git Guide</a> for generating a PAT.</em></li>
+<li><em>See <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">GitHub’s official guide for creating a PAT</a>.</em></li>
 </ul></li>
 </ul>
 </section>
@@ -423,11 +650,12 @@ ul.task-list li input[type="checkbox"] {
 <li>This rarely happens in individual assignments unless you edit files on two different computers.</li>
 <li>If you see <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, ask a TA for help immediately. Don’t panic!</li>
 </ul>
+
+
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -828,7 +1056,32 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../computing-setup/setup-university-drive.html" class="pagination-link" aria-label="University Drive Setup">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">University Drive Setup</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../computing-setup/why-quarto.html" class="pagination-link" aria-label="Why Quarto?">
+        <span class="nav-page-text">Why Quarto?</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 

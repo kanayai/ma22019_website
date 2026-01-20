@@ -1,9 +1,6 @@
 ---
 title: "Problem Class 5"
 date: "19/03/2025"
-format:
-  html: default
-  pdf: default
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +17,7 @@ Let's import the data
 
 ```{r}
 library(dplyr)
-Sea_raw <- read.csv("Data/SeaSurface.csv")
+Sea_raw <- read.csv( "Data/SeaSurface.csv" )
 glimpse(Sea_raw)
 ```
 

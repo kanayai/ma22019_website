@@ -19,7 +19,7 @@ library(dplyr)
 ## Load the data
 
 ```{r}
-Manaus <- read.csv("Manaus Temperature.csv")
+Manaus <- read.csv( "Manaus Temperature.csv" )
 ```
 
 ## Case 1 - Comparison months

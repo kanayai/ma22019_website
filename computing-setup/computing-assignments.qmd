@@ -241,7 +241,7 @@ flowchart TD
 *   If RStudio asks for a username/password:
     *   **Username:** Your GitHub username.
     *   **Password:** You must use a **Personal Access Token (PAT)**. 
-    *   *See the [Setup Guide/Git Guide](computing-git.qmd) for generating a PAT.*
+    *   *See [GitHub's official guide for creating a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).*
 
 ### "Merge Conflict"
 *   This rarely happens in individual assignments unless you edit files on two different computers.

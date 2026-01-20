@@ -27,8 +27,8 @@ library( stringr )
 When working on a University PC, you have to first install the tidytext and wordcloud packages. The installation of the textdata package is quite cumbersome, and thus I provide the AFINN and Bing sentiment lexicons as .csv files for your convenience. You can load them using
 
 ```{r}
-AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
-Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
+AFINN <- read.csv( "data/AFINN Sentiment Lexicon.csv" )
+Bing <- read.csv( "data/Bing Sentiment Lexicon.csv" )
 ```
 
 

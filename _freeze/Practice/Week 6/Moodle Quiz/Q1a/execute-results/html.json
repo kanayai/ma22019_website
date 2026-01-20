@@ -1,0 +1,15 @@
+{
+  "hash": "d1842363daf056d4623775fc69bd13ac",
+  "result": {
+    "engine": "knitr",
+    "markdown": "Question\n========\nWhich five words (excluding stop words) are the most common in *Moby Dick*?\n\nAnswerlist\n----------\n\t\t\n* ahab\t\t\n* boat\n* captain\n* head\n* sea\t\n* ship\n* time\t\n* whale\t\n* white\n* ye\n\nSolution\n========\n\nWe extract the information using\n\n\n::: {.cell}\n\n```{.r .cell-code}\nMobyDick_raw <- filter( Books, title == \"Moby Dick\" )\n\nMobyDick_raw %>% \n  unnest_tokens( word, text ) %>%\n  mutate( word = gsub( \"_\", \"\", word ) ) %>%\n  count( word, sort=TRUE ) %>%\n  anti_join( stop_words, by=\"word\" ) %>%\n  slice_head( n=5 )\n```\n:::\n\n\nWe find that whale, ahab, sea, ship and ye are the five most common words (excluding stop words).\n\nMeta-information\n================\nexname: Q1a\nextype: mchoice\nexsolution: 1000110101",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>text-data-analysis – MA22019</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../MA22019 Lecture Notes/04-SpatialDataAnalysis.html" rel="next">
+<link href="../MA22019 Lecture Notes/02-DataVisualization.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA22019 Lecture Notes/index.html">Lecture Notes</a></li><li class="breadcrumb-item"><a href="../MA22019 Lecture Notes/03-Text-Data-Analysis.html">Text Data Analysis</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/project-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/setup-university-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">University Drive Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/computing-assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-setup/why-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lecture Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Text Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MA22019 Lecture Notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework &amp; Quizzes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coursework</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#text-data-analysis" id="toc-text-data-analysis" class="nav-link active" data-scroll-target="#text-data-analysis">Text Data Analysis</a>
+  <ul class="collapse">
+<li>
+<a href="#analyzing-word-frequency" id="toc-analyzing-word-frequency" class="nav-link" data-scroll-target="#analyzing-word-frequency">Analyzing word frequency</a>
+  <ul class="collapse">
+<li><a href="#the-tidy-text-format" id="toc-the-tidy-text-format" class="nav-link" data-scroll-target="#the-tidy-text-format">The tidy text format</a></li>
+  <li><a href="#analysis-of-jane-eyre" id="toc-analysis-of-jane-eyre" class="nav-link" data-scroll-target="#analysis-of-jane-eyre">Analysis of <em>Jane Eyre</em></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis">Sentiment analysis</a>
+  <ul class="collapse">
+<li><a href="#measuring-sentiment" id="toc-measuring-sentiment" class="nav-link" data-scroll-target="#measuring-sentiment">Measuring sentiment</a></li>
+  <li><a href="#analysis-of-sentiment-for-jane-eyre" id="toc-analysis-of-sentiment-for-jane-eyre" class="nav-link" data-scroll-target="#analysis-of-sentiment-for-jane-eyre">Analysis of sentiment for <em>Jane Eyre</em></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#comparing-text-documents" id="toc-comparing-text-documents" class="nav-link" data-scroll-target="#comparing-text-documents">Comparing text documents</a>
+  <ul class="collapse">
+<li><a href="#term-frequency" id="toc-term-frequency" class="nav-link" data-scroll-target="#term-frequency">Term frequency</a></li>
+  <li><a href="#term-frequency-inverse-document-frequency" id="toc-term-frequency-inverse-document-frequency" class="nav-link" data-scroll-target="#term-frequency-inverse-document-frequency">Term frequency-inverse document frequency</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#topic-modelling" id="toc-topic-modelling" class="nav-link" data-scroll-target="#topic-modelling">Topic modelling</a>
+  <ul class="collapse">
+<li><a href="#latent-dirichlet-allocation" id="toc-latent-dirichlet-allocation" class="nav-link" data-scroll-target="#latent-dirichlet-allocation">Latent Dirichlet allocation</a></li>
+  <li><a href="#mathematical-background" id="toc-mathematical-background" class="nav-link" data-scroll-target="#mathematical-background">Mathematical background</a></li>
+  <li><a href="#example-1-the-work-by-charles-dickens" id="toc-example-1-the-work-by-charles-dickens" class="nav-link" data-scroll-target="#example-1-the-work-by-charles-dickens">Example 1: The work by Charles Dickens</a></li>
+  <li><a href="#example-2-articles-in-the-new-york-times" id="toc-example-2-articles-in-the-new-york-times" class="nav-link" data-scroll-target="#example-2-articles-in-the-new-york-times">Example 2: Articles in the New York Times</a></li>
+  </ul>
+</li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../MA22019 Lecture Notes/index.html">Lecture Notes</a></li><li class="breadcrumb-item"><a href="../MA22019 Lecture Notes/03-Text-Data-Analysis.html">Text Data Analysis</a></li></ol></nav></header><section id="text-data-analysis" class="level1"><h1>Text Data Analysis</h1>
+<p>Text data occurs in various forms: short messages (Twitter/X, Instagram, etc.), websites, books, etc. There are many real-world applications where we need to extract information from text data. Just to list a few examples:</p>
+<ul>
+<li><p>Search engines need to evaluate whether a website is relevant to us;</p></li>
+<li><p>Identification of messages (out of billions) that are relevant to prevent serious crimes;</p></li>
+<li><p>Interactive customer service pages have to provide a good response to our question.</p></li>
+</ul>
+<p>Text data analysis (also known as <strong>text mining</strong>) refers to the area of data science that considers the derivation of information from text data. These methods are also important in the context of <strong>natural language processing</strong>.</p>
+<p>In this chapter we explore some important text data analysis techniques. Section <a href="#analyzing-word-frequency">3.1</a> introduces methods for visualizing the frequency of words within a text. Section <a href="#sentiment-analysis">3.2</a> then explores sentiment analysis, which is concerned with studying the intention of a text. In Section <a href="#comparing-text-documents">3.3</a> we outline approaches for comparing text data sets based on word frequency. Finally, Section <a href="#topic-modelling">3.4</a> outlines a statistical framework for document classification.</p>
+<p><strong>Remark:</strong> We will focus on analyzing individual words within a document, but there are many more aspects that could be studied, such as the structure of sentences.</p>
+<section id="analyzing-word-frequency" class="level2"><h2 class="anchored" data-anchor-id="analyzing-word-frequency">Analyzing word frequency</h2>
+<section id="the-tidy-text-format" class="level3"><h3 class="anchored" data-anchor-id="the-tidy-text-format">The tidy text format</h3>
+<p>Consider the following quote by Hermann Hesse (a German-Swiss poet):</p>
+<center>
+  <i>"Some of us think holding on makes us strong,</i>
+<i>but sometimes it is letting go."</i>
+  </center>
+<p>The text is stored in the file “Hesse quote.txt” on Moodle, with the quote being split into two lines as above. To load the data into R, we use the function <strong>readLines()</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_Hesse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"Data/Hesse quote.txt"</span><span class="op">)</span></span>
+<span><span class="va">text_Hesse</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Some of us think holding on makes us strong,"
+[2] "but sometimes it is letting go."             </code></pre>
+</div>
+</div>
+<p>We see that <strong>text_Hesse</strong> is a vector with two entries, each entry corresponding to a line in the .txt file. The entries are of type <strong>character</strong> and are also referred to as <strong>strings</strong>, i.e, combinations of words.</p>
+<p>Let’s store the data as a data frame:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quote_Hesse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>line <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, text <span class="op">=</span> <span class="va">text_Hesse</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The text data in its current format is of little use, because we usually want to analyze single words within a text. As such, we need to separate the strings into individual words. Further, any punctuation should be removed because we are not interested in it.</p>
+<p>The function <strong>unnest_tokens()</strong> in the <strong>tidytext</strong> R package does all of this for us:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://juliasilge.github.io/tidytext/">tidytext</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">Hesse_tidy</span> <span class="op">&lt;-</span> <span class="va">quote_Hesse</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span>output <span class="op">=</span> <span class="va">word</span>, input <span class="op">=</span> <span class="va">text</span><span class="op">)</span></span>
+<span><span class="va">Hesse_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  line    word
+1    1    some
+2    1      of
+3    1      us
+4    1   think
+5    1 holding</code></pre>
+</div>
+</div>
+<p>The data are now stored in the column <strong>word</strong>. This format is known as the <strong>tidy text</strong> format and it follows two principles:</p>
+<ul>
+<li><p>Each variable is a column: our variable of interest is <strong>word</strong>;</p></li>
+<li><p>Each observation is a row: we have one word per row.</p></li>
+</ul>
+<p>Now that the text is in this new format, compared to the previous chapters, the only difference is that we have to deal with non-numerical observations. However, there are a wide range of techniques unique to analyze of such data.</p>
+</section><section id="analysis-of-jane-eyre" class="level3"><h3 class="anchored" data-anchor-id="analysis-of-jane-eyre">Analysis of <em>Jane Eyre</em>
+</h3>
+<p>When analyzing text data, we often want to extract words which are used frequently. <strong>Bar plots</strong> and <strong>word clouds</strong> are widely applied graphics to visualize word frequency, i.e.&nbsp;the number of times a word appears. In the following, we demonstrate how these plots can be created in R for the book <em>Jane Eyre</em> by Charlotte Brontë.</p>
+<section id="preparing-the-data" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="preparing-the-data">Preparing the data</h4>
+<p>The full text for <em>Jane Eyre</em> is freely available from <a href="https://www.gutenberg.org/">Project Gutenberg</a>; we only require the Gutenberg ID for the book, which is 1260.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">URL</span> <span class="op">&lt;-</span> <span class="st">"https://www.gutenberg.org/cache/epub/1260/pg1260.txt"</span></span>
+<span><span class="va">JaneEyre_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="va">URL</span>, encoding <span class="op">=</span> <span class="st">"UTF-8"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We have to remove the meta data and disclaimers at the beginning and end of the file. We do this by detecting the lines containing the word “EBOOK”, which signals the beginning and end of the book:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"EBOOK"</span>, <span class="va">JaneEyre_raw</span><span class="op">)</span></span>
+<span><span class="va">JaneEyre_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">JaneEyre_raw</span><span class="op">[</span><span class="op">(</span><span class="va">ind</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The individual rows in <strong>JaneEyre_raw</strong> represent one line from the book, as provided in the printed version stored on the Project Gutenberg website, with the first lines being from the title page.</p>
+<p>After importing the data, we separate the lines of text into individual words using unnest_tokens():</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre</span> <span class="op">&lt;-</span> <span class="va">JaneEyre_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A bit more data cleaning is required before starting the analysis. Specifically, some of the extracted words appear with an “_“, such as the eighth extracted word -”_illustrated”. This indicates that the word is printed in italics, but we do not want to tread “the” and “<em>the</em>” differently. To remove these underscores, we apply the <strong>gsub()</strong> function we saw in Problem Class 1:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre</span><span class="op">$</span><span class="va">word</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">JaneEyre</span><span class="op">$</span><span class="va">word</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="calculating-the-term-frequency" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="calculating-the-term-frequency">Calculating the term frequency</h4>
+<p>With the data in the tidy text format, the function <strong>count()</strong> from the dplyr R package can be used to extract the number of times each word was used. We further calculate each word’s proportion amongst the total number of words, called the <strong>term frequency</strong>, and its rank:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_Count</span> <span class="op">&lt;-</span> <span class="va">JaneEyre</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="st">"term frequency"</span> <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, rank <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  word    n term frequency rank
+1  the 7856     0.04169874    1
+2    i 7169     0.03805222    2
+3  and 6632     0.03520189    3
+4   to 5238     0.02780270    4
+5    a 4470     0.02372624    5</code></pre>
+</div>
+</div>
+<p>Looking at the output, the words with the highest term frequency are the ones we usually use when writing a longer piece of text.</p>
+</section><section id="zipfs-law" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="zipfs-law">Zipf’s Law</h4>
+<p>Before analyzing the words most commonly used in <em>Jane Eyre</em> in more detail, we create a plot of <strong>term frequency</strong> versus <strong>rank</strong>, both on logarithmic scale:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">rank</span>, y <span class="op">=</span> <span class="va">`term frequency`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_transform.html">coord_trans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"log10"</span>, y <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Plot of rank versus term frequency for the words in Jane Eyre, illustrating the negative proportionality stated by Zipf’s Law.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>There is pretty much a linear relationship between rank and term frequency on logarithmic scale (apart from the words with the highest term frequency). This is known as <strong>Zipf’s Law</strong> which states that empirically a word’s term frequency is inversely proportional to its rank.</p>
+<p><strong>Remark:</strong> Creating this plot is not necessary in a text analysis. We just produced it to illustrate Zipf’s Law.</p>
+</section><section id="removing-stop-words" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="removing-stop-words">Removing stop words</h4>
+<p>We saw that the five words with the highest term frequency in <strong>JaneEyre_Count</strong> include “the”, “I” and “and”. This is quite common when analyzing longer pieces of text. One may argue that such words are not of interest in an analysis, because we cannot write a text without using them.</p>
+<p>This has led to the concept of <strong>stop words</strong>. The idea is to specify words that are dropped from the analysis, because they are not relevant. A set of stop words is called a <strong>stop list</strong>.</p>
+<p>The tidytext R package provides its own list, <strong>stop_words</strong>, which includes 1149 stop words. We can remove these stop words from <strong>JaneEyre_Count</strong> using the function <strong>anti_join()</strong> from the dplyr R package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></span>
+<span><span class="va">JaneEyre_Count</span> <span class="op">&lt;-</span> <span class="va">JaneEyre_Count</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       word   n term frequency rank
+1      jane 341    0.001809988   69
+2 rochester 317    0.001682599   71
+3       sir 316    0.001677291   72
+4      miss 310    0.001645444   73
+5      time 244    0.001295124   98</code></pre>
+</div>
+</div>
+</section><section id="visualizing-word-frequency-using-bar-plots" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="visualizing-word-frequency-using-bar-plots">Visualizing word frequency using bar plots</h4>
+<p>Let’s create a bar plot for the most commonly used words in <em>Jane Eyre</em> that are not on the stop list:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_Count</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="va">word</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Count"</span>, y <span class="op">=</span> <span class="st">"Word"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">17</span><span class="op">)</span>, axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Word frequency of the most commonly used words in Jane Eyre.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We see that the names of two main characters, Jane Eyre and Edward Rochester, and their titles appear the most often, followed by “time”, “day”, “looked” and “night”.</p>
+<p><strong>Remark:</strong> When using ggplot2, words are by default ordered in alphabetical order, which is not what we want here. Therefore, <strong>mutate( word = reorder(word,n) )</strong> is used to ensure that the words are instead ordered based on word frequency.</p>
+</section><section id="word-clouds" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="word-clouds">Word clouds</h4>
+<p>Word clouds are a type of graphic that we can use to visualize the frequency of words within a text. Instead of using the visual cues “position” and “length” as in a bar plot, frequency is illustrated via the “size” of the words.</p>
+<p>The R package <strong>wordcloud</strong> provides a function to produce a word cloud. For <em>Jane Eyre</em>, we produce a word cloud of the 40 most common words (ignoring the stop words) as follows:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://blog.fellstat.com/?cat=11">wordcloud</a></span><span class="op">)</span></span>
+<span><span class="va">JaneEyre_Count</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/wordcloud/man/wordcloud.html">wordcloud</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">n</span>, max.words <span class="op">=</span> <span class="fl">40</span>, colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">topo.colors</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">40</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Word cloud illustrating the frequency of the 40 most common words in Jane Eyre.</figcaption></figure>
+</div>
+</div>
+</div>
+<p><strong>Remark:</strong> Word clouds are good when we want to visualize term frequency for a large number of words. In all other cases, a bar plot is the better choice in terms of accessibility and the amount of information it provides.</p>
+</section></section></section><section id="sentiment-analysis" class="level2"><h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment analysis</h2>
+<section id="measuring-sentiment" class="level3"><h3 class="anchored" data-anchor-id="measuring-sentiment">Measuring sentiment</h3>
+<p>In many applications we want to understand the emotional intent (<strong>sentiment</strong>) of a text. For instance, we may want to quickly determine whether a product has generally received more positive than negative reviews or not.</p>
+<p>Here we make the (strong) assumption that the sentiment of a text can be described by the aggregated sentiment of the individual words within it. This leads to the task of measuring the sentiment of a word. In text mining and natural language processing, sentiment lexicons are usually used when analyzing individual words. The <strong>tidydata</strong> R package provides access two sentiment lexicons:</p>
+<ul>
+<li><p><strong>AFINN</strong>: Words are assigned a sentiment score between -5 and +5, with lower values corresponding to a more negative sentiment. For instance, “anxious” has a score of -2, while “pretty” has a score of 1.</p></li>
+<li><p><strong>Bing</strong>: Words are categorized as “positive” (e.g.&nbsp;“pretty”) or “negative” (e.g.&nbsp;“anxious”).</p></li>
+</ul>
+<p>Words not listed within the lexicon are considered “neutral” in terms of sentiment. We now apply these two sentiment lexicons to analyze the sentiment in <em>Jane Eyre</em>.</p>
+</section><section id="analysis-of-sentiment-for-jane-eyre" class="level3"><h3 class="anchored" data-anchor-id="analysis-of-sentiment-for-jane-eyre">Analysis of sentiment for <em>Jane Eyre</em>
+</h3>
+<p>To load the AFINN sentiment lexicon, we use the <strong>get_sentiments()</strong> function in the tidytext package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># library(textdata)</span></span>
+<span><span class="co"># lexicon_afinn()</span></span>
+<span><span class="va">AFINN</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"afinn"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s again prepare the data and store the line number for later use:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre</span> <span class="op">&lt;-</span> <span class="va">JaneEyre_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>line <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">word</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next step is to extract the words that are in both <em>Jane Eyre</em> and the AFINN sentiment lexicon:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_AFINN</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">JaneEyre</span>, <span class="va">AFINN</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It is important to note that sentiment lexicons have certain limitations. For instance, the word “miss” is associated with a negative sentiment within the AFINN sentiment lexicon, but in <em>Jane Eyre</em> it is usually used as the title of a young, unmarried woman - so we should better ignore the word “miss” in the analysis.</p>
+<p><strong>Important:</strong> When considering sentiment, we should not remove any stop words to ensure that our analysis considers all words in the text.</p>
+<p>Let’s create a plot to see how the aggregated sentiment evolves over the course of the novel, and we filter out the word “miss” based on our previous argument:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_AFINN</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word</span> <span class="op">!=</span> <span class="st">"miss"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">line</span>, y <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Line number"</span>, y <span class="op">=</span> <span class="st">"Sentiment"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/AFINN-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Evolution of the AFINN sentiment score over the course of the book Jane Eyre. Negative values at the start indicate negative sentiment, but the sentiment becomes higher as the book comes to its conclusion.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The plot suggests that the first chapters of <em>Jane Eyre</em> have a more “negative” sentiment, while, as the story progresses, the novel develops a more “positive” sentiment.</p>
+<p>Another way to visualize sentiment is to group lines into sections and to derive the sentiment of each section. Here we split the book into its chapters. We need some functions form the <strong>stringr</strong> package to identify the lines which start with “Chapter” and we then use this information to assign a chapter number to each line:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
+<span><span class="va">JaneEyre_chapters</span> <span class="op">&lt;-</span> <span class="va">JaneEyre_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>chapter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"^chapter "</span>, ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We now remove any lines that do not belong to one of the chapters and then split the book as before:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_chapters</span> <span class="op">&lt;-</span> <span class="va">JaneEyre_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">chapter</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">word</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">word</span> <span class="op">!=</span> <span class="st">"miss"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we calculate and visualize the aggregated sentiment for each chapter</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">JaneEyre_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">AFINN</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">chapter</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sentiment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chapter</span>, y <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Chapter"</span>, y <span class="op">=</span> <span class="st">"AFINN sentiment score"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>AFINN sentiment score for the chapters of Jane Eyre.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The plot shows a similar pattern to that identified for Figure @ref(fig:AFINN). If we consider a chapter with an AFINN score above 0 as “positive”, and “negative” otherwise, we find that the sentiment tends to remain “positive” across multiple consecutive chapters.</p>
+<p>When working with the Bing sentiment lexicon, we may count the numbers of “positive” and “negative” words in each chapter and visualize their proportions numbers using a stacked bar plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Bing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/get_sentiments.html">get_sentiments</a></span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">JaneEyre_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">Bing</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">chapter</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">chapter</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chapter</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"black"</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Chapter"</span>, y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Bing sentiment score for the chapters of Jane Eyre.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>When comparing the two bar plots, and assuming that a chapter with a proportion of “positive” words above 50% is “positive”, we find good agreement in terms of whether a chapter has a “positive” or “negative” sentiment.</p>
+<p><strong>Important:</strong> Due to our assumption that the sentiment can be measured by considering the individual words, we should be cautious with making conclusions on whether a chapter is “positive” or “negative”. Nevertheless, the change in sentiment score still provides us with some information on which chapters tell a more “positive” story and which ones a more “negative” story, that is, we can still make conclusions by comparing the scores.</p>
+</section></section><section id="comparing-text-documents" class="level2"><h2 class="anchored" data-anchor-id="comparing-text-documents">Comparing text documents</h2>
+<section id="term-frequency" class="level3"><h3 class="anchored" data-anchor-id="term-frequency">Term frequency</h3>
+<p>Suppose that we have two separate texts / documents. In such cases, we may want to compare the term frequency of the various words in the two texts using a scatter plot.</p>
+<p>Let’s compare <em>Jane Eyre</em> to the novel <em>Wuthering Heights</em> by Emily Brontë, Charlotte Brontë’s sister. The first step is to calculate term frequencies for <em>Wuthering Heights</em>, just as we did for <em>Jane Eyre</em>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">URL</span> <span class="op">&lt;-</span> <span class="st">"https://www.gutenberg.org/files/768/768-0.txt"</span></span>
+<span><span class="va">WutheringHeights_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="va">URL</span>, encoding <span class="op">=</span> <span class="st">"UTF-8"</span><span class="op">)</span></span>
+<span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"EBOOK"</span>, <span class="va">WutheringHeights_raw</span><span class="op">)</span></span>
+<span><span class="va">WutheringHeights_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">WutheringHeights_raw</span><span class="op">[</span><span class="op">(</span><span class="va">ind</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">WutheringHeights</span> <span class="op">&lt;-</span> <span class="va">WutheringHeights_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">word</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="st">"term frequency"</span> <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To compare term frequencies, we combine the two data frames for <em>Jane Eyre</em> and <em>Wuthering Heights</em>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">frequency_combined</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">JaneEyre_Count</span>, <span class="va">WutheringHeights</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>JaneEyre <span class="op">=</span> <span class="st">"term frequency.x"</span>, Heights <span class="op">=</span> <span class="st">"term frequency.y"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Before analyzing the term frequencies, we have to account for words that only appear in one book being given a value of <strong>NA</strong>, such as the word “Jane”. Therefore, we replace any <span class="math inline">\(\mathrm{\texttt{NA}}\)</span> entry with with a value of 0 (as we did in Problem Sheet 2, Tutorial Question 2):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">frequency_combined</span> <span class="op">&lt;-</span> <span class="va">frequency_combined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>        JaneEyre <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">JaneEyre</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span>, .default <span class="op">=</span> <span class="va">JaneEyre</span><span class="op">)</span>,</span>
+<span>        Heights <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">Heights</span><span class="op">)</span> <span class="op">==</span> <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span>, .default <span class="op">=</span> <span class="va">Heights</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we create our scatter plot of the term frequencies</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">frequency_combined</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">JaneEyre</span>, y <span class="op">=</span> <span class="va">Heights</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">word</span><span class="op">)</span>, check_overlap <span class="op">=</span> <span class="cn">TRUE</span>, vjust <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.003</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.003</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_transform.html">coord_trans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"sqrt"</span>, y <span class="op">=</span> <span class="st">"sqrt"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>        x <span class="op">=</span> <span class="st">"Term Frequency in Jane Eyre"</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">"Term Frequency in Wuthering Heights"</span></span>
+<span>    <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Comparison of the term frequencies for the words in Jane Eyre and Wuthering Heights.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Words close to the line, such as “door” or “time”, have a similar frequency in the two books while words that are far from the line, for instance, “Catherine” and “John”, are more specific to one of the books.</p>
+</section><section id="term-frequency-inverse-document-frequency" class="level3"><h3 class="anchored" data-anchor-id="term-frequency-inverse-document-frequency">Term frequency-inverse document frequency</h3>
+<p>We already saw in the analysis of <em>Jane Eyre</em> that we use <strong>term frequency</strong> to measure frequency of a word <span class="math inline">\(t\)</span> within a text or document <span class="math inline">\(d\)</span>. The formal definition of term frequency is [ (t,d)=. ]</p>
+<p>Suppose that we now want to study the frequency of a word <span class="math inline">\(t\)</span> across a <strong>corpus</strong> <span class="math inline">\(D\)</span>, that is, a set of documents. The <strong>inverse document frequency</strong> <span class="math inline">\(\mathrm{idf}(t,D)\)</span> measures how common or rare the word <span class="math inline">\(t\)</span> is across <span class="math inline">\(D\)</span>. Formally, <span class="math inline">\(\mathrm{idf}(t,D)\)</span> is defined as<br>
+[ (t,D) = () = (), ] where <span class="math inline">\(|D|\)</span> denotes the cardinality of the set <span class="math inline">\(D\)</span>, i.e., the number of documents in <span class="math inline">\(D\)</span>.</p>
+<p>We can also say that <span class="math inline">\(\mathrm{idf}(t,D)\)</span> describes how specific the word <span class="math inline">\(t\)</span> is to a document within <span class="math inline">\(D\)</span>. If <span class="math inline">\(t\)</span> is contained in all documents, we get <span class="math inline">\(\mathrm{idf}(t,D)=0\)</span>, while <span class="math inline">\(\mathrm{idf}(t,D)=\log |D|\)</span> if <span class="math inline">\(t\)</span> only appears in a single document. Consequently, a smaller value for <span class="math inline">\(\mathrm{idf}(t,D)\)</span> corresponds to <span class="math inline">\(t\)</span> being more common across the documents in <span class="math inline">\(D\)</span>.</p>
+<p>Finally, we define the <strong>term frequency-inverse document frequency (tf-idf)</strong> as [ (t,d,D)=(t,d) (t,D). ]</p>
+<p>Let’s consider some scenarios</p>
+<ul>
+<li><p>To get a very high value for <span class="math inline">\(\mathrm{tf.idf}(t,d,D)\)</span>, we need <span class="math inline">\(t\)</span> to occur frequently within the document <span class="math inline">\(d\)</span>, and not in any other document in <span class="math inline">\(D\)</span>.</p></li>
+<li><p>If <span class="math inline">\(t\)</span> occurs across all documents in the set <span class="math inline">\(D\)</span>, we have <span class="math inline">\(\mathrm{tf.idf}(t,d,D)=0\)</span>. For instance, very common words such as <span class="math inline">\(t\)</span>=“the” or <span class="math inline">\(t\)</span>=“and” highly likely yield <span class="math inline">\(\mathrm{tf.idf}(t,d,D)=0\)</span>. This is a nice feature, because we are usually not interested in these stop words.</p></li>
+</ul>
+<p>So the term frequency-inverse document frequency is useful to assess how important a word is to a document, in relation to the overall set of documents. This feature is the reason that tf-idf is widely applied in search engines and text-based recommender systems. For instance, if we want to search for a website on a specific subject, described by a word <span class="math inline">\(t\)</span>, the suggestions provided by the search engine may use <span class="math inline">\(\mathrm{tf.idf}(t,d,D)\)</span> to rank websites, where <span class="math inline">\(D\)</span> comprises all the websites considered by the search engine.</p>
+<section id="analyzing-some-books-by-charles-dickens" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="analyzing-some-books-by-charles-dickens">Analyzing some books by Charles Dickens</h4>
+<p>Suppose our corpus comprises four books by Charles Dickens: <em>A Christmas Carol</em>, <em>A Tale of Two Cities</em>, <em>Great Expectations</em> and <em>Oliver Twist</em>. The text for the books from Project Gutenberg is available as “Dickens.csv” on Moodle:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Dickens.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>As in the analysis of <em>Jane Eyre</em> and <em>Wuthering Heights</em>, we use the unnest_tokens() function to separate the text into individual words, and we use gsub() to remove any underscores:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens</span> <span class="op">&lt;-</span> <span class="va">Dickens_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">word</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next we count the number of appearances of each word separately for each of the books:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">DickensCount</span> <span class="op">&lt;-</span> <span class="va">Dickens</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">title</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">DickensCount</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 title word    n
+1         Oliver Twist  the 9633
+2   Great Expectations  the 8145
+3 A Tale of Two Cities  the 8053
+4   Great Expectations  and 7098
+5   Great Expectations    i 6667
+6         Oliver Twist  and 5428</code></pre>
+</div>
+</div>
+<p>The quantities <span class="math inline">\(\mathrm{tf}(t,d)\)</span>, <span class="math inline">\(\mathrm{idf}(t,D)\)</span> and <span class="math inline">\(\mathrm{tf.idf}(t,d,D)\)</span> for all terms and books are then calculated from this table using the function <strong>bind_tf_idf()</strong> in the tidytext package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_tf.idf</span> <span class="op">&lt;-</span> <span class="va">DickensCount</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/bind_tf_idf.html">bind_tf_idf</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">title</span>, <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">tf_idf</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>idf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">idf</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Dickens_tf.idf</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 title    word   n          tf  idf      tf_idf
+1    A Christmas Carol scrooge 327 0.011047671 1.39 0.015315323
+2         Oliver Twist  oliver 876 0.005397013 1.39 0.007481849
+3 A Tale of Two Cities   lorry 369 0.002664549 1.39 0.003693849
+4         Oliver Twist  bumble 397 0.002445907 1.39 0.003390747
+5         Oliver Twist   sikes 354 0.002180985 1.39 0.003023487
+6 A Tale of Two Cities defarge 302 0.002180742 1.39 0.003023150</code></pre>
+</div>
+</div>
+<p>We see that the words with the highest tf-idf are the names of the protagonists in the four books, while the term “the”, that had the highest count, is not there. It’s also common to say that “scrooge” is the most specific term across the considered set of books. The names with the highest tf-idf are also specific to a book and that’s why they have an idf of <span class="math inline">\(\log 4 \approx 1.39\)</span>.</p>
+</section></section></section><section id="topic-modelling" class="level2"><h2 class="anchored" data-anchor-id="topic-modelling">Topic modelling</h2>
+<p>So far, we have extracted the most common words within a text, and analyzed its sentiment. However, this information may not be sufficient in applications, e.g.:</p>
+<ul>
+<li><p>When working with a large collection of blog posts, news articles or scientific papers, we often wish to label these documents based on their content. It may be difficult to do this just based on the most common words.</p></li>
+<li><p>Summarizing a long piece of text in a few sentences. We cannot assume that the most common words or the sentiment are necessarily the important pieces of information.</p></li>
+</ul>
+<p>This has led to the development of several statistical and natural language processing methods. In this chapter we introduce <strong>topic modeling</strong>, which aims to to discover “natural” groups (topics) of words, even when we are not sure what we are looking for.</p>
+<section id="latent-dirichlet-allocation" class="level3"><h3 class="anchored" data-anchor-id="latent-dirichlet-allocation">Latent Dirichlet allocation</h3>
+<p>While there exists several approaches for topic modelling, we only explore <strong>Latent Dirichlet allocation (LDA)</strong>, which is a particularly popular method. The key idea is to treat each document as a mixture of topics, and each topic as a mixture of words. Let’s illustrate these principles:</p>
+<ul>
+<li><p><strong>Every document is a mixture of topics.</strong> We imagine that each document may contain words from several topics in particular proportions. For example, in a two-topic model we could say “Document 1 is 90% topic A and 10% topic B, while Document 2 is 30% topic A and 70% topic B.”</p></li>
+<li><p><strong>Every topic is a mixture of words.</strong> Suppose we considered BBC news and had topics such as “politics”, “sports”, “entertainment”, etc. The most common words in the “politics” topic might be “prime minister”, “Commons”, and “government”, while the “sports” topic includes “football”, “cricket”, etc. Importantly, words can be shared between topics; a word like “bench” might appear in both topics with the same frequency.</p></li>
+</ul>
+<p>This framework allows documents to “overlap” each other in terms of content, in a way that mirrors typical use of natural language, rather than being separated into discrete groups. Based on a set of documents, the aim is then to find the mixture of words that is associated with each topic, while also determining the mixture of topics that describes each document at the same time.</p>
+<p><strong>Remark:</strong> The framework above is different from the clustering methods you may have seen before, e.g., such as <span class="math inline">\(k\)</span>-means where each data point belongs to exactly one cluster. LDA belongs to the class of soft (or fuzzy) clustering methods, which allow for a data point (in this case a document) to belong to more than one cluster.</p>
+</section><section id="mathematical-background" class="level3"><h3 class="anchored" data-anchor-id="mathematical-background">Mathematical background</h3>
+<p>Let’s dive briefly into the mathematics behind the LDA approach before focusing on exploring how to fit the model and interpret the results. We start by introducing the Dirichlet distribution:</p>
+<p><strong>Definition:</strong> The Dirichlet distribution is a family of continuous multivariate probability distributions on the d-dimensional unit simplex <span class="math inline">\(\{(x_1,\ldots,x_d)\in\mathbb{R}_+^d: x_1+\cdots+x_d=1\}\)</span> with <span class="math inline">\(d&gt;1\)</span>. A Dirichlet distribution is parametrized by a <span class="math inline">\(d\)</span>-dimensional vector of positive reals.</p>
+<p>Now suppose we have a corpus with <span class="math inline">\(N\)</span> documents, with a total of <span class="math inline">\(M\)</span> different words, and we specify that there are different <span class="math inline">\(K\)</span> topics. The LDA approach then describes two <strong>Dirichlet distributions</strong>.</p>
+<ol type="1">
+<li><p><strong>Distribution of words within a topic:</strong> The term frequencies with which the <span class="math inline">\(M\)</span> distinct words are expected to appear within a document from topic <span class="math inline">\(k\in\{1,\ldots,K\}\)</span> is described by a M-dimensional Dirichlet distribution, where each topic has its own set of parameters.</p></li>
+<li><p><strong>Distribution of topics within a document:</strong> The proportions <span class="math inline">\((\psi_{i,1},\ldots,\psi_{i,K})\)</span> with which the <span class="math inline">\(K\)</span> topics feature in document <span class="math inline">\(i\in\{1,\ldots,N\}\)</span> are modelled via a <span class="math inline">\(K\)</span>-dimensional Dirichlet distribution. These proportions allow us to group the different documents.</p></li>
+</ol>
+<p>We will stop considering the theoretical details of the LDA approach at this point, because the estimation of the parameter vectors is too complex to be covered in a Year 2 unit (we would require tools from Bayesian statistics). In the following, we study two examples to illustrate how to perform topic modelling in R.</p>
+</section><section id="example-1-the-work-by-charles-dickens" class="level3"><h3 class="anchored" data-anchor-id="example-1-the-work-by-charles-dickens">Example 1: The work by Charles Dickens</h3>
+<p>To illustrate LDA we first consider an example where we know the ‘truth’. Here we will take two books by Charles Dickens and split each up into their individual chapters. We then want to see how well LDA performs at distinguishing between the two books.</p>
+<p>We consider the books <em>Great Expectations</em> and <em>A Tale of Two Cities</em> we studied previously:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/Dickens.csv"</span> <span class="op">)</span></span>
+<span><span class="va">Dickens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span></span>
+<span>    <span class="va">Dickens_raw</span>,</span>
+<span>    <span class="va">title</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Great Expectations"</span>, <span class="st">"A Tale of Two Cities"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="preparing-the-data-1" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="preparing-the-data-1">Preparing the data</h4>
+<p>We want to split the books into their chapters, with each chapter being handled as a separate document. As in Section 3.2, we extract the chapter the individual lines in the text document belong to:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_chapters</span> <span class="op">&lt;-</span> <span class="va">Dickens</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>chapter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">text</span>, <span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"^chapter "</span>, ignore_case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next step is to remove any text before the first chapter, and we further us the unite() function from the tidyr R package to create an identifier <strong>document</strong> from the book title and chapter number:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span><span class="va">Dickens_chapters</span> <span class="op">&lt;-</span> <span class="va">Dickens_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">chapter</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">document</span>, <span class="va">title</span>, <span class="va">chapter</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we split the documents into words, remove any stop words, and count the frequency for each word within each document, as we did when analyzing word frequency:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_chapters</span> <span class="op">&lt;-</span> <span class="va">Dickens_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">text</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>word <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">""</span>, <span class="va">word</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">document</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Remark:</strong> Stop words are removed because they usually perform poorly at explaining differences in the underlying topics. Further, their high prevalence in all topics leads to topics appearing more similar than they are.</p>
+</section><section id="defining-the-document-term-matrix" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="defining-the-document-term-matrix">Defining the document term matrix</h4>
+<p>The R package we are using for topic modelling requires the data to be stored as a document term matrix which takes the following form:</p>
+<ul>
+<li><p>Each row represents one document (a book chapter in our case).</p></li>
+<li><p>Each column corresponds to one term / word.</p></li>
+<li><p>Each entry contains the number of appearances of a term in a document.</p></li>
+</ul>
+<p>The tidytext package provides the <strong>cast_dtm()</strong> function to create such a matrix, but we need to install the <strong>tm</strong> R package to do this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_dtm</span> <span class="op">&lt;-</span> <span class="va">Dickens_chapters</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/document_term_casters.html">cast_dtm</a></span><span class="op">(</span><span class="va">document</span>, <span class="va">word</span>, <span class="va">n</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="performing-lda" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="performing-lda">Performing LDA</h4>
+<p>With everything in place, we now use the <strong>LDA()</strong> function in the <strong>topicmodels</strong> R package. One key decision we have to make is specifying the number <span class="math inline">\(K\)</span> of topics. For the purpose of this analysis, it seems logical to set the number of topics to <span class="math inline">\(K=2\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">topicmodels</span><span class="op">)</span></span>
+<span><span class="va">Dickens_LDA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">Dickens_dtm</span>, k <span class="op">=</span> <span class="fl">2</span>, method <span class="op">=</span> <span class="st">"Gibbs"</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Remark:</strong> The estimates are sensitive to the value we specify in <strong>control=list(seed=…)</strong>. In this course you may ignore the sensitivity and focus on analyzing the results obtained.</p>
+</section><section id="analyzing-the-estimates" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="analyzing-the-estimates">Analyzing the estimates</h4>
+<p>Having fitted the model, we want to explore the estimated model parameters. Recall that we have</p>
+<ul>
+<li><p><span class="math inline">\(K\)</span> parameters per document, which represent how much the <span class="math inline">\(K\)</span> topics feature in the document</p></li>
+<li><p><span class="math inline">\(M\)</span> parameters per topic, which give insight on how frequent each word features within a topic</p></li>
+</ul>
+<p>To extract the <span class="math inline">\(K\)</span> proportions for each of the documents, we use the following R code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_topics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">Dickens_LDA</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span>
+<span><span class="va">Dickens_topics</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  document              topic gamma
+  &lt;chr&gt;                 &lt;int&gt; &lt;dbl&gt;
+1 Great Expectations_57     1 0.285
+2 Great Expectations_7      1 0.185
+3 Great Expectations_38     1 0.371
+4 Great Expectations_17     1 0.259</code></pre>
+</div>
+</div>
+<p>The values in the column <strong>gamma</strong> correspond to the estimated proportions. We see that Chapter 7, 17, 38 and 57 from <em>Great Expectations</em> feature more of Topic 2 than Topic 1.</p>
+<p>Given the high number of chapters, it’s better to visualize the estimates in order to discuss agreement between the estimated topics and the underlying truth. One option is to create box plots:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dickens_topics</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">document</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"chapter"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"_"</span>, convert <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">gamma</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">title</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Topic"</span>, y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Illustration of the estimated proportions for each chapter within each book.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We see a clear difference in the plots for the two books. Most of the chapters from <em>A Tale of Two Cities</em> mostly consist of words that belong to Topic 1, while for <em>Great Expectations</em> the chapters are composed of words from Topic 2. As such, the topics could be used to classify the individual chapters.</p>
+<p>Suppose we would label a chapter as “A Tale of Two Cities” if the proportion of text estimated to be from Topic 1 exceeds 0.5. Such a classification would work well, with only one chapter per book being misclassified. This result may be due to some chapters rarely mentioning important characters and given that both books were written by Charles Dickens, correctly labeling these chapters is more challenging.</p>
+<p>Let’s look at the words most common in the different topics. We extract the top five words for each topic:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">Dickens_LDA</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">topic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">beta</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   topic [2]
+  topic term       beta
+  &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+1     1 lorry   0.00702
+2     1 hand    0.00643
+3     1 defarge 0.00574
+4     2 joe     0.0143 
+5     2 miss    0.00941
+6     2 don     0.00765</code></pre>
+</div>
+</div>
+<p>It seems that character names plan an important role when deciding whether a text belongs to Topic 1 or Topic 2, which is kind of what we expect. Let’s produce a plot to compare the term frequencies for the different words in more detail:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">Dickens_LDA</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>topic <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">topic</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Topic1"</span>, <span class="va">topic</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"Topic2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">topic</span>, values_from <span class="op">=</span> <span class="va">beta</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Topic1</span>, y <span class="op">=</span> <span class="va">Topic2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">term</span><span class="op">)</span>, check_overlap <span class="op">=</span> <span class="cn">TRUE</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_transform.html">coord_trans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"sqrt"</span>, y <span class="op">=</span> <span class="st">"sqrt"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Term Frequency in Topic 1"</span>, y <span class="op">=</span> <span class="st">"Term Frequency in Topic 2"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Comparison of term frequencies for the two topics.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The plot shows some very interesting patterns. In particular, the two topics seem to mainly differ in terms of the term frequency of a subset of words (the ones located close to the axes), while the term frequencies are very similar for the majority of words.</p>
+</section></section><section id="example-2-articles-in-the-new-york-times" class="level3"><h3 class="anchored" data-anchor-id="example-2-articles-in-the-new-york-times">Example 2: Articles in the New York Times</h3>
+<p>Let’s look at an example where there is no ‘truth’ as such. The file “NYT.csv” provides metadata for 1289 articles published by the New York Times in their “Europe” subsection between 01/01/2023 and 01/11/2024:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Data/NYT.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Specifically, the data file gives for each article the lead paragraph and the date it was published. We want to explore the results we obtain when applying LDA.</p>
+<section id="fitting-the-lda-model" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="fitting-the-lda-model">Fitting the LDA model</h4>
+<p>Since we take each article to be a separate document, we first assign a unique identifier to each article:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT</span> <span class="op">&lt;-</span> <span class="va">NYT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">NYT</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now we follow the same procedure as in the previous analysis. As such, we start by splitting the sentences into individual words, remove any stop words and count the number of occurrences for each article individually:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT_count</span> <span class="op">&lt;-</span> <span class="va">NYT</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/unnest_tokens.html">unnest_tokens</a></span><span class="op">(</span><span class="va">word</span>, <span class="va">lead_paragraph</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">stop_words</span>, by <span class="op">=</span> <span class="st">"word"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">word</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The next step is to convert the counts into a document term matrix:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT_dtm</span> <span class="op">&lt;-</span> <span class="va">NYT_count</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://juliasilge.github.io/tidytext/reference/document_term_casters.html">cast_dtm</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">word</span>, <span class="va">n</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Finally, we are ready to run the LDA() function and we choose to set <span class="math inline">\(K=2\)</span>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">NYT_LDA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/topicmodels/man/lda.html">LDA</a></span><span class="op">(</span><span class="va">NYT_dtm</span>, k <span class="op">=</span> <span class="fl">2</span>, method <span class="op">=</span> <span class="st">"Gibbs"</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="analysis-of-the-results" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="analysis-of-the-results">Analysis of the results</h4>
+<p>Let’s start by investigating the make-up of the articles. This requires us to explore with which proportions the two topics feature in the different articles. One option is to again create a box plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">NYT_LDA</span>, matrix <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">gamma</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Boxplot of the estimated proportions for the articles.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The result seems a bit unsatisfying as the make-up only varies between a 65-35 and 35-65 split. Consequently, the estimates suggests that there are very little differences in the language used within the topics.</p>
+<p>To explore the topics in more detail, we plot the estimated term frequencies for the two topics against each other:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">NYT_LDA</span>, matrix <span class="op">=</span> <span class="st">"beta"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>topic <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">topic</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Topic1"</span>, <span class="va">topic</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"Topic2"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">topic</span>, values_from <span class="op">=</span> <span class="va">beta</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Topic1</span>, y <span class="op">=</span> <span class="va">Topic2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_transform.html">coord_trans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"sqrt"</span>, y <span class="op">=</span> <span class="st">"sqrt"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">term</span><span class="op">)</span>, check_overlap <span class="op">=</span> <span class="cn">TRUE</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Term Frequency in Topic 1"</span>, y <span class="op">=</span> <span class="st">"Term Frequency in Topic 2"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="03-Text-Data-Analysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Comparison of term frequencies for the two topics.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>This plot provides some more insight. We see that Topic 1 seems to feature more of the words related to the War in Ukraine, but it’s not a perfect plot - we note that for instance “missile” features more in Topic 2 although this topic mainly occurred in the context of the war.</p>
+<p>To summarize, we find that LDA produces two topics which seem quite sensible, when considering the term frequencies of the words. However, it’s also important to point out that LDA does not really split the documents into separate groups, due to each document only containing a few words. This is quite a common feature, as the flexibility of the LDA approach comes at the cost of it requiring a lot of data for model fitting.</p>
+</section></section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>We considered several aspects related to the analysis of text data in R:</p>
+<ul>
+<li><p>The tidy text format is useful for the analysis of text data</p></li>
+<li><p>Word frequency can be visualized using bar plots or word clouds</p></li>
+<li><p>Sentiment analysis can be used to study the emotional intent. We considered one approach based on sentiment lexicons, but also highlighted that we have to make a strong assumption</p></li>
+<li><p>Documents can be compared by plotting term frequencies against each other and analyzing the term frequency - inverse document frequency</p></li>
+<li><p>Latent Dirichlet allocation is one method that may be used for topic modelling, but results need to be studied carefully</p></li>
+</ul>
+<p>Some other aspects one should be aware of:</p>
+<ul>
+<li><p>We exclusively based our analyses on the individual words. However, in some applications it may be better to consider <strong>n-grams</strong>, which are compositions of <span class="math inline">\(n\)</span> (usually consecutive) words. The unnest_tokens() provides options to extract n-grams from a text.</p></li>
+<li><p>The principles introduced in this chapter can be applied to any type of text data, such as social media messages or song lyrics, and are not limited to short texts and books.</p></li>
+<li><p>You should be mindful of copyright when scraping text data from the internet. That’s why we considered older books rather than recent bestsellers.</p></li>
+</ul>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../MA22019 Lecture Notes/02-DataVisualization.html" class="pagination-link" aria-label="Data Visualization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Visualization</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../MA22019 Lecture Notes/04-SpatialDataAnalysis.html" class="pagination-link" aria-label="Spatial Data Analysis">
+        <span class="nav-page-text">Spatial Data Analysis</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

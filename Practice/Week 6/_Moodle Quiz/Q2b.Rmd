@@ -1,0 +1,37 @@
+Question
+========
+Which of the following statements is correct when you explore the proportions with which the different topics feature?
+
+Answerlist
+----------
+* Topic 1 is featuring significantly more in articles in the "business" category
+* Topic 1 is featuring significantly less in articles in the "business" category
+* There is no real difference between the "sports" and  "business" category in terms of how often Topic 1 features
+
+
+Solution
+========
+
+We first extract the estimated proportions:
+
+```{r, eval=FALSE}
+Articles_topics <- tidy( Articles_LDA , matrix = "gamma" ) %>% 
+  separate( document, c("NewsType", "ID"), sep="_", convert=TRUE )
+```
+
+We can now create a box plot of proportions for each of the articles
+
+```{r,eval=FALSE}
+ggplot( Articles_topics, aes( x=factor(topic), y=gamma ) ) + 
+  facet_wrap( ~NewsType ) + geom_boxplot() + 
+  labs( x="Topic", y="Proportion" )
+```
+
+
+We find that articles from "business" category are usually made up of 25% Topic 1 and 75% Topic 2. The reverse is true for the "sports" category. So we find that that Topic 1 is featuring significantly less in articles in the "business" category.
+
+Meta-information
+================
+exname: Q2b
+extype: schoice
+exsolution: 010

@@ -116,7 +116,7 @@ Hourly weather data was collected for Bela Vista, Brazil, for 2017 and 2018. Sup
 To analyse the distribution of wind direction, we may create a histogram of the collected data. Let's compare the histograms obtained for the Cartesian and polar coordinate systems (both display frequency):
   
 ```{r BVWind1, echo=FALSE, out.width='90%', fig.align='center', fig.width=11, fig.height=5, fig.cap='Frequency of wind direction for Bela Vista, Brazil, in 2017 and 2018 displayed using Cartesian coordinates (left) and polar coordinates (right).'}
-wind_BV <- read.csv("Data/Wind_Bela_Vista.csv")
+wind_BV <- read.csv( "Data/Wind_Bela_Vista.csv" )
 g <- ggplot( wind_BV, aes(x=Wind.Direction) ) +
   geom_histogram( bins = 120 ) +
   theme_bw() +
@@ -177,7 +177,7 @@ Data graphics are provided to aid the reader/viewer with making meaningful compa
 The following two plots both illustrate the relation between body weight and brain weight for several mammals, but they use different scales:
   
 ```{r Mammals, fig.height=5, fig.width=11, echo=F, out.width='90%', fig.align='center', fig.cap='Body weight vs brain weight for 62 mammals on linear scale (left) and logarithmic scale (right).', warning=FALSE, message=FALSE}
-mammals <- read.csv("Data/Mammals.csv")
+mammals <- read.csv( "Data/Mammals.csv" )
 g1<- ggplot( mammals, aes( x=body, y=brain ) ) + geom_point(size=2.8) + 
   labs( title="Brain vs body weight on linear scale",
         x="Body Weight in kg", y="Brain weight in g" ) +

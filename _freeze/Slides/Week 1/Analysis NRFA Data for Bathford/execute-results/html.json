@@ -1,0 +1,17 @@
+{
+  "hash": "ecff1ac9a9b0dfa8bdbefaa17ce7f0dc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Analysis of NRFA Data\"\ndate: \"05/02/2025\"\nformat: html\n---\n\n\n\n## Loading the data and R packages \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary( lubridate )\nlibrary( dplyr )\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBathford_RF <- read.csv( \"Bathford River Flow.csv\", skip=20, header=FALSE,\n                         colClasses = c(\"character\",\"numeric\",\"NULL\") ) \n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning in read.table(file = file, header = header, sep = sep, quote = quote, :\ncols = 2 != length(data) = 3\n```\n\n\n:::\n:::\n\n\n## Data Cleaning\n\nCheck which variables need to converted and renamed\n\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse( Bathford_RF )\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nRows: 19,697\nColumns: 2\n$ V1 <chr> \"1969-10-27\", \"1969-10-28\", \"1969-10-29\", \"1969-10-30\", \"1969-10-31…\n$ V2 <dbl> 3.998, 3.958, 4.210, 4.480, 4.205, 3.830, 3.723, 3.986, 4.353, 4.52…\n```\n\n\n:::\n:::\n\n\n### Change variables names\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBathford_RF <- rename( Bathford_RF, Date = V1, RiverFlow = V2 )\n```\n:::\n\n\n### Convert to correct type\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBathford_RF$Date <- as_date( Bathford_RF$Date, format=\"%Y-%m-%d\" )\n```\n:::\n\n\n\n## Data Wrangling and visualization\n\n### Proportion of missing data\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmean( is.na( Bathford_RF$RiverFlow ) )\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 0.006244606\n```\n\n\n:::\n:::\n\n\n### Plot river flow over time\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nplot( Bathford_RF$Date, Bathford_RF$RiverFlow, type='l',\n      xlab=\"Date\", ylab=\"River Flow\", cex.lab = 1.5 )\n```\n\n::: {.cell-output-display}\n![](Analysis-NRFA-Data-for-Bathford_files/figure-html/unnamed-chunk-7-1.png){fig-align='center' width=60%}\n:::\n:::\n\n\n### Filter observations based on date and observed river flow\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBathford_RF_High <- filter( Bathford_RF, RiverFlow > 100 )\nslice_head( Bathford_RF_High, n=5 )\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n        Date RiverFlow\n1 1970-11-19     104.3\n2 1971-01-21     128.4\n3 1971-01-22     114.8\n4 1971-01-23     115.2\n5 1971-01-24     133.1\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nBathford_RF_High <- filter( Bathford_RF, RiverFlow > 100, year(Date) > 1990 )\nslice_head( Bathford_RF_High, n=5 )\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n        Date RiverFlow\n1 1991-01-10     112.1\n2 1992-11-26     106.9\n3 1992-11-27     100.9\n4 1992-11-28     100.6\n5 1992-11-29     131.6\n```\n\n\n:::\n:::\n\n",
+    "supporting": [
+      "Analysis-NRFA-Data-for-Bathford_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

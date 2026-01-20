@@ -19,8 +19,8 @@ library(tidyr)
 library(ggspatial)
 library(patchwork)
 
-ColoradoPrecip <- read.csv("PrecipitationColorado.csv")
-ColoradoCities <- read.csv("Cities Colorado.csv")
+ColoradoPrecip <- read.csv( "PrecipitationColorado.csv" )
+ColoradoCities <- read.csv( "Cities Colorado.csv" )
 ```
 
 ## Check linearity

@@ -1,0 +1,15 @@
+{
+  "hash": "51877ba81c084eb593774c3709b4babe",
+  "result": {
+    "engine": "knitr",
+    "markdown": "Question\n========\nWhich of the following words are among the five most common words for one of the two topics?\n\nAnswerlist\n----------\n* England\n* France\n* Million\n* Billion\n* Football\n* Cricket\n\nSolution\n========\n\nWe can extract the five most common words in each of the two topics using\n\n::: {.cell}\n\n```{.r .cell-code}\ntidy( Articles_LDA , matrix = \"beta\" ) %>%\ngroup_by( topic ) %>%\nslice_max( beta, n=5 )\n```\n:::\n\nSo we find that for Topic 1, the most common words are \"Pakistan\", \"world\", \"test\", \"England\", \"cricket\". So it seems quite a lot of articles are reports about cricket. \n\nFor Topic 2, the most common words are \"percent\", \"oil\", \"million\", \"prices\", \"strong\", which seems more related to business. \n\nSo we see that the difference in topics identified in part b) is also reflected in the frequency of the different words used within the topics.\n\nMeta-information\n================\nexname: Q2c\nextype: mchoice\nexsolution: 101001\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

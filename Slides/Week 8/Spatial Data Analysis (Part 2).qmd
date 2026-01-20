@@ -52,7 +52,7 @@ The latter makes certain assumptions to predict values at unobserved locations.
 Let's consider a data set similar to Problem Class 5:
 
 ```{r, fig.align='center', out.width='65%', echo=FALSE}
-SSTA <- read.csv("Sea Surface Temperature Anomalies.csv")
+SSTA <- read.csv( "Sea Surface Temperature Anomalies.csv" )
 SSTA_sf <- st_as_sf( SSTA, coords=c("lon","lat") ) %>% 
   st_set_crs(4326)
 ggplot( data=SSTA_sf ) + theme_bw() + 

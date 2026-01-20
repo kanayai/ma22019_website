@@ -36,10 +36,10 @@ When working on a University PC, you will have to first install some of these pa
 A data scientist used principal component analysis to explore the spatial structure / dependence in the daily maximum river flow values across 45 gauges in Northern England and the South of Scotland. They identified that the first 3 components explain more than 90% of the variation in the data and created the following plots representing the first three eigenvectors:
 
 ```{r, fig.align='center', out.width='100%', fig.width=12, fig.height=7, echo=FALSE, warning=FALSE, message=FALSE}
-RF <- read.csv("data/River Flow.csv")
+RF <- read.csv( "data/River Flow.csv" )
 RF <- RF %>% na.omit() 
 PCA <- prcomp( RF, scale. = TRUE )
-Loc <- read.csv("data/Locations River Flow.csv")
+Loc <- read.csv( "data/Locations River Flow.csv" )
 Loc <- Loc %>%
   mutate( PC1 = PCA$rotation[,1], PC2 = PCA$rotation[,2], PC3 = PCA$rotation[,3] ) %>%
   pivot_longer( cols=PC1:PC3, names_to="PC" )

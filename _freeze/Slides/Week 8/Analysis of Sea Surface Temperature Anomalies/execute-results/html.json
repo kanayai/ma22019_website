@@ -1,0 +1,17 @@
+{
+  "hash": "bddd91344428b4a058cf5118dfdee8ac",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Analysis of Sea Surface Temperature Anomalies\"\nauthor: \"Christian Rohrbeck\"\ndate: \"26/03/2025\"\nformat: html\n---\n\n\n\n## Load the data and R packages\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(sf)\nlibrary(sp)\nlibrary(gstat)\n\nSSTA <- read.csv( \"Sea Surface Temperature Anomalies.csv\" )\n```\n:::\n\n\n\n## Visualize Data (similar to Problem Class 5)\n\nConvert longitude and latitude to spatial coordinates\n\n\n::: {.cell}\n\n```{.r .cell-code}\nSSTA_sf <- st_as_sf( SSTA, coords=c(\"lon\", \"lat\") ) %>% st_set_crs( 4326 )\n```\n:::\n\n\nWe can now visulaize the data\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot( data=SSTA_sf ) + theme_bw() + geom_sf( aes(color=Anomaly) ) + \n  labs( x=\"Longitude\", y=\"Latitude\", color=\"SST Anomaly\" )\n```\n\n::: {.cell-output-display}\n![](Analysis-of-Sea-Surface-Temperature-Anomalies_files/figure-html/unnamed-chunk-3-1.png){fig-align='center' width=50%}\n:::\n:::\n\n\n## Estimation of the variogram\n\nWe first drop any missing values \n\n\n::: {.cell}\n\n```{.r .cell-code}\nSSTA_gamma <- drop_na( SSTA, Anomaly )\n```\n:::\n\n\nLongitude and latitude are converted to spatial data points (we need the sp package for this):\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncoordinates( SSTA_gamma ) <- ~lon+lat\n```\n:::\n\n\nUse the variogram() function to estimate the semi-variogram and visualize it:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ngamma_hat <- variogram( Anomaly~1, SSTA_gamma, width=0.1, cutoff=2  )\nggplot( gamma_hat, aes( x=dist, y=gamma/2 ) ) + geom_point( size=2 ) + \n  theme_bw() + labs( x=\"Distance\", y=\"Semi-variogram\" )\n```\n\n::: {.cell-output-display}\n![](Analysis-of-Sea-Surface-Temperature-Anomalies_files/figure-html/unnamed-chunk-6-1.png){fig-align='center' width=50%}\n:::\n:::\n\n",
+    "supporting": [
+      "Analysis-of-Sea-Surface-Temperature-Anomalies_files/figure-html"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

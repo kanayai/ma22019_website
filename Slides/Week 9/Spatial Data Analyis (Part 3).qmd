@@ -90,7 +90,7 @@ Instead, we only explore whether a linear relation between pairs of variables is
 ```{r, out.width='95%', fig.height=4, fig.width=8, fig.align='center', warning=FALSE, message=FALSE, echo=FALSE}
 library(ggplot2)
 library(patchwork)
-ColoradoPrecip <- read.csv("PrecipitationColorado.csv")
+ColoradoPrecip <- read.csv( "PrecipitationColorado.csv" )
 ggplot( ColoradoPrecip, aes( x=VALDEZ, y=WETMORE) ) + geom_point() + theme_bw() + 
 ggplot( ColoradoPrecip, aes( x=TOWNER, y=STONINGTON) ) + geom_point() + theme_bw()
 ```

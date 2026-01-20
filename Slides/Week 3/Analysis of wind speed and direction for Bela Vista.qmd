@@ -18,7 +18,7 @@ library(patchwork)
 ## Loading the data
 
 ```{r}
-wind_BV <- read.csv( "Wind_Bela_Vista.csv" )
+wind_BV <- read.csv("Wind_Bela_Vista.csv")
 ```
 
 ```{r}
@@ -28,9 +28,9 @@ glimpse(wind_BV)
 ## Histogram for wind direction
 
 ```{r, fig.height=4, fig.width=9, out.width='80%', fig.align='center'}
-Plot_Cartesian <- ggplot( wind_BV, aes( x=Wind.Direction ) ) + 
-  geom_histogram( bins = 120 ) + 
-  labs( x="Wind Direction" )
+Plot_Cartesian <- ggplot(wind_BV, aes(x = Wind.Direction)) +
+    geom_histogram(bins = 120) +
+    labs(x = "Wind Direction")
 
 Plot_Polar <- Plot_Cartesian + coord_polar()
 
@@ -44,12 +44,13 @@ Plot_Cartesian
 ## Relation between wind speed and direction
 
 ```{r, fig.height=4, fig.width=9, out.width='80%', fig.align='center'}
-Plot_Cartesian <- 
-  ggplot( wind_BV, aes( x=Wind.Direction, y=Gust.Speed ) ) + 
-  geom_point() + geom_smooth() + 
-  labs( x="Wind Direction", y="Wind gust speed in m/s" )
+Plot_Cartesian <-
+    ggplot(wind_BV, aes(x = Wind.Direction, y = Gust.Speed)) +
+    geom_point() +
+    geom_smooth() +
+    labs(x = "Wind Direction", y = "Wind gust speed in m/s")
 
-Plot_Polar <- Plot_Cartesian + coord_polar( theta="x" )
+Plot_Polar <- Plot_Cartesian + coord_polar(theta = "x")
 
 Plot_Cartesian + Plot_Polar
 ```
@@ -58,16 +59,13 @@ Plot_Cartesian + Plot_Polar
 ## Producing pie charts in R 
 
 ```{r, out.width='90%', fig.align='center', fig.height=4, fig.width=9}
-df <- data.frame( "prob" = c(0.3,0.4,0.3), "group" = c("A","B","C") )
+df <- data.frame("prob" = c(0.3, 0.4, 0.3), "group" = c("A", "B", "C"))
 
-Barplot <- ggplot( df, aes( x="", y=prob, fill=group ) ) + 
-  geom_col() + labs( x="", y="" )
+Barplot <- ggplot(df, aes(x = "", y = prob, fill = group)) +
+    geom_col() +
+    labs(x = "", y = "")
 
-PieChart <- Barplot + coord_polar( theta="y" ) 
+PieChart <- Barplot + coord_polar(theta = "y")
 
 Barplot + PieChart
-```
-
-```{r}
-citation("dplyr")
 ```

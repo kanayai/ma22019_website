@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Christian Rohrbeck">
 <meta name="dcterms.date" content="2025-02-04">
-
-<title>Analysis of Tornado Data</title>
+<title>Analysis of Tornado Data – MA22019</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,31 +56,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
-<script src="Tornadoes_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Tornadoes_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Tornadoes_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Tornadoes_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="Tornadoes_files/libs/quarto-html/popper.min.js"></script>
-<script src="Tornadoes_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Tornadoes_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Tornadoes_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Tornadoes_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="Tornadoes_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Tornadoes_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Tornadoes_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-
-
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb1cd4028f63a369ab283e072cb7d572.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 </head>
+<body class="nav-sidebar docked quarto-light">
 
-<body class="fullcontent quarto-light">
-
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Analysis of Tornado Data</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-setup/project-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-setup/setup-university-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">University Drive Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-setup/computing-assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-setup/why-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lecture Notes</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MA22019 Lecture Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MA22019 Lecture Notes/01-DataWrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MA22019 Lecture Notes/02-DataVisualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MA22019 Lecture Notes/03-Text-Data-Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MA22019 Lecture Notes/04-SpatialDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Data Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework &amp; Quizzes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coursework</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#loading-the-packages-and-the-tornado-data-set" id="toc-loading-the-packages-and-the-tornado-data-set" class="nav-link active" data-scroll-target="#loading-the-packages-and-the-tornado-data-set">Loading the packages and the tornado data set</a></li>
+  <li>
+<a href="#point-pattern-analysis-for-kansas-and-texas" id="toc-point-pattern-analysis-for-kansas-and-texas" class="nav-link" data-scroll-target="#point-pattern-analysis-for-kansas-and-texas">Point pattern analysis for Kansas and Texas</a>
+  <ul class="collapse">
+<li>
+<a href="#visualize-the-data" id="toc-visualize-the-data" class="nav-link" data-scroll-target="#visualize-the-data">Visualize the data</a>
+  <ul class="collapse">
+<li><a href="#load-the-shapefile-for-the-united-states" id="toc-load-the-shapefile-for-the-united-states" class="nav-link" data-scroll-target="#load-the-shapefile-for-the-united-states">Load the shapefile for the United States</a></li>
+  <li><a href="#extract-the-shapefiles-for-kansas-and-texas" id="toc-extract-the-shapefiles-for-kansas-and-texas" class="nav-link" data-scroll-target="#extract-the-shapefiles-for-kansas-and-texas">Extract the shapefiles for Kansas and Texas</a></li>
+  <li><a href="#transform-the-points-and-shapefiles-to-a-different-projection" id="toc-transform-the-points-and-shapefiles-to-a-different-projection" class="nav-link" data-scroll-target="#transform-the-points-and-shapefiles-to-a-different-projection">Transform the points and shapefiles to a different projection</a></li>
+  <li><a href="#create-the-ppp-objects" id="toc-create-the-ppp-objects" class="nav-link" data-scroll-target="#create-the-ppp-objects">Create the ppp objects</a></li>
+  <li><a href="#estimate-and-visualize-the-kernel-smoothed-intensity-function" id="toc-estimate-and-visualize-the-kernel-smoothed-intensity-function" class="nav-link" data-scroll-target="#estimate-and-visualize-the-kernel-smoothed-intensity-function">Estimate and visualize the kernel smoothed intensity function</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  <li>
+<a href="#visualizing-the-number-of-tornadoes-per-state" id="toc-visualizing-the-number-of-tornadoes-per-state" class="nav-link" data-scroll-target="#visualizing-the-number-of-tornadoes-per-state">Visualizing the number of tornadoes per state</a>
+  <ul class="collapse">
+<li><a href="#extract-number-of-tornadoes-per-state" id="toc-extract-number-of-tornadoes-per-state" class="nav-link" data-scroll-target="#extract-number-of-tornadoes-per-state">Extract number of tornadoes per state</a></li>
+  <li><a href="#combine-the-number-with-the-data-frame-for-the-shapefile" id="toc-combine-the-number-with-the-data-frame-for-the-shapefile" class="nav-link" data-scroll-target="#combine-the-number-with-the-data-frame-for-the-shapefile">Combine the number with the data frame for the shapefile</a></li>
+  <li><a href="#remove-alaska-and-hawaii" id="toc-remove-alaska-and-hawaii" class="nav-link" data-scroll-target="#remove-alaska-and-hawaii">Remove Alaska and Hawaii</a></li>
+  <li><a href="#create-the-plot" id="toc-create-the-plot" class="nav-link" data-scroll-target="#create-the-plot">Create the plot</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Analysis of Tornado Data</h1>
 </div>
 
@@ -110,30 +308,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="loading-the-packages-and-the-tornado-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="loading-the-packages-and-the-tornado-data-set">Loading the packages and the tornado data set</h2>
+</header><section id="loading-the-packages-and-the-tornado-data-set" class="level2"><h2 class="anchored" data-anchor-id="loading-the-packages-and-the-tornado-data-set">Loading the packages and the tornado data set</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(prettymapr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Tornadoes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">"Tornadoes.csv"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://paleolimbot.github.io/ggspatial/">ggspatial</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paleolimbot/prettymapr">prettymapr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spatstat.org/">spatstat</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Tornadoes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span> <span class="st">"Tornadoes.csv"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="point-pattern-analysis-for-kansas-and-texas" class="level1">
-<h1>Point pattern analysis for Kansas and Texas</h1>
-<section id="visualize-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="visualize-the-data">Visualize the data</h2>
+</section><section id="point-pattern-analysis-for-kansas-and-texas" class="level1"><h1>Point pattern analysis for Kansas and Texas</h1>
+<section id="visualize-the-data" class="level2"><h2 class="anchored" data-anchor-id="visualize-the-data">Visualize the data</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( Tornadoes, <span class="fu">aes</span>( Lon, <span class="at">y=</span>Lat ) ) <span class="sc">+</span> <span class="fu">annotation_map_tile</span>() <span class="sc">+</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatial_point</span>() <span class="sc">+</span> <span class="fu">labs</span>( <span class="at">x=</span><span class="st">"Longitude"</span>, <span class="at">y=</span><span class="st">"Latitude"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="va">Tornadoes</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span> <span class="va">Lon</span>, y<span class="op">=</span><span class="va">Lat</span> <span class="op">)</span> <span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_map_tile.html">annotation_map_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://paleolimbot.github.io/ggspatial/reference/stat_spatial_identity.html">geom_spatial_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span> x<span class="op">=</span><span class="st">"Longitude"</span>, y<span class="op">=</span><span class="st">"Latitude"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Assuming `crs = 4326` in stat_spatial_identity()</code></pre>
 </div>
@@ -142,117 +333,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Tornadoes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<figure class="figure"><p><img src="Tornadoes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="load-the-shapefile-for-the-united-states" class="level3">
-<h3 class="anchored" data-anchor-id="load-the-shapefile-for-the-united-states">Load the shapefile for the United States</h3>
+<section id="load-the-shapefile-for-the-united-states" class="level3"><h3 class="anchored" data-anchor-id="load-the-shapefile-for-the-united-states">Load the shapefile for the United States</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>USA <span class="ot">&lt;-</span> <span class="fu">read_sf</span>( <span class="st">"Shapefile USA/gadm41_USA_1.shp"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">USA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span> <span class="st">"Shapefile USA/gadm41_USA_1.shp"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="extract-the-shapefiles-for-kansas-and-texas" class="level3">
-<h3 class="anchored" data-anchor-id="extract-the-shapefiles-for-kansas-and-texas">Extract the shapefiles for Kansas and Texas</h3>
+</section><section id="extract-the-shapefiles-for-kansas-and-texas" class="level3"><h3 class="anchored" data-anchor-id="extract-the-shapefiles-for-kansas-and-texas">Extract the shapefiles for Kansas and Texas</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>KS <span class="ot">&lt;-</span> <span class="fu">filter</span>( USA, NAME_1<span class="sc">==</span><span class="st">"Kansas"</span> ) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_simplify</span>( <span class="at">dTolerance =</span> <span class="dv">2000</span> )</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>TX <span class="ot">&lt;-</span> <span class="fu">filter</span>( USA, NAME_1<span class="sc">==</span><span class="st">"Texas"</span> ) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_simplify</span>( <span class="at">dTolerance =</span> <span class="dv">2000</span> ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">KS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span> <span class="va">USA</span>, <span class="va">NAME_1</span><span class="op">==</span><span class="st">"Kansas"</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_simplify</a></span><span class="op">(</span> dTolerance <span class="op">=</span> <span class="fl">2000</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">TX</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span> <span class="va">USA</span>, <span class="va">NAME_1</span><span class="op">==</span><span class="st">"Texas"</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_simplify</a></span><span class="op">(</span> dTolerance <span class="op">=</span> <span class="fl">2000</span> <span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="transform-the-points-and-shapefiles-to-a-different-projection" class="level3">
-<h3 class="anchored" data-anchor-id="transform-the-points-and-shapefiles-to-a-different-projection">Transform the points and shapefiles to a different projection</h3>
+</section><section id="transform-the-points-and-shapefiles-to-a-different-projection" class="level3"><h3 class="anchored" data-anchor-id="transform-the-points-and-shapefiles-to-a-different-projection">Transform the points and shapefiles to a different projection</h3>
 <p>We transform the shapefiles and points to a projection different to WGS84 - this seems odd, but it is necessary to create the ppp object later:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>KS <span class="ot">&lt;-</span> KS <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>( <span class="at">crs=</span><span class="dv">3857</span> )</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>TX <span class="ot">&lt;-</span> TX <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>( <span class="at">crs=</span><span class="dv">3857</span> )</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Tornadoes_transformed <span class="ot">&lt;-</span> Tornadoes <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>( <span class="at">coords=</span><span class="fu">c</span>(<span class="st">"Lon"</span>,<span class="st">"Lat"</span>), <span class="at">crs=</span><span class="dv">4326</span> ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>( <span class="at">crs=</span><span class="dv">3857</span> ) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_coordinates</span>( )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">KS</span> <span class="op">&lt;-</span> <span class="va">KS</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span> crs<span class="op">=</span><span class="fl">3857</span> <span class="op">)</span></span>
+<span><span class="va">TX</span> <span class="op">&lt;-</span> <span class="va">TX</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span> crs<span class="op">=</span><span class="fl">3857</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">Tornadoes_transformed</span> <span class="op">&lt;-</span> <span class="va">Tornadoes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span> coords<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lon"</span>,<span class="st">"Lat"</span><span class="op">)</span>, crs<span class="op">=</span><span class="fl">4326</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span> crs<span class="op">=</span><span class="fl">3857</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="create-the-ppp-objects" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-ppp-objects">Create the ppp objects</h3>
+</section><section id="create-the-ppp-objects" class="level3"><h3 class="anchored" data-anchor-id="create-the-ppp-objects">Create the ppp objects</h3>
 <p>This is the second possibility of creating a ppp objetc we will introduce - it’s more work due to the required change in projection, but it is more rigorous in return:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Texas_ppp <span class="ot">&lt;-</span> <span class="fu">ppp</span>( Tornadoes_transformed[,<span class="dv">1</span>], Tornadoes_transformed[,<span class="dv">2</span>], </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">window =</span> <span class="fu">as.owin</span>(TX) )</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Kansas_ppp <span class="ot">&lt;-</span> <span class="fu">ppp</span>( Tornadoes_transformed[,<span class="dv">1</span>], Tornadoes_transformed[,<span class="dv">2</span>],</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">window =</span> <span class="fu">as.owin</span>(KS) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Texas_ppp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/ppp.html">ppp</a></span><span class="op">(</span> <span class="va">Tornadoes_transformed</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">Tornadoes_transformed</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, </span>
+<span>                  window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.owin.html">as.owin</a></span><span class="op">(</span><span class="va">TX</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">Kansas_ppp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/ppp.html">ppp</a></span><span class="op">(</span> <span class="va">Tornadoes_transformed</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">Tornadoes_transformed</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,</span>
+<span>                   window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.owin.html">as.owin</a></span><span class="op">(</span><span class="va">KS</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="estimate-and-visualize-the-kernel-smoothed-intensity-function" class="level3">
-<h3 class="anchored" data-anchor-id="estimate-and-visualize-the-kernel-smoothed-intensity-function">Estimate and visualize the kernel smoothed intensity function</h3>
+</section><section id="estimate-and-visualize-the-kernel-smoothed-intensity-function" class="level3"><h3 class="anchored" data-anchor-id="estimate-and-visualize-the-kernel-smoothed-intensity-function">Estimate and visualize the kernel smoothed intensity function</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>( <span class="at">mai=</span><span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.5</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span>), <span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>) )</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lambdaC_KS <span class="ot">&lt;-</span> <span class="fu">density.ppp</span>( Kansas_ppp, <span class="at">edge=</span><span class="cn">TRUE</span> )</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( lambdaC_KS, <span class="at">main=</span><span class="st">"Kansas"</span> )</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>lambdaC_TX <span class="ot">&lt;-</span> <span class="fu">density.ppp</span>( Texas_ppp, <span class="at">edge=</span><span class="cn">TRUE</span> )</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( lambdaC_TX, <span class="at">main=</span><span class="st">"Texas"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span> mai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">0.5</span>,<span class="fl">0.2</span>,<span class="fl">0.5</span><span class="op">)</span>, mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="va">lambdaC_KS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.explore/man/density.ppp.html">density.ppp</a></span><span class="op">(</span> <span class="va">Kansas_ppp</span>, edge<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">lambdaC_KS</span>, main<span class="op">=</span><span class="st">"Kansas"</span> <span class="op">)</span></span>
+<span><span class="va">lambdaC_TX</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.explore/man/density.ppp.html">density.ppp</a></span><span class="op">(</span> <span class="va">Texas_ppp</span>, edge<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span> <span class="va">lambdaC_TX</span>, main<span class="op">=</span><span class="st">"Texas"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Tornadoes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Corrected smoothed kernel intensity for the occurrence of tornadoes across Kansas and Texas.</figcaption>
+<figure class="figure"><p><img src="Tornadoes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Corrected smoothed kernel intensity for the occurrence of tornadoes across Kansas and Texas.</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section></section><section id="visualizing-the-number-of-tornadoes-per-state" class="level1"><h1>Visualizing the number of tornadoes per state</h1>
+<section id="extract-number-of-tornadoes-per-state" class="level2"><h2 class="anchored" data-anchor-id="extract-number-of-tornadoes-per-state">Extract number of tornadoes per state</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">TornadoesNumbers</span> <span class="op">&lt;-</span> <span class="va">Tornadoes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span> <span class="va">State</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="combine-the-number-with-the-data-frame-for-the-shapefile" class="level2"><h2 class="anchored" data-anchor-id="combine-the-number-with-the-data-frame-for-the-shapefile">Combine the number with the data frame for the shapefile</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">USA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_simplify</a></span><span class="op">(</span> <span class="va">USA</span>, dTolerance <span class="op">=</span> <span class="fl">5000</span>, preserveTopology <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span>
+<span><span class="va">USA</span><span class="op">$</span><span class="va">HASC_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span> <span class="st">".*\\."</span>, <span class="st">""</span>, <span class="va">USA</span><span class="op">$</span><span class="va">HASC_1</span><span class="op">)</span></span>
+<span><span class="va">USA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span> <span class="va">USA</span>, <span class="va">TornadoesNumbers</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HASC_1"</span><span class="op">=</span><span class="st">"State"</span><span class="op">)</span> <span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="remove-alaska-and-hawaii" class="level2"><h2 class="anchored" data-anchor-id="remove-alaska-and-hawaii">Remove Alaska and Hawaii</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">USA</span> <span class="op">&lt;-</span> <span class="va">USA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span> <span class="op">!</span><span class="va">NAME_1</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span> State <span class="op">=</span> <span class="va">NAME_1</span>, Number<span class="op">=</span><span class="va">n</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="create-the-plot" class="level2"><h2 class="anchored" data-anchor-id="create-the-plot">Create the plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="va">USA</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">Number</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_map_tile.html">annotation_map_tile</a></span><span class="op">(</span> zoom<span class="op">=</span><span class="fl">4</span> <span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_distiller</a></span><span class="op">(</span> palette<span class="op">=</span><span class="st">"Reds"</span>, trans<span class="op">=</span><span class="st">"reverse"</span> <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span> fill<span class="op">=</span><span class="st">"Number"</span>, x<span class="op">=</span><span class="st">"Longitude"</span>, y<span class="op">=</span><span class="st">"Latitude"</span> <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span> axis.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">15</span><span class="op">)</span>, axis.text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">15</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Tornadoes_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="visualizing-the-number-of-tornadoes-per-state" class="level1">
-<h1>Visualizing the number of tornadoes per state</h1>
-<section id="extract-number-of-tornadoes-per-state" class="level2">
-<h2 class="anchored" data-anchor-id="extract-number-of-tornadoes-per-state">Extract number of tornadoes per state</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>TornadoesNumbers <span class="ot">&lt;-</span> Tornadoes <span class="sc">%&gt;%</span> <span class="fu">count</span>( State )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="combine-the-number-with-the-data-frame-for-the-shapefile" class="level2">
-<h2 class="anchored" data-anchor-id="combine-the-number-with-the-data-frame-for-the-shapefile">Combine the number with the data frame for the shapefile</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>USA <span class="ot">&lt;-</span> <span class="fu">st_simplify</span>( USA, <span class="at">dTolerance =</span> <span class="dv">5000</span>, <span class="at">preserveTopology =</span> <span class="cn">TRUE</span> )</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>USA<span class="sc">$</span>HASC_1 <span class="ot">&lt;-</span> <span class="fu">gsub</span>( <span class="st">".*</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, USA<span class="sc">$</span>HASC_1)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>USA <span class="ot">&lt;-</span> <span class="fu">inner_join</span>( USA, TornadoesNumbers, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"HASC_1"</span><span class="ot">=</span><span class="st">"State"</span>) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="remove-alaska-and-hawaii" class="level2">
-<h2 class="anchored" data-anchor-id="remove-alaska-and-hawaii">Remove Alaska and Hawaii</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>USA <span class="ot">&lt;-</span> USA <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="sc">!</span>NAME_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>) ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="at">State =</span> NAME_1, <span class="at">Number=</span>n )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="create-the-plot" class="level2">
-<h2 class="anchored" data-anchor-id="create-the-plot">Create the plot</h2>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( USA, <span class="fu">aes</span>(<span class="at">fill=</span>Number) ) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_map_tile</span>( <span class="at">zoom=</span><span class="dv">4</span> ) <span class="sc">+</span> <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>( <span class="at">palette=</span><span class="st">"Reds"</span>, <span class="at">trans=</span><span class="st">"reverse"</span> ) <span class="sc">+</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">fill=</span><span class="st">"Number"</span>, <span class="at">x=</span><span class="st">"Longitude"</span>, <span class="at">y=</span><span class="st">"Latitude"</span> ) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>), <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Tornadoes_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
 
-</main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -653,8 +817,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 </div> <!-- /content -->
-
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 </body></html>

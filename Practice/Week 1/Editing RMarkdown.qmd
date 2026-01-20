@@ -1,10 +1,6 @@
 ---
 title: "Editing the R Markdown file"
 author: "Dr. Karim Anaya-Izquierdo"
-format:
-  html: default
-  pdf: default
-fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +16,7 @@ At the top of the file you find the header, which looks something like:
 title: "My title"
 author: "Christian Rohrbeck"
 date: "07/07/2023"
-output: pdf_document
+format: pdf
 ---
 ```
 

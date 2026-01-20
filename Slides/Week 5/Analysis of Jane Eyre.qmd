@@ -134,7 +134,7 @@ JaneEyre <- JaneEyre_raw %>%
 ### Load the sentiment lexicon
 
 ```{r}
-AFINN <- read.csv("AFINN Sentiment Lexicon.csv")
+AFINN <- read.csv( "AFINN Sentiment Lexicon.csv" )
 ```
 
 ```{r}

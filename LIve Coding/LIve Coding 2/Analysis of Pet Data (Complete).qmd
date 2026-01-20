@@ -58,7 +58,7 @@ We are provided with two data files for the analysis:
 We start by loading the data into our R Workspace using the read.csv() function and looking at the loaded data,
 
 ```{r}
-Pets <- read.csv("Data/Pets.csv")
+Pets <- read.csv( "Data/Pets.csv" )
 glimpse( Pets )
 ```
 

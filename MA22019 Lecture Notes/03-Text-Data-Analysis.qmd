@@ -388,7 +388,7 @@ So the term frequency-inverse document frequency is useful to assess how importa
 Suppose our corpus comprises four books by Charles Dickens: *A Christmas Carol*, *A Tale of Two Cities*, *Great Expectations* and *Oliver Twist*. The text for the books from Project Gutenberg is available as "Dickens.csv" on Moodle:
   
 ```{r, warning=FALSE, message=FALSE}
-Dickens_raw <- read.csv("Data/Dickens.csv")
+Dickens_raw <- read.csv( "Data/Dickens.csv" )
 ```
 
 As in the analysis of *Jane Eyre* and *Wuthering Heights*, we use the unnest_tokens() function to separate the text into individual words, and we use gsub() to remove any underscores:
@@ -465,7 +465,7 @@ To illustrate LDA we first consider an example where we know the 'truth'. Here w
 We consider the books *Great Expectations* and *A Tale of Two Cities* we studied previously:
 
 ```{r}
-Dickens_raw <- read.csv("Data/Dickens.csv")
+Dickens_raw <- read.csv( "Data/Dickens.csv" )
 Dickens <- filter(
     Dickens_raw,
     title %in% c("Great Expectations", "A Tale of Two Cities")
@@ -596,7 +596,7 @@ The plot shows some very interesting patterns. In particular, the two topics see
 Let's look at an example where there is no 'truth' as such. The file "NYT.csv" provides metadata for 1289 articles published by the New York Times in their "Europe" subsection between 01/01/2023 and 01/11/2024: 
 
 ```{r}
-NYT <- read.csv("Data/NYT.csv")
+NYT <- read.csv( "Data/NYT.csv" )
 ```
 
 Specifically, the data file gives for each article the lead paragraph and the date it was published. We want to explore the results we obtain when applying LDA.

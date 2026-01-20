@@ -34,8 +34,8 @@ install.packages( "tidytext", dependencies = TRUE )
 For the sentiment analysis you can load the sentiment lexicons using
 
 ```{r}
-AFINN <- read.csv("data/AFINN Sentiment Lexicon.csv")
-Bing <- read.csv("data/Bing Sentiment Lexicon.csv")
+AFINN <- read.csv( "data/AFINN Sentiment Lexicon.csv" )
+Bing <- read.csv( "data/Bing Sentiment Lexicon.csv" )
 ```
 
 
