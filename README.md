@@ -39,11 +39,16 @@ ma22019_website/
 │   └── Homework/
 │
 ├── _Coursework*/            # Coursework folders (ignored - released separately)
-├── _Moodle Quiz/            # Quiz generation scripts (ignored)
+├── _quizzes/                  # Moodle Quiz files (top-level)
+├── _Moodle Quiz/            # (Deprecated/Removed)
 │
 ├── _site/                   # Generated website output
 └── _freeze/                 # Quarto freeze cache
 ```
+
+## 📝 File Naming Convention
+- All files and folders use **snake_case** (e.g., `weeks_1`, `lab_1.qmd`, `my_data.csv`).
+
 
 ## 🔧 Building the Website
 
