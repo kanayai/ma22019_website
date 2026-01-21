@@ -1,0 +1,17 @@
+{
+  "hash": "0a6ede1804fc101e158a1070110a3942",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Comparison of Jane Eyre and Wuthering Heights\"\nauthor: \"Christian Rohrbeck\"\ndate: '05/03/2025'\nformat: html\n---\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(tidytext)\n```\n:::\n\n\n### Loading and cleaning the text data\n\n\n::: {.cell}\n\n```{.r .cell-code}\nJaneEyre_raw <- readLines( \"data/jane_eyre.txt\", encoding = \"UTF-8\" )\nJaneEyre_raw <- data.frame( text = JaneEyre_raw )\n\nJaneEyre <- JaneEyre_raw %>% \n  unnest_tokens(word, text) %>%\n  mutate( word = gsub( \"_\", \"\", word ) ) %>%\n  count( word, sort=TRUE ) %>%\n  mutate( 'term frequency' = n / sum(n) ) %>%\n  anti_join( stop_words )\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nJoining with `by = join_by(word)`\n```\n\n\n:::\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nWutheringHeights_raw <- readLines( \"data/wuthering_heights.txt\", encoding = \"UTF-8\" )\nWutheringHeights_raw <- data.frame( text = WutheringHeights_raw )\n\nWutheringHeights <- WutheringHeights_raw %>% \n  unnest_tokens(word, text) %>%\n  mutate( word = gsub( \"_\", \"\", word ) ) %>%\n  count( word, sort=TRUE ) %>%\n  mutate( 'term frequency' = n / sum(n) ) %>%\n  anti_join( stop_words )\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nJoining with `by = join_by(word)`\n```\n\n\n:::\n:::\n\n\n\n### Create a single data frame with all the words and term frequencies\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntf <- full_join( JaneEyre, WutheringHeights, by=\"word\" ) %>%\n  rename( JaneEyre='term frequency.x', Heights='term frequency.y' )\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse(tf)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nRows: 15,125\nColumns: 5\n$ word     <chr> \"jane\", \"rochester\", \"sir\", \"miss\", \"time\", \"day\", \"looked\", …\n$ n.x      <int> 341, 317, 316, 310, 244, 232, 221, 218, 187, 184, 182, 182, 1…\n$ JaneEyre <dbl> 0.0018099884, 0.0016825992, 0.0016772913, 0.0016454440, 0.001…\n$ n.y      <int> NA, NA, 43, 129, 128, 105, 75, 104, 117, 2, 133, 94, 142, 79,…\n$ Heights  <dbl> NA, NA, 3.672640e-04, 1.101792e-03, 1.093251e-03, 8.968074e-0…\n```\n\n\n:::\n:::\n\n\n### Replace NAs by 0\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntf <- tf %>%\n  mutate( JaneEyre = case_when( is.na(JaneEyre) == TRUE ~ 0, .default = JaneEyre),\n          Heights = case_when( is.na(Heights) == TRUE ~ 0, .default = Heights) )\n```\n:::\n\n\n### Scatter plot to compare term frequencies\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot( tf, aes( x=JaneEyre, y=Heights ) ) +\n  geom_point() + \n  geom_text( aes(label=word), check_overlap = TRUE, vjust=1.5 ) + \n  coord_trans( x=\"sqrt\", y=\"sqrt\" ) + theme_bw() +\n  labs( x=\"Term Frequency in Jane Eyre\",\n        y=\"Term Frequency in Wuthering Heights\" )\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: `coord_trans()` was deprecated in ggplot2 4.0.0.\nℹ Please use `coord_transform()` instead.\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](comparison_of_jane_eyre_and_wuthering_heights_files/figure-html/unnamed-chunk-7-1.png){fig-align='center' width=65%}\n:::\n:::\n\n",
+    "supporting": [
+      "comparison_of_jane_eyre_and_wuthering_heights_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

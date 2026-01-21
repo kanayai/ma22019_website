@@ -22,7 +22,7 @@ library( prettymapr )
 The data are stored in the file "Temperature Germany.csv"
 
 ```{r}
-Temperature <- read.csv("temperature_germany.csv" )  
+Temperature <- read.csv("data/temperature_germany.csv" )  
 ```
 
 The data provides spatial locations and maximum daily temperature:
@@ -49,7 +49,7 @@ ggplot( Temperature, aes(x=longitude, y=latitude) ) +
 We load the shapefile with the read_sf() function
 
 ```{r}
-Germany <- read_sf( "gadm41_DEU_1.shp" )
+Germany <- read_sf( "data/gadm41_DEU_1.shp" )
 ```
 
 Let's slightly reduce the complexity of the shape

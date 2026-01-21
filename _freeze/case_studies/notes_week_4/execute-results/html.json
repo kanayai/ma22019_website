@@ -1,0 +1,15 @@
+{
+  "hash": "7916c1c76ddb006ae258a4c03cf44cbd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"MA22019 - Coursework 1 Q&A\"\nauthor: \"Christian Rohrbeck\"\ndate: \"26 February 2025\"\n---\n\n\n\n## Some Important Remarks \n\n\n- Week 4 Questionnaire - Please take 5 minutes to complete it\n\n\n\n- **No tutorials next week (Week 5)**\n\n\n\n- **Coursework 2:**\n\n    + Release on Friday 25 April (end of Week 10)\n    \n    + Due on Tuesday 6 May (beginning of Revision Week)\n\n\n\n- I will try to post questions and answers on the Padlet board\n\n- We will finish at 11:05.\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
