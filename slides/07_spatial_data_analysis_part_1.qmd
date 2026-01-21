@@ -90,7 +90,7 @@ In spatial data analysis we consider **three** types of spatial data:
 
 Let's look at some temperature data for Germany
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 
@@ -108,7 +108,7 @@ Such data is available via the website <a href="https://gadm.org/">gadm.org</a>.
 
 Let's see how we can add such shapefile data to our plot </br>
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 ## Projections  
 
@@ -123,7 +123,7 @@ Converting locations on earth to a two-dimensional representation is called a **
 
 We can choose a projection using the **coord_sf()** function.
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 ## Example
@@ -132,12 +132,12 @@ We can choose a projection using the **coord_sf()** function.
 library(patchwork)
 library(sf)
 library(ggplot2)
-CANADA   <- read_sf("data/gadm41_CAN_1.shp")
+CANADA   <- read_sf("data/shapefiles/gadm41_CAN_1.shp")
 CANADA   <- st_simplify( CANADA, dTolerance = 5000 )
 CANPlot1 <- ggplot( data=CANADA ) + theme_bw() + geom_sf()
 CANPlot2 <- CANPlot1 + coord_sf( crs=st_crs(3347) )
 
-NORWAY   <- read_sf("data/gadm41_NOR_1.shp")
+NORWAY   <- read_sf("data/shapefiles/gadm41_NOR_1.shp")
 NORWAY   <- st_simplify( NORWAY, dTolerance = 2000 )
 NORPlot1 <- ggplot( data=NORWAY ) + theme_bw() + geom_sf()
 NORPlot2 <- NORPlot1 + coord_sf( crs=st_crs(3346) )
@@ -157,7 +157,7 @@ NORPlot2 <- NORPlot1 + coord_sf( crs=st_crs(3346) )
 
 - When using projections, we also need to project the points
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 ## Creating maps with ggspatial
 
@@ -179,7 +179,7 @@ library(prettymapr)
 
 2) Replace **geom_point()** by **geom_spatial_point()**
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 
@@ -251,7 +251,7 @@ We have to select a suitable value for $p$.
 
 Let's compare $p=0.5$, $p=2$ and $p=20$.
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 
@@ -303,7 +303,7 @@ Today we learned that
 
 * Don't suppress the R code for loading packages
 
-* Make use of R Markdown options to modify the size of plots.
+* Make use of Quarto options to modify the size of plots.
 
 * Clearly describe your approach.
 

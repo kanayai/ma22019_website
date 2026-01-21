@@ -6,6 +6,7 @@ _main_files/
 
 # Ignore large data folders and files
 **/Data/
+assets/data/
 *.shp
 *.shx
 *.dbf

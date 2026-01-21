@@ -1,0 +1,77 @@
+[
+  {
+    "listing": "/case_studies.html",
+    "items": [
+      "/case_studies/analysis_of_german_temperature_data.html",
+      "/case_studies/London.html",
+      "/case_studies/Tornadoes.html",
+      "/case_studies/WildFires.html",
+      "/case_studies/analysis_australian_weather.html",
+      "/case_studies/notes_week_4.html",
+      "/case_studies/analysis_nrfa_data_for_bathford.html",
+      "/case_studies/analysis_tuscany_data.html",
+      "/case_studies/comparison_of_jane_eyre_and_wuthering_heights.html",
+      "/case_studies/analysis_of_jane_eyre.html",
+      "/case_studies/week_2_analysis_nrfa_data_for_bathford.html",
+      "/case_studies/week_6_analysis_of_nyt_articles.html",
+      "/case_studies/analysis_of_the_work_by_charles_dickens.html",
+      "/case_studies/change_in_scale___examples.html",
+      "/case_studies/change_in_data_structure___example.html",
+      "/case_studies/analysis_of_wind_speed_and_direction_for_bela_vista.html",
+      "/case_studies/analysis_of_nyt_articles.html",
+      "/case_studies/analysis_of_colorado_precipitation_data.html",
+      "/case_studies/analysis_of_sea_surface_temperature_anomalies.html",
+      "/case_studies/example_marking.html",
+      "/case_studies/semi_variogram_example.html"
+    ]
+  },
+  {
+    "listing": "/homework.html",
+    "items": [
+      "/practice/week_2/homework_2.html",
+      "/practice/week_3/homework_3.html",
+      "/practice/week_5/homework_5.html",
+      "/practice/week_6/homework_6.html",
+      "/practice/week_7/homework_7.html",
+      "/practice/week_8/homework_8.html",
+      "/practice/week_9/homework_9.html",
+      "/practice/week_2/quiz_2.html",
+      "/practice/week_4/quiz_4.html",
+      "/practice/week_5/quiz_5.html",
+      "/practice/week_6/quiz_6.html",
+      "/practice/week_7/quiz_7.html",
+      "/practice/week_8/quiz_8.html",
+      "/practice/week_9/quiz_9.html",
+      "/practice/week_3/quiz_3.html"
+    ]
+  },
+  {
+    "listing": "/slides.html",
+    "items": [
+      "/slides/01_data_cleaning_and_wrangling.html",
+      "/slides/00_overview.html",
+      "/slides/03_data_visualization_part_1.html",
+      "/slides/02_combining_data_frames.html",
+      "/slides/04_data_visualization_part_2.html",
+      "/slides/05_text_data_analysis_part_1.html",
+      "/slides/06_text_data_analysis_part_2.html",
+      "/slides/07_spatial_data_analysis_part_1.html",
+      "/slides/08_spatial_data_analysis_part_2.html",
+      "/slides/09_spatial_data_analysis_part_3.html",
+      "/slides/10_revision.html"
+    ]
+  },
+  {
+    "listing": "/labs.html",
+    "items": [
+      "/practice/week_1/lab_1.html",
+      "/practice/week_5/lab_5.html",
+      "/practice/week_6/lab_6.html",
+      "/practice/week_7/lab_7.html",
+      "/practice/week_8/lab_8.html",
+      "/practice/week_9/lab_9.html",
+      "/practice/week_2/lab_2.html",
+      "/practice/week_3/lab_3.html"
+    ]
+  }
+]

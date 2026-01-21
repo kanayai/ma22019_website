@@ -36,7 +36,7 @@ ggplot( Tornadoes, aes( Lon, y=Lat ) ) + annotation_map_tile() +
 ### Load the shapefile for the United States
 
 ```{r}
-USA <- read_sf( "Shapefile USA/gadm41_USA_1.shp" )
+USA <- read_sf( "data/shapefiles/gadm41_USA_1.shp" )
 ```
 
 

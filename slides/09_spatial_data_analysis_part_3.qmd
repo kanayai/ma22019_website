@@ -108,11 +108,11 @@ We can use the same techniques as for point-referenced data:
 
 * Creating maps with points on top
 
-Let's look at an example</br>**`r colorize("-> R Markdown file WildFires.Rmd")`**
+Let's look at an example</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
 
 
 
-**But**: We may not always see the structure clearly</br>**`r colorize("-> R Markdown file Tornadoes.Rmd")`**
+**But**: We may not always see the structure clearly</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
 
 This leads us to the concept of **intensity** of a point process.
 
@@ -181,7 +181,7 @@ We have to balance two aspects:
 
 - $\widehat{\mu(\mathcal{B}_j)}$ should be a reliable estimate for $\mu(\mathcal{B}_j)$. 
 
-**`r colorize("-> R Markdown file WildFires.Rmd")`**
+**`r colorize("-> Quarto Document WildFires.qmd")`**
 
 
 # Kernel Smoothed Intensity Function
@@ -214,11 +214,11 @@ where
 g(\mathbf{s}) = \int_{\mathcal{S}} K(\mathbf{s}-\tilde{\mathbf{s}}) \mathrm{d}\tilde{\mathbf{s}}.
 \]
 
-This correction is available in the spatstat R package.</br>**`r colorize("-> R Markdown file WildFires.Rmd")`**
+This correction is available in the spatstat R package.</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
 
 ## Analysis of Tornadoes
 
-Let's consider a second example</br>**`r colorize("-> R Markdown file Tornadoes.Rmd")`**
+Let's consider a second example</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
 
 
 # Visualizing Lattice Data
@@ -242,7 +242,7 @@ Let's load a shapefile for London
 
 ```{r, echo=-1, message=FALSE, warning=FALSE}
 library(sf)
-London <- read_sf("data/London.shp")
+London <- read_sf("data/shapefiles/London.shp")
 class( London )
 ```
 
@@ -250,7 +250,7 @@ We see that **London** includes a data frame.
 
 **All entries except for the "geometry" can be manipulated.**
 
-Let's visualize population density for the different boroughs.</br>**`r colorize("-> R Markdown file")`**
+Let's visualize population density for the different boroughs.</br>**`r colorize("-> Quarto Document")`**
 
 
 ## Example 2 - Tornadoes in the US
@@ -258,7 +258,7 @@ Let's visualize population density for the different boroughs.</br>**`r colorize
 The data in "Tornadoes.csv" provides observations on tornadoes for 1950-1921 for the whole US.
 
 Let's visualize the number of tornadoes recorded for each state.
-</br>**`r colorize("->R Markdown file Tornadoes.Rmd")`**
+</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
 
 ## Summary
 

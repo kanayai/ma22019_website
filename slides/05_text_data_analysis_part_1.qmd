@@ -151,7 +151,7 @@ knitr::include_graphics("img/CharlotteBronte.jfif")
 
 We download the full text from Project Gutenberg.</br> 
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 
@@ -163,7 +163,7 @@ JaneEyre <- JaneEyre_raw %>% unnest_tokens( word, text )
 
 There is some data cleaning to be done! </br> 
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 ## Calcualting term frequency
@@ -180,7 +180,7 @@ JaneEyre_Count <- JaneEyre %>%
 slice_head( JaneEyre_Count, n=10 )
 ```
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidytext)
@@ -238,7 +238,7 @@ library( tidytext )
 data( stop_words )
 ```
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 ## Visualizing word frequency 
@@ -254,7 +254,7 @@ There are two options for visualizing the most frequent words:
 
 Let's produce these plots for *Jane Eyre*</br>
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 
@@ -296,7 +296,7 @@ We already analysed word frequency for the book.
 
 Let's see what we can say about the sentiment.</br>
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 ## What to remember
@@ -337,6 +337,6 @@ Interest in exploring two pieces of text in terms of term frequency of the indiv
 
 Let's compare the novels *Jane Eyre* and *Wuthering Heights*</br>
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 

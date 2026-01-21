@@ -123,7 +123,7 @@ Let's look at a corpus containing only four books
 
 `r colorize("Which words would we expect to have the highest tf-idf?")`
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 # Problem Class 4
 
@@ -143,7 +143,7 @@ We want to illustrate the techniques covered so far by analyzing the books by Ja
 
 * *Sense and Sensibility* 
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 # Topic modelling
 
@@ -217,11 +217,11 @@ Let's look at two examples:
 
 1) Recovering the books by Charles Dickens
 
-    **`r colorize("-> R Markdown file")`**
+    **`r colorize("-> Quarto Document")`**
 
 2) Classifying news articles by the New York Times
 
-    **`r colorize("-> R Markdown file")`**
+    **`r colorize("-> Quarto Document")`**
 
 
 ## Summary

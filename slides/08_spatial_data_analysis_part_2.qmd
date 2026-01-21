@@ -143,7 +143,7 @@ In many applications we find the following features:
 
 Let's look at the example on sea surface temperature anomalies
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 ## Summary
 
@@ -249,7 +249,7 @@ We have
 
 * Monthly amount of precipitation across 2010-2023. So we have $T=168$ observations per site. 
 
-**`r colorize("-> R Markdown file")`**
+**`r colorize("-> Quarto Document")`**
 
 
 

@@ -33,7 +33,7 @@ glimpse(WildFires)
 A shapefile is imported in the form of a data frame and thus we can apply data wrangling techniques to it:
 
 ```{r}
-USA <- read_sf( "Shapefile USA/gadm41_USA_1.shp" )
+USA <- read_sf( "data/shapefiles/gadm41_USA_1.shp" )
 California <- filter( USA, NAME_1=="California" ) %>% 
   st_simplify(dTolerance = 2000)
 ```

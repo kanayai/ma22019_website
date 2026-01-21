@@ -8,7 +8,7 @@ A comprehensive Quarto-based website for the MA22019 (Data Analysis & Visualizat
 |---------|----------|-------------|
 | **Home** | `index.qmd` | Course overview and announcements |
 | **Lecture Notes** | `MA22019 Lecture Notes/` | Full course textbook (4 chapters) |
-| **Slides** | `Slides/Week 1-10/` | RevealJS presentation slides |
+| **Slides** | `slides/NN_snake_case.qmd` | RevealJS presentation slides |
 | **Labs** | `Practice/Week X/Lab X.qmd` | Weekly lab exercises |
 | **Homework** | `Practice/Week X/Homework X.qmd` | Weekly homework assignments |
 | **Quizzes** | `Practice/Week X/Quiz X.qmd` | Weekly practice quizzes |
@@ -17,7 +17,6 @@ A comprehensive Quarto-based website for the MA22019 (Data Analysis & Visualizat
 
 ## 📁 Folder Overview
 
-```
 ma22019_website/
 ├── _quarto.yml              # Main site configuration
 ├── index.qmd                # Homepage
@@ -26,25 +25,20 @@ ma22019_website/
 ├── slides.qmd               # Slides listing page
 ├── coursework.qmd           # Coursework info page
 │
-├── MA22019 Lecture Notes/   # Course textbook (Quarto book)
-├── Slides/                  # Week-by-week lecture slides
-├── Practice/                # Labs, Homework, Quizzes by week
-├── LIve Coding/             # Live coding session files
-├── computing-setup/         # Setup guides for students
+├── assets/                  # Static assets
+│   └── data/                # Centralized data repository
+│       └── shapefiles/      # Geospatial data files
+├── case_studies/            # Detailed analysis examples
+├── computing_setup/         # Setup guides for students
+├── lecture_notes/           # Course textbook
+├── live_coding/             # Live coding session files
+├── practice/                # Labs, Homework, Quizzes by week
+├── slides/                  # Lecture slides (NN_snake_case.qmd)
 ├── style/                   # Custom CSS/SCSS theming
 │
-├── _solutions/              # Solution files (ignored by Quarto)
-│   ├── Labs/
-│   ├── Quizzes/
-│   └── Homework/
-│
-├── _Coursework*/            # Coursework folders (ignored - released separately)
-├── _quizzes/                  # Moodle Quiz files (top-level)
-├── _Moodle Quiz/            # (Deprecated/Removed)
-│
+├── backup_data.sh           # Script to backup ignored data files
 ├── _site/                   # Generated website output
 └── _freeze/                 # Quarto freeze cache
-```
 
 ## 📝 File Naming Convention
 - All files and folders use **snake_case** (e.g., `weeks_1`, `lab_1.qmd`, `my_data.csv`).
@@ -85,18 +79,13 @@ The project uses `_freeze/` to cache rendered output. On subsequent renders, unc
 Output is generated in `_site/`.
 
 ## 📦 Data Management
+## 📦 Data Management
+**Large data files are ignored by Git.**
 
-**Large data files are stored in OneDrive, not Git.**
-
-- Each component has a `data/` symlink pointing to OneDrive
-- This keeps the repository lightweight
-- Data syncs automatically via OneDrive
-
-| Component | Symlink | Points to OneDrive |
-|-----------|---------|-------------------|
-| Lecture Notes | `MA22019 Lecture Notes/Data/` | `~/OneDrive/.../Data` |
-| Practice weeks | `Practice/Week X/data/` | Week-specific data |
-| Solutions | `_solutions/.../data/` | Symlinks to Practice data |
+- Centralized location: `assets/data/` (CSVs, TXTs) and `assets/data/shapefiles/` (SHP, DBF, etc.)
+- `slides/data` and `case_studies/data` are **symlinks** pointing to `assets/data/`.
+- **Backup**: Run `./backup_data.sh` to zip up open data files for safe keeping.
+- **Restore**: Unzip a backup archive into `assets/data/` if setting up on a new machine.
 
 ## 🎓 Release Workflow
 

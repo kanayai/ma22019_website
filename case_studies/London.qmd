@@ -16,7 +16,7 @@ library(dplyr)
 library(ggplot2)
 library(sf)
 
-London <- read_sf("data/London.shp")
+London <- read_sf("data/shapefiles/London.shp")
 ```
 
 ```{r}
