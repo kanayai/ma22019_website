@@ -1,0 +1,120 @@
+---
+title: "Analysis of Tornado Data"
+author: "Christian Rohrbeck"
+date: "02/04/2025"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading the packages and the tornado data set
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(sf)
+library(ggspatial)
+library(prettymapr)
+library(spatstat)
+
+Tornadoes <- read.csv("data/tornadoes.csv" )
+```
+
+# Point pattern analysis for Kansas and Texas
+
+## Visualize the data
+
+```{r, fig.align='center', out.width='55%'}
+ggplot( Tornadoes, aes( Lon, y=Lat ) ) + annotation_map_tile() + 
+  geom_spatial_point() + labs( x="Longitude", y="Latitude" )
+```
+
+
+### Load the shapefile for the United States
+
+```{r}
+USA <- read_sf( "Shapefile USA/gadm41_USA_1.shp" )
+```
+
+
+### Extract the shapefiles for Kansas and Texas
+
+```{r, echo=TRUE}
+KS <- filter( USA, NAME_1=="Kansas" ) %>% 
+  st_simplify( dTolerance = 2000 )
+
+TX <- filter( USA, NAME_1=="Texas" ) %>% 
+  st_simplify( dTolerance = 2000 ) 
+```
+
+### Transform the points and shapefiles to a different projection
+
+We transform the shapefiles and points to a projection different to WGS84 - this seems odd, but it is necessary to create the ppp object later:
+
+```{r, echo=TRUE}
+KS <- KS %>% st_transform( crs=3857 )
+TX <- TX %>% st_transform( crs=3857 )
+
+Tornadoes_transformed <- Tornadoes %>%
+  st_as_sf( coords=c("Lon","Lat"), crs=4326 ) %>%
+  st_transform( crs=3857 ) %>% 
+  st_coordinates( )
+```
+
+### Create the ppp objects
+
+This is the second possibility of creating a ppp objetc we will introduce - it's more work due to the required change in projection, but it is more rigorous in return:
+
+```{r, warning=FALSE, echo=TRUE}
+Texas_ppp <- ppp( Tornadoes_transformed[,1], Tornadoes_transformed[,2], 
+                  window = as.owin(TX) )
+Kansas_ppp <- ppp( Tornadoes_transformed[,1], Tornadoes_transformed[,2],
+                   window = as.owin(KS) )
+```
+
+### Estimate and visualize the kernel smoothed intensity function
+
+```{r, out.width='100%', fig.align='center', fig.cap='Corrected smoothed kernel intensity for the occurrence of tornadoes across Kansas and Texas.', fig.width=10, fig.height=4}
+par( mai=c(0.01,0.5,0.2,0.5), mfrow=c(1,2) )
+lambdaC_KS <- density.ppp( Kansas_ppp, edge=TRUE )
+plot( lambdaC_KS, main="Kansas" )
+lambdaC_TX <- density.ppp( Texas_ppp, edge=TRUE )
+plot( lambdaC_TX, main="Texas" )
+```
+
+# Visualizing the number of tornadoes per state
+
+## Extract number of tornadoes per state
+
+```{r}
+TornadoesNumbers <- Tornadoes %>% count( State )
+```
+
+## Combine the number with the data frame for the shapefile
+
+```{r}
+USA <- st_simplify( USA, dTolerance = 5000, preserveTopology = TRUE )
+USA$HASC_1 <- gsub( ".*\\.", "", USA$HASC_1)
+USA <- inner_join( USA, TornadoesNumbers, by=c("HASC_1"="State") ) 
+```
+
+## Remove Alaska and Hawaii
+
+```{r}
+USA <- USA %>% 
+  filter( !NAME_1 %in% c("Alaska", "Hawaii") ) %>%
+  rename( State = NAME_1, Number=n )
+```
+
+## Create the plot
+
+```{r, message=FALSE, warning=FALSE, fig.align='center', out.width='80%', fig.height=5, fig.width=10}
+ggplot( USA, aes(fill=Number) ) + theme_bw() + 
+  annotation_map_tile( zoom=4 ) + geom_sf() +
+  scale_fill_distiller( palette="Reds", trans="reverse" ) + 
+  labs( fill="Number", x="Longitude", y="Latitude" ) +
+  theme( axis.title=element_text(size=15), axis.text=element_text(size=15) )
+```

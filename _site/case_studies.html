@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Labs – MA22019</title>
+<title>Case Studies – MA22019</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./homework.html" rel="next">
-<link href="./case_studies.html" rel="prev">
+<link href="./labs.html" rel="next">
+<link href="./slides.html" rel="prev">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -143,7 +143,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./labs.html">Labs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./case_studies.html">Case Studies</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -268,13 +268,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./case_studies.html" class="sidebar-item-text sidebar-link">
+  <a href="./case_studies.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Case Studies</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs.html" class="sidebar-item-text sidebar-link active">
+  <a href="./labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Labs</span></a>
   </div>
 </li>
@@ -303,7 +303,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Case Studies</h1>
 </div>
 
 
@@ -320,7 +320,7 @@ window.Quarto = {
 </header>
 
 
-<p>Weekly practice labs.</p>
+<p>Case studies are available below.</p>
 
 
 
@@ -332,6 +332,12 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -351,89 +357,219 @@ window.Quarto = {
 </th>
 
 <th>
-Subtitle
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
 </th>
 
 </tr>
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-categories="TGFi" data-listing-file-modified-sort="1768908242079" data-listing-reading-time-sort="4" data-listing-word-count-sort="618" data-listing-title-sort="MA22019 2025 - Computer Lab 1" data-listing-filename-sort="lab_1.qmd">
+<tr data-index="0" data-listing-date-sort="1719961200000" data-listing-file-modified-sort="1769019223575" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="707" data-listing-title-sort="Analysis of German Temperature Data" data-listing-filename-sort="analysis_of_german_temperature_data.qmd">
 <td>
-<a href="./practice/week_1/lab_1.html" class="title listing-title">MA22019 2025 - Computer Lab 1</a>
+<a href="./case_studies/analysis_of_german_temperature_data.html" class="title listing-title">Analysis of German Temperature Data</a>
 </td>
 <td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="TGFi" data-listing-file-modified-sort="1768917136156" data-listing-reading-time-sort="2" data-listing-word-count-sort="362" data-listing-title-sort="MA22019 2025 - Computer Lab 5" data-listing-filename-sort="lab_5.qmd">
-<td>
-<a href="./practice/week_5/lab_5.html" class="title listing-title">MA22019 2025 - Computer Lab 5</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
+<span class="listing-date">Jul 3, 2024</span>
 </td>
 
 </tr>
 
-<tr data-index="2" data-categories="TGFi" data-listing-file-modified-sort="1768904963715" data-listing-reading-time-sort="3" data-listing-word-count-sort="485" data-listing-title-sort="MA22019 2025 - Computer Lab 6" data-listing-filename-sort="lab_6.qmd">
+<tr data-index="1" data-listing-date-sort="1738627200000" data-listing-file-modified-sort="1769019223571" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="165" data-listing-title-sort="Visualizing population density across London boroughs" data-listing-filename-sort="London.qmd">
 <td>
-<a href="./practice/week_6/lab_6.html" class="title listing-title">MA22019 2025 - Computer Lab 6</a>
+<a href="./case_studies/London.html" class="title listing-title">Visualizing population density across London boroughs</a>
 </td>
 <td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="TGFi" data-listing-file-modified-sort="1768917136198" data-listing-reading-time-sort="3" data-listing-word-count-sort="511" data-listing-title-sort="MA22019 2025 - Computer Lab 7" data-listing-filename-sort="lab_7.qmd">
-<td>
-<a href="./practice/week_7/lab_7.html" class="title listing-title">MA22019 2025 - Computer Lab 7</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
+<span class="listing-date">Feb 4, 2025</span>
 </td>
 
 </tr>
 
-<tr data-index="4" data-categories="TGFi" data-listing-file-modified-sort="1768904963730" data-listing-reading-time-sort="3" data-listing-word-count-sort="559" data-listing-title-sort="MA22019 2025 - Computer Lab 8" data-listing-filename-sort="lab_8.qmd">
+<tr data-index="2" data-listing-date-sort="1738627200000" data-listing-file-modified-sort="1769019223571" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="399" data-listing-title-sort="Analysis of Tornado Data" data-listing-filename-sort="Tornadoes.qmd">
 <td>
-<a href="./practice/week_8/lab_8.html" class="title listing-title">MA22019 2025 - Computer Lab 8</a>
+<a href="./case_studies/Tornadoes.html" class="title listing-title">Analysis of Tornado Data</a>
 </td>
 <td>
-<span class="listing-subtitle">Mise en place</span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-categories="TGFi" data-listing-file-modified-sort="1768904963679" data-listing-reading-time-sort="3" data-listing-word-count-sort="469" data-listing-title-sort="MA22019 2025 - Computer Lab 9" data-listing-filename-sort="lab_9.qmd">
-<td>
-<a href="./practice/week_9/lab_9.html" class="title listing-title">MA22019 2025 - Computer Lab 9</a>
-</td>
-<td>
-<span class="listing-subtitle">Mise en place</span>
+<span class="listing-date">Feb 4, 2025</span>
 </td>
 
 </tr>
 
-<tr data-index="6" data-categories="TGFi" data-listing-file-modified-sort="1768904963668" data-listing-reading-time-sort="3" data-listing-word-count-sort="504" data-listing-title-sort="MA22019 2025 -Computer Lab 2" data-listing-filename-sort="lab_2.qmd">
+<tr data-index="3" data-listing-date-sort="1738627200000" data-listing-file-modified-sort="1769019223572" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="325" data-listing-title-sort="Analysis of Wildfires" data-listing-filename-sort="WildFires.qmd">
 <td>
-<a href="./practice/week_2/lab_2.html" class="title listing-title">MA22019 2025 -Computer Lab 2</a>
+<a href="./case_studies/WildFires.html" class="title listing-title">Analysis of Wildfires</a>
 </td>
 <td>
-<span class="listing-subtitle">Mise en place</span>
+<span class="listing-date">Feb 4, 2025</span>
 </td>
 
 </tr>
 
-<tr data-index="7" data-categories="TGFi" data-listing-file-modified-sort="1768908790323" data-listing-reading-time-sort="3" data-listing-word-count-sort="573" data-listing-title-sort="MA22019 2025 -Computer Lab 3" data-listing-filename-sort="lab_3.qmd">
+<tr data-index="4" data-listing-date-sort="1739318400000" data-listing-file-modified-sort="1769019223547" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413" data-listing-title-sort="Analysis of Australian weather data" data-listing-filename-sort="analysis_australian_weather.qmd">
 <td>
-<a href="./practice/week_3/lab_3.html" class="title listing-title">MA22019 2025 -Computer Lab 3</a>
+<a href="./case_studies/analysis_australian_weather.html" class="title listing-title">Analysis of Australian weather data</a>
 </td>
 <td>
-<span class="listing-subtitle">Mise en place</span>
+<span class="listing-date">Feb 12, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-listing-date-sort="1740528000000" data-listing-file-modified-sort="1769019223554" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="71" data-listing-title-sort="MA22019 - Coursework 1 Q&amp;A" data-listing-filename-sort="notes_week_4.qmd">
+<td>
+<a href="./case_studies/notes_week_4.html" class="title listing-title">MA22019 - Coursework 1 Q&amp;A</a>
+</td>
+<td>
+<span class="listing-date">Feb 26, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-listing-date-sort="1746140400000" data-listing-file-modified-sort="1768917135931" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145" data-listing-title-sort="Analysis of NRFA Data" data-listing-filename-sort="analysis_nrfa_data_for_bathford.qmd">
+<td>
+<a href="./case_studies/analysis_nrfa_data_for_bathford.html" class="title listing-title">Analysis of NRFA Data</a>
+</td>
+<td>
+<span class="listing-date">May 2, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="7" data-listing-date-sort="1746140400000" data-listing-file-modified-sort="1768917135934" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="266" data-listing-title-sort="Analysis of Tuscany Data Set" data-listing-filename-sort="analysis_tuscany_data.qmd">
+<td>
+<a href="./case_studies/analysis_tuscany_data.html" class="title listing-title">Analysis of Tuscany Data Set</a>
+</td>
+<td>
+<span class="listing-date">May 2, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="8" data-listing-date-sort="1746226800000" data-listing-file-modified-sort="1769019223549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239" data-listing-title-sort="Comparison of Jane Eyre and Wuthering Heights" data-listing-filename-sort="comparison_of_jane_eyre_and_wuthering_heights.qmd">
+<td>
+<a href="./case_studies/comparison_of_jane_eyre_and_wuthering_heights.html" class="title listing-title">Comparison of Jane Eyre and Wuthering Heights</a>
+</td>
+<td>
+<span class="listing-date">May 3, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="9" data-listing-date-sort="1746226800000" data-listing-file-modified-sort="1769019223549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="516" data-listing-title-sort="Analysis of Jane Eyre" data-listing-filename-sort="analysis_of_jane_eyre.qmd">
+<td>
+<a href="./case_studies/analysis_of_jane_eyre.html" class="title listing-title">Analysis of Jane Eyre</a>
+</td>
+<td>
+<span class="listing-date">May 3, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="10" data-listing-date-sort="1764633600000" data-listing-file-modified-sort="1769019223547" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="378" data-listing-title-sort="Analysis of NRFA Data" data-listing-filename-sort="week_2_analysis_nrfa_data_for_bathford.qmd">
+<td>
+<a href="./case_studies/week_2_analysis_nrfa_data_for_bathford.html" class="title listing-title">Analysis of NRFA Data</a>
+</td>
+<td>
+<span class="listing-date">Dec 2, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="11" data-listing-date-sort="1764720000000" data-listing-file-modified-sort="1769019223564" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218" data-listing-title-sort="Analysis of NYT Articles" data-listing-filename-sort="week_6_analysis_of_nyt_articles.qmd">
+<td>
+<a href="./case_studies/week_6_analysis_of_nyt_articles.html" class="title listing-title">Analysis of NYT Articles</a>
+</td>
+<td>
+<span class="listing-date">Dec 3, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="12" data-listing-date-sort="1764720000000" data-listing-file-modified-sort="1769019223564" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="475" data-listing-title-sort="Analysis of the work by Charles Dickens" data-listing-filename-sort="analysis_of_the_work_by_charles_dickens.qmd">
+<td>
+<a href="./case_studies/analysis_of_the_work_by_charles_dickens.html" class="title listing-title">Analysis of the work by Charles Dickens</a>
+</td>
+<td>
+<span class="listing-date">Dec 3, 2025</span>
+</td>
+
+</tr>
+
+<tr data-index="13" data-listing-date-sort="1782946800000" data-listing-file-modified-sort="1769019223554" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="147" data-listing-title-sort="Changing scales - Example" data-listing-filename-sort="change_in_scale___examples.qmd">
+<td>
+<a href="./case_studies/change_in_scale___examples.html" class="title listing-title">Changing scales - Example</a>
+</td>
+<td>
+<span class="listing-date">Jul 2, 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="14" data-listing-date-sort="1782946800000" data-listing-file-modified-sort="1769019223555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="337" data-listing-title-sort="Switching Data Formats Example" data-listing-filename-sort="change_in_data_structure___example.qmd">
+<td>
+<a href="./case_studies/change_in_data_structure___example.html" class="title listing-title">Switching Data Formats Example</a>
+</td>
+<td>
+<span class="listing-date">Jul 2, 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="15" data-listing-date-sort="1782946800000" data-listing-file-modified-sort="1769019223563" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="152" data-listing-title-sort="Analysis of wind in Bela Vista" data-listing-filename-sort="analysis_of_wind_speed_and_direction_for_bela_vista.qmd">
+<td>
+<a href="./case_studies/analysis_of_wind_speed_and_direction_for_bela_vista.html" class="title listing-title">Analysis of wind in Bela Vista</a>
+</td>
+<td>
+<span class="listing-date">Jul 2, 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="16" data-listing-date-sort="1793750400000" data-listing-file-modified-sort="1769019223545" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218" data-listing-title-sort="Analysis of NYT Articles" data-listing-filename-sort="analysis_of_nyt_articles.qmd">
+<td>
+<a href="./case_studies/analysis_of_nyt_articles.html" class="title listing-title">Analysis of NYT Articles</a>
+</td>
+<td>
+<span class="listing-date">Nov 4, 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="17" data-listing-date-sort="1801612800000" data-listing-file-modified-sort="1769019223569" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="193" data-listing-title-sort="Analysis of Monthly Precipitation in Colorado" data-listing-filename-sort="analysis_of_colorado_precipitation_data.qmd">
+<td>
+<a href="./case_studies/analysis_of_colorado_precipitation_data.html" class="title listing-title">Analysis of Monthly Precipitation in Colorado</a>
+</td>
+<td>
+<span class="listing-date">Feb 3, 2027</span>
+</td>
+
+</tr>
+
+<tr data-index="18" data-listing-date-sort="1801612800000" data-listing-file-modified-sort="1769019223569" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="133" data-listing-title-sort="Analysis of Sea Surface Temperature Anomalies" data-listing-filename-sort="analysis_of_sea_surface_temperature_anomalies.qmd">
+<td>
+<a href="./case_studies/analysis_of_sea_surface_temperature_anomalies.html" class="title listing-title">Analysis of Sea Surface Temperature Anomalies</a>
+</td>
+<td>
+<span class="listing-date">Feb 3, 2027</span>
+</td>
+
+</tr>
+
+<tr data-index="19" data-listing-file-modified-sort="1768917135936" data-listing-reading-time-sort="3" data-listing-word-count-sort="513" data-listing-title-sort="Marking of homework questions - example" data-listing-filename-sort="example_marking.qmd">
+<td>
+<a href="./case_studies/example_marking.html" class="title listing-title">Marking of homework questions - example</a>
+</td>
+<td>
+<span class="listing-date">&nbsp;</span>
+</td>
+
+</tr>
+
+<tr data-index="20" data-listing-file-modified-sort="1769019223546" data-listing-reading-time-sort="1" data-listing-word-count-sort="147" data-listing-title-sort="MA22019 2025 - Revision Class" data-listing-filename-sort="semi_variogram_example.qmd">
+<td>
+<a href="./case_studies/semi_variogram_example.html" class="title listing-title">MA22019 2025 - Revision Class</a>
+</td>
+<td>
+<span class="listing-date">&nbsp;</span>
 </td>
 
 </tr>
@@ -844,13 +980,13 @@ Subtitle
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./case_studies.html" class="pagination-link" aria-label="Case Studies">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Case Studies</span>
+      <a href="./slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./homework.html" class="pagination-link" aria-label="Homework &amp; Quizzes">
-        <span class="nav-page-text">Homework &amp; Quizzes</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./labs.html" class="pagination-link" aria-label="Labs">
+        <span class="nav-page-text">Labs</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,107 @@
+---
+title: "Analysis of Wildfires"
+author: "Christian Rohrbeck"
+date: "02/04/2025"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading the packages and the Californian wildfire data
+
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(sf)
+library(ggspatial)
+library(prettymapr)
+library(spatstat)
+
+WildFires <- read.csv("data/wildfires.csv" )
+```
+
+```{r}
+glimpse(WildFires)
+```
+
+
+## Extracting the shapefile for California
+
+A shapefile is imported in the form of a data frame and thus we can apply data wrangling techniques to it:
+
+```{r}
+USA <- read_sf( "Shapefile USA/gadm41_USA_1.shp" )
+California <- filter( USA, NAME_1=="California" ) %>% 
+  st_simplify(dTolerance = 2000)
+```
+
+```{r}
+ggplot(California) + geom_sf()
+```
+
+
+
+## Visualize the data
+
+We can use either of the two techniques we introduced for visualizing point-referenced data.
+
+```{r, fig.align='center', out.width='85%', message=FALSE, fig.height=5, fig.width=10}
+shape <- ggplot( data=California ) + theme_bw() + geom_sf() + 
+  geom_point( data=WildFires, aes(x=Longitude,y=Latitude, color=log(AcresBurned) ) ) +
+  scale_color_distiller( palette="Reds", trans="reverse" ) +
+  theme( legend.position="none" )
+map <- ggplot( WildFires, aes( Longitude, y=Latitude ) ) + 
+  annotation_map_tile() + geom_spatial_point( aes(color=log(AcresBurned)) ) + 
+  scale_color_distiller( palette="Reds", trans="reverse" ) +
+  labs( x="Longitude", y="Latitude", color="Log( Acres burned)" )
+shape + map 
+```
+
+
+## Quadrat counting estimate
+
+We need to generate a **ppp** object and one option to do this is:
+
+```{r}
+WildFires_ppp <- ppp( WildFires$Longitude, WildFires$Latitude,
+                      poly = California$geometry[[1]][[1]] )
+```
+
+We now use the **quadratcount()** function :
+
+```{r, out.width='90%', fig.align='center', fig.width=10, fig.height=5}
+par( mfrow=c(1,2), mai=c(0.01,0.01,0.5,0.01) )
+WildFireQuadrants <- quadratcount( WildFires_ppp, nx=2, ny=2 )
+plot( WildFireQuadrants )
+WildFireQuadrants <- quadratcount( WildFires_ppp, nx=6, ny=6 )
+plot( WildFireQuadrants )
+```
+
+
+
+## Kernel smoothed intensity function
+
+Let's compare the estimate with and without edge correction:
+
+```{r, out.width='100%', fig.align='center', fig.cap='Uncorrected (left) and corrected (right) kernel smoothed intensity for Californian wildfires.', fig.width=10, fig.height=4}
+par( mfrow=c(1,2), mai=c(0.01,0.5,0.2,0.5) )
+lambdaK <- density.ppp( WildFires_ppp, edge=FALSE )
+plot( lambdaK, main="Uncorrected" )
+lambdaC <- density.ppp( WildFires_ppp, edge=TRUE )
+plot( lambdaC, main="Corrected" )
+```
+
+## Selection of the bandwidth
+
+In some cases we may to choose the parameter $\sigma$. Here are two poor choices which illustrate the effect of the parameter:
+
+```{r, out.width='100%', fig.align='center', fig.cap='Corrected kernel smoothed intensity estimates for Californian wildfires with sigma=0.1 (left) and sigma=10 (right).', fig.width=10, fig.height=4}
+par( mai=c(0.01,0.5,0.2,0.5), mfrow=c(1,2) )
+lambda_sigma0.1 <- density.ppp( WildFires_ppp, edge=TRUE, sigma = 0.1 )
+plot( lambda_sigma0.1, main="sigma=0.1" )
+lambda_sigma10 <- density.ppp( WildFires_ppp, edge=TRUE, sigma = 10 )
+plot( lambda_sigma10, main="sigma=10" )
+```

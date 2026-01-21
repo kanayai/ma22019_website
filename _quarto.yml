@@ -35,6 +35,7 @@ website:
           - lecture_notes/03-Text-Data-Analysis.qmd
           - lecture_notes/04-SpatialDataAnalysis.qmd
       - slides.qmd
+      - case_studies.qmd
       - labs.qmd
       - homework.qmd
       - coursework.qmd

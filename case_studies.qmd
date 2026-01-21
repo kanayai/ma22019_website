@@ -1,0 +1,10 @@
+---
+title: "Case Studies"
+listing:
+  contents: case_studies
+  type: table
+  fields: [title, date]
+  sort: "date"
+---
+
+Case studies are available below.

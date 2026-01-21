@@ -1,0 +1,16 @@
+{
+  "listing": "/slides.html",
+  "items": [
+    "/slides/01_data_cleaning_and_wrangling.html",
+    "/slides/00_overview.html",
+    "/slides/03_data_visualization_part_1.html",
+    "/slides/02_combining_data_frames.html",
+    "/slides/04_data_visualization_part_2.html",
+    "/slides/05_text_data_analysis_part_1.html",
+    "/slides/06_text_data_analysis_part_2.html",
+    "/slides/07_spatial_data_analysis_part_1.html",
+    "/slides/08_spatial_data_analysis_part_2.html",
+    "/slides/09_spatial_data_analysis_part_3.html",
+    "/slides/10_revision.html"
+  ]
+}
