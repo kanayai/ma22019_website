@@ -79,13 +79,15 @@ The project uses `_freeze/` to cache rendered output. On subsequent renders, unc
 Output is generated in `_site/`.
 
 ## 📦 Data Management
-## 📦 Data Management
-**Large data files are ignored by Git.**
+**Large data files are hosted on OneDrive and symlinked.**
 
-- Centralized location: `assets/data/` (CSVs, TXTs) and `assets/data/shapefiles/` (SHP, DBF, etc.)
-- `slides/data` and `case_studies/data` are **symlinks** pointing to `assets/data/`.
-- **Backup**: Run `./backup_data.sh` to zip up open data files for safe keeping.
-- **Restore**: Unzip a backup archive into `assets/data/` if setting up on a new machine.
+- **Centralized Location**: `assets/data/` is a symlink pointing to the shared OneDrive folder:
+  `/Users/kai21/Library/CloudStorage/OneDrive-UniversityofBath/Teaching/MA22019/from Christian/MA22019 Lecture Notes/Data`
+- **Synchronization**:
+  - The repository **does not** contain physical data files.
+  - It contains a **symlink** to the OneDrive folder.
+  - See **[SYNC_WORKFLOW.md](SYNC_WORKFLOW.md)** for detailed instructions on setting up other machines.
+- **Do not commit data files directly.** Always place them in the OneDrive folder.
 
 ## 🎓 Release Workflow
 
@@ -103,13 +105,23 @@ Coursework folders prefixed with `_` are ignored. To release:
 
 ## 🖥️ Setup on a New Machine
 
+**Crucial: Read [SYNC_WORKFLOW.md](SYNC_WORKFLOW.md) first!**
+
 ```bash
 # Clone the repository
 git clone https://github.com/kanayai/ma22019_website.git
 cd ma22019_website
 
-# Ensure OneDrive is synced for data symlinks to work
-# Preview the site
+# 1. Pull latest changes
+git pull --prune
+
+# 2. Clean up any old untracked folders
+git clean -fd
+
+# 3. Ensure OneDrive is running and the 'assets/data' symlink works
+ls -F assets/data/
+
+# 4. Preview the site
 quarto preview
 ```
 
@@ -119,7 +131,7 @@ quarto preview
 |------|---------|
 | `_quarto.yml` | Main site config, navigation, theme |
 | `Practice/_metadata.yml` | Shared settings for Practice folder |
-| `Slides/_quarto.yml` | RevealJS slide settings |
+| `slides/_metadata.yml` | RevealJS slide settings |
 | `style/sta199.scss` | Custom styling (STA199 theme) |
 
 ## 👨‍🏫 Author
