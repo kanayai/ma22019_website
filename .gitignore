@@ -6,7 +6,10 @@ _main_files/
 
 # Ignore large data folders and files
 **/Data/
-assets/data/
+# assets/data/ is now a symlink, so we want to track it
+!assets/data
+_site/
+*_files/
 *.shp
 *.shx
 *.dbf

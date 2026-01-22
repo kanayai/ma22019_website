@@ -9,13 +9,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-colorize <- function(x, color="blue") {
-  if (knitr::is_latex_output()) {
-    sprintf("\\textcolor{%s}{%s}", color, x)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='color: %s;'>%s</span>", color,
-      x)
-  } else x
+colorize <- function(x, color = "blue") {
+    if (knitr::is_latex_output()) {
+        sprintf("\\textcolor{%s}{%s}", color, x)
+    } else if (knitr::is_html_output()) {
+        sprintf(
+            "<span style='color: %s;'>%s</span>", color,
+            x
+        )
+    } else {
+        x
+    }
 }
 ```
 
@@ -90,9 +94,13 @@ Instead, we only explore whether a linear relation between pairs of variables is
 ```{r, out.width='95%', fig.height=4, fig.width=8, fig.align='center', warning=FALSE, message=FALSE, echo=FALSE}
 library(ggplot2)
 library(patchwork)
-ColoradoPrecip <- read.csv("data/precipitationcolorado.csv" )
-ggplot( ColoradoPrecip, aes( x=VALDEZ, y=WETMORE) ) + geom_point() + theme_bw() + 
-ggplot( ColoradoPrecip, aes( x=TOWNER, y=STONINGTON) ) + geom_point() + theme_bw()
+ColoradoPrecip <- read.csv("data/precipitationcolorado.csv")
+ggplot(ColoradoPrecip, aes(x = VALDEZ, y = WETMORE)) +
+    geom_point() +
+    theme_bw() +
+    ggplot(ColoradoPrecip, aes(x = TOWNER, y = STONINGTON)) +
+    geom_point() +
+    theme_bw()
 ```
 
 We find quite a strong correlation and thus there is potential.
@@ -108,11 +116,15 @@ We can use the same techniques as for point-referenced data:
 
 * Creating maps with points on top
 
-Let's look at an example</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
+Let's look at an example
+
+</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
 
 
 
-**But**: We may not always see the structure clearly</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
+**But**: We may not always see the structure clearly 
+
+</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
 
 This leads us to the concept of **intensity** of a point process.
 
@@ -126,9 +138,11 @@ Let $N(\mathcal{B})$ be the random variable representing the number of points lo
 
 
 The **`r colorize("intensity")`** then describes $\mathbb{E}\left[N(\mathcal{B})\right]$ for any $\mathcal{B}\subseteq\mathcal{S}$ with
-\[
+
+$$
 \mu({\mathcal{B}}) = \mathbb{E}\left[N(\mathcal{B})\right] = \int_{\mathcal{B}} \lambda(\mathbf{s}) \mathrm{d} \mathbf{s}.
-\]
+$$
+
 We refer to $\lambda:\mathcal{S}\to\mathbb{R}_+=\{x\in\mathbb{R}:x\geq0\}$ as the **intensity function**.
 
 
@@ -161,14 +175,17 @@ Given observed locations $\mathbf{s}_1,\ldots,\mathbf{s}_n$, we perform three st
 1. Split $\mathcal{S}$ into disjoint areas $\mathcal{B}_1,\ldots,\mathcal{B}_m$ which are set as rectangles (**quadrats**).
 
 2. Count the number of points in $\mathcal{B}_j$ as an estimate for $\mathbb{E}\left[N(\mathcal{B}_j)\right]$,
-\[
+
+$$
 \widehat{\mu(\mathcal{B}_j)} = \sum_{i=1}^n \mathbb{I}\{\mathbf{s}_i \in \mathcal{B}_j\}.
-\]
+$$
 
 3. The intensity function is then estimated as
-\[
+
+$$
 \hat{\lambda}^{(Q)}(\mathbf{s}) = \frac{\widehat{\mu(\mathcal{B}_j)}}{|\mathcal{B}_j|},\quad\mathbf{s}\in\mathcal{B}_j,
-\]
+$$
+
 where $|\mathcal{B}_j|$ denotes the area of $\mathcal{B}_j$.
 
 ## Details
@@ -190,35 +207,49 @@ We have to balance two aspects:
 
 
 Suppose we have a probability density (kernel) $K(\cdot)$ and, similar to a density plot, we define
-\[
+
+
+$$
 \hat\lambda^{(K)}(\mathbf{s}) = \sum_{i=1}^{n} K\left(||\mathbf{s}-\mathbf{s}_i||_2\right),
-\]
+$$
+
 where $||\mathbf{s}-\mathbf{s}_i||_2$ is the Euclidian distance.
 
 
 
 However, this approach assigns positive probability to areas outside $\mathcal{S}$ and thus
-\[
+
+
+$$
 \int_{\mathcal{S}} \hat{\lambda}^{(K)}(\mathbf{s}) \mathrm{d}\mathbf{s} \neq n.
-\]
+$$
 
 
 ## Edge correction
 
 The **uniformly corrected smoothed kernel intensity function** is defined as
-\[
-\hat\lambda^{(C)}(\mathbf{s}) = \frac{1}{g(\mathbf{s})}\sum_{i=1}^{n} K\left(||\mathbf{s}-\mathbf{s}_i||_2\right),
-\]
-where 
-\[
-g(\mathbf{s}) = \int_{\mathcal{S}} K(\mathbf{s}-\tilde{\mathbf{s}}) \mathrm{d}\tilde{\mathbf{s}}.
-\]
 
-This correction is available in the spatstat R package.</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
+
+$$
+\hat\lambda^{(C)}(\mathbf{s}) = \frac{1}{g(\mathbf{s})}\sum_{i=1}^{n} K\left(||\mathbf{s}-\mathbf{s}_i||_2\right),
+$$
+
+where 
+
+$$
+g(\mathbf{s}) = \int_{\mathcal{S}} K(\mathbf{s}-\tilde{\mathbf{s}}) \mathrm{d}\tilde{\mathbf{s}}.
+$$
+
+
+This correction is available in the spatstat R package.
+
+</br>**`r colorize("-> Quarto Document WildFires.qmd")`**
 
 ## Analysis of Tornadoes
 
-Let's consider a second example</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
+Let's consider a second example
+
+</br>**`r colorize("-> Quarto Document Tornadoes.qmd")`**
 
 
 # Visualizing Lattice Data
@@ -243,7 +274,7 @@ Let's load a shapefile for London
 ```{r, echo=-1, message=FALSE, warning=FALSE}
 library(sf)
 London <- read_sf("data/shapefiles/London.shp")
-class( London )
+class(London)
 ```
 
 We see that **London** includes a data frame. 

@@ -9,13 +9,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-colorize <- function(x, color="blue") {
-  if (knitr::is_latex_output()) {
-    sprintf("\\textcolor{%s}{%s}", color, x)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='color: %s;'>%s</span>", color,
-      x)
-  } else x
+colorize <- function(x, color = "blue") {
+    if (knitr::is_latex_output()) {
+        sprintf("\\textcolor{%s}{%s}", color, x)
+    } else if (knitr::is_html_output()) {
+        sprintf(
+            "<span style='color: %s;'>%s</span>", color,
+            x
+        )
+    } else {
+        x
+    }
 }
 library(dplyr)
 ```
@@ -78,31 +82,34 @@ Such information is useful for
 
 We have two components:
 
-* **term frequency** of the word $t$ in the document $d$
-\[
-\mathrm{tf}(t,d)=\frac{\mathrm{Counts~of}~t~\mathrm{within}~d}{\mathrm{Number~of~words~within}~d}
-\]
+* **term frequency** of the word $t$ in the document $d$ .
+
+$$
+\text{tf}(t,d)=\frac{\text{Counts~of}~t~\text{within}~d}{\text{Number~of~words~within}~d}
+$$
 
 * **inverse document frequency** of $t$ across $D$
-\[
-\mathrm{idf}(t,D) = 
-\log \left(\frac{\mathrm{Number~of~documents}}{\mathrm{Number~of~documents~with}~t}\right).
-\]
+
+$$
+\text{idf}(t,D) = 
+\log \left(\frac{\text{Number~of~documents}}{\text{Number~of~documents~with}~t}\right).
+$$
 
 ## tf-idf 
 
 
 The `r colorize("term frequency - inverse document frequency")` is then defined as
-\[
-\mathrm{tf.idf}(t,d,D) = \mathrm{tf}(t,d) \times \mathrm{idf}(t,D).
-\]
+
+$$
+\text{tf.idf}(t,d,D) = \text{tf}(t,d) \times \text{idf}(t,D).
+$$ 
 
 **`r colorize("What are the properties of tf.idf?")`**
 
 
-- $\mathrm{tf.idf}(t,d,D)=0$ if $t$ occurs in all documents
+- $\text{tf.idf}(t,d,D)=0$ if $t$ occurs in all documents
 
-- $\mathrm{tf.idf}(t,d,D)$ is large if $t$ occurs very often and only in one document
+- $\text{tf.idf}(t,d,D)$ is large if $t$ occurs very often and only in one document
 
 Whether stop words should be removed or not depends on the application.
 

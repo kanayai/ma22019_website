@@ -9,13 +9,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-colorize <- function(x, color="blue") {
-  if (knitr::is_latex_output()) {
-    sprintf("\\textcolor{%s}{%s}", color, x)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='color: %s;'>%s</span>", color,
-      x)
-  } else x
+colorize <- function(x, color = "blue") {
+    if (knitr::is_latex_output()) {
+        sprintf("\\textcolor{%s}{%s}", color, x)
+    } else if (knitr::is_html_output()) {
+        sprintf(
+            "<span style='color: %s;'>%s</span>", color,
+            x
+        )
+    } else {
+        x
+    }
 }
 library(dplyr)
 ```
@@ -132,17 +136,21 @@ We can choose a projection using the **coord_sf()** function.
 library(patchwork)
 library(sf)
 library(ggplot2)
-CANADA   <- read_sf("data/shapefiles/gadm41_CAN_1.shp")
-CANADA   <- st_simplify( CANADA, dTolerance = 5000 )
-CANPlot1 <- ggplot( data=CANADA ) + theme_bw() + geom_sf()
-CANPlot2 <- CANPlot1 + coord_sf( crs=st_crs(3347) )
+CANADA <- read_sf("data/shapefiles/gadm41_CAN_1.shp")
+CANADA <- st_simplify(CANADA, dTolerance = 5000)
+CANPlot1 <- ggplot(data = CANADA) +
+    theme_bw() +
+    geom_sf()
+CANPlot2 <- CANPlot1 + coord_sf(crs = st_crs(3347))
 
-NORWAY   <- read_sf("data/shapefiles/gadm41_NOR_1.shp")
-NORWAY   <- st_simplify( NORWAY, dTolerance = 2000 )
-NORPlot1 <- ggplot( data=NORWAY ) + theme_bw() + geom_sf()
-NORPlot2 <- NORPlot1 + coord_sf( crs=st_crs(3346) )
+NORWAY <- read_sf("data/shapefiles/gadm41_NOR_1.shp")
+NORWAY <- st_simplify(NORWAY, dTolerance = 2000)
+NORPlot1 <- ggplot(data = NORWAY) +
+    theme_bw() +
+    geom_sf()
+NORPlot2 <- NORPlot1 + coord_sf(crs = st_crs(3346))
 
-( CANPlot1 + CANPlot2 ) / ( NORPlot1 + NORPlot2 )
+(CANPlot1 + CANPlot2) / (NORPlot1 + NORPlot2)
 ```
 
 ## Remarks about projections
@@ -196,14 +204,16 @@ Please go to Moodle and download the materials for Problem Class 5.
 ```{r, fig.align='center', out.width='75%', echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(sf)
-Temperature <- read.csv("data/temperature_germany.csv" )
-ggplot( data=Temperature ) + 
-  annotation_map_tile( zoom=5 ) + 
-  geom_spatial_point( size=3,
-              aes(x=longitude, y=latitude, color=max.temp) ) + 
-  theme_bw() +
-  scale_color_distiller( palette="Reds", trans="reverse" ) +
-  labs( x="Longitude", y="Latitude", color="Temperature" )
+Temperature <- read.csv("data/temperature_germany.csv")
+ggplot(data = Temperature) +
+    annotation_map_tile(zoom = 5) +
+    geom_spatial_point(
+        size = 3,
+        aes(x = longitude, y = latitude, color = max.temp)
+    ) +
+    theme_bw() +
+    scale_color_distiller(palette = "Reds", trans = "reverse") +
+    labs(x = "Longitude", y = "Latitude", color = "Temperature")
 ```
 
 `r colorize("What is the temperature at an unobserved location?")`
@@ -224,20 +234,22 @@ We introduce some notation to define our approach mathematically:
 
 
 Let $d: \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R}_+$ be a distance metric, such as
-\[
-d(\mathbf{s}_1, \mathbf{s}_2) = ||\mathbf{s}_1-\mathbf{s}_2||_2= \sqrt{(s_{11}-s_{21})^2 + (s_{12}-s_{22})^2}.
-\]
 
+$$
+d(\mathbf{s}_1, \mathbf{s}_2) = \|\mathbf{s}_1-\mathbf{s}_2\|_2= \sqrt{(s_{11}-s_{21})^2 + (s_{12}-s_{22})^2}.
+$$
 
 
 Inverse distance weighting defines
-\[
+
+$$
 x^* = 
 \begin{cases}
 \dfrac{\sum_{i=1}^n w(\mathbf{s}_i,\mathbf{s}^*) x_i}{\sum_{i=1}^n, w(\mathbf{s}_i,\mathbf{s}^*)} & \mbox{if}~d(\mathbf{s}^*, \mathbf{s}_i)>0,\\
 x_i & \mathrm{if}~d(\mathbf{s}^*, \mathbf{s}_i)=0,
 \end{cases}
-\]
+$$
+
 where $w(\mathbf{s}_i,\mathbf{s}^*) = \left[d(\mathbf{s}_i,\mathbf{s}^*)\right]^{-p}$ and $p>0$ is called the **power parameter**. 
 
 
@@ -311,20 +323,22 @@ Today we learned that
 
 ```{r, echo=F, out.width='55%', fig.width=7, fig.height=7, fig.align='center', warning=FALSE}
 library(MASS, quietly = T, warn.conflicts = F)
-circle <- function( x, r ){
-  z <- seq( 0, 2*pi, length.out = 1000 )
-  return( cbind( x[1]+r*cos(z), x[2]+r*sin(z) ) )
+circle <- function(x, r) {
+    z <- seq(0, 2 * pi, length.out = 1000)
+    return(cbind(x[1] + r * cos(z), x[2] + r * sin(z)))
 }
-par(mai=c(0.01,0.01,0.01,0.01))
-plot( circle( x = c(0, -sqrt(2) ), r=2 ), xlab="", ylab="",
-      xaxt="n", yaxt="n", type='l', xlim=c(-3.1,3.1), 
-      ylim=c(-3.4,2.8) )
-lines( circle( x = sqrt(2) * c(-cos(pi/6),sin(pi/6)), r=2 ) )
-lines( circle( x = sqrt(2) * c(cos(pi/6),sin(pi/6)), r=2 ) )
-text(label = c("Mathematics"), x=-2, y=1.1, cex=1.8)
-text(label = c("Statistics"), x=-2, y=0.6, cex=1.8)
-text(label = c("Computer Science"), x=0, y=-2, cex=1.8)
-text(label = c("Application"), x=2, y=1, cex=1.8)
-text(label = c("Data"), x=0, y=0.35, cex=2.0, col=2)
-text(label = c("Science"), x=0, y=-0.05, cex=2.0, col=2)
+par(mai = c(0.01, 0.01, 0.01, 0.01))
+plot(circle(x = c(0, -sqrt(2)), r = 2),
+    xlab = "", ylab = "",
+    xaxt = "n", yaxt = "n", type = "l", xlim = c(-3.1, 3.1),
+    ylim = c(-3.4, 2.8)
+)
+lines(circle(x = sqrt(2) * c(-cos(pi / 6), sin(pi / 6)), r = 2))
+lines(circle(x = sqrt(2) * c(cos(pi / 6), sin(pi / 6)), r = 2))
+text(label = c("Mathematics"), x = -2, y = 1.1, cex = 1.8)
+text(label = c("Statistics"), x = -2, y = 0.6, cex = 1.8)
+text(label = c("Computer Science"), x = 0, y = -2, cex = 1.8)
+text(label = c("Application"), x = 2, y = 1, cex = 1.8)
+text(label = c("Data"), x = 0, y = 0.35, cex = 2.0, col = 2)
+text(label = c("Science"), x = 0, y = -0.05, cex = 2.0, col = 2)
 ```
