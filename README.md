@@ -17,6 +17,7 @@ A comprehensive Quarto-based website for the MA22019 (Data Analysis & Visualizat
 
 ## 📁 Folder Overview
 
+```text
 ma22019_website/
 ├── _quarto.yml              # Main site configuration
 ├── index.qmd                # Homepage
@@ -39,6 +40,7 @@ ma22019_website/
 ├── backup_data.sh           # Script to backup ignored data files
 ├── _site/                   # Generated website output
 └── _freeze/                 # Quarto freeze cache
+```
 
 ## 📝 File Naming Convention
 - All files and folders use **snake_case** (e.g., `weeks_1`, `lab_1.qmd`, `my_data.csv`).
