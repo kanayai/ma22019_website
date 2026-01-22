@@ -1,6 +1,6 @@
 ---
-title: "MA22019 - Spatial Data Analysis (Part 3)"
-author: "Christian Rohrbeck"
+title: "Spatial Data Analysis (Part 3)"
+subtitle: "Lecture"
 date: "2 April 2025"
 ---
 

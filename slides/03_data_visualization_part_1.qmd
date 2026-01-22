@@ -1,6 +1,6 @@
 ---
-title: "MA22019 - Data Visualization (Part 1)"
-author: "Christian Rohrbeck"
+title: "Data Visualization (Part 1)"
+subtitle: "Lecture"
 date: "12 February 2025"
 ---
 

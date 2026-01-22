@@ -1,21 +1,22 @@
 ---
-title: "MA22019 - Revision Class"
-author: "Christian Rohrbeck"
+title: "Revision Class"
+subtitle: "Lecture"
 date: "23 April 2025"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
 
 ```{r, warning=FALSE, message=FALSE}
-colorize <- function(x, color="blue") {
-  if (knitr::is_latex_output()) {
-    sprintf("\\textcolor{%s}{%s}", color, x)
-  } else if (knitr::is_html_output()) {
-    sprintf("<span style='color: %s;'>%s</span>", color,
-      x)
-  } else x
+colorize <- function(x, color = "blue") {
+    if (knitr::is_latex_output()) {
+        sprintf("\\textcolor{%s}{%s}", color, x)
+    } else if (knitr::is_html_output()) {
+        sprintf(
+            "<span style='color: %s;'>%s</span>", color,
+            x
+        )
+    } else {
+        x
+    }
 }
 ```
 

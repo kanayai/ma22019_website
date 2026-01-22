@@ -1,3 +1,9 @@
+institute: "MA22019: Introduction to Data Science"
+author: "Dr. Karim AI"
+date-format: long
+engine: knitr
+highlight-style: a11y-light
+fig-align: center
 format:
   revealjs:
     theme: slides.scss

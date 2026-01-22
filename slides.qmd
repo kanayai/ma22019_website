@@ -3,8 +3,10 @@ title: "Slides"
 listing:
   contents: slides
   type: table
-  fields: [title, date]
-  sort: "date"
+  fields: [title]
+  sort: "filename"
+  sort-ui: false
+  filter-ui: false
 ---
 
 Lecture slides are available below.

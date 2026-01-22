@@ -1,6 +1,6 @@
 ---
-title: "MA22019 - Data Cleaning and Wrangling"
-author: "Christian Rohrbeck"
+title: "Data Cleaning and Wrangling"
+subtitle: "Lecture"
 date: "5 February 2025"
 ---
 
@@ -51,16 +51,18 @@ Let's have a look at the data in "Bathford River Flow.csv".
 
 We use the **read.csv()** function to load the data:
 ```{r, echo=T, warning=FALSE, message=FALSE}
-Bathford <- read.csv("data/bathford_river_flow.csv", skip=20, header=FALSE,
-                      colClasses = c("character","numeric","NULL") )
+Bathford <- read.csv("data/bathford_river_flow.csv",
+    skip = 20, header = FALSE,
+    colClasses = c("character", "numeric", "NULL")
+)
 ```
 
 
 
 We use **glimpse()** to check the variable names and data types:
 ```{r, warning=FALSE, message=FALSE, echo=T}
-library( dplyr )
-glimpse( Bathford )
+library(dplyr)
+glimpse(Bathford)
 ```
 
 
@@ -72,9 +74,9 @@ The loaded data may not have the correct type:
 - Numerical data were read as a **character**:
 
 ```{r, echo=T, warning=FALSE, message=FALSE}
-Example1 <- read.csv("data/DataCleaningExample1.csv" )
-glimpse( Example1 )
-mean( Example1 )
+Example1 <- read.csv("data/DataCleaningExample1.csv")
+glimpse(Example1)
+mean(Example1)
 ```
 
 ## Converting Variables II
@@ -82,9 +84,9 @@ mean( Example1 )
 We use the function **as.numeric()** to convert the type:
 
 ```{r, echo=T, warning=FALSE, message=FALSE}
-Example1$Value <- as.numeric( Example1$Value )
-glimpse( Example1 )
-mean( Example1$Value, na.rm=TRUE )
+Example1$Value <- as.numeric(Example1$Value)
+glimpse(Example1)
+mean(Example1$Value, na.rm = TRUE)
 ```
 
 ## Converting Variables III 
@@ -92,13 +94,13 @@ mean( Example1$Value, na.rm=TRUE )
 -   Binary answers were recorded as "yes" or "no":
 
 ```{r, echo=T, warning=FALSE, message=FALSE}
-responses <- c( "Y", "Y", "N", "Y", "N", "Y", "N", "N", "N", "Y" )
-responses <- case_when( responses == "Y" ~ 1, responses == "N" ~ 0 )
+responses <- c("Y", "Y", "N", "Y", "N", "Y", "N", "N", "N", "Y")
+responses <- case_when(responses == "Y" ~ 1, responses == "N" ~ 0)
 responses
 ```
 
 ```{r, echo=T, warning=FALSE, message=FALSE}
-mean( responses )
+mean(responses)
 ```
 
 ## Converting Variables IV
@@ -107,8 +109,8 @@ mean( responses )
 
 ```{r, echo=T, message=FALSE, warning=FALSE}
 library(lubridate)
-date_observed  <- c( "01/10/2022", "15/10/2023" )
-date_converted <- as_date( date_observed, format="%d/%m/%Y" )
+date_observed <- c("01/10/2022", "15/10/2023")
+date_converted <- as_date(date_observed, format = "%d/%m/%Y")
 date_converted
 ```
 
@@ -119,7 +121,7 @@ date_converted
 -   Extraction of month and year from a Date object using **month()** and **year()** respectively:
 
 ```{r, echo=T}
-year( date_converted )
+year(date_converted)
 ```
 
 
@@ -129,7 +131,7 @@ year( date_converted )
 -   Calculate differences between dates
 
 ```{r, echo=T}
-as_date( "20/04/2025", format="%d/%m/%Y" ) - as_date( "2025-02-05" )
+as_date("20/04/2025", format = "%d/%m/%Y") - as_date("2025-02-05")
 ```
 
 
@@ -149,8 +151,8 @@ as_date( "20/04/2025", format="%d/%m/%Y" ) - as_date( "2025-02-05" )
 -   We see that the first variable should be of type **date**
 
 ```{r, echo=T}
-Bathford$V1 <- as_date( Bathford$V1, format="%Y-%m-%d" )
-glimpse( Bathford )
+Bathford$V1 <- as_date(Bathford$V1, format = "%Y-%m-%d")
+glimpse(Bathford)
 ```
 
 
@@ -169,8 +171,8 @@ knitr::include_graphics("img/Dilbert.gif")
 The **rename()** function in the dplyr package can be used to change variable names.
 
 ```{r, echo=T}
-Bathford <- rename( Bathford, Date=V1, RiverFlow=V2 )
-glimpse( Bathford )
+Bathford <- rename(Bathford, Date = V1, RiverFlow = V2)
+glimpse(Bathford)
 ```
 
 
@@ -180,9 +182,11 @@ glimpse( Bathford )
 ## River Flow Data - Plotting the data
 
 ```{r, fig.align='center', out.width='65%', echo=-1, fig.height=3, fig.width=5}
-par(mai=c(0.8, 0.8, 0, 0.8) )
-plot( Bathford$Date, Bathford$RiverFlow, type='l', 
-      xlab="Date", ylab="River Flow" )
+par(mai = c(0.8, 0.8, 0, 0.8))
+plot(Bathford$Date, Bathford$RiverFlow,
+    type = "l",
+    xlab = "Date", ylab = "River Flow"
+)
 ```
 
 

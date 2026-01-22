@@ -1,6 +1,6 @@
 ---
-title: "MA22019 - Combining data frames"
-author: "Christian Rohrbeck"
+title: "Combining data frames"
+subtitle: "Lecture"
 date: "12 February 2025"
 ---
 
@@ -30,11 +30,13 @@ Let's revisit the river flow data for Bathford
 ```{r, warning=FALSE, message=FALSE, echo=TRUE}
 library(dplyr)
 library(lubridate)
-Bathford <- read.csv("data/bathford_river_flow.csv", skip=20, header=FALSE,
-                      colClasses = c("character","numeric","NULL") )  %>%
-  rename( Date = V1, RiverFlow = V2 ) %>%
-  mutate( Date = as_date( Date, format="%Y-%m-%d" ) )
-glimpse( Bathford )
+Bathford <- read.csv("data/bathford_river_flow.csv",
+    skip = 20, header = FALSE,
+    colClasses = c("character", "numeric", "NULL")
+) %>%
+    rename(Date = V1, RiverFlow = V2) %>%
+    mutate(Date = as_date(Date, format = "%Y-%m-%d"))
+glimpse(Bathford)
 ```
 
 ## Reporting Missing Data
@@ -44,8 +46,8 @@ When we work with real-world data, we have to check whether data are missing.
 If there is missing data, you should report the amount of missing data!
 
 ```{r, echo=TRUE}
-Bathford %>% 
-  summarize( "Proportion Missing" = mean( is.na(RiverFlow) ) )
+Bathford %>%
+    summarize("Proportion Missing" = mean(is.na(RiverFlow)))
 ```
 
 We see that river flow is missing for about 0.6% of days.
@@ -73,11 +75,14 @@ The functions differ in terms of observations kept.
 
 Let's load the river flow data for another gauge:
 ```{r, echo=TRUE, warning=FALSE}
-Bath <- read.csv("data/bath_river_flow.csv", skip=19, header=FALSE,
-                  colClasses = c("character","numeric","NULL") )
-Bath <- Bath %>% rename( Date = V1, RiverFlow = V2 ) %>%
-  mutate( Date = as_date( Date, format="%Y-%m-%d" ) )
-glimpse( Bath )
+Bath <- read.csv("data/bath_river_flow.csv",
+    skip = 19, header = FALSE,
+    colClasses = c("character", "numeric", "NULL")
+)
+Bath <- Bath %>%
+    rename(Date = V1, RiverFlow = V2) %>%
+    mutate(Date = as_date(Date, format = "%Y-%m-%d"))
+glimpse(Bath)
 ```
 
 
@@ -86,8 +91,8 @@ glimpse( Bath )
 Let's check the first elements of each data set
 
 ```{r, echo=TRUE}
-slice_head( Bath, n=2 )
-slice_head( Bathford, n=2 )
+slice_head(Bath, n = 2)
+slice_head(Bathford, n = 2)
 ```
 
 **What do we notice?**
@@ -99,8 +104,8 @@ slice_head( Bathford, n=2 )
 Let's merge observations based on **Date**
 
 ```{r, echo=TRUE}
-RF <- full_join( Bathford, Bath, by=c("Date" = "Date") )
-slice_head(RF, n=1)
+RF <- full_join(Bathford, Bath, by = c("Date" = "Date"))
+slice_head(RF, n = 1)
 ```
 
 
@@ -108,7 +113,7 @@ slice_head(RF, n=1)
 We see that the variable names need updating:
 
 ```{r, echo=TRUE}
-RF <- rename( RF, Bathford = RiverFlow.x, Bath = RiverFlow.y )
+RF <- rename(RF, Bathford = RiverFlow.x, Bath = RiverFlow.y)
 ```
 
 
@@ -117,8 +122,10 @@ RF <- rename( RF, Bathford = RiverFlow.x, Bath = RiverFlow.y )
 We explore dependence of the river flow levels
 
 ```{r, fig.align='center', out.width='80%', echo=FALSE}
-plot( RF$Bath, RF$Bathford, pch=19,
-      xlab="River Flow at Bath", ylab="River Flow at Bathford" )
+plot(RF$Bath, RF$Bathford,
+    pch = 19,
+    xlab = "River Flow at Bath", ylab = "River Flow at Bathford"
+)
 ```
 
 
@@ -127,8 +134,8 @@ plot( RF$Bath, RF$Bathford, pch=19,
 While full_join() keeps all observation, inner_join() only keeps the dates listed in both data sets
 
 ```{r, echo=TRUE}
-RF <- inner_join( Bathford, Bath, by=c("Date" = "Date") )
-slice_head(RF, n=3)
+RF <- inner_join(Bathford, Bath, by = c("Date" = "Date"))
+slice_head(RF, n = 3)
 ```
 
 ## Remarks 
@@ -145,8 +152,8 @@ slice_head(RF, n=3)
 - Order of elements after merging
 
 ```{r, echo=TRUE}
-RF <- full_join( Bath, Bathford, by=c("Date" = "Date") )
-slice_head( RF, n=1 )
+RF <- full_join(Bath, Bathford, by = c("Date" = "Date"))
+slice_head(RF, n = 1)
 ```
 
 
