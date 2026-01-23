@@ -4,9 +4,7 @@ subtitle: "Lecture"
 date: "5 February 2025"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+
 
 # Data Cleaning
 

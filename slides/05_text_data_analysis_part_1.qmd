@@ -1,12 +1,9 @@
 ---
-title: "MA22019 - Text Data Analysis (Part 1)"
-author: "Christian Rohrbeck"
+title: "Text Data Analysis (Part 1)"
+subtitle: "Lecture"
 date: "5 March 2025"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
 
 ```{r, warning=FALSE, message=FALSE}
 colorize <- function(x, color="blue") {

@@ -4,9 +4,7 @@ subtitle: "Lecture"
 date: "12 February 2025"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+
 
 ```{r}
 colorize <- function(x, color="blue") {

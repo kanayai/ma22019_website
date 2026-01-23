@@ -1,0 +1,107 @@
+---
+title: "New Lectures Structure"
+format: html
+---
+
+# Flipped classroom
+
+- refer to lecture NOtes to read first ,maybe some guardrails
+
+-
+
+# Part titles for the Lecture Notes (roller coaster analogy)
+
+* Lifthill
+* The first drop
+* ....
+* The midcourse brake run
+* The final brake run
+
+# Github repos
+
+- wil;l create an UoB github orahization and repo there
+
+
+
+
+# Background
+
+Send a survey on inter-sem break or early week 1. Generate data in a database in
+a files called `student-survey.csv` 
+
+# Lecture 2: Hello, World!
+
+- Menti: what did you during the break last week?
+- My intro: my office + office hours
+- quick dive into data science: 
+    - what is data science?
+    - keywords: tidy 
+    - Venn diagram, DS diagram with info about the anonymised student survey data from last week. 
+    - import csv file into R
+    - show messy dataframe in RStudio
+    - show bar plot of 2 categorical variables : something to note there
+    - show bar plot of summary of a variable where question was MC with nore than one answer
+    - Show simple demo of text data with an open question
+    - some spatial variable???
+- Housekeeping:
+    - Weekly lectures, live coding (weeks 1-3), computer labs
+    - Assessment: 
+        - Formative: Labs + Homeworks (marked by group tutors)
+        - Summative: 2 Courseworks (40% + 60%) deadlines end of  Week 6 and Week 11
+    - case studies explain
+    - Website, Moodle, Padlet, Mentimeter, 
+    - R (Version 4 or later), RStudio 
+    - Quarto and Github
+
+
+
+# Lecture 2: Meet the toolkit
+
+- Menti: ??? something Python VSCode or AI to get this out of the way
+- Use of AI tools
+- R and RStudio, R packages, tidyverse R Studio tour
+- Help in R 
+- Menti: basic data frame about an error with a data frame
+- Github : Version Control =save button comic book + lego pics  explin why we use github : Folder structure
+- Git commands:  add, commit, push, and pull
+- Github tour on RStudio
+- Quarto: Reproducibility, Literate programming
+keywords: tidy
+TO DO : Include at least 2 more mentis + some DS stuff so that is not all toolkit
+
+
+
+# Lecture 3: Grammar of data viz!
+
+- Menti: ??? about some plot
+- Copy/load data: from a cs (case study)  a bit of GH practice
+- Prep the data:  wrangling  no detail just to get to the plot
+- View data: just display the data frame
+- Visualize data: 
+    - First show final plot
+    - Then show how to build it step by step 1-12
+    - Explain the grammar of graphics (10+ slides)/ show layer plot
+    - Explain you do not have to save the plot 
+    - Keyword ("save the code not the plot")
+    - refer to the ton of docs on Wickham books
+    - Menti in the Miidle about??
+
+ # Lecture 4: Grammar of data transformation 
+
+ - Menti: ??? maybe some ggplot refresher (as in slides 04 sta199) or fun
+ - Maybe some context data intro  (as in Bechdel test)
+ - Directly start with a case study (CS 1) and show the whole workflow from loading the data to the final plot.
+ - 
+
+ 
+
+
+
+
+
+
+# Lecture 1: Hello, World!
+
+- Menti
+
+

@@ -11,5 +11,5 @@ format:
     slide-number: true
     toc: false
     code-link: true
-    footer: "[🔗 MA22019 Website](https://github.com/kanayai/ma22019_website)"
+    footer: "[🔗 MA22019 Website](../slides.qmd)"
     # logo: "images/logo.png" # Uncomment when logo is available
