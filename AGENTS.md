@@ -207,6 +207,7 @@ quarto render "practice/week_1/lab_1.qmd"
 ## For Merging With Another Project
 
 When merging this project:
+
 1. **Preserve all symlinks** - They are the data access mechanism
 2. **Keep `_quarto.yml`** as the source of truth for site structure
 3. **`_admin/`** contains internal planning files that can be ignored
