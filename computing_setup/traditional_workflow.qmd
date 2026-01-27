@@ -1,0 +1,67 @@
+---
+title: "Manual (Non-Git) Workflow"
+---
+
+::: {.callout-warning}
+## ⚠️ WARNING: This workflow is **NOT RECOMMENDED**.
+
+You will lose:
+
+- Automatic backup (if your laptop breaks, your work is gone)
+- Version history (can't "undo" to yesterday's version)
+- Easy feedback (TAs cannot easily see your code)
+- Career skills (employers expect Git)
+
+Use this only if you absolutely refuse to use GitHub Desktop/RStudio Git.
+:::
+
+---
+
+## 1. Getting the Assignment
+
+Instead of cloning, you must manually download the files.
+
+1. Go to the assignment page on `github.bath.ac.uk`
+2. Click the green **Code** button
+3. Select **Download ZIP**
+4. Unzip the folder to your documents
+5. **Rename the folder** (e.g., `hw_01_manual`) so you don't confuse it later
+
+## 2. Doing the Work
+
+1. Open the `.Rproj` file in RStudio
+2. Work on your assignment
+3. **Save often** (Ctrl+S) — RStudio does NOT auto-save your history like Git does
+
+## 3. Submitting (The Hard Part)
+
+You cannot "Push". You must manually upload files back to GitHub.
+
+1. Go to your repo on `github.bath.ac.uk`
+2. Click **Add file** → **Upload files**
+3. Drag and drop your modified `.qmd` and `.html` files
+4. Wait for them to upload
+5. Click **Commit changes**
+
+::: {.callout-note}
+If you change your mind and edit the file again, you have to repeat the entire upload process.
+:::
+
+---
+
+## 4. Getting Feedback
+
+TAs mark on GitHub. To see their feedback:
+
+1. Go to your repo
+2. Click **Issues**
+3. Read their comments
+4. (You cannot "Pull" updates; you must manually check the website)
+
+---
+
+## Why we don't recommend this
+
+- **It's risky**: One bad "Save" and you overwrite your only copy.
+- **It's slow**: Dragging-and-dropping every time you make a change is tedious.
+- **It's unprofessional**: Data scientists don't email zip files; they Push code.

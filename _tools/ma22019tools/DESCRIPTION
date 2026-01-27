@@ -1,0 +1,17 @@
+Package: ma22019tools
+Title: Automation Tools for MA22019 Deployment
+Version: 0.1.0
+Authors@R: person("Instructors", role = c("aut", "cre"), email = "instructor@bath.ac.uk")
+Description: Automates repository creation, submission checking, and TA progress tracking for the MA22019 course using GitHub API.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    gh,
+    readr,
+    dplyr,
+    purrr,
+    lubridate,
+    glue

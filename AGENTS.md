@@ -104,13 +104,26 @@ ma22019_website/
 │   └── _Coursework 2/
 │
 ├── computing_setup/         # Student setup guides
+│   ├── setup.qmd            # Main setup guide (R, RStudio, Git)
 │   ├── project_structure.qmd
-│   ├── computing_assignments.qmd
 │   ├── setup_university_drive.qmd
+│   ├── weekly_workflow.qmd  # Weekly pull/clone workflow
+│   ├── computing_assignments.qmd
+│   ├── troubleshooting.qmd  # Common issues and fixes
+│   ├── traditional_workflow.qmd  # Manual (non-Git) workflow
 │   ├── why_quarto.qmd
 │   └── InstallPackages.R    # R package installer
 │
+├── _templates/              # Assignment templates for deployment
+│   ├── lab-00/
+│   └── homework-01/
+│
+├── _tools/                  # Internal R tools
+│   └── ma22019tools/        # R package for assignment deployment
+│
 ├── _admin/                  # Internal/planning files (not rendered)
+│   ├── emails/              # Email templates for students/TAs
+│   ├── rosters/             # Class rosters
 │   ├── new_lectures_plan.qmd
 │   ├── Plan for Weeks 1-11.xlsx
 │   └── book_generation/     # Legacy PDF book files

@@ -20,14 +20,22 @@ website:
             text: Overview
       - section: "Computing"
         contents:
+          - href: computing_setup/setup.qmd
+            text: Setup Guide
           - href: computing_setup/project_structure.qmd
             text: Project Structure
           - href: computing_setup/setup_university_drive.qmd
             text: University Drive Setup
+          - href: computing_setup/weekly_workflow.qmd
+            text: Weekly Workflow
           - href: computing_setup/computing_assignments.qmd
             text: Assignments Workflow
+          - href: computing_setup/troubleshooting.qmd
+            text: Troubleshooting
           - href: computing_setup/why_quarto.qmd
             text: Why Quarto?
+          - href: computing_setup/traditional_workflow.qmd
+            text: Manual Workflow (Not Recommended)
       - section: "Lecture Notes"
         contents:
           - href: lecture_notes/index.qmd

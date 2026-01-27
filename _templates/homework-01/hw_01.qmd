@@ -1,0 +1,44 @@
+---
+title: "Homework 1: R Basics"
+author: "Your Name Here"
+date: "2026-02-15"
+format: html
+---
+
+# Instructions
+
+*   **Due Date**: Friday Week 3 (Feb 15) at 17:00.
+*   **Setup**: Run `source("check_location.R")` in the Console to verify your project location.
+*   **Submission**: Commit and Push your work to GitHub.
+*   **Grading**: This is a *formative* assignment (feedback only, no marks).
+*   **Note**: The `_files/` folder generated when you render contains temporary files. It is intentionally ignored by Git to keep your repository clean. You do not need to push it.
+
+---
+
+## Question 1: Data Manipulation
+
+Load the `mtcars` dataset and calculate the average horsepower (`hp`) for cars with 4, 6, and 8 cylinders (`cyl`).
+
+```{r}
+# Your code here
+library(dplyr)
+data(mtcars)
+
+# Hint: Use group_by() and summarize()
+```
+
+## Question 2: Visualization
+
+Create a scatter plot of Weight (`wt`) vs Miles Per Gallon (`mpg`). Color the points by the number of Gears (`gear`).
+
+```{r}
+# Your code here
+library(ggplot2)
+
+```
+
+## Question 3: Reflection
+
+Did you find any part of this assignment difficult? (Type your answer below)
+
+> Write your answer here...

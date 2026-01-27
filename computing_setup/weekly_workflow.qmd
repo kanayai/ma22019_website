@@ -1,0 +1,197 @@
+---
+title: "Weekly Workflow"
+---
+
+> **Goal**: Know exactly what to do each week — when to pull, when to clone, what to submit.
+
+---
+
+## Why Use GitHub? (vs. "The Moodle Way")
+
+In a traditional course, you might download zip files from Moodle, unzip them, work on them, zip them back up, and re-upload. This creates a mess of versions (`final_v2_REAL.zip`) and makes it hard to get help.
+
+In this course, we use **GitHub** to keep everything organized and synced. See [Why Learn Git?](why_teach_github.md) for the full story.
+
+---
+
+## The Two Actions You'll Use
+
+![Git workflow: Clone for first download, Pull to get updates, Push to upload your work](../img/git_workflow.png)
+
+| Action | When | What It Does |
+|--------|------|--------------|
+| **Pull** | Every week for labs/solutions | Downloads updates to an existing repo |
+| **Clone** | Once per homework/coursework | Creates a new copy of a repo on your computer |
+
+---
+
+## Weekly Lab Workflow
+
+### Before Each Lab/Live Coding Session
+
+1. Open the `materials` project in RStudio (double-click `materials.Rproj`)
+2. Click **Pull** in the Git pane (blue down arrow)
+3. New labs appear in `materials/labs/`
+
+### During Lab
+
+1. Navigate to `materials/labs/lab_XX/`
+2. Double-click `lab_XX.Rproj` to open the lab project
+3. Work through the exercises
+4. **Save** your work (Ctrl/Cmd + S)
+
+::: {.callout-note}
+Labs are practice — you don't submit them. Your work is saved locally.
+:::
+
+### After Lab (Getting Solutions)
+
+1. Open the `materials` project
+2. Click **Pull**
+3. Solutions appear in `materials/lab_solutions/`
+
+---
+
+## Live Coding Workflow (Weeks 1–3)
+
+On Fridays in Weeks 1, 2, and 3, we have **Live Coding** sessions.
+
+1. Open `materials` project
+2. Click **Pull**
+3. Navigate to `materials/live_coding/week_XX/`
+4. Use the provided script to code along with the lecturer
+
+---
+
+## Homework Workflow
+
+Homework is **formative** (practice with TA feedback). You clone a personal copy and push your work.
+
+### Step 1: Clone Your Homework Repo
+
+1. Find your homework URL on Moodle (looks like `https://github.bath.ac.uk/ma22019-2026/hw_01-yourusername.git`)
+2. In RStudio: **File → New Project → Version Control → Git**
+3. Paste the URL
+4. **Important**: Click **Browse** and navigate to `MA22019/homework/`
+5. Click **Create Project**
+
+### Step 2: Work on It
+
+1. Edit the `.qmd` or `.R` file
+2. Click **Render** to check your code runs
+3. **Save** frequently
+
+### Step 3: Commit Your Progress
+
+1. Go to the **Git** pane
+2. Check the boxes next to files you changed (Stage)
+3. Click **Commit**
+4. Write a message (e.g., "Completed question 1")
+5. Click **Commit**
+
+::: {.callout-tip}
+Commit at least 3 times as you work. This shows your progress.
+:::
+
+### Step 4: Submit (Push)
+
+1. Click **Push** (green up arrow) in the Git pane
+2. Your work is now on GitHub!
+
+### Step 5: Verify
+
+1. Go to `github.bath.ac.uk` in your browser
+2. Find your homework repo
+3. Check your files are there and the commit time is before the deadline
+
+---
+
+## Coursework Workflow
+
+Coursework is **summative** (graded). Same process as homework, but clone into `coursework/` folder.
+
+### Clone Location
+
+![Folder structure: MA22019 folder containing materials, homework, and coursework subfolders](../img/folder_structure.png)
+
+```
+MA22019/
+├── homework/
+│   └── hw_01-yourusername/   ← Homework goes here
+└── coursework/
+    └── cw_01-yourusername/   ← Coursework goes here
+```
+
+### The 3-Commit Rule
+
+For coursework, we expect to see **at least 3 commits** showing your progress:
+
+| Commit | Example Message |
+|--------|-----------------|
+| 1 | "Started data cleaning" |
+| 2 | "Completed analysis section" |
+| 3 | "Finished write-up and rendered final output" |
+
+This helps us:
+
+- Verify the work is yours
+- Give partial credit if something breaks
+- See your thought process
+
+---
+
+## Quick Reference: Pull vs Clone
+
+| Situation | Action | Folder |
+|-----------|--------|--------|
+| Get new labs | Pull (in materials project) | `materials/labs/` |
+| Get lab solutions | Pull (in materials project) | `materials/lab_solutions/` |
+| Start homework | Clone new repo | `homework/` |
+| Start coursework | Clone new repo | `coursework/` |
+
+---
+
+## Semester Timeline
+
+| Weeks | Activity | What to Do |
+|-------|----------|------------|
+| **1-5** | **Labs 0-4** | Pull materials weekly. Live Coding on Fridays (W1-3). |
+| **5-6** | **Coursework 1** | Clone CW1 repo. Submit by deadline. |
+| **7-10** | **Labs 5-8** | Pull materials weekly (Easter break in middle). |
+| **10-11** | **Coursework 2** | Clone CW2 repo. Submit by deadline. |
+| **11** | **Final** | Final submissions. |
+
+---
+
+## File Naming Rules
+
+When creating your own files, follow these rules:
+
+| Rule | Bad ❌ | Good ✅ |
+|------|--------|---------|
+| No spaces | `my analysis.R` | `my_analysis.R` |
+| No special characters | `Joe's file.R` | `joes_file.R` |
+| Use dates (YYYY-MM-DD) | `final_v2.R` | `2026-02-15_analysis.R` |
+| Number for order | `intro.R`, `cleaning.R` | `01_intro.R`, `02_cleaning.R` |
+
+---
+
+## Common Questions
+
+**Q: I forgot to pull before lab. What do I do?**
+A: Just pull now. You'll get the latest labs immediately.
+
+**Q: I can't find my homework repo.**
+A: Check Moodle for the correct URL. Make sure you're logged into github.bath.ac.uk.
+
+**Q: I accidentally cloned to the wrong folder.**
+A: Delete the folder and clone again to the correct location.
+
+**Q: How do I know my homework was submitted?**
+A: Go to github.bath.ac.uk and check your repo. Your latest commit should be visible.
+
+---
+
+## Next Steps
+
+- If something goes wrong, check the [Troubleshooting Guide](troubleshooting.qmd)

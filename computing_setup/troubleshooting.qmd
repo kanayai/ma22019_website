@@ -1,0 +1,344 @@
+---
+title: "Troubleshooting Guide"
+---
+
+> **Got stuck?** Find your issue below and follow the fix.
+
+---
+
+## 🚨 Emergency Recovery (Top 5 Disasters)
+
+These are the most common emergencies. Don't panic — they're all fixable!
+
+### 1. "I Deleted My Homework Folder!"
+
+**Good news**: Your work is safe on GitHub.
+
+1. Go to `github.bath.ac.uk` in your browser
+2. Find your homework repo (e.g., `hw_01-yourusername`)
+3. Verify your files are there
+4. Clone it again to `MA22019/homework/`
+
+### 2. "Push Says 'Rejected'!"
+
+**Cause**: You (or another computer) made changes on GitHub that you don't have locally.
+
+**Fix**:
+
+1. Click **Pull** first (blue down arrow)
+2. If prompted, commit any local changes
+3. Now click **Push** — it should work
+
+### 3. "My Git Pane Disappeared!"
+
+**Cause**: You're not in a Git project.
+
+**Fix**:
+
+1. Check the RStudio title bar — does it show a project name?
+2. If not: **File → Open Project**
+3. Navigate to your project folder and double-click the `.Rproj` file
+4. Git pane should reappear in the top-right
+
+### 4. "Pull Fails After I Edited Materials!"
+
+**Cause**: You accidentally edited a file in `materials/` which is read-only.
+
+**Fix**:
+
+1. Go to the **Git** pane
+2. Right-click the modified file
+3. Click **Revert** or **Discard Changes**
+4. Click **Pull** again — it works now!
+
+### 5. "My Coursework/Homework Is 'Corrupt' or 'Broken'!"
+
+**Cause**: Usually a sync conflict (OneDrive, iCloud) or Git state issue.
+
+**Fix** (the "fresh start" approach):
+
+1. **Rename** your broken folder (e.g., `hw_01-username_backup`)
+2. **Clone** a fresh copy from GitHub to `MA22019/homework/`
+3. **Copy** any work from the backup folder into the new clone
+4. **Commit** and **Push** to save your work
+
+::: {.callout-tip}
+If you're regularly having issues, check if your folder is in a cloud-synced location. See "Cloud Sync Issues" below.
+:::
+
+---
+
+## 🛑 "Git Inside Git" (Nested Repositories)
+
+**Symptom**: You can't stick your homework inside the `materials` folder! RStudio creates a "nested" repository that won't push correctly.
+
+**The Rule**: Never clone a project *inside* another project folder.
+
+**Fix**:
+
+1. Close RStudio
+2. Move your homework folder OUT of `materials/` and into `MA22019/homework/`
+3. If it's still weird, use the "Fresh Start" fix above (Step 5)
+
+---
+
+## Git Pane Not Showing in RStudio
+
+**Symptom**: You can't see the Git tab in the top-right pane.
+
+### Fix 1: You're Not in a Git Project
+
+- **Check**: Look at the title bar. Does it say a project name?
+- **Fix**: You must open a project that was cloned from GitHub:
+  1. **File → Open Project**
+  2. Navigate to your `materials/` or homework folder
+  3. Double-click the `.Rproj` file
+
+### Fix 2: Git Executable Not Found
+
+- **Check**: Go to **Tools → Global Options → Git/SVN**
+- If the "Git executable" box is empty:
+  1. Try browsing to `C:\Program Files\Git\bin\git.exe`
+  2. If Git isn't installed, see "Git Not Installed" below
+
+### Fix 3: H: Drive Security Issue
+
+On university computers using H: Drive, Git may not trust the folder.
+
+- **Fix**: In RStudio **Terminal** (not Console), run:
+  ```bash
+  git config --global --add safe.directory '*'
+  ```
+- Restart RStudio
+
+---
+
+## Cloud Sync Issues (OneDrive/iCloud/Dropbox)
+
+**Symptom**: Git crashes, "corrupt index" errors, or strange behavior.
+
+### Cause
+
+Your project is in a folder that's being synced by OneDrive, iCloud, or Dropbox. These services conflict with Git.
+
+### Fix
+
+1. **Move your project** out of the synced folder:
+   - **Windows**: Move from `Documents/` to `C:\MA22019\`
+   - **Mac**: Move from `Documents/` to `~/MA22019/` (home folder)
+2. **Re-clone from GitHub** if the project is corrupted:
+   - Delete the broken folder
+   - Clone again to the new, non-synced location
+
+### How to Check If a Folder Is Synced
+
+- **Windows**: Look for a cloud icon on the folder in File Explorer
+- **Mac**: Go to *System Settings → Apple ID → iCloud → iCloud Drive → Options* and check if "Desktop & Documents Folders" is ON
+
+## Git Not Installed (University PC)
+
+**Symptom**: RStudio says "Git not found" or the Git executable path is empty.
+
+### Fix 1: Check if Git is Already There
+
+1. Open **Command Prompt** (Start menu → type `cmd`)
+2. Type: `git --version`
+3. If you see a version number, Git is installed
+4. Type: `where git` to find the path
+5. Copy that path into RStudio's Git/SVN settings
+
+### Fix 2: Use the MinGit Workaround
+
+If Git isn't installed and you can't install software:
+
+1. Download **MinGit** (ZIP) from [Git for Windows Releases](https://github.com/git-for-windows/git/releases)
+2. Open File Explorer, type `%localappdata%` in the address bar
+3. Create a folder named `Git`
+4. Extract the MinGit ZIP contents into that folder
+5. In RStudio: **Tools → Global Options → Git/SVN**
+6. Set Git executable to: `C:\Users\YourName\AppData\Local\Git\cmd\git.exe`
+7. Restart RStudio
+
+### Fix 3: Use Physical Lab Computer
+
+Remote Desktop machines often have Git blocked. Try a physical lab computer instead.
+
+---
+
+## I Cloned to the Wrong Folder
+
+**Symptom**: Your homework ended up on the Desktop or in the wrong place.
+
+### Fix
+
+1. **Delete** the incorrectly cloned folder (it's okay, your work is on GitHub)
+2. Clone again, this time:
+   - In "Create project as subdirectory of", click **Browse**
+   - Navigate to `MA22019/homework/` or `MA22019/coursework/`
+   - Click **Create Project**
+
+### Verify Correct Location
+
+Run this in the R Console:
+
+```r
+# For homework
+if (grepl("MA22019/homework", getwd())) {
+  cat("✅ Correct location!")
+} else {
+  cat("❌ Wrong location. Current:", getwd())
+}
+```
+
+---
+
+## Push Failed / Authentication Error
+
+**Symptom**: RStudio asks for username/password and then fails.
+
+### For github.bath.ac.uk (Our Course)
+
+- **Username**: Your Bath username (e.g., `abc123`)
+- **Password**: Your university password
+
+If it still fails:
+
+1. Make sure you're connected to the internet
+2. If off-campus, connect to the **University VPN** first
+3. Try logging into github.bath.ac.uk in your browser to confirm your credentials work
+
+### Do I have to log in every time?
+
+- **Personal Laptop**: No. Your computer (Keychain/Credential Manager) remembers your password.
+- **Lab Computer**: Maybe. If you log out and move to a different computer, you might need to enter your credentials again. This is normal security.
+
+---
+
+## Pull Failed
+
+**Symptom**: Clicking Pull gives an error.
+
+### Fix 1: You Have Uncommitted Changes
+
+If you see "Cannot pull with uncommitted changes":
+
+1. Go to the Git pane
+2. Check the boxes next to modified files
+3. Click **Commit**
+4. Write a message and click **Commit**
+5. Now try **Pull** again
+
+### Fix 2: Network Issues
+
+1. Check your internet connection
+2. If off-campus, ensure VPN is connected
+3. Try again in a few minutes
+
+---
+
+## Merge Conflict
+
+**Symptom**: You see `<<<<<<< HEAD` in your file.
+
+This happens rarely. It means you and someone else (or you on another computer) edited the same file.
+
+### Fix
+
+1. Open the file with the conflict
+2. Look for markers like:
+   ```
+   <<<<<<< HEAD
+   your version
+   =======
+   their version
+   >>>>>>> main
+   ```
+3. **Delete** the markers and keep the version you want
+4. Save the file
+5. In Git pane: Stage the file → Commit → Push
+
+**If you're stuck**: Ask a TA for help. Don't panic!
+
+---
+
+## Can't Access H: Drive from Home
+
+**Symptom**: You can't see your H: Drive on your personal laptop.
+
+### Fix
+
+1. Install and connect to the **University VPN** ([VPN Guide](https://www.bath.ac.uk/guides/setting-up-vpn-on-your-device/))
+2. Then map the drive:
+   - **Windows**: `\\myfiles.campus.bath.ac.uk\yourusername`
+   - **Mac**: `smb://myfiles.campus.bath.ac.uk/yourusername`
+
+---
+
+## RStudio Crashes or Freezes
+
+### Fix 1: Close Other Programs
+
+RStudio needs memory. Close Chrome tabs, other apps, etc.
+
+### Fix 2: Restart Fresh
+
+1. Close RStudio completely
+2. Reopen RStudio
+3. Go to **File → Recent Projects** and select your project
+
+### Fix 3: Delete .RData File
+
+If RStudio keeps crashing on startup:
+
+1. Navigate to your project folder in File Explorer
+2. Delete the `.RData` file (if it exists)
+3. Reopen RStudio
+
+---
+
+## My Files Disappeared!
+
+### If You Were Using Git
+
+Your work is probably safe on GitHub:
+
+1. Go to github.bath.ac.uk
+2. Find your repo
+3. Check if your files are there
+4. Clone the repo again to get them back
+
+### If You Never Pushed
+
+Check these locations:
+
+- Your recent file location (File Explorer → Recent)
+- The H: Drive (if you were on a lab PC)
+- Your Downloads folder
+
+---
+
+## I Accidentally Edited a File in Materials
+
+**Symptom**: The Git pane shows changes in the `materials` project.
+
+### Fix: Discard Your Changes
+
+1. In the Git pane, right-click the file
+2. Click **Revert** or **Discard Changes**
+3. Your file returns to the original version
+
+This is safe because you can always Pull again to get the latest content.
+
+---
+
+## Still Stuck?
+
+1. **Ask a TA** during lab or office hours
+2. **Post on the Moodle forum** (others may have the same issue)
+3. **Email the instructor** for urgent issues
+
+When asking for help, include:
+
+- What you were trying to do
+- The exact error message (screenshot if possible)
+- What you already tried
