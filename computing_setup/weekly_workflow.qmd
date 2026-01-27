@@ -73,7 +73,7 @@ Every week, new lab materials get added to the `materials` repository. Here's ho
 Pull *every time* you open the materials project. It takes 2 seconds and ensures you always have the latest content. Think of it like refreshing your email — do it automatically!
 :::
 
-### 🧪 During Lab
+### 🧪 During the Lab
 
 1. Navigate to `labs/lab_XX/`
 2. Double-click `lab_XX.Rproj` to open that specific lab
@@ -89,9 +89,9 @@ When you open a new `.Rproj` file, RStudio will close your current project and o
 
 Labs are for practice, so you don't submit them. Your work stays on your computer.
 
-### ✅ After Lab (Getting Solutions)
+### ✅ After the Lab (Getting Solutions)
 
-Want to check your answers? Solutions are released after each lab:
+Want to check your answers? Solutions are released sometime after each lab:
 
 1. Open the `materials` project (double-click `materials.Rproj`)
 2. Click **Pull**
@@ -116,7 +116,7 @@ These are great practice for seeing how experienced coders think and work. Don't
 
 ## Homework Workflow
 
-Homework is **formative** (for learning, not your final grade). You'll get feedback from your TA to help you improve. Here's the full process:
+Homeworks iare **formative** (for learning, not your final grade). You'll get feedback from your TA to help you improve. Here's the full process:
 
 ### Step 1: Clone Your Personal Homework Repo
 
@@ -136,7 +136,7 @@ Each homework has a unique URL just for you.
 ::: {.callout-warning}
 ## Clone to the Right Folder!
 
-Always clone homework into `MA22019/homework/` and coursework into `MA22019/coursework/`. This keeps everything organized and makes it easy to find your work later.
+Always clone homework into `MA22019/homework/` and each coursework into `MA22019/coursework/`. This keeps everything organized and makes it easy to find your work later.
 :::
 
 ### Step 2: Do the Work
