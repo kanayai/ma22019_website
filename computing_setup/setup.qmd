@@ -2,29 +2,29 @@
 title: "Computer Setup Guide"
 ---
 
-Use this guide when setting up at the start of the semester, or whenever you move to a new computer or need to reset your environment.
+Welcome! 🎉 This guide will get you up and running for the semester. Don't worry — we'll walk you through every step. You've got this!
 
 # 🏁 1. START HERE: Which path are you on?
 
 Choose your adventure:
 
-*   **A) "I am using  University  of Bath Computers"** → [Skip to Section 1A](#a.-using-university-of-bath-computers).
-*   **B) "I am using my own Laptop"** → [Start at Section 1B](#b.-using-your-own-laptop).
+*   **A) "I'm using University of Bath Computers"** → [Skip to Section 1A](#a.-using-university-of-bath-computers). Lucky you — everything's pre-installed!
+*   **B) "I'm using my own Laptop"** → [Start at Section 1B](#b.-using-your-own-laptop). A bit more work, but totally worth it!
 
 ---
 
 ## 1A. Using University of Bath Computers
 
-**Good news**: R, RStudio, and Git are already installed!
+**Great news!** R, RStudio, and Git are already installed. The IT team has done the hard work for you! 🙌
 
-*   **Log in** to the PC.
-*   [Skip to **Section 2: Configure Git in RStudio**](#configure-git-in-rstudio).
+*   Just **log in** to a PC.
+*   Then [jump straight to **Section 2: Configure Git in RStudio**](#configure-git-in-rstudio).
 
 ## 1B. Using Your Own Laptop
 
-If you are using your own machine, you need to install a few things first.
+Using your own machine? Brilliant — having your own setup means you can work from anywhere (coffee shops, trains, your bed at 2am... not that we recommend that last one 😄).
 
-If you're using your own laptop, install these before the first lab:
+You'll need to install three things before your first lab:
 
 | Software | Download Link |
 |----------|--------------|
@@ -32,27 +32,25 @@ If you're using your own laptop, install these before the first lab:
 | RStudio | [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/) |
 | Quarto | [quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) |
 
-In all cases, choose your operating system and then download the installer. 
-
-**University of Bath computers** already have Quarto, R and RStudio installed.
+Just choose your operating system and download the installer. The installation wizards will guide you through — accept the defaults and you'll be fine!
 
 ---
 
 # Your Computational Toolkit
 
-Here are the tools you'll use in this course:
+Let's meet the tools you'll be using this semester. Don't worry if they sound unfamiliar — by Week 2, they'll feel like old friends!
 
-| Tool | What It Is | Analogy |
-|------|-----------|--------|
-| **R** | The programming language for data analysis | Like English — the language you write in |
-| **RStudio** | The software where you write R code | Like Microsoft Word — your writing interface |
-| **Quarto** | Creates documents with code AND text | Like a Word doc that can run code |
-| **Git** | Version control (tracks changes) | Like "Track Changes" in Word, but better |
-| **GitHub** | Cloud storage for your Git projects | Like Google Drive, but for code |
+| Tool | What It Is | Think of It Like... |
+|------|-----------|---------------------|
+| **R** | The programming language for data analysis | The language you speak (like English) |
+| **RStudio** | The software where you write R code | Your word processor (like Microsoft Word) |
+| **Quarto** | Creates documents with code AND text | A Word doc that can actually *run* code! |
+| **Git** | Version control (tracks all your changes) | "Track Changes" on steroids 💪 |
+| **GitHub** | Cloud storage for your Git projects | Like Google Drive, but designed for code |
 
 ::: {.callout-note}
-R is the language, RStudio is the interface. You write R code *inside* RStudio.
-
+## Quick Clarification
+R is the *language*, RStudio is the *interface*. You write R code *inside* RStudio — just like you write English *inside* Word!
 :::
 
 
@@ -60,75 +58,77 @@ R is the language, RStudio is the interface. You write R code *inside* RStudio.
 
 ## A Quick Tour of RStudio
 
-When you first open RStudio, you'll see **three panes**. The fourth pane (Source) appears when you open a file.
+When you first open RStudio, don't panic if it looks complicated! You'll see **three panes** initially. The fourth one (Source) appears when you open a file.
 
 ::: {.callout-tip}
-**Where's the Source pane?** It only appears when you open a file (`.R`, `.qmd`, etc.). Go to **File → Open File** or double-click a file in the Files pane to see it.
+**"Where's the fourth pane?!"** The Source pane only appears when you open a file (`.R`, `.qmd`, etc.). Go to **File → Open File** or double-click any file in the Files pane to reveal it.
 :::
 
 ![RStudio interface](../img/rstudio_interface.png)
 
 | Pane | Location | What It Does |
 |------|----------|-------------|
-| **Source** | Top-left | Where you write and edit code files (.R, .qmd) — *appears when you open a file* |
-| **Console** | Bottom-left | Where you run code and see immediate output (look for the `>` prompt) |
-| **Environment** | Top-right | Shows your loaded data, variables, objects, and Git buttons |
-| **Files/Plots/Help** | Bottom-right | Browse files, view plots, get help |
+| **Source** | Top-left | Your code editor — where the magic happens! ✨ |
+| **Console** | Bottom-left | Run code and see immediate results (look for the `>` prompt) |
+| **Environment** | Top-right | Shows your data, variables, and those all-important Git buttons |
+| **Files/Plots/Help** | Bottom-right | Browse files, admire your plots, get help when stuck |
 
-> **Tip**: If a pane is missing, go to **View → Panes → Show All Panes**.
+> **Pro tip**: If a pane goes missing (it happens!), go to **View → Panes → Show All Panes** to bring it back.
 
 ::: {.callout-tip}
 ## Use Source Mode, Not Visual Mode
 
-When editing `.qmd` files, RStudio offers two modes: **Source** and **Visual**. We recommend **Source mode** because:
+When editing `.qmd` files, RStudio offers two modes: **Source** and **Visual**. We *strongly* recommend **Source mode** because:
 
-- You see exactly what's in the file (no hidden formatting)
-- You learn Markdown syntax (a transferable skill used across many tools)
-- It's easier to debug rendering issues
-- Visual mode can sometimes introduce unwanted formatting changes
+- You see exactly what's in the file — no mystery formatting hiding in the background
+- You'll learn Markdown syntax (a skill that transfers to blogs, READMEs, documentation, and more!)
+- It's way easier to debug when something goes wrong
+- Visual mode can sometimes sneak in unwanted formatting changes
 
-You can switch modes using the toggle at the top-left of the Source pane.
+Switch modes using the toggle at the top-left of the Source pane. Trust us on this one!
 :::
 
 ### The Most Important Buttons
 
+You'll use these buttons constantly. Memorize them and you'll fly through your work!
+
 | Button | Where | What It Does |
 |--------|-------|-------------|
-| **Run** | Source pane toolbar | Runs selected lines of code |
-| **Render** | Source pane toolbar | Converts your .qmd to HTML/PDF |
-| **Pull** | Git pane (top-right) | Downloads updates from GitHub |
-| **Push** | Git pane (top-right) | Uploads your work to GitHub |
+| **Run** | Source pane toolbar | Runs your selected code — see results instantly! |
+| **Render** | Source pane toolbar | Transforms your `.qmd` into a beautiful HTML or PDF |
+| **Pull** | Git pane (top-right) | Downloads the latest updates from GitHub |
+| **Push** | Git pane (top-right) | Uploads your amazing work to GitHub |
 
 ---
 
 ## Quarto: Your New Document Format
 
-In this course, you won't use Word or Google Docs. Instead, you'll write **Quarto documents** (`.qmd` files) that contain:
+Forget Word and Google Docs — in this course, you'll create **Quarto documents** (`.qmd` files). These are special because they combine:
 
-- Your written analysis (in English)
-- Your code (in R)
-- The output of your code (plots, tables, results)
+- 📝 Your written analysis (in plain English)
+- 💻 Your code (in R)
+- 📊 The output of your code (plots, tables, results — all auto-generated!)
 
-When you **Render** a Quarto document, everything combines into a beautifully formatted HTML or PDF file!
+When you click **Render**, everything magically combines into a beautifully formatted HTML or PDF. It's like having a robot assistant who formats your reports perfectly every time!
 
 ::: {.callout-tip collapse="true"}
 ## Also taking MA22015 (Statistics 2B)?
 
-In MA22015, you use **R Markdown** (`.Rmd` files) instead of Quarto (`.qmd` files). Don't worry — they're very similar!
+Good news! In MA22015, you use **R Markdown** (`.Rmd` files) which is basically Quarto's older sibling. They're *very* similar!
 
 | Feature | R Markdown (`.Rmd`) | Quarto (`.qmd`) |
-|---------|---------------------|-----------------|
+|---------|---------------------|-----------------| 
 | Used in | MA22015 | MA22019 (this course) |
 | Button to run | **Knit** | **Render** |
 | File header | Uses `output: html_document` | Uses `format: html` |
 | Syntax | Nearly identical | Nearly identical |
 
-Think of Quarto as the "next generation" of R Markdown — same idea, slightly updated syntax. Skills transfer directly between them!
+Think of Quarto as the "next generation" upgrade. Skills transfer directly between them — you're basically learning two tools for the price of one! 🎁
 :::
 
 ## An Analogy to Writing an Essay
 
-Think of it like writing an essay for a literature class:
+Still feeling a bit overwhelmed? Think of it like writing an essay for a literature class:
 
 | Literature Class | Data Science (This Course) |
 |------------------|---------------------------|
@@ -140,70 +140,80 @@ Think of it like writing an essay for a literature class:
 
 ![Comparison of tools: R is like English, RStudio is like Word, Quarto is like a .docx, Git is like Track Changes, and GitHub is like Google Drive](../img/r-english-analogy.jpg)
 
+See? You've been doing a version of this your whole academic life. Now you're just leveling up! 🚀
+
 ---
 
 # 2. Configure Git in RStudio
 
-**New to Git?** See [Why Learn Git?](why_teach_github.md) first.
+**New to Git?** Curious why we bother with version control? Check out [Why Learn Git?](why_teach_github.md) — it's a quick read and might change how you feel about it!
 
-Git is the version control system that connects RStudio to GitHub. You need to set it up once.
+Git is the version control system that connects RStudio to GitHub. You only need to set it up once per computer — then you're good to go!
 
 ## On University Lab Computers
 
+The good news: Git is already installed. You just need to verify RStudio knows where to find it:
+
 1. Open **RStudio**
 2. Go to **Tools → Global Options → Git/SVN**
-3. Check that the **Git executable** box shows a path (e.g., `C:\Program Files\Git\bin\git.exe`)
-   - If it's empty or says "Not Found", see the [Troubleshooting Guide](troubleshooting.qmd)
+3. Check that the **Git executable** box shows a path (something like `C:\Program Files\Git\bin\git.exe`)
+   - If it's empty or says "Not Found", don't panic! Head to the [Troubleshooting Guide](troubleshooting.qmd)
 4. Click **OK**
+
+Done! That was easy, right? ✅
 
 ## On Personal Computers (Windows)
 
-If Git isn't already installed:
+If Git isn't already installed, let's fix that:
 
 1. Download Git from [git-scm.com/download/win](https://git-scm.com/download/win)
-2. Run the installer — accept all defaults
+2. Run the installer — just accept all the defaults (seriously, don't overthink it!)
 3. Open **RStudio**
 4. Go to **Tools → Global Options → Git/SVN**
 5. The Git executable should now show `C:\Program Files\Git\bin\git.exe`
 6. Click **OK**
 
+High five! 🙌 You're all set!
+
 ## On Personal Computers (Mac)
 
-Git is usually pre-installed on Macs. To check:
+Great news for Mac users — Git usually comes pre-installed! Let's check:
 
 1. Open **RStudio**
 2. Go to **Tools → Global Options → Git/SVN**
 3. Check if the Git executable shows `/usr/bin/git` or similar
 
-If Git is not found:
+If Git isn't found, here's what to do:
 
-**On Windows** (if Git isn't detected):
+**On Windows** (if Git wasn't detected):
 
 1. Open **Command Prompt** (Start menu → type `cmd`)
 2. Type `git --version` and press Enter
-3. If it shows a version, Git is installed — copy the path from `where git` into RStudio settings
-4. If "not recognized", install Git from [git-scm.com](https://git-scm.com/download/win)
+3. If it shows a version number, Git is installed! Copy the path from `where git` into RStudio settings
+4. If it says "not recognized", install Git from [git-scm.com](https://git-scm.com/download/win)
 
 **On Mac:**
 
 1. Open **Terminal** (Applications → Utilities → Terminal) 
 2. Type `git --version` and press Enter
-3. If prompted, click **Install** to install the Xcode Command Line Tools
+3. If prompted, click **Install** to get the Xcode Command Line Tools
 4. Restart RStudio and check Git/SVN settings again
 
 ::: {.callout-warning}
-## ⚠️ Git Does NOT Work on Remote Desktop (UniDesk/UniApps)
+## ⚠️ Heads Up: Git Does NOT Work on Remote Desktop (UniDesk/UniApps)
 
-If you're connecting to university computers remotely using **UniDesk** or **UniApps**, Git will **not work**. RStudio works, but Git operations (Clone, Pull, Push) fail.
+If you're connecting to university computers remotely using **UniDesk** or **UniApps**, Git will **not work**. You can use RStudio fine, but Clone/Pull/Push operations will fail.
 
-**Solution**: Use a **physical lab computer** on campus, or install R/RStudio/Git on your own laptop.
+**Your options**: Use a **physical lab computer** on campus, or install R/RStudio/Git on your own laptop (honestly, it's worth it!).
 
-For more information, see the [UniDesk/UniApps guide](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
+More info: [UniDesk/UniApps guide](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
 :::
 
 ## Tell Git Who You Are
 
-In the RStudio **Console** (the pane with the `>` prompt, usually bottom-left), run this once (replace with your details):
+Almost there! Git needs to know your name and email so it can track who made which changes. This takes 30 seconds:
+
+In the RStudio **Console** (the pane with the `>` prompt, usually bottom-left), run this once — just replace the example with *your* details:
 
 ```r
 install.packages("usethis")  # Only needed once
@@ -215,16 +225,16 @@ use_git_config(user.name = "Your Name", user.email = "abc123@bath.ac.uk")
 ## Important: Use Your Bath Account Only
 
 - Use your **Bath email address** (`abc123@bath.ac.uk`), not your personal email
-- You **cannot** use a personal GitHub account for this course
-- We use `github.bath.ac.uk` (University of Bath's enterprise GitHub), which is separate from `github.com`
-- Your Bath username and password work automatically — you don't need to create a new account
+- You **cannot** use a personal GitHub.com account for this course
+- We use `github.bath.ac.uk` (University of Bath's enterprise GitHub), which is completely separate from `github.com`
+- Your Bath username and password work automatically — no need to create anything new!
 :::
 
 ---
 
 # 3. Create Your Folder Structure
 
-All your course work should live in one folder. Create this structure:
+Let's get organized! All your course work will live in one tidy folder. This takes 2 minutes and will save you *hours* of confusion later.
 
 ## Where to put the MA22019 folder
 
@@ -235,22 +245,22 @@ All your course work should live in one folder. Create this structure:
 | Mac | `~/Documents/MA22019/` |
 
 ::: {.callout-warning}
-## ⚠️ Do NOT save your projects in cloud-synced folders!
+## ⚠️ AVOID Cloud-Synced Folders at All Costs!
 
-Cloud sync services (OneDrive, iCloud, Dropbox, Google Drive) corrupt Git repositories. Git creates thousands of tiny files that these services try to sync, causing crashes and data loss.
+This is really important: **Do NOT** save your projects in OneDrive, iCloud, Dropbox, or Google Drive folders!
 
-**The MA22019 folder can go anywhere that is NOT cloud-synced.**
+Why? Cloud sync services and Git are mortal enemies. Git creates thousands of tiny files that these services try to sync simultaneously, causing crashes, corruption, and heartbreak. 💔
 
-**Check your setup:**
+**The MA22019 folder can go anywhere that is NOT cloud-synced:**
 
-- **Windows**: If your Documents folder shows a cloud icon, it's synced to OneDrive. Create your folder at `C:\MA22019\` or any other local folder that isn't synced (e.g., `D:\MA22019\`).
-- **Mac**: Go to *System Settings → Apple ID → iCloud → iCloud Drive → Options*. If "Desktop & Documents Folders" is ON, create your folder at `~/MA22019/` (in your home folder, not Documents), or any other non-synced location.
+- **Windows**: If your Documents folder shows a cloud icon, create your folder at `C:\MA22019\` instead
+- **Mac**: Go to *System Settings → Apple ID → iCloud → iCloud Drive → Options*. If "Desktop & Documents" is ON, use `~/MA22019/` (your home folder) instead
 - **University PCs**: The H: Drive is safe — use that!
 :::
 
 ## The Folder Structure
 
-Create these folders (you'll use them throughout the semester):
+Create these three folders — you'll use them all semester:
 
 ![MA22019 folder structure](../img/folder_structure.png)
 
@@ -262,10 +272,10 @@ MA22019/
 ```
 
 ::: {.callout-note}
-You can create these folders using your operating system (File Explorer on Windows, Finder on Mac) or using RStudio as shown below.
+You can create these folders using File Explorer (Windows) or Finder (Mac), or use RStudio as shown below — whatever feels comfortable!
 :::
 
-**How to create folders in RStudio:**
+**How to create folders in RStudio** (optional method):
 
 1. Open RStudio (not inside any project)
 2. In the **Files** pane (bottom-right), navigate to your Documents (or chosen location)
@@ -275,11 +285,11 @@ You can create these folders using your operating system (File Explorer on Windo
 6. Click **New Folder** → type `coursework`
 
 ::: {.callout-tip}
-## That's All the Folders You Need to Create!
+## 🎉 That's All the Folders You Need!
 
-If you're following the Git workflow (recommended), this is the only manual folder creation you need to do. When you clone repositories for homework or coursework, the folders are created automatically.
+If you're following the Git workflow (which you should!), this is the *only* manual folder creation you'll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?
 
-See the [Weekly Workflow Guide](weekly_workflow.qmd) for details on cloning assignments.
+See the [Weekly Workflow Guide](weekly_workflow.qmd) for details on how cloning works.
 :::
 
 ---
@@ -287,56 +297,92 @@ See the [Weekly Workflow Guide](weekly_workflow.qmd) for details on cloning assi
 
 # 4. Clone the Materials Repository
 
-The `materials` repository (or repo) contains all course content: case studies, labs, and solutions. You clone it once and pull updates weekly.
+Time for the exciting part! 🎬 The `materials` repository contains all your course content: case studies, labs, and solutions. You'll clone it once, then pull updates weekly.
+
+![How cloning works](../img/git_clone_flow.png)
+
+::: {.callout-tip collapse="true"}
+## Why Clone Instead of Downloading from Moodle?
+
+You might be wondering: "Why not just download files from Moodle like in other courses?" Great question! Here's why Git is better:
+
+**The Old Way (Moodle):**
+
+1. Instructor uploads homework to Moodle
+2. You log in, find the right folder, download a ZIP file
+3. You unzip it... somewhere on your computer
+4. Weeks later: "Where did I put that file?" 😩
+5. If the instructor updates a file, you have to re-download everything and figure out what changed
+
+**The Git Way:**
+
+1. You clone once — everything lands in the right place automatically
+2. When updates are available, you click **Pull** and only the *changed* files update
+3. Your folder structure stays organized forever
+4. Git tracks what changed and when — no guessing!
+5. Your work is automatically backed up to GitHub
+
+Think of it like the difference between printing every email vs. using Gmail. One is clunky and creates chaos; the other just *works*. 📧
+:::
+
+Here's how to clone the materials:
 
 1. In RStudio: **File → New Project → Version Control → Git**
 2. **Repository URL**: `https://github.bath.ac.uk/ma22019-2026/materials.git`
 3. **Create project as subdirectory of**: Browse to `MA22019/` and click **Open**
 4. Click **Create Project**
 
-RStudio will download the materials and open the project automatically.
+RStudio will download everything and open the project automatically. Magic! ✨
 
 ## Verify It Worked
 
-- You should see a **Git** tab in the top-right pane
-- The **Files** pane should show folders like `case_studies/`, `labs/`, etc.
-- You should also see a file called `check_location.R`.
+Take a moment to check everything looks right:
+
+- ✅ You should see a **Git** tab in the top-right pane
+- ✅ The **Files** pane should show folders like `case_studies/`, `labs/`, etc.
+- ✅ You should see a file called `check_location.R`
+
+If you see all three, give yourself a pat on the back! 🎉
 
 ---
 
 ##  Test Pull (Verify Your Setup)
 
-After cloning, test that you can pull updates:
+One last check! Let's make sure you can pull updates:
 
-1. In the **Git** pane (top-right), click the **Pull** button (blue down arrow)
-2. You should see a message like "Already up to date" or files appearing
-3. ✅ If you see the Git pane and Pull works, your setup is complete!
+1. In the **Git** pane (top-right), click the **Pull** button (blue down arrow ⬇️)
+2. You should see a message like "Already up to date" or watch files appear
+3. ✅ If the Git pane works and Pull runs without errors, **your setup is complete!**
+
+Congratulations — you're ready to do data science! 🚀
 
 
 ## Understanding RStudio Projects
 
-When you clone or pull updates from the course repository, you'll see an unfamiliar file with the extension `.Rproj`. This is an **RStudio Project file** — it tells RStudio "this is a project."
+When you clone or pull from the course repository, you'll notice an unfamiliar file with a `.Rproj` extension. This is an **RStudio Project file** — think of it as a bookmark that tells RStudio "this folder is a project."
 
 ### Why Use Projects?
 
-| Benefit | What It Means |
-|---------|---------------|
-| **Working directory** | R knows where your files are — no confusing file paths |
-| **Everything together** | Data, code, and output all in one place |
+Projects make your life *so* much easier:
+
+| Benefit | What It Means For You |
+|---------|----------------------|
+| **Working directory** | R knows where your files are — no more confusing file paths! |
+| **Everything together** | Data, code, and output all live in one tidy place |
 | **Reproducible** | Your code works on any computer, not just yours |
-| **Git integration** | The Git pane appears automatically |
+| **Git integration** | The Git pane appears automatically when you need it |
 
 ### How to Open a Project
 
-When you want to work on a specific lab or homework assignment:
+When you want to work on a specific lab or homework:
 
 1. Navigate to the project folder in File Explorer/Finder
 2. Double-click the `.Rproj` file
-3. RStudio opens with that project loaded
+3. RStudio opens with that project loaded — you're ready to code!
 
 ### You'll Have Multiple .Rproj Files
 
-As you progress through the course, your MA22019 folder will contain **multiple `.Rproj` files** — one for each activity:
+As the semester progresses, your MA22019 folder will fill up with `.Rproj` files — one for each activity:
 
 ```
 MA22019/
@@ -352,36 +398,40 @@ MA22019/
         └── cw_01.Rproj      ← Coursework 1
 ```
 
-This is normal and expected. Each `.Rproj` file keeps that assignment's work separate. **Open one project at a time** — don't try to open multiple projects simultaneously.
+This is totally normal! Each `.Rproj` file keeps that assignment's work separate and organized. Just remember: **open one project at a time** — don't try to juggle multiple!
 
-> **Rule**: Always work inside a project! If you don't see a `.Rproj` file in your Files pane, you're probably not in a project. 
+> **Golden Rule**: Always work inside a project! If you don't see a `.Rproj` file in your Files pane, you're probably not in one. 
 
 
 ## Authentication (If Asked for Password)
 
-If RStudio asks for a username and password when cloning:
+If RStudio asks for credentials when cloning, use:
 
 - **Username**: Your Bath username (e.g., `abc123`)
 - **Password**: Your university password
 
 ::: {.callout-note}
-We use `github.bath.ac.uk` (enterprise GitHub) which uses your university login. You do NOT need a Personal Access Token or SSH keys for this course.
+We use `github.bath.ac.uk` (enterprise GitHub) which connects to your university login. You do NOT need a Personal Access Token or SSH keys for this course — keep it simple!
 :::
 
 ---
 
 ## Using the H: Drive (University Network Storage)
 
-Your **H: Drive** is personal network storage backed up by IT. It's a safe place for your work on university computers.
+Your **H: Drive** is personal network storage that IT backs up for you. It's a safe, reliable place for your work on university computers.
 
 ### On Campus (Lab PCs)
 
-The H: Drive is automatically available:
+The H: Drive is automatically available — no setup needed! 
 
 1. Open **File Explorer** (Win+E)
 2. Look for **(H:)** under "This PC"
 
+That's it!
+
 ### From Home (Personal Laptop)
+
+Want to access your H: Drive from home? You'll need to:
 
 1. Connect to the **University VPN** first ([VPN Guide](https://www.bath.ac.uk/guides/setting-up-vpn-on-your-device/))
 2. Map the network drive:
@@ -393,9 +443,9 @@ The H: Drive is automatically available:
 You can also access university computers remotely using [UniDesk or UniApps](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
 
 ::: {.callout-warning}
-## ⚠️ Git Does NOT Work on Remote Desktop
+## ⚠️ Reminder: Git Does NOT Work on Remote Desktop
 
-**Important reminder**: If you're using UniDesk or UniApps, **Git will not work**. You can use RStudio to write and run code, but you won't be able to Clone, Pull, or Push.
+One more time for the people in the back: **Git doesn't work on UniDesk/UniApps!** You can write and run R code, but Clone/Pull/Push won't work.
 
 For Git workflows, use a physical lab computer or your own laptop with R/RStudio/Git installed locally.
 :::
@@ -404,7 +454,7 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 
 # 5. Quick Reference Card
 
-**Already completed setup?** Bookmark this section for quick reference. For detailed step-by-step instructions for each task, see the [Weekly Workflow Guide](weekly_workflow.qmd).
+**Already finished setup?** Bookmark this section! For detailed step-by-step instructions, see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
 | Task | How |
 |------|-----|
@@ -416,5 +466,9 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 
 # 6. Next Steps
 
-- Read the [Weekly Workflow Guide](weekly_workflow.qmd) to understand what to do each week
-- If something goes wrong, check the [Troubleshooting Guide](troubleshooting.qmd)
+You made it! 🎉 Here's what to do next:
+
+- 📖 Read the [Weekly Workflow Guide](weekly_workflow.qmd) to understand what you'll do each week
+- 🔧 If something goes wrong (it happens to everyone!), check the [Troubleshooting Guide](troubleshooting.qmd)
+
+Now go forth and wrangle some data! 📊
