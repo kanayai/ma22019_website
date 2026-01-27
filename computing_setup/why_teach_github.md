@@ -43,9 +43,9 @@ Here's a reality check: if you apply for a data science job, they'll probably as
 
 Learning Git now gives you a real advantage when job hunting.
 
-### 4. TAs Can Help You More Easily
+### 4. Tutors Can Help You More Easily
 
-When you push your work to GitHub, your TA can see exactly what you've done. They can:
+When you push your work to GitHub, your Tutor can see exactly what you've done. They can:
 
 - Read your code before you ask for help
 - Comment on specific lines
@@ -62,6 +62,14 @@ quarto publish gh-pages
 ```
 
 Imagine turning your coursework into a portfolio piece with a live URL!
+
+### 6. The 3-Commit Rule (Why We Force You to Do It)
+
+You'll notice in the coursework instructions that we require **at least 3 commits** showing your progress. We're not doing this to be annoying. We do it because:
+
+1.  **Authenticity**: It's the best proof that *you* actually wrote the code over time, rather than copy-pasting it from elsewhere (or an AI) 5 minutes before the deadline.
+2.  **Partial Credit**: If your final code doesn't run, but your commit from yesterday did, we can look at that version and give you marks for what worked.
+3.  **Safety**: It encourages you to save often, so you never lose more than a few hours of work.
 
 ---
 
@@ -97,7 +105,7 @@ If you're curious about these later, great! But you don't need them for this cou
 |-------------|----------|
 | Files everywhere, confusing names | One folder, clear history |
 | "Did I save that?" anxiety | Everything backed up automatically |
-| Hard for TAs to help you | TAs can see your code instantly |
+| Hard for Tutors to help you | Tutors can see your code instantly |
 | Nothing to show employers | A portfolio that proves your skills |
 
 Yes, it takes a bit of getting used to. But by Week 2, you'll wonder how you ever lived without it.

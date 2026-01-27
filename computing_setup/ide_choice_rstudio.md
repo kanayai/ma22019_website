@@ -33,7 +33,7 @@ Positron is an exciting development (by Posit/RStudio themselves) and is likely 
 Don't ban modern tools, but don't require them.
 
 1.  **Instruction in RStudio:** All live demos, screenshots, and lab instructions should assume RStudio. This guarantees 100% of students (including those on uni PCs) can follow along.
-2.  **The "Advanced Track":** Explicitly state: *"You are free to use VS Code or Positron if you prefer, but course staff cannot debug installation issues on your personal machine."* This empowers the top 10% of tech-savvy students without burdening the TAs.
+2.  **The "Advanced Track":** Explicitly state: *"You are free to use VS Code or Positron if you prefer, but course staff cannot debug installation issues on your personal machine."* This empowers the top 10% of tech-savvy students without burdening the Tutors.
 3.  **The "Bridge" Lecture:** In the final week (or a "Future Career" seminar), demonstrate a workflow in VS Code or Positron. Show *why* a professional might switch (e.g., better Copilot integration, Python interoperability). This plants the seed for their future growth without overwhelming them now.
 
 ---

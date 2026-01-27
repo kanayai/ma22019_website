@@ -9,7 +9,7 @@ This course has three types of activities:
 | Type | Weight | Feedback | Where |
 |------|--------|----------|-------|
 | **Labs** | 0% (Formative) | Self-check with solutions | In-class practice |
-| **Homework** | 0% (Formative) | TA feedback on GitHub | Weekly practice |
+| **Homework** | 0% (Formative) | Tutor feedback on GitHub | Weekly practice |
 | **Coursework** | 100% (Summative) | Full marking rubric | Two major projects |
 
 ---
@@ -70,7 +70,7 @@ We grade your professional habits.
 
 | Resource | When to Use |
 |----------|-------------|
-| **Lab TAs** | During lab sessions |
+| **Lab Tutors** | During lab sessions |
 | **Office Hours** | For detailed questions |
 | **Moodle Forum** | General questions (others may have the same issue) |
 | **Email** | Urgent personal issues |

@@ -311,7 +311,7 @@ This happens rarely. It means you and someone else (or you on another computer) 
 4. Save the file
 5. In Git pane: Stage the file → Commit → Push
 
-**If you're stuck**: Ask a TA for help. Don't panic!
+**If you're stuck**: Ask a Tutor for help. Don't panic!
 
 ---
 
@@ -387,7 +387,7 @@ This is safe because you can always Pull again to get the latest content.
 
 ## Still Stuck?
 
-1. **Ask a TA** during lab or office hours
+1. **Ask a Tutor** during lab or office hours
 2. **Post on the Moodle forum** (others may have the same issue)
 3. **Email the instructor** for urgent issues
 

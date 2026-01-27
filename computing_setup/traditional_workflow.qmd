@@ -11,7 +11,7 @@ You will lose:
 
 - Automatic backup (if your laptop breaks, your work is gone)
 - Version history (can't "undo" to yesterday's version)
-- Easy feedback (TAs cannot easily see your code)
+- Easy feedback (Tutors cannot easily see your code)
 - Career skills (employers expect Git)
 
 Use this only if you absolutely refuse to use GitHub Desktop/RStudio Git.
@@ -53,7 +53,7 @@ If you change your mind and edit the file again, you have to repeat the entire u
 
 ## 4. Getting Feedback
 
-TAs mark on GitHub. To see their feedback:
+Tutors mark on GitHub. To see their feedback:
 
 1. Go to your repo
 2. Click **Issues**

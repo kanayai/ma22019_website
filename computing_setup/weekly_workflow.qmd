@@ -16,26 +16,32 @@ Welcome to your weekly workflow guide! 🗓️ This page tells you exactly what 
 
 Unlike traditional courses where you download ZIP files from Moodle, we use **GitHub** to keep everything organized. Here's the flow:
 
-```{mermaid}
+```mermaid
 flowchart LR
     subgraph GitHub["☁️ GitHub (github.bath.ac.uk)"]
         A["📁 Course Materials"]
         B["📁 Your Homework Repo"]
+        E["📁 Your Coursework Repo"]
     end
     
     subgraph Computer["💻 Your Computer"]
         C["📁 materials/"]
         D["📁 homework/hw_01/"]
+        F["📁 coursework/cw_01/"]
     end
     
     A -->|Pull weekly| C
     B -->|Clone once| D
     D -->|Push your work| B
+    E -->|Clone once| F
+    F -->|Push your work| E
     
     style A fill:#4a90d9,color:#fff
     style B fill:#e74c3c,color:#fff
     style C fill:#27ae60,color:#fff
     style D fill:#27ae60,color:#fff
+    style E fill:#e74c3c,color:#fff
+    style F fill:#27ae60,color:#fff
 ```
 
 **Two simple concepts:**
@@ -116,7 +122,7 @@ These are great practice for seeing how experienced coders think and work. Don't
 
 ## Homework Workflow
 
-Homeworks iare **formative** (for learning, not your final grade). You'll get feedback from your TA to help you improve. Here's the full process:
+Homeworks are **formative** (for learning, not your final grade). You'll get feedback from your TA to help you improve. Here's the full process:
 
 ### Step 1: Clone Your Personal Homework Repo
 
@@ -138,6 +144,8 @@ Each homework has a unique URL just for you.
 
 Always clone homework into `MA22019/homework/` and each coursework into `MA22019/coursework/`. This keeps everything organized and makes it easy to find your work later.
 :::
+
+> **Note**: For a refresh on file paths and creating folders, check the [Project Structure Guide](project_structure.qmd).
 
 ### Step 2: Do the Work
 
@@ -167,6 +175,8 @@ Aim for **at least 3 commits** per homework. This shows your progress and protec
 1. Click the **Push** button (green up arrow ⬆️)
 2. Enter your Bath username and password if prompted
 3. Done! Your work is now safely on GitHub 🎉
+
+Once pushed, your **Tutor** can see your code and provide feedback directly on your repository (usually via Issues). This is the primary way we help you improve!
 
 ### Step 5: Verify Your Submission
 
@@ -230,7 +240,7 @@ Bookmark this table — it's your cheat sheet for the semester!
 | Start coursework | Clone | Into `coursework/` folder |
 | Submit my work | Push | After committing in your homework/coursework project |
 
----
+
 
 ## Semester Timeline
 
@@ -252,9 +262,9 @@ Here's what to expect week by week:
 
 Nope! Just pull now — you'll get everything immediately. No harm done.
 
-**Q: I can't find my homework repo URL.**
+**Q: I can't find my homework/coursework repo URL.**
 
-Check the Moodle page for the assignment. Make sure you're logged into `github.bath.ac.uk` (not `github.com`).
+Check the MA22019 Moodle page for the URL. On Rstudio make sure you're logged into `github.bath.ac.uk` (not `github.com`).
 
 **Q: I cloned to the wrong folder. Help!**
 
