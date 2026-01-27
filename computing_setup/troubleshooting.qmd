@@ -165,6 +165,60 @@ Remote Desktop machines often have Git blocked. Try a physical lab computer inst
 
 ---
 
+## Git Doesn't Work on UniDesk/UniApps (Remote Desktop)
+
+**Symptom**: You're connected to a university computer remotely and Git operations (Clone, Pull, Push) fail or hang.
+
+### Cause
+
+UniDesk (AVD) and UniApps (RDS) are remote desktop solutions that don't support Git properly. While you can use RStudio to write and run R code, the Git connection to GitHub doesn't work through these services.
+
+### Fix
+
+**Option 1**: Use a **physical lab computer** on campus. Git works normally on these.
+
+**Option 2**: Install R, RStudio, and Git on your **own laptop** (see [Setup Guide](setup.qmd)).
+
+::: {.callout-note}
+UniDesk/UniApps is still useful for writing and testing R code. Just don't expect Git to work!
+:::
+
+---
+
+## ⚠️ W: Drive Warning (Personal Web Space)
+
+**Symptom**: You saved something to the W: Drive and now you're worried.
+
+The **W: Drive** (`\\waltz.campus.bath.ac.uk\wwwgroup`) is your **Personal Web Space**:
+
+- ⚠️ **PUBLIC RISK**: Files saved here may be visible to anyone on the internet!
+- ❌ **NEVER** save RStudio projects, homework, or coursework here
+- ❌ If your solution is findable via Google, you could be flagged for **Academic Misconduct**
+
+### Fix
+
+1. Move your files to the **H: Drive** or your local `MA22019/` folder
+2. Delete anything you accidentally saved to W: Drive
+3. Only use W: Drive if explicitly asked to host a final HTML webpage
+
+---
+
+## 🌐 WebDrive (files.bath.ac.uk) Not Working with RStudio
+
+**Symptom**: You tried to use files.bath.ac.uk with RStudio and it doesn't work.
+
+**Explanation**: The **files.bath** web interface is browser-based only. RStudio cannot:
+
+- See files inside a web browser
+- Run code from WebDrive
+- Save plots or use Git
+
+### Fix
+
+Use WebDrive only for emergencies (e.g., downloading a single file on a public computer). For actual work, map your H: Drive directly (see [Setup Guide](setup.qmd)).
+
+---
+
 ## I Cloned to the Wrong Folder
 
 **Symptom**: Your homework ended up on the Desktop or in the wrong place.

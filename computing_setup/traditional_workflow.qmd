@@ -2,6 +2,8 @@
 title: "Manual (Non-Git) Workflow"
 ---
 
+> For file organization and naming guidance, see [Project Structure & File Organization](project_structure.qmd).
+
 ::: {.callout-warning}
 ## ⚠️ WARNING: This workflow is **NOT RECOMMENDED**.
 

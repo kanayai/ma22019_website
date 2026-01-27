@@ -2,6 +2,12 @@
 title: "Weekly Workflow"
 ---
 
+::: {.callout-important}
+## Prerequisites
+
+This guide assumes you've completed the [Computer Setup Guide](setup.qmd). If you haven't, [do that first](setup.qmd)!
+:::
+
 > **Goal**: Know exactly what to do each week — when to pull, when to clone, what to submit.
 
 ---
@@ -11,6 +17,31 @@ title: "Weekly Workflow"
 In a traditional course, you might download zip files from Moodle, unzip them, work on them, zip them back up, and re-upload. This creates a mess of versions (`final_v2_REAL.zip`) and makes it hard to get help.
 
 In this course, we use **GitHub** to keep everything organized and synced. See [Why Learn Git?](why_teach_github.md) for the full story.
+
+```{mermaid}
+flowchart LR
+    subgraph Course GitHub Organization
+        A[📁 Assignment Template]
+    end
+    
+    subgraph Your GitHub Account
+        B[📁 Your Copy]
+    end
+    
+    subgraph Your Computer
+        C[📁 Local Clone]
+    end
+    
+    A -->|1. Accept| B
+    B -->|2. Clone| C
+    C -->|3. Work & Commit| C
+    C -->|4. Push| B
+    B -->|5. Submission!| B
+    
+    style A fill:#202329,color:#fff
+    style B fill:#EC0836,color:#fff
+    style C fill:#14C8E1,color:#000
+```
 
 ---
 

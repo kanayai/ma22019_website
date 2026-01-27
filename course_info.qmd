@@ -1,0 +1,82 @@
+---
+title: "Course Information"
+---
+
+## Assessment Structure
+
+This course has three types of activities:
+
+| Type | Weight | Feedback | Where |
+|------|--------|----------|-------|
+| **Labs** | 0% (Formative) | Self-check with solutions | In-class practice |
+| **Homework** | 0% (Formative) | TA feedback on GitHub | Weekly practice |
+| **Coursework** | 100% (Summative) | Full marking rubric | Two major projects |
+
+---
+
+## What Gets Graded (Coursework)
+
+### 1. Content (80%)
+
+| What We Look At | Why It Matters |
+|-----------------|----------------|
+| Your `.qmd` file | Your code and written answers |
+| Rendered output | Does your code run correctly? |
+| Accuracy | Are your answers correct? |
+| Completeness | Did you attempt all questions? |
+
+### 2. Workflow Points (20%) — "The 3-Commit Rule"
+
+We grade your professional habits. 
+
+**Requirement:** You **must commit at least 3 times** as you work through the assignment.
+
+| Requirement | Points | What We Check |
+|-------------|--------|---------------|
+| **Minimum 3 commits** | 10% | We look at your commit history |
+| **Final files in repo** | 5% | Both `.qmd` and rendered output on GitHub |
+| **Organization** | 5% | Clean repo, meaningful commit messages |
+
+**Why do we require multiple commits?**
+
+1.  **Proves progression**: Shows you worked incrementally, not all at once.
+2.  **Enables recovery**: If something breaks, you have earlier working versions.
+3.  **Mirrors industry**: Professional developers commit frequently.
+
+---
+
+## Deadlines and Late Policy
+
+::: {.callout-warning}
+## Important!
+
+- **Deadline**: The state of your GitHub repository at the deadline time
+- **Late submissions**: 10% penalty per day, up to 3 days
+- **After 3 days**: No submissions accepted without prior arrangement
+:::
+
+### How to Check Your Submission
+
+1. Go to [github.bath.ac.uk](https://github.bath.ac.uk)
+2. Navigate to your assignment repository
+3. Verify:
+   - ✅ Your `.qmd` file is there and up to date
+   - ✅ All files are committed
+   - ✅ Last commit time is before the deadline
+
+---
+
+## Getting Help
+
+| Resource | When to Use |
+|----------|-------------|
+| **Lab TAs** | During lab sessions |
+| **Office Hours** | For detailed questions |
+| **Moodle Forum** | General questions (others may have the same issue) |
+| **Email** | Urgent personal issues |
+
+When asking for help, include:
+
+- What you were trying to do
+- The exact error message (screenshot if possible)
+- What you already tried

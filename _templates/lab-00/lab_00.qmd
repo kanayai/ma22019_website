@@ -145,3 +145,28 @@ ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
         y = "Highway MPG"
     )
 ```
+
+---
+
+## Bonus: The Golden Rules of File Naming
+
+As a Data Scientist, you will generate hundreds of files. If you name them poorly, you will lose them.
+
+::: {.callout-tip}
+## The 3 Principles
+
+1.  **Machine Readable:** No spaces, punctuation, or accents. Use `_` or `-`.
+2.  **Human Readable:** Meaningful names. `analysis.R` is bad; `01_data_cleaning.R` is good.
+3.  **Sortable:** Use ISO dates (`YYYY-MM-DD`) and numbered prefixes (`01_`, `02_`).
+:::
+
+### Examples
+
+| Bad ❌ | Good ✅ |
+|--------|---------|
+| `my abstract.docx` | `2025-02-15_abstract.docx` |
+| `Joe's File.xlsx` | `joes_file.csv` |
+| `figure 1.png` | `fig01_scatterplot.png` |
+| `final_final_v2.R` | `04_model_evaluation.R` |
+
+**Apply these rules to every file you create from now on!**
