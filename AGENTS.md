@@ -213,3 +213,28 @@ When merging this project:
 3. **`_admin/`** contains internal planning files that can be ignored
 4. **`_quizzes/`** contains quiz solutions (separate from student-facing `practice/`)
 5. **Check OneDrive paths** if moving to a different machine
+
+---
+
+## Next Steps / TODO (Session Handoff - 2026-01-27)
+
+The previous agent completed the following tasks:
+- **Sanitized content**: Verified no Cyrillic characters existed.
+- **Fixed Typo**: Corrected "iare" to "are" in `weekly_workflow.qmd`.
+- **Applied "Documentation Refinement Plan"**:
+    - Replaced "TA" with "Tutor" globally (checked `course_info.qmd`, `troubleshooting.qmd`, `traditional_workflow.qmd`, `why_teach_github.md`).
+    - Updated `weekly_workflow.qmd`:
+        - Updated Mermaid diagram to include Coursework workflow.
+        - Added links to setup guide.
+        - Clarified distinction between Pull (Labs) and Clone (Homework/Coursework).
+        - Added text about Tutor feedback.
+    - Updated `why_teach_github.md`:
+        - Added "The 3-Commit Rule" section.
+
+### Immediate Next Tasks
+- [ ] **Verify Documentation Updates**: The browser subagent was interrupted during verification. Please run `quarto preview` and manually verify:
+    - `weekly_workflow.html`: Check the new Mermaid diagram (should show 3 flows) and text about "Tutor".
+    - `why_teach_github.html`: Check for the "3-Commit Rule" section.
+    - `course_info.html`: Check that "Lab TAs" is now "Lab Tutors".
+- [ ] **Check for broken links**: Since we added links (e.g., to `project_structure.qmd`), verify they work.
+- [ ] **Double check "TA" usage**: Do a final grep for "TA" to ensure no student-facing instances remain (some might be in `_admin` which is fine).
