@@ -1,23 +1,26 @@
 # MA22019 Course Website
 
-A comprehensive Quarto-based website for the MA22019 (Data Analysis & Visualization) course at the University of Bath.
+A comprehensive Quarto-based website for the MA22019 (Introduction to Data Science) course at the University of Bath.
+
+> **🤖 For AI Agents**: See [AGENTS.md](AGENTS.md) for detailed project structure, symlink architecture, and conventions.
 
 ## 📚 Website Structure
 
 | Section | Location | Description |
 |---------|----------|-------------|
 | **Home** | `index.qmd` | Course overview and announcements |
-| **Lecture Notes** | `MA22019 Lecture Notes/` | Full course textbook (4 chapters) |
-| **Slides** | `slides/NN_snake_case.qmd` | RevealJS presentation slides |
-| **Labs** | `Practice/Week X/Lab X.qmd` | Weekly lab exercises |
-| **Homework** | `Practice/Week X/Homework X.qmd` | Weekly homework assignments |
-| **Quizzes** | `Practice/Week X/Quiz X.qmd` | Weekly practice quizzes |
-| **Live Coding** | `LIve Coding/` | In-class coding demonstrations |
+| **Lecture Notes** | `lecture_notes/*.qmd` | Full course textbook (4 chapters) |
+| **Slides** | `slides/NN_*.qmd` | RevealJS presentation slides |
+| **Labs** | `practice/week_X/lab_X.qmd` | Weekly lab exercises |
+| **Homework** | `practice/week_X/homework_X.qmd` | Weekly homework assignments |
+| **Quizzes** | `practice/week_X/quiz_X.qmd` | Weekly practice quizzes |
+| **Case Studies** | `case_studies/*.qmd` | Extended analysis examples |
+| **Live Coding** | `live_coding/week_X/` | In-class coding demonstrations |
 | **Computing Setup** | `computing_setup/` | Student setup guides |
 
 ## 📁 Folder Overview
 
-```text
+```
 ma22019_website/
 ├── _quarto.yml              # Main site configuration
 ├── index.qmd                # Homepage
@@ -26,25 +29,60 @@ ma22019_website/
 ├── slides.qmd               # Slides listing page
 ├── coursework.qmd           # Coursework info page
 │
-├── assets/                  # Static assets
-│   └── data/                # Centralized data repository
-│       └── shapefiles/      # Geospatial data files
-├── case_studies/            # Detailed analysis examples
-├── computing_setup/         # Setup guides for students
-├── lecture_notes/           # Course textbook
-├── live_coding/             # Live coding session files
+├── lecture_notes/           # Course textbook (4 chapters)
+├── slides/                  # Lecture slides (RevealJS)
 ├── practice/                # Labs, Homework, Quizzes by week
-├── slides/                  # Lecture slides (NN_snake_case.qmd)
-├── style/                   # Custom CSS/SCSS theming
+├── case_studies/            # Extended analysis examples
+├── live_coding/             # Live coding session files
+├── computing_setup/         # Setup guides for students
 │
-├── backup_data.sh           # Script to backup ignored data files
+├── _admin/                  # Internal planning & legacy files
+│   ├── book_generation/     # Legacy PDF book generation files
+│   ├── new_lectures_plan.qmd
+│   └── Plan for Weeks 1-11.xlsx
+├── _quizzes/                # Quiz SOLUTIONS (not student-facing)
+├── _solutions/              # Unreleased solutions (gitignored)
+│
+├── Coursework/              # Coursework assignments
+│   ├── _Coursework 1/       # Underscore = not yet released
+│   └── _Coursework 2/
+│
+├── assets/data -> OneDrive  # Centralized data (symlink)
+├── style/                   # Custom CSS/SCSS theming
 ├── _site/                   # Generated website output
 └── _freeze/                 # Quarto freeze cache
 ```
 
 ## 📝 File Naming Convention
-- All files and folders use **snake_case** (e.g., `weeks_1`, `lab_1.qmd`, `my_data.csv`).
 
+- All files and folders use **snake_case** (e.g., `week_1`, `lab_1.qmd`, `my_data.csv`)
+- Slides are numbered: `NN_descriptive_name.qmd` (e.g., `01_data_cleaning_and_wrangling.qmd`)
+- Underscore prefix (`_`) = ignored by Quarto (e.g., `_Coursework 1`, `_admin`)
+
+## 📦 Data Management
+
+**Large data files are hosted on OneDrive and symlinked into the project.**
+
+### Symlink Architecture
+
+The project uses symlinks extensively to avoid storing large data files in Git:
+
+| Component | Symlink Location | Points To |
+|-----------|------------------|-----------|
+| Central data | `assets/data/` | OneDrive `.../MA22019 Lecture Notes/Data` |
+| Lecture notes | `lecture_notes/Data` | OneDrive `.../MA22019 Lecture Notes/Data` |
+| Slides | `slides/data` | `../assets/data` (relative) |
+| Case studies | `case_studies/data` | `../assets/data` (relative) |
+| Practice weeks | `practice/week_X/data` | OneDrive `.../Practice/Week X/data` |
+| Live coding | `live_coding/week_X/Data` | OneDrive `.../LIve Coding/LIve Coding X/Data` |
+| Coursework | `Coursework/_Coursework X/data` | OneDrive `.../Coursework/Coursework X/data` |
+
+### Important Rules
+
+1. **Do not commit data files directly** - Always place them in the OneDrive folder
+2. **Git tracks the symlinks**, not the data content
+3. **OneDrive is the primary backup** for all data files
+4. See **[SYNC_WORKFLOW.md](SYNC_WORKFLOW.md)** for multi-machine setup
 
 ## 🔧 Building the Website
 
@@ -68,34 +106,19 @@ This starts a live development server that:
 - **Auto-refreshes** your browser with the changes
 - Much faster than full `quarto render`
 
-The server keeps running until you press `Ctrl+C` in the terminal.
-
-### Render a Single File Manually
+### Render a Single File
 ```bash
-quarto render "Practice/Week 3/Lab 3.qmd"
+quarto render "practice/week_3/lab_3.qmd"
 ```
 
 ### Freeze Cache
 The project uses `_freeze/` to cache rendered output. On subsequent renders, unchanged files are skipped automatically.
 
-Output is generated in `_site/`.
-
-## 📦 Data Management
-**Large data files are hosted on OneDrive and symlinked.**
-
-- **Centralized Location**: `assets/data/` is a symlink pointing to the shared OneDrive folder:
-  `/Users/kai21/Library/CloudStorage/OneDrive-UniversityofBath/Teaching/MA22019/from Christian/MA22019 Lecture Notes/Data`
-- **Synchronization**:
-  - The repository **does not** contain physical data files.
-  - It contains a **symlink** to the OneDrive folder.
-  - See **[SYNC_WORKFLOW.md](SYNC_WORKFLOW.md)** for detailed instructions on setting up other machines.
-- **Do not commit data files directly.** Always place them in the OneDrive folder.
-
 ## 🎓 Release Workflow
 
 ### Solutions
 Solutions are in `_solutions/` (ignored by Quarto). To release:
-1. Move the solution file from `_solutions/` to `Practice/Week X/`
+1. Move the solution file from `_solutions/` to `practice/week_X/`
 2. Re-render the site
 3. Commit and push
 
@@ -120,11 +143,18 @@ git pull --prune
 # 2. Clean up any old untracked folders
 git clean -fd
 
-# 3. Ensure OneDrive is running and the 'assets/data' symlink works
+# 3. Ensure OneDrive is running and symlinks work
 ls -F assets/data/
 
 # 4. Preview the site
 quarto preview
+```
+
+### If Symlinks Are Broken
+
+Recreate the primary symlink:
+```bash
+ln -sf "/Users/YOUR_USERNAME/OneDrive - University of Bath/Teaching/MA22019/from Christian/MA22019 Lecture Notes/Data" assets/data
 ```
 
 ## 📝 Key Configuration Files
@@ -132,9 +162,21 @@ quarto preview
 | File | Purpose |
 |------|---------|
 | `_quarto.yml` | Main site config, navigation, theme |
-| `Practice/_metadata.yml` | Shared settings for Practice folder |
+| `practice/_metadata.yml` | Shared settings for practice folder |
 | `slides/_metadata.yml` | RevealJS slide settings |
 | `style/sta199.scss` | Custom styling (STA199 theme) |
+| `.gitignore` | Defines what's tracked/ignored |
+| `AGENTS.md` | AI agent project documentation |
+| `SYNC_WORKFLOW.md` | Multi-machine sync instructions |
+
+## 📂 Internal Folders
+
+| Folder | Purpose |
+|--------|---------|
+| `_admin/` | Planning files, legacy book generation scripts |
+| `_quizzes/` | Quiz solutions (separate from student-facing `practice/`) |
+| `_solutions/` | Unreleased solutions (gitignored) |
+| `_freeze/` | Quarto render cache |
 
 ## 👨‍🏫 Author
 
