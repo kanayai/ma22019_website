@@ -238,22 +238,19 @@ When merging this project:
 
 ## Next Steps / TODO (Session Handoff - 2026-01-28)
 
-The previous agent completed these tasks:
-- **Sanitized content**: Verified no Cyrillic characters existed.
-- **Fixed Typo**: Corrected "iare" to "are" in `weekly_workflow.qmd`.
-- **Applied "Documentation Refinement Plan"**:
-    - Replaced "TA" with "Tutor" globally.
-    - Updated `weekly_workflow.qmd` with Mermaid diagram, links, and Tutor feedback text.
-    - Added "The 3-Commit Rule" section to `why_teach_github.md`.
+### Completed This Session
+- [x] Verified all documentation updates (Mermaid, 3-Commit Rule, Lab Tutors)
+- [x] Fixed remaining "TA" → "Tutor" reference in `weekly_workflow.qmd`
+- [x] Added 2FA/PAT troubleshooting section to `troubleshooting.qmd`
+- [x] Updated `project_structure.qmd` to match Git workflow structure
+- [x] Added "Standard Activity Structure" section to AGENTS.md
+- [x] Fixed Mermaid diagram syntax in `weekly_workflow.qmd`
 
-### Completed This Session (2026-01-28)
-- [x] **Verified Documentation Updates**:
-    - `weekly_workflow.html`: Mermaid diagram shows 3 flows ✓
-    - `why_teach_github.html`: "3-Commit Rule" section exists ✓
-    - `course_info.html`: "Lab Tutors" correctly used ✓
-- [x] **Fixed remaining "TA" reference**: Changed "TA" to "Tutor" at line 125 in `weekly_workflow.qmd`
-- [x] **Verified links**: Link to `project_structure.qmd` works correctly
-
-### No Pending Tasks
-All documentation updates have been verified. The site is ready for review/commit.
-
+### Pending Decisions
+- [ ] **Choose tutor feedback method**: Issues vs Pull Requests
+  - See decision doc: `.gemini/antigravity/brain/.../tutor_feedback_decision.md`
+  - Recommendation: Issues (simpler for 180 students)
+  
+- [ ] **Add student notification system for guide updates**
+  - Options: CHANGELOG.md, GitHub Releases, or README badge
+  - Need to decide and implement in materials repo
