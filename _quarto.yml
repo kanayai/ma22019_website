@@ -30,8 +30,7 @@ website:
             text: Troubleshooting
           - href: computing_setup/why_quarto.qmd
             text: Why Quarto?
-          - href: computing_setup/project_structure.qmd
-            text: Project Structure (Opt-Out)
+
           - href: computing_setup/traditional_workflow.qmd
             text: Manual Workflow (Not Recommended)
       - section: "Lecture Notes"

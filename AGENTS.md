@@ -105,7 +105,7 @@ ma22019_website/
 │
 ├── computing_setup/         # Student setup guides
 │   ├── setup.qmd            # Main setup guide (R, RStudio, Git)
-│   ├── project_structure.qmd
+
 │   ├── setup_university_drive.qmd
 │   ├── weekly_workflow.qmd  # Weekly pull/clone workflow
 │   ├── computing_assignments.qmd
@@ -245,12 +245,14 @@ When merging this project:
 - [x] Updated `project_structure.qmd` to match Git workflow structure
 - [x] Added "Standard Activity Structure" section to AGENTS.md
 - [x] Fixed Mermaid diagram syntax in `weekly_workflow.qmd`
+- [x] **Consolidated Guides**: Merged `project_structure.qmd` into `traditional_workflow.qmd` and deleted the former.
+- [x] **Relocated Naming Rules**: Moved to `weekly_workflow.qmd` and prioritized `.qmd` examples.
+- [x] **Updated Content**: Added Jupyter Notebooks section to `why_quarto.qmd`.
 
-### Pending Decisions
-- [ ] **Choose tutor feedback method**: Issues vs Pull Requests
-  - See decision doc: `.gemini/antigravity/brain/.../tutor_feedback_decision.md`
-  - Recommendation: Issues (simpler for 180 students)
+### Completed Decisions
+- [x] **Choose tutor feedback method**: GitHub Issues
+  - Decision: Use Issues for feedback. Simpler for students to check.
   
-- [ ] **Add student notification system for guide updates**
-  - Options: CHANGELOG.md, GitHub Releases, or README badge
-  - Need to decide and implement in materials repo
+- [x] **Add student notification system for guide updates**
+  - Decision: Implemented changelog linked from homepage.
+

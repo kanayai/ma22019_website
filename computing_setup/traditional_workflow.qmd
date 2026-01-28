@@ -2,7 +2,39 @@
 title: "Manual (Non-Git) Workflow"
 ---
 
-> For file organization and naming guidance, see [Project Structure & File Organization](project_structure.qmd).
+---
+
+> **Note**: This guide is for students who **cannot** use Git. If you are using Git (recommended), see the [Weekly Workflow Guide](weekly_workflow.qmd).
+
+## 1. Organizing Your Workspace
+
+Since you are managing files manually, you need a strict folder structure to keep things from getting lost.
+
+### Where to store your files
+- **Uni PC:** `H:/MA22019/`
+- **Windows (Personal):** `Documents/MA22019/`
+- **Mac:** `~/Documents/MA22019/`
+
+### The Folder Structure
+Create this structure inside your `MA22019` folder:
+
+```
+MA22019/
+├── materials/                # Course materials (labs, solutions)
+├── homework/                 # Your personal homework assignments
+└── coursework/               # Your personal coursework assignments
+```
+
+### Inside an Assignment folder
+Every assignment you download will look like this. **Do not mess with this structure!**
+
+```
+my_assignment/
+├── my_assignment.Rproj   # DOUBLE-CLICK THIS to open RStudio
+├── my_assignment.qmd     # Write your answers here
+├── data/                 # Data files live here
+└── README.md             # Instructions
+```
 
 ::: {.callout-warning}
 ## ⚠️ WARNING: This workflow is **NOT RECOMMENDED**.

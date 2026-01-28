@@ -12,6 +12,8 @@ Welcome to your weekly workflow guide! 🗓️ This page tells you exactly what 
 
 ---
 
+
+
 ## The Big Picture: How This Course Works
 
 Unlike traditional courses where you download ZIP files from Moodle, we use **GitHub** to keep everything organized. Here's the flow:
@@ -92,6 +94,7 @@ When you open a new `.Rproj` file, RStudio will close your current project and o
 
 3. Work through the exercises
 4. **Save frequently** (Ctrl/Cmd + S) — there's no auto-save!
+   - (Remember to follow the [File Naming Rules](#best-practices-file-naming-rules)!)
 
 Labs are for practice, so you don't submit them. Your work stays on your computer.
 
@@ -147,7 +150,7 @@ Each homework has a unique URL just for you.
 Always clone homework into `MA22019/homework/` and each coursework into `MA22019/coursework/`. This keeps everything organized and makes it easy to find your work later.
 :::
 
-> **Note**: For a refresh on file paths and creating folders, check the [Project Structure Guide](project_structure.qmd).
+> **Note**: For a refresh on file paths and creating folders, see the [Setup Guide](setup.qmd#create-your-folder-structure) or check the [Quick Reference](#quick-reference-card).
 
 ### Step 2: Do the Work
 
@@ -178,7 +181,7 @@ Aim for **at least 3 commits** per homework. This shows your progress and protec
 2. Enter your Bath username and password if prompted
 3. Done! Your work is now safely on GitHub 🎉
 
-Once pushed, your **Tutor** can see your code and provide feedback directly on your repository (usually via Issues). This is the primary way we help you improve!
+Once pushed, your **Tutor** can see your code and provide feedback directly on your repository (via the **Issues** tab). This is the primary way we help you improve!
 
 ### Step 5: Verify Your Submission
 
@@ -227,6 +230,19 @@ For coursework, we require **at least 3 commits** showing your progress. This is
 | 1 | "Started data cleaning and exploration" |
 | 2 | "Completed analysis section with visualizations" |
 | 3 | "Finished write-up and rendered final HTML" |
+
+---
+
+## Best Practices: File Naming Rules 🏷️
+
+Good file naming is a superpower. Follow these rules for all your files:
+
+| Rule | Bad ❌ | Good ✅ |
+|------|--------|---------|
+| No spaces | `my analysis.qmd` | `my_analysis.qmd` (or `my_analysis.R`) |
+| No special characters | `Joe's file.qmd` | `joes_file.qmd` (or `joes_file.R`) |
+| Use dates (YYYY-MM-DD) | `final_v2.qmd` | `2026-02-15_analysis.qmd` |
+| Number to preserve order | `intro.qmd`, `cleaning.qmd` | `01_intro.qmd`, `02_cleaning.qmd` |
 
 ---
 

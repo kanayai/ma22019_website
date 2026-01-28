@@ -34,7 +34,16 @@ Quarto is built by **Posit** (formerly RStudio), the same team that created RMar
 
 Many professional data scientists prefer **VS Code** over RStudio (especially for Python, cloud computing, or software engineering work). Knowing a publishing tool that works smoothly in the industry-standard editor (VS Code) is highly valuable.
 
-## 4. Direct Skill Transfer
+## 4. What about Jupyter Notebooks?
+
+If you've used Python before, you probably know **Jupyter Notebooks** (`.ipynb`). Quarto loves them too!
+
+*   **Quarto can render Jupyter Notebooks** directly (no need to convert).
+*   **Quarto files (`.qmd`) are plain text**, making them much friendlier for Git version control than Jupyter's complex JSON format.
+*   You can even **use Jupyter Lab** as your editor for Quarto documents.
+*   **RStudio supports Jupyter Notebooks**: You can open, edit, and run `.ipynb` files directly in RStudio if you prefer using them as an alternative to Quarto.
+
+## 5. Direct Skill Transfer
 
 The best news is that **95% of RMarkdown syntax works in Quarto**. You aren't "re-learning" from scratch; you are essentially upgrading to "RMarkdown 2.0".
 
