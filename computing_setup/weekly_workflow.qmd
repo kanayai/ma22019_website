@@ -122,7 +122,7 @@ These are great practice for seeing how experienced coders think and work. Don't
 
 ## Homework Workflow
 
-Homeworks are **formative** (for learning, not your final grade). You'll get feedback from your TA to help you improve. Here's the full process:
+Homeworks are **formative** (for learning, not your final grade). You'll get feedback from your Tutor to help you improve. Here's the full process:
 
 ### Step 1: Clone Your Personal Homework Repo
 
