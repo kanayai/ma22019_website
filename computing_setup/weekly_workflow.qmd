@@ -16,18 +16,18 @@ Welcome to your weekly workflow guide! 🗓️ This page tells you exactly what 
 
 Unlike traditional courses where you download ZIP files from Moodle, we use **GitHub** to keep everything organized. Here's the flow:
 
-```mermaid
+```{mermaid}
 flowchart LR
-    subgraph GitHub["☁️ GitHub (github.bath.ac.uk)"]
-        A["📁 Course Materials"]
-        B["📁 Your Homework Repo"]
-        E["📁 Your Coursework Repo"]
+    subgraph GitHub["GitHub (github.bath.ac.uk)"]
+        A["Course Materials"]
+        B["Your Homework Repo"]
+        E["Your Coursework Repo"]
     end
     
-    subgraph Computer["💻 Your Computer"]
-        C["📁 materials/"]
-        D["📁 homework/hw_01/"]
-        F["📁 coursework/cw_01/"]
+    subgraph Computer["Your Computer"]
+        C["materials/"]
+        D["homework/hw_01/"]
+        F["coursework/cw_01/"]
     end
     
     A -->|Pull weekly| C
@@ -63,7 +63,7 @@ Every week, new lab materials get added to the `materials` repository. Here's ho
 
 1. **Open the materials project** 
    - Navigate to your `MA22019/materials/` folder
-   - Double-click `materials.Rproj`
+   - Double-click `materials.Rproj` to open RStudio
    
 2. **Pull the latest updates**
    - Look for the **Git** pane (top-right area)
@@ -134,7 +134,9 @@ Each homework has a unique URL just for you.
 2. **Clone in RStudio**
    - Go to **File → New Project → Version Control → Git**
    - Paste your URL
+   - Leave 'Project directory name' blank
    - **Important!** Click **Browse** and navigate to `MA22019/homework/`
+   - Check the box 'Open in new session'
    - Click **Create Project**
 
 ![How cloning works](../img/git_clone_flow.png)

@@ -26,47 +26,45 @@ We recommend the following structure to handle the **three types of activities**
 
 ```
 MA22019/
-├── 01_Labs/                  # Weekly Computer Labs (Formative)
-│   ├── Week_01_Lab/
-│   ├── Week_02_Lab/
-│   └── ...
+├── materials/                # Course materials (labs, solutions, live coding)
+│   ├── labs/
+│   ├── lab_solutions/
+│   └── live_coding/
 │
-├── 02_Homework/              # Weekly Homework Questions (Formative)
-│   ├── Week_01_HW/
-│   └── ...
+├── homework/                 # Your personal homework repos (Formative)
+│   ├── hw_01-yourusername/
+│   └── hw_02-yourusername/
 │
-├── 03_Coursework/            # Assessed Summative Work (Graded)
-│   ├── CW_1_Wrangling/
-│   └── CW_2_Project/
-│
-└── 04_Resources/             # Lecture notes, cheat sheets
-    ├── ggplot2_cheatsheet.pdf
-    └── ...
+└── coursework/               # Your personal coursework repos (Summative)
+    ├── cw_01-yourusername/
+    └── cw_02-yourusername/
 ```
 
 ### The Three Activity Types
 
-1.  **Labs (Formative):** These are the exercises we do together in the computer labs. Great for practice.
-2.  **Homework (Formative):** Weekly open-ended questions. These help you verify your understanding.
-3.  **Coursework (Summative):** These are the **two major assessed** pieces of work.
+1. **Labs (Formative):** In-class exercises found in `materials/labs/`. Great for practice.
+2. **Homework (Formative):** Weekly open-ended questions. Each homework is cloned to your `homework/` folder.
+3. **Coursework (Summative):** The **two major assessed** pieces of work, cloned to your `coursework/` folder.
 
 ---
 
 ## 2. Inside a Project (The "Tidy" Project)
 
-Every time you start a new RStudio Project (e.g., for a Lab or Coursework), use this internal structure:
+Every activity in this course — whether it's a **lab**, **lab solution**, **live coding session**, **homework**, or **coursework** — follows the same internal structure. This consistency means you'll always know where to find things:
 
 ```
-my_project/
-├── my_project.Rproj    # RStudio Project file (NEVER delete this)
-├── README.md           # Explanation of what this project does
-├── data/               # Raw and processed data
-│   ├── raw/
-│   └── processed/
-├── R/                  # R scripts (if you have complex functions)
-├── output/             # Plots, tables, and saved results
-└── analysis.qmd        # Your main report/analysis
+my_activity/
+├── my_activity.Rproj   # RStudio Project file (NEVER delete this)
+├── my_activity.qmd     # Your main report/analysis
+├── data/               # Data files for this activity
+└── README.md           # (Optional) Explanation of what this does
 ```
+
+::: {.callout-note}
+## Same Structure Everywhere
+
+Whether you're opening `lab_01/`, `hw_02-yourusername/`, or `cw_01-yourusername/`, you'll find this same layout. This is intentional — once you learn it, you can navigate any activity in the course!
+:::
 
 ### Why this matters?
 

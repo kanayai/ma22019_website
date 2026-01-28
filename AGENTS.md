@@ -150,6 +150,26 @@ ma22019_website/
 
 ---
 
+## Standard Activity Structure
+
+All activities distributed to students (labs, homework, coursework, live coding) should follow the same internal structure. This consistency helps students navigate any activity once they learn the pattern.
+
+```
+activity_name/
+├── activity_name.Rproj   # RStudio Project file
+├── activity_name.qmd     # Main report/analysis file
+├── data/                 # Data files for this activity
+└── README.md             # (Optional) Instructions
+```
+
+**When creating templates for `github.bath.ac.uk`:**
+1. Always include an `.Rproj` file matching the folder name
+2. Always include a `.qmd` file as the main working document
+3. Place all data in a `data/` subfolder
+4. Use `snake_case` for all file and folder names
+
+---
+
 ## Critical Files (Do Not Delete)
 
 | File | Purpose |

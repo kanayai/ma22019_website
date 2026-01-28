@@ -248,7 +248,7 @@ if (grepl("MA22019/homework", getwd())) {
 
 ## Push Failed / Authentication Error
 
-**Symptom**: RStudio asks for username/password and then fails.
+**Symptom**: RStudio asks for username/password and then fails with "Invalid username or password".
 
 ### For github.bath.ac.uk (Our Course)
 
@@ -261,9 +261,44 @@ If it still fails:
 2. If off-campus, connect to the **University VPN** first
 3. Try logging into github.bath.ac.uk in your browser to confirm your credentials work
 
+### If You Enabled Two-Factor Authentication (2FA)
+
+**Symptom**: You're certain your password is correct, but Git still says "Invalid username or password".
+
+**Cause**: With 2FA enabled, your regular password **no longer works** for Git operations. You need a **Personal Access Token (PAT)** instead.
+
+**Fix**:
+
+1. Go to `github.bath.ac.uk` → Click your profile picture → **Settings**
+2. Left sidebar → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+3. Click **Generate new token (classic)**
+4. Fill in:
+   - **Note**: "RStudio access"
+   - **Expiration**: Choose a reasonable time (e.g., 90 days)
+   - **Scopes**: Check **`repo`** (full control of private repositories)
+5. Click **Generate token**
+6. **Copy the token immediately** — you won't see it again!
+7. When RStudio asks for credentials:
+   - **Username**: Your Bath username
+   - **Password**: Paste your Personal Access Token (NOT your regular password)
+
+::: {.callout-warning}
+## Save Your Token!
+
+GitHub will **never show your token again** after you leave the page. Save it immediately in a password manager (e.g., 1Password, Bitwarden, or your browser's password manager):
+
+- **Website**: `github.bath.ac.uk`
+- **Username**: Your Bath username (e.g., `abc123`)
+- **Password**: Your Personal Access Token
+:::
+
+::: {.callout-tip}
+On macOS, your token will likely be saved to Keychain after the first successful Git operation, so you won't need to enter it every time.
+:::
+
 ### Do I have to log in every time?
 
-- **Personal Laptop**: No. Your computer (Keychain/Credential Manager) remembers your password.
+- **Personal Laptop**: No. Your computer (Keychain/Credential Manager) remembers your password or token.
 - **Lab Computer**: Maybe. If you log out and move to a different computer, you might need to enter your credentials again. This is normal security.
 
 ---
