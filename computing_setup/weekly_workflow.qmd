@@ -156,8 +156,16 @@ Always clone homework into `MA22019/homework/` and each coursework into `MA22019
 
 1. Open the `.qmd` file provided
 2. Work through the questions
-3. Click **Render** regularly to check your code runs
+3. Click **Render** regularly to preview your work as HTML
 4. **Save frequently!** (Ctrl/Cmd + S)
+
+::: {.callout-tip}
+## Previewing Your Work
+
+Every time you click **Render**, an HTML file is created on your computer. RStudio automatically opens it so you can see exactly how your finished report looks. This is how you check your work before submitting!
+
+The HTML file stays on your computer — it won't be uploaded to GitHub. You only submit your **source files** (`.qmd`, `.R`), and your Tutor or Lecturer will render them to check your output.
+:::
 
 ### Step 3: Commit Your Progress
 
@@ -181,6 +189,20 @@ Aim for **at least 3 commits** per homework. This shows your progress and protec
 2. Enter your Bath username and password if prompted
 3. Done! Your work is now safely on GitHub 🎉
 
+::: {.callout-note}
+## What Gets Submitted?
+
+When you push, only your **source files** (`.qmd`, `.R`, data files) are uploaded — not the HTML output. This is by design!
+
+**Why don't we submit HTML?**
+
+- **Reproducibility**: Your `.qmd` is the "recipe" — anyone can regenerate the HTML from it. Submitting output would be like submitting a cake photo instead of the recipe!
+- **Smaller repos**: HTML files (and their supporting folders) can be large. Keeping only source files makes your repository lean and fast.
+- **Avoids conflicts**: If two people edit and re-render, Git gets confused by all the HTML changes. Source files are much easier to manage.
+
+**Keep rendering locally** to preview your work and catch errors before you submit. Your Tutor or Lecturer will render your `.qmd` to check your output.
+:::
+
 Once pushed, your **Tutor** can see your code and provide feedback directly on your repository (via the **Issues** tab). This is the primary way we help you improve!
 
 ### Step 5: Verify Your Submission
@@ -190,15 +212,24 @@ Trust but verify! Make sure your work actually uploaded:
 1. Go to `github.bath.ac.uk` in your browser
 2. Find your homework repository
 3. Check that:
-   - Your files are there
+   - Your `.qmd` and `.R` files are there
    - The commit time is *before* the deadline
-   - Your rendered HTML looks correct
+   
+   (Note: Your HTML file won't appear on GitHub — that's expected! Only source files are submitted.)
 
 ---
 
 ## Coursework Workflow
 
-Coursework is **summative** — it counts toward your final mark! The process is exactly the same as homework, but with one difference: **clone into the `coursework/` folder instead**.
+Coursework is **summative** — it counts toward your final mark! The process is exactly the same as homework, but with one key difference: **clone into the `coursework/` folder instead**.
+
+::: {.callout-important}
+## Coursework Submission Reminder
+
+Just like homework, you submit your **source files** (`.qmd`, `.R`), not the rendered HTML. The Lecturer will render your work for marking.
+
+**Always click Render** before your final push to make sure your code actually runs without errors!
+:::
 
 ### Your Folder Structure
 

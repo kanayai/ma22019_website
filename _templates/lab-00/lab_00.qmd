@@ -5,7 +5,21 @@ date: "2026-02-02"
 format: html
 ---
 
-[AI-agent: add explanation of what the YAML header is (the one in between the '---' lines at the top of the file). also add the naming conventions somwhere,. also something again about the Source mode . also a good recomendation on how often to Render the document. be brief and refer to releavant page in the computing_setup]
+::: {.callout-tip}
+## Quick Guide: The YAML Header
+
+The lines between the `---` at the top of this file are called the **YAML header**. This is where you set the document's metadata: title, author, date, and output format. Think of it like the "settings panel" for your report. For more details, see the [Computing Setup Guide](https://kanayai.github.io/ma22019_website/computing_setup/setup.html).
+:::
+
+::: {.callout-note}
+## Tips for Working in Quarto
+
+- **Use Source Mode**: Click the "Source" button (top-left of this pane) to see the raw code. This helps you understand what's happening behind the scenes.
+- **Render Often**: Hit the **Render** button every few minutes to catch errors early. Don't wait until you've written 100 lines!
+- **File Naming**: Always use `snake_case` for file names (e.g., `my_analysis.qmd`, not `My Analysis.qmd`). See the [Golden Rules](#bonus-the-golden-rules-of-file-naming) at the end of this document.
+:::
+
+
 
 # 👋 Welcome to the Git Workflow!
 

@@ -41,7 +41,6 @@ If you've used Python before, you probably know **Jupyter Notebooks** (`.ipynb`)
 *   **Quarto can render Jupyter Notebooks** directly (no need to convert).
 *   **Quarto files (`.qmd`) are plain text**, making them much friendlier for Git version control than Jupyter's complex JSON format.
 *   You can even **use Jupyter Lab** as your editor for Quarto documents.
-*   **RStudio supports Jupyter Notebooks**: You can open, edit, and run `.ipynb` files directly in RStudio if you prefer using them as an alternative to Quarto.
 
 ## 5. Direct Skill Transfer
 

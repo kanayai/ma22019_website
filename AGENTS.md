@@ -238,21 +238,26 @@ When merging this project:
 
 ## Next Steps / TODO (Session Handoff - 2026-01-28)
 
-### Completed This Session
-- [x] Verified all documentation updates (Mermaid, 3-Commit Rule, Lab Tutors)
-- [x] Fixed remaining "TA" → "Tutor" reference in `weekly_workflow.qmd`
-- [x] Added 2FA/PAT troubleshooting section to `troubleshooting.qmd`
-- [x] Updated `project_structure.qmd` to match Git workflow structure
-- [x] Added "Standard Activity Structure" section to AGENTS.md
-- [x] Fixed Mermaid diagram syntax in `weekly_workflow.qmd`
-- [x] **Consolidated Guides**: Merged `project_structure.qmd` into `traditional_workflow.qmd` and deleted the former.
-- [x] **Relocated Naming Rules**: Moved to `weekly_workflow.qmd` and prioritized `.qmd` examples.
-- [x] **Updated Content**: Added Jupyter Notebooks section to `why_quarto.qmd`.
+### Completed This Session (Afternoon)
+- [x] Tested GitHub deployment workflow on `github.bath.ac.uk/ma22019-2026`
+- [x] Created `lab-00` template repo and tested student repo creation via R package
+- [x] Fixed `ma22019tools` R package for GitHub Enterprise support
+- [x] Created `materials` repo with `labs/lab_00/` and `lab_solutions/`
+- [x] Tested student clone and pull workflows successfully
+- [x] Created `_admin/tutor_guide.md` for tutor feedback workflow
+- [x] Tested tutor feedback via GitHub Issues
+- [x] Added `generate_tutor_list()` function for tutors to track marking progress
+- [x] Merged `ta_marking.md` into `tutor_guide.md`
+- [x] Updated `weekly_workflow.qmd` with HTML preview and source file submission explanations
+- [x] Removed incorrect claim about RStudio supporting Jupyter Notebooks
 
-### Completed Decisions
-- [x] **Choose tutor feedback method**: GitHub Issues
-  - Decision: Use Issues for feedback. Simpler for students to check.
-  
-- [x] **Add student notification system for guide updates**
-  - Decision: Implemented changelog linked from homepage.
+### Test Repos Created (in ma22019-2026 org)
+- `lab-00` - Template repo
+- `lab-00-kai21` - Test student repo
+- `lab-00-test-student` - Another test student repo  
+- `materials` - Course materials repo
 
+### Next Session
+- [ ] Create real roster CSV with tutor assignments
+- [ ] Test with more realistic student data
+- [ ] Consider cleanup of test repos before semester start
