@@ -24,3 +24,6 @@ rosm.cache/
 **/*.quarto_ipynb
 _solutions/
 ma22019_solutions/
+
+# Exclude private/accidental Coursework folder
+Coursework/
