@@ -8,6 +8,13 @@ _main_files/
 **/Data/
 # assets/data/ is a symlink, so we MUST ignore it for GitHub Pages
 assets/data
+
+# Ignore other data symlinks to prevent build errors
+lecture_notes/Data
+slides/data
+case_studies/data
+practice/*/data
+live_coding/*/Data
 _site/
 *_files/
 *.shp
