@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - ".nojekyll"
 
 website:
   title: "MA22019"
