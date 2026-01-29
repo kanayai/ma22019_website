@@ -20,17 +20,35 @@ Choose your adventure:
 *   Just **log in** to a PC.
 *   Then [jump straight to **Section 2: Configure Git in RStudio**](#configure-git-in-rstudio).
 
+### ⚠️ Critical Step for H: Drive Users
+
+Due to a security setting in Git, you **must** run this one-line command to make the Git pane appear. You only need to do this once.
+
+1. Open **RStudio**.
+2. Look for the **Terminal** tab (next to Console).
+3. Copy and paste this exact command and press **Enter**:
+
+   ```bash
+   git config --global --add safe.directory '*'
+   ```
+
+4. **Restart RStudio** (close and reopen it).
+
+If you don't do this, RStudio might say "Dubious Ownership" and hide the Git buttons!
+
+
 ## 1B. Using Your Own Laptop
 
 Using your own machine? Brilliant — having your own setup means you can work from anywhere (coffee shops, trains, your bed at 2am... not that we recommend that last one 😄).
 
-You'll need to install three things before your first lab:
+You'll need to install **four** things before your first lab:
 
 | Software | Download Link |
 |----------|--------------|
 | R | [cloud.r-project.org](https://cloud.r-project.org) |
 | RStudio | [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/) |
 | Quarto | [quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) |
+| Git | [git-scm.com/downloads](https://git-scm.com/downloads) |
 
 Just choose your operating system and download the installer. The installation wizards will guide you through — accept the defaults and you'll be fine!
 
