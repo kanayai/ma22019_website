@@ -32,7 +32,7 @@
 | File | Purpose |
 |------|---------|
 | `assignment_deployment_plan.md` | **Main plan** — read this first |
-| `lab-00-template/` | [NEW] Interactive Lab 0 (Setup Check) |
+| `lab_00-template/` | [NEW] Interactive Lab 0 (Setup Check) |
 | `homework-01-template/` | [NEW] Homework 1 Template |
 | `ma22019tools/` | R package for automation |
 | `SETUP_GUIDE.md` | Student instructions for R/Git setup |

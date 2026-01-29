@@ -3,7 +3,7 @@
 #' Reads the roster and creates private repositories for each student
 #' from a template repository. Adds the student as a collaborator.
 #'
-#' @param assignment_name String, e.g. "lab-00" - must match a template repo in the org
+#' @param assignment_name String, e.g. "lab_00" - must match a template repo in the org
 #' @param org_name String, default "ma22019-2026"
 #' @param roster_path String, path to CSV roster
 #' @param gh_host String, GitHub host (default "github.bath.ac.uk" for Enterprise)

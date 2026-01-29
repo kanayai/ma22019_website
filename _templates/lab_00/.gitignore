@@ -3,4 +3,6 @@
 .RData
 .DS_Store
 *.html
-*_files/
+!*.md
+*.pdf
+

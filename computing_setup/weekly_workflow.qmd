@@ -59,7 +59,7 @@ That's it! Master these two actions and you're set for the whole semester. 💪
 
 ## Your Weekly Routine
 
-### 📚 Before Each Lab (Takes 30 Seconds!)
+### 📚 Before Each Lab 
 
 Every week, new lab materials get added to the `materials` repository. Here's how to get them:
 
@@ -192,16 +192,16 @@ Aim for **at least 3 commits** per homework. This shows your progress and protec
 ::: {.callout-note}
 ## What Gets Submitted?
 
-When you push, only your **source files** (`.qmd`, `.R`, data files) are uploaded — not the HTML output. This is by design!
+When you push, **everything** in your folder is uploaded: your `.qmd` source key, your data, AND your rendered `.md` file.
 
-**Why don't we submit HTML?**
+**Why submit both?**
 
-- **Reproducibility**: Your `.qmd` is the "recipe" — anyone can regenerate the HTML from it. Submitting output would be like submitting a cake photo instead of the recipe!
-- **Smaller repos**: HTML files (and their supporting folders) can be large. Keeping only source files makes your repository lean and fast.
-- **Avoids conflicts**: If two people edit and re-render, Git gets confused by all the HTML changes. Source files are much easier to manage.
+- **`.qmd` (The Recipe)**: This lets Tutors check your code, reproduce your analysis, and give detailed feedback.
+- **`.md` (The Cake)**: This lets Tutors instantly see your plotted graphs and tables on GitHub. Since it's Markdown, GitHub renders it perfectly!
 
-**Keep rendering locally** to preview your work and catch errors before you submit. Your Tutor or Lecturer will render your `.qmd` to check your output.
+**Always Render before pushing!** If you change your code but don't Render, your `.md` file will be "stale" (outdated). Make sure they match!
 :::
+
 
 Once pushed, your **Tutor** can see your code and provide feedback directly on your repository (via the **Issues** tab). This is the primary way we help you improve!
 
@@ -212,10 +212,8 @@ Trust but verify! Make sure your work actually uploaded:
 1. Go to `github.bath.ac.uk` in your browser
 2. Find your homework repository
 3. Check that:
-   - Your `.qmd` and `.R` files are there
+   - Your `.qmd`, `.md`, and other files are there
    - The commit time is *before* the deadline
-   
-   (Note: Your HTML file won't appear on GitHub — that's expected! Only source files are submitted.)
 
 ---
 

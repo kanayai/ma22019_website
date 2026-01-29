@@ -8,7 +8,7 @@
 
 - **Tech Stack**: Quarto, R, RevealJS (slides), HTML/CSS
 - **Author**: Dr. Karim Anaya-Izquierdo
-- **Repository**: https://github.com/kanayai/ma22019_website
+- **Repository**: https://github.bath.ac.uk/ma22019-2026/ma22019_website.git
 
 ---
 
@@ -214,7 +214,7 @@ quarto render "practice/week_1/lab_1.qmd"
 ### Assignment Deployment Strategy (Templates vs. Materials)
 
 1.  **Student Repos (The Templates)**:
-    *   Repositories like `lab-00` or `homework-01` on GitHub.
+    *   Repositories like `lab_00` or `homework_01` on GitHub.
     *   These are the **actual repositories** students will clone.
 
 2.  **`_templates/` Folder (Website Copy)**:
@@ -256,7 +256,7 @@ When merging this project:
 
 ### Completed This Session (Afternoon)
 - [x] Tested GitHub deployment workflow on `github.bath.ac.uk/ma22019-2026`
-- [x] Created `lab-00` template repo and tested student repo creation via R package
+- [x] Created `lab_00` template repo and tested student repo creation via R package
 - [x] Fixed `ma22019tools` R package for GitHub Enterprise support
 - [x] Created `materials` repo with `labs/lab_00/` and `lab_solutions/`
 - [x] Tested student clone and pull workflows successfully
@@ -268,9 +268,9 @@ When merging this project:
 - [x] Removed incorrect claim about RStudio supporting Jupyter Notebooks
 
 ### Test Repos Created (in ma22019-2026 org)
-- `lab-00` - Template repo
-- `lab-00-kai21` - Test student repo
-- `lab-00-test-student` - Another test student repo  
+- `lab_00` - Template repo
+- `lab_00-kai21` - Test student repo
+- `lab_00-test-student` - Another test student repo  
 - `materials` - Course materials repo
 
 ### Next Session

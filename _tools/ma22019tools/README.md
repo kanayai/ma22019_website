@@ -52,7 +52,7 @@ For each assignment type (lab, homework, coursework), you need a **template repo
 
 ```
 _templates/
-├── lab-00/
+├── lab_00/
 │   ├── lab_00.qmd        # Main student file
 │   ├── lab_00.Rproj      # RStudio project
 │   ├── README.md         # Instructions
@@ -152,6 +152,20 @@ write.csv(status, "_admin/lab-00-submissions.csv", row.names = FALSE)
 
 Lab Tutors give feedback via **GitHub Issues**. Track who has been marked:
 
+**Step A: Update the roster**
+
+For this phase, your roster file needs a second column: `tutor`.
+
+```csv
+username,tutor
+ab1234,Alice
+cd5678,Alice
+ef9012,Bob
+...
+```
+
+**Step B: Run the progress check**
+
 ```r
 library(ma22019tools)
 
@@ -226,6 +240,8 @@ generate_tutor_list(
   gh_host = "github.bath.ac.uk"
 )
 ```
+
+`tutor_name` must match the entry in the roster's `tutor` column exactly.
 
 ---
 

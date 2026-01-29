@@ -58,11 +58,40 @@ For quick marking, copy and paste this into the Issue body:
    - `cw-01-cd5678` (Coursework 1 for student cd5678)
 
 ### 2. Review Their Work
-
-1. Click on the `.qmd` file to view their code
-2. To see the rendered output, you can:
-   - Clone the repo locally and run `quarto render`
-   - Or use the GitHub preview for a quick look
+ 
+ #### Option A: The "Just Click It" Method (Recommended)
+ *Best for 95% of marking. Checks plots, output, and logic instantly.*
+ 
+ 1. Go to the student's repo file list.
+ 2. **Click on the `.md` file** (e.g., `lab_01.md`).
+ 3. GitHub will render the page (thanks to `format: gfm`).
+    *   **What you see**: The exact report the student produced (plots, tables, etc.).
+    *   **Limitation**: You can't run the code yourself, but you can see their results.
+ 
+ #### Option B: The "Deep Dive" (Local Render)
+ *Use only if the Markdown looks broken or you suspect academic misconduct.*
+ 
+ 1. **Clone** the repo locally (see below).
+ 2. Open the `.qmd` file.
+ 3. Run the code line-by-line or click **Render**.
+ 
+ #### Option B: Full Verification (Local Render)
+ *Best for checking plots, ensuring code runs without errors, and final grading.*
+ 
+ 1. **Copy the Clone URL**:
+    *   Click the green **Code** button on the student's repo page.
+    *   Copy the HTTPS URL (e.g., `https://github.bath.ac.uk/...`).
+ 
+ 2. **Clone in RStudio**:
+    *   RStudio: **File** > **New Project** > **Version Control** > **Git**.
+    *   Paste the URL into "Repository URL".
+    *   **Tip**: Save it to a temporary folder (e.g., `~/Downloads/marking/`) so it doesn't clutter your main projects.
+    *   Click **Create Project**.
+ 
+ 3. **Render**:
+    *   Open the `.qmd` file.
+    *   Click the **Render** button (blue arrow).
+    *   Check the generated HTML output for correctness.
 
 ### 3. Create a Feedback Issue
 
@@ -176,3 +205,26 @@ Contact the course instructor if you:
 - Can't access a student's repo
 - Have questions about grading criteria
 - Encounter technical issues with GitHub
+
+---
+
+## 🧪 Testing with Mock Data
+
+While waiting for the real student roster, you can test this workflow using a **mock roster**:
+
+1. **Mock Roster Location**: `_admin/rosters/mock_roster.csv`
+2. **Test Users**: `kai21` (you) and `lab_00-test-student`
+3. **Mock Tutor**: "Test Tutor"
+
+**Run this command to test**:
+
+```r
+library(ma22019tools)
+generate_tutor_list(
+  tutor_name = "Test Tutor",
+  assignment_name = "lab_00", 
+  roster_path = "_admin/rosters/mock_roster.csv"
+)
+```
+
+This should produce a progress table for the test repositories created earlier.

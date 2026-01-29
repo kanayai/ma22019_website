@@ -133,7 +133,7 @@ Coursework folders prefixed with `_` are ignored. To release:
 We use a specific strategy to handle assignments (Labs, Homework) to avoid permission issues for students.
 
 1.  **Student Repos (The Templates)**:
-    *   Repositories like `lab-00` or `homework-01` on GitHub.
+    *   Repositories like `lab_00` or `homework-01` on GitHub.
     *   These are the **actual repositories** students will clone.
 
 2.  **`_templates/` Folder (Website Copy)**:
@@ -152,7 +152,7 @@ We use a specific strategy to handle assignments (Labs, Homework) to avoid permi
 
 ```bash
 # Clone the repository
-git clone https://github.com/kanayai/ma22019_website.git
+git clone https://github.bath.ac.uk/ma22019-2026/ma22019_website.git
 cd ma22019_website
 
 # 1. Pull latest changes

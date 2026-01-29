@@ -6,7 +6,7 @@ website:
   description: "Introduction to Data Science at the University of Bath"
   page-navigation: true
 
-  repo-url: https://github.com/kanayai/ma22019_website/
+  repo-url: https://github.bath.ac.uk/ma22019-2026/ma22019_website/
 
   sidebar:
     background: "#005871"
