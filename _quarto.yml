@@ -35,14 +35,6 @@ website:
 
           - href: computing_setup/traditional_workflow.qmd
             text: Manual Workflow (Not Recommended)
-      - section: "Lecture Notes"
-        contents:
-          - href: lecture_notes/index.qmd
-            text: Introduction
-          - lecture_notes/01-DataWrangling.qmd
-          - lecture_notes/02-DataVisualization.qmd
-          - lecture_notes/03-Text-Data-Analysis.qmd
-          - lecture_notes/04-SpatialDataAnalysis.qmd
       - slides.qmd
       - case_studies.qmd
       - labs.qmd
