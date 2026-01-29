@@ -596,7 +596,7 @@ $ max.temp  &lt;dbl&gt; 18.9, 23.8, 28.7, 16.6, 25.6, 23.9, 17.1, 17.0, 26.3, 23
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/kanayai\.github\.io\/ma22019_website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

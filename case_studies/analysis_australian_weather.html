@@ -570,7 +570,7 @@ $ WindGustSpeed &lt;int&gt; 72, 63, NA, 65, 63, 41, 59, 56, 50, 48, 54, 39, 59, 
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/kanayai\.github\.io\/ma22019_website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

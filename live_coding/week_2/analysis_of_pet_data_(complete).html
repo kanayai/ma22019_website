@@ -560,7 +560,7 @@ $ Cats      &lt;dbl&gt; 283178, 283367, 283692, 284040, 283864, 284058, 284653, 
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/kanayai\.github\.io\/ma22019_website\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
