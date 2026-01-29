@@ -15,27 +15,10 @@ Choose your adventure:
 
 ## 1A. Using University of Bath Computers
 
-**Great news!** R, RStudio, and Git are already installed. The IT team has done the hard work for you! 🙌
+**Great news!** R, RStudio, Quarto and  and Git are already installed. The IT team has done the hard work for you! 🙌
 
 *   Just **log in** to a PC.
-*   Then [jump straight to **Section 2: Configure Git in RStudio**](#configure-git-in-rstudio).
-
-### ⚠️ Critical Step for H: Drive Users
-
-Due to a security setting in Git, you **must** run this one-line command to make the Git pane appear. You only need to do this once.
-
-1. Open **RStudio**.
-2. Look for the **Terminal** tab (next to Console).
-3. Copy and paste this exact command and press **Enter**:
-
-   ```bash
-   git config --global --add safe.directory '*'
-   ```
-
-4. **Restart RStudio** (close and reopen it).
-
-If you don't do this, RStudio might say "Dubious Ownership" and hide the Git buttons!
-
+*   Then [jump straight to **Section 2: Create Your Folder Structure**](#create-your-folder-structure).
 
 ## 1B. Using Your Own Laptop
 
@@ -162,95 +145,7 @@ See? You've been doing a version of this your whole academic life. Now you're ju
 
 ---
 
-# 2. Configure Git in RStudio
-
-**New to Git?** Curious why we bother with version control? Check out [Why Learn Git?](why_teach_github.md) — it's a quick read and might change how you feel about it!
-
-Git is the version control system that connects RStudio to GitHub. You only need to set it up once per computer — then you're good to go!
-
-## On University Lab Computers
-
-The good news: Git is already installed. You just need to verify RStudio knows where to find it:
-
-1. Open **RStudio**
-2. Go to **Tools → Global Options → Git/SVN**
-3. Check that the **Git executable** box shows a path (something like `C:\Program Files\Git\bin\git.exe`)
-   - If it's empty or says "Not Found", don't panic! Head to the [Troubleshooting Guide](troubleshooting.qmd)
-4. Click **OK**
-
-Done! That was easy, right? ✅
-
-## On Personal Computers (Windows)
-
-If Git isn't already installed, let's fix that:
-
-1. Download Git from [git-scm.com/download/win](https://git-scm.com/download/win)
-2. Run the installer — just accept all the defaults (seriously, don't overthink it!)
-3. Open **RStudio**
-4. Go to **Tools → Global Options → Git/SVN**
-5. The Git executable should now show `C:\Program Files\Git\bin\git.exe`
-6. Click **OK**
-
-High five! 🙌 You're all set!
-
-## On Personal Computers (Mac)
-
-Great news for Mac users — Git usually comes pre-installed! Let's check:
-
-1. Open **RStudio**
-2. Go to **Tools → Global Options → Git/SVN**
-3. Check if the Git executable shows `/usr/bin/git` or similar
-
-If Git isn't found, here's what to do:
-
-**On Windows** (if Git wasn't detected):
-
-1. Open **Command Prompt** (Start menu → type `cmd`)
-2. Type `git --version` and press Enter
-3. If it shows a version number, Git is installed! Copy the path from `where git` into RStudio settings
-4. If it says "not recognized", install Git from [git-scm.com](https://git-scm.com/download/win)
-
-**On Mac:**
-
-1. Open **Terminal** (Applications → Utilities → Terminal) 
-2. Type `git --version` and press Enter
-3. If prompted, click **Install** to get the Xcode Command Line Tools
-4. Restart RStudio and check Git/SVN settings again
-
-::: {.callout-warning}
-## ⚠️ Heads Up: Git Does NOT Work on Remote Desktop (UniDesk/UniApps)
-
-If you're connecting to university computers remotely using **UniDesk** or **UniApps**, Git will **not work**. You can use RStudio fine, but Clone/Pull/Push operations will fail.
-
-**Your options**: Use a **physical lab computer** on campus, or install R/RStudio/Git on your own laptop (honestly, it's worth it!).
-
-More info: [UniDesk/UniApps guide](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
-:::
-
-## Tell Git Who You Are
-
-Almost there! Git needs to know your name and email so it can track who made which changes. This takes 30 seconds:
-
-In the RStudio **Console** (the pane with the `>` prompt, usually bottom-left), run this once — just replace the example with *your* details:
-
-```r
-install.packages("usethis")  # Only needed once
-library(usethis)
-use_git_config(user.name = "Your Name", user.email = "abc123@bath.ac.uk")
-```
-
-::: {.callout-warning}
-## Important: Use Your Bath Account Only
-
-- Use your **Bath email address** (`abc123@bath.ac.uk`), not your personal email
-- You **cannot** use a personal GitHub.com account for this course
-- We use `github.bath.ac.uk` (University of Bath's enterprise GitHub), which is completely separate from `github.com`
-- Your Bath username and password work automatically — no need to create anything new!
-:::
-
----
-
-# 3. Create Your Folder Structure
+# 2. Create Your Folder Structure
 
 Let's get organized! All your course work will live in one tidy folder. This takes 2 minutes and will save you *hours* of confusion later.
 
@@ -312,6 +207,106 @@ See the [Weekly Workflow Guide](weekly_workflow.qmd) for details on how cloning 
 
 ---
 
+# 3. Configure Git in RStudio
+
+**New to Git?** Curious why we bother with version control? Check out [Why Learn Git?](why_teach_github.md) — it's a quick read and might change how you feel about it!
+
+Git is the version control system that connects RStudio to GitHub. You only need to set it up once per computer — then you're good to go!
+
+## On University Lab Computers
+
+The good news: Git is already installed. But there is **one critical step** you must do to make it work with the university network drives (H: Drive).
+
+### ⚠️ Critical: Fix "Dubious Ownership" Error
+
+To verify your setup and ensure the Git pane appears:
+
+1. Open **RStudio**.
+2. Click the **Terminal** tab (next to Console, usually bottom-left).
+3. Copy and paste this exact command and press **Enter**:
+
+   ```bash
+   git config --global --add safe.directory '*'
+   ```
+
+4. **Restart RStudio** (close and reopen it).
+
+::: {.callout-note}
+## Why do I need this?
+The University H: Drive has strict security settings that confuse Git. This command tells Git "It's safe to use folders on this computer."
+
+**If your Git pane ever disappears in the future, just run this command again!** It resets occasionally on university PCs.
+:::
+
+Done! That was easy, right? ✅
+
+## On Personal Computers (Windows)
+
+If Git isn't already installed, let's fix that (or confirm it worked):
+
+1. Open **RStudio**
+2. Go to **Tools → Global Options → Git/SVN**
+3. The Git executable should now show `C:\Program Files\Git\bin\git.exe`
+4. Click **OK**
+
+High five! 🙌 You're all set!
+
+## On Personal Computers (Mac)
+
+Great news for Mac users — Git usually comes pre-installed! Let's check:
+
+1. Open **RStudio**
+2. Go to **Tools → Global Options → Git/SVN**
+3. Check if the Git executable shows `/usr/bin/git` or similar
+
+If Git isn't found, here's what to do:
+
+**On Windows** (if Git wasn't detected):
+
+1. Open **Command Prompt** (Start menu → type `cmd`)
+2. Type `git --version` and press Enter
+3. If it shows a version number, Git is installed! Copy the path from `where git` into RStudio settings
+4. If it says "not recognized", install Git from [git-scm.com](https://git-scm.com/download/win)
+
+**On Mac:**
+
+1. Open **Terminal** (Applications → Utilities → Terminal) 
+2. Type `git --version` and press Enter
+3. If prompted, click **Install** to get the Xcode Command Line Tools
+4. Restart RStudio and check Git/SVN settings again
+
+::: {.callout-warning}
+## ⚠️ Heads Up: Git Does NOT Work on Remote Desktop (UniDesk/UniApps)
+
+If you're connecting to university computers remotely using **UniDesk** or **UniApps**, Git will **not work**. You can use RStudio fine, but Clone/Pull/Push operations will fail.
+
+**Your options**: Use a **physical lab computer** on campus, or install R/RStudio/Git on your own laptop (honestly, it's worth it!).
+
+More info: [UniDesk/UniApps guide](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
+:::
+
+## Tell Git Who You Are
+
+Almost there! Git needs to know your name and email so it can track who made which changes. 
+
+In the RStudio **Console** (the pane with the `>` prompt, usually bottom-left), run this once — just replace the example with *your* details:
+
+```r
+install.packages("usethis")  # Only needed once
+library(usethis)
+use_git_config(user.name = "Your Name", user.email = "abc123@bath.ac.uk")
+```
+
+::: {.callout-warning}
+## Important: Use Your Bath Account Only
+
+- Use your **Bath email address** (`abc123@bath.ac.uk`), not your personal email
+- You **cannot** use a personal GitHub.com account for this course
+- We use `github.bath.ac.uk` (University of Bath's enterprise GitHub), which is completely separate from `github.com`
+- Your Bath username and password work automatically — no need to create anything new!
+:::
+
+---
 
 # 4. Clone the Materials Repository
 
@@ -412,8 +407,8 @@ MA22019/
 │   └── hw_02/
 │       └── hw_02.Rproj      ← Homework 2
 └── coursework/
-    └── cw_01/
-        └── cw_01.Rproj      ← Coursework 1
+│   └── cw_01/
+│       └── cw_01.Rproj      ← Coursework 1
 ```
 
 This is totally normal! Each `.Rproj` file keeps that assignment's work separate and organized. Just remember: **open one project at a time** — don't try to juggle multiple!
@@ -449,12 +444,10 @@ That's it!
 
 ### From Home (Personal Laptop)
 
-Want to access your H: Drive from home? You'll need to:
+Want to access your H: Drive from home? Check the official university guides:
 
-1. Connect to the **University VPN** first ([VPN Guide](https://www.bath.ac.uk/guides/setting-up-vpn-on-your-device/))
-2. Map the network drive:
-   - **Windows**: Right-click This PC → Map network drive → `\\myfiles.campus.bath.ac.uk\username`
-   - **Mac**: Finder → Go → Connect to Server → `smb://myfiles.campus.bath.ac.uk/username`
+*   **Windows**: [How to access your H: Drive vs VPN (Windows)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=f523cfb9-5538-4701-b5f9-2f0ed4ef8403)
+*   **Mac**: [How to access your H: Drive vs VPN (Mac)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=16fc851afa754c558990c0b890124c26)
 
 ### Alternative: Using UniDesk or UniApps
 

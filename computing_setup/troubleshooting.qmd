@@ -86,30 +86,32 @@ If you're regularly having issues, check if your folder is in a cloud-synced loc
 
 **Symptom**: You can't see the Git tab in the top-right pane.
 
-### Fix 1: You're Not in a Git Project
+### Fix 1: You're Not in a Git Project (Most Common!)
 
-- **Check**: Look at the title bar. Does it say a project name?
-- **Fix**: You must open a project that was cloned from GitHub:
+- **Check**: Look at the title bar (top right of RStudio). Does it say "Project: (None)"?
+- **Explanation**: Git only works when you are inside a Git-enabled folder (a Project). If you just open a file like `lab_01.qmd` directly, RStudio doesn't know it's part of a repository.
+- **Fix**:
   1. **File → Open Project**
-  2. Navigate to your `materials/` or homework folder
+  2. Navigate to your `MA22019/materials` or homework folder
   3. Double-click the `.Rproj` file
 
-### Fix 2: Git Executable Not Found
+### Fix 2: H: Drive Security Issue (University PCs)
 
-- **Check**: Go to **Tools → Global Options → Git/SVN**
-- If the "Git executable" box is empty:
-  1. Try browsing to `C:\Program Files\Git\bin\git.exe`
-  2. If Git isn't installed, see "Git Not Installed" below
+On university computers, security settings often hide the Git pane.
 
-### Fix 3: H: Drive Security Issue
-
-On university computers using H: Drive, Git may not trust the folder.
-
+- **Check**: If Fix 1 didn't work and you are on a University PC.
 - **Fix**: In RStudio **Terminal** (not Console), run:
   ```bash
   git config --global --add safe.directory '*'
   ```
-- Restart RStudio
+- **Restart RStudio**
+
+> **Note**: You might need to run this command again on different days or different computers. Ideally, run it once per session if the Git pane is missing!
+
+### Fix 3: Git Executable Not Found (Rare)
+
+- **Check**: Go to **Tools → Global Options → Git/SVN**
+- If the "Git executable" box is empty, you need to install Git (see Setup Guide).
 
 ---
 
