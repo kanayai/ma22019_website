@@ -211,6 +211,22 @@ quarto render "practice/week_1/lab_1.qmd"
 2. Update `coursework.qmd` with listing
 3. Re-render, commit, push
 
+### Assignment Deployment Strategy (Templates vs. Materials)
+
+1.  **Student Repos (The Templates)**:
+    *   Repositories like `lab-00` or `homework-01` on GitHub.
+    *   These are the **actual repositories** students will clone.
+
+2.  **`_templates/` Folder (Website Copy)**:
+    *   Located inside this project (`ma22019_website/_templates/`).
+    *   **Purpose**: Serves as the "Golden Master" and is used to render the instructions onto the course website.
+    *   **Why**: This ensures that **what students read on the website** matches **what they get when they clone the repo**.
+
+3.  **Why NOT in `materials`?**:
+    *   The `materials` repository is **read-only** for students.
+    *   If assignments lived there, students might try to work inside the materials project, hit "Push", and get a "Permission Denied" error.
+    *   **Solution**: Assignments are their own separate repositories (cloned from templates). We keep a copy in `_templates` (or copy it to `practice/week_X` for rendering) to ensure the website reflects the repo content.
+
 ---
 
 ## What's Intentionally Ignored (.gitignore)
