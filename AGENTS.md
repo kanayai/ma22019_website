@@ -29,7 +29,7 @@ Alternative path (varies by system):
 
 | Local Path | Target (OneDrive) |
 |------------|-------------------|
-| `assets/data` | `.../MA22019 Lecture Notes/Data` |
+| `assets/data` | `.../MA22019 Lecture Notes/Data` (**Ignored** to prevent build errors) |
 | `lecture_notes/Data` | `.../MA22019 Lecture Notes/Data` |
 | `slides/data` | `../assets/data` (relative) |
 | `case_studies/data` | `../assets/data` (relative) |
@@ -56,7 +56,7 @@ Alternative path (varies by system):
 1. **Never delete symlinks** - They are tracked in Git intentionally
 2. **Never commit actual data files** - They are `.gitignore`d
 3. **If a symlink breaks**, recreate it pointing to the OneDrive location
-4. **For new data folders**, create a symlink to OneDrive, not a local folder
+4. **Symlinks are IGNORED by Git** to prevent GitHub Pages build errors. Do not force add them.
 
 ---
 
@@ -237,6 +237,7 @@ quarto render "practice/week_1/lab_1.qmd"
 - `rosm.cache/` - Map tile cache
 - `_solutions/` - Unreleased solutions
 - `.quarto/` - Quarto internal files
+- `Coursework/` - Contains symlinks to private solutions/data (prevent build errors)
 
 ---
 
