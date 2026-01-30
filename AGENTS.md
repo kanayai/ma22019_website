@@ -312,7 +312,12 @@ When merging this project:
     - Addresses user feedback on folder nesting and copy tips.
     - Explicitly clarified "403 Forbidden" errors.
 
-### Next Session (URGENT)
+### Next Session (URGENT - Planned for Tomorrow)
+- [ ] **Setup Guide Refinements (User Request)**:
+    - [ ] **`.md` vs `.pmd`**: Add section explaining differences in setup guide.
+    - [ ] **Warning**: Add warning/recommendation about R packages being stored in `C/Users/../AppData` on University computers.
+    - [ ] **Storage Advice**: Remind students on University H drive ("myfiles") that they only have **8GB** limit. Contrast with OneDrive (much larger) to help them decide where to put files.
+    - [ ] **Rtools Warning**: Address "serious warning" for some Rtools packages when running `install_packages.R` on uni computers.
 - [ ] **Finish `lab_00` template**: Ensure it's ready for deployment.
 - [ ] **Get Real Roster**: Import the actual student list.
 - [ ] **Deploy Lab 00**: Use `ma22019_tools` to deploy to the total number of students.

@@ -12,11 +12,6 @@ Welcome to your weekly workflow guide! 🗓️ This page tells you exactly what 
 
 ---
 
-::: {.callout-tip}
-## 🏖️ The Practice Sandbox
-The `practice/` folder isn't just for Lab 00! Use it as your personal **Sandbox** throughout the semester. if you want to test a function from a lecture or try out an idea, create a script inside `practice/` (e.g., `practice/experiment_week1.R`). It keeps your main `materials` and `homework` folders clean!
-:::
-
 
 
 ## The Big Picture: How This Course Works
@@ -57,6 +52,9 @@ flowchart LR
     style H fill:#27ae60,color:#fff
 ```
 
+
+
+
 **Two simple concepts:**
 
 | Action | When You Use It | What It Does |
@@ -65,6 +63,11 @@ flowchart LR
 | **Clone** 📋 | Once per homework/coursework | **Creates** a fresh copy of a new repo |
 
 That's it! Master these two actions and you're set for the whole semester. 💪
+
+::: {.callout-tip}
+## 🏖️ The Practice Sandbox
+The `practice/` folder isn't just for Lab 00! Use it as your personal **Sandbox** throughout the semester. if you want to test a function from a lecture or try out an idea, create a script inside `practice/` (e.g., `practice/experiment_week1.R`). It keeps your main `materials` and `homework` folders clean!
+:::
 
 ---
 
@@ -203,14 +206,14 @@ Aim for **at least 3 commits** per homework. This shows your progress and protec
 ::: {.callout-note}
 ## What Gets Submitted?
 
-When you push, **everything** in your folder is uploaded: your `.qmd` source key, your data, AND your rendered `.md` file.
+When you push, **everything** in your folder is uploaded. You may submit your work in one of three formats:
 
-**Why submit both?**
+1.  **Quarto Document (`.qmd`)**: The gold standard. Submitting the source `.qmd` and the rendered `.md` is best practice.
+2.  **R Script (`.R`)**: Good for pure code or scripts without narrative.
+3.  **Markdown File (`.md`)**: Useful if you prefer writing in plain Markdown.
 
-- **`.qmd` (The Recipe)**: This lets Tutors check your code, reproduce your analysis, and give detailed feedback.
-- **`.md` (The Cake)**: This lets Tutors instantly see your plotted graphs and tables on GitHub. Since it's Markdown, GitHub renders it perfectly!
-
-**Always Render before pushing!** If you change your code but don't Render, your `.md` file will be "stale" (outdated). Make sure they match!
+**Why submit the `.md` file?**
+The `.md` file (the "Cake") lets Tutors instantly see your plotted graphs and tables on GitHub without running code. The source file (the "Recipe") allows them to reproduce your analysis.
 :::
 
 
@@ -235,10 +238,21 @@ Coursework is **summative** — it counts toward your final mark! The process is
 ::: {.callout-important}
 ## Coursework Submission Reminder
 
-Just like homework, you submit your **source files** (`.qmd`, `.R`), not the rendered Markdown. The Lecturer will render your work for marking.
+Just like homework, you submit your **source files** (`.qmd`, `.R`, etc.) **as well as** the rendered Markdown (`.md`). The Lecturer will render your work for marking, but the `.md` file helps us check your plots and tables quickly on GitHub.
 
 **Always click Render** before your final push to make sure your code actually runs without errors!
 :::
+
+### Data Submission Policy 💾
+
+We have over 180 repositories to manage, so we need to be careful with storage size.
+
+*   **Small Data (< 10MB)**: It is totally fine to include small datasets (CSV, Excel) in your repository and commit them.
+*   **Large Data (> 10MB)**: Please **do not commit** large datasets. Instead:
+    *   Load the data directly from a URL (e.g., `read_csv("https://...")`).
+    *   Or, use an R package that contains the data (e.g., `library(palmerpenguins)`).
+
+If you are unsure if your data is "too big," ask on the discussion forum!
 
 ### Your Folder Structure
 
@@ -274,16 +288,34 @@ For coursework, we require **at least 3 commits** showing your progress. This is
 
 ---
 
+---
+
 ## Best Practices: File Naming Rules 🏷️
 
 Good file naming is a superpower. Follow these rules for all your files:
 
 | Rule | Bad ❌ | Good ✅ |
 |------|--------|---------|
-| No spaces | `my analysis.qmd` | `my_analysis.qmd` (or `my_analysis.R`) |
-| No special characters | `Joe's file.qmd` | `joes_file.qmd` (or `joes_file.R`) |
-| Use dates (YYYY-MM-DD) | `final_v2.qmd` | `2026-02-15_analysis.qmd` |
-| Number to preserve order | `intro.qmd`, `cleaning.qmd` | `01_intro.qmd`, `02_cleaning.qmd` |
+| No spaces | `my analysis.qmd` | `my_analysis.qmd` (or `.R`, `.md`) |
+| No special characters | `Joe's file.qmd` | `joes_file.qmd` |
+| Use dates (YYYY-MM-DD) | `final_v2.md` | `2026-02-15_analysis.md` |
+| Number to preserve order | `intro.R`, `cleaning.R` | `01_intro.R`, `02_cleaning.R` |
+
+---
+
+## Data Management in Repositories 💾
+
+Repositories are for code, not massive datasets. Follow these rules to keep your repo healthy:
+
+### 1. Small Data is Okay ( < 10MB )
+If you have a *source* dataset (e.g., a CSV or Excel file) that is **smaller than 10MB**, it is generally fine to commit it to your repository. This ensures your code is reproducible because the data is right there.
+
+### 2. Large Data is NOT Okay
+Do **not** commit large datasets (> 10MB) or intermediate data files that your code generates.
+*   **Why?** GitHub has strict size limits, and large files make cloning slow for everyone.
+*   **What to do:** Keep large observations on your local machine and read them into your script.
+
+> **Note:** We will provide specific instructions on using `.gitignore` to automatically exclude these files when the Coursework is released.
 
 ---
 

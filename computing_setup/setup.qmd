@@ -18,7 +18,7 @@ Choose your adventure:
 **Great news!** R, RStudio, Quarto and  and Git are already installed. The IT team has done the hard work for you! 🙌
 
 *   Just **log in** to a PC.
-*   Then [jump straight to **Section 3: Create Your Folder Structure**](#create-your-folder-structure).
+*   Then [jump straight to **Section 2: Your Computational Toolkit**](#your-computational-toolkit).
 
 ## 1B. Using Your Own Laptop
 
@@ -221,7 +221,7 @@ Why? Cloud sync services and Git are mortal enemies. Git creates thousands of ti
 
 ## The Folder Structure
 
-We will create **three** folders now (since we will create the `materials` folder in the next step!):
+We will create **three** folders now (since we create the `materials` folder in the next step!):
 
 ```{mermaid}
 graph TD
@@ -242,9 +242,10 @@ graph TD
 MA22019/
 ├── install_packages.R   
 ├── materials/         ← Created automatically in Section 5
-├── practice/          ← You will clone practice labs (like Lab 00 created in Section 6) or use as a sandbox for your own experiments
+├── practice/          ← You will clone practice labs (like Lab 00 to be created in Section 6) or use as a sandbox 
 ├── homework/          ← You will clone homework assignments here
 └── coursework/        ← You will clone coursework assignments here
+
 ```
 
 ### The "Practice" Folder = Your Sandbox 🏖️
@@ -282,7 +283,7 @@ You can create these folders using File Explorer (Windows) or Finder (Mac), or u
 ::: {.callout-tip}
 ## 🎉 That's All the Folders You Need!
 
-If you're following the Git workflow (which you should!), this is the *only* manual folder creation you'll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?
+If you're following the Git workflow (which you should!), this is the *only* mandated manual folder creation you'll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?
 
 You can jump to the [Weekly Workflow Guide](weekly_workflow.qmd) for details on how cloning works.
 :::
@@ -345,7 +346,7 @@ Done! That was easy, right? ✅
 
 ## On Personal Computers (Windows)
 
-If Git isn't already installed, let's fix that (or confirm it worked):
+Do the following check:
 
 1. Open **RStudio**
 2. Go to **Tools → Global Options → Git/SVN**
@@ -470,10 +471,9 @@ We use `github.bath.ac.uk` (enterprise GitHub) which connects to your university
 Take a moment to check everything looks right:
 
 - ✅ You should see a **Git** tab in the top-right pane
-- ✅ The **Files** pane should show folders like `case_studies/`, `labs/`, etc.
-- ✅ You should see a file called `check_location.R`
+- ✅ The **Files** pane should show folders like `lab_solutions/`, `labs/`, `live_coding`
 
-If you see all three, give yourself a pat on the back! 🎉
+If you see all, give yourself a pat on the back! 🎉
 
 ---
 

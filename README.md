@@ -55,11 +55,12 @@ ma22019_website/
 └── _freeze/                 # Quarto freeze cache
 ```
 
-## 📝 File Naming Convention
+## 📝 File Naming Convention & Policies
 
-- All files and folders use **snake_case** (e.g., `week_1`, `lab_1.qmd`, `my_data.csv`)
-- Slides are numbered: `NN_descriptive_name.qmd` (e.g., `01_data_cleaning_and_wrangling.qmd`)
-- Underscore prefix (`_`) = ignored by Quarto (e.g., `_Coursework 1`, `_admin`)
+- **Allowed Formats**: `.qmd` (preferred), `.R`, `.md`
+- **Naming**: All files/folders use **snake_case** (e.g., `week_1`, `lab_1.qmd`)
+- **Slides**: `NN_descriptive_name.qmd` (e.g., `01_data_cleaning_and_wrangling.qmd`)
+- **Underscore prefix (`_`)**: Ignored by Quarto (e.g., `_Coursework 1`, `_admin`)
 
 ## 📦 Data Management
 
