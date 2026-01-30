@@ -114,6 +114,22 @@ quarto render "practice/week_3/lab_3.qmd"
 ### Freeze Cache
 The project uses `_freeze/` to cache rendered output. On subsequent renders, unchanged files are skipped automatically.
 
+## 🚀 Publishing the Website
+
+This project is hosted on GitHub Pages (Enterprise).
+
+### Manual Publish (Recommended)
+Because valid HTML output is hidden in `_site/` (gitignored), we use the Quarto publish command to deploy:
+
+```bash
+quarto publish gh-pages --no-browser
+```
+
+This command:
+1.  Renders the site
+2.  Commits the output to the `gh-pages` branch
+3.  Pushes to GitHub
+
 ## 🎓 Release Workflow
 
 ### Solutions

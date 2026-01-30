@@ -195,6 +195,9 @@ quarto preview
 
 # Single file
 quarto render "practice/week_1/lab_1.qmd"
+
+# Publish to GitHub Pages
+quarto publish gh-pages --no-browser
 ```
 
 ---
