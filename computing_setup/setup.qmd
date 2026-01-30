@@ -228,7 +228,7 @@ graph TD
     root --> homework[homework/]
     root --> coursework[coursework/]
 
-    style root fill:#f9f9f9,stroke:#333,,stroke-width:2px
+    style root fill:#f9f9f9,stroke:#333,stroke-width:2px
     style materials fill:#e1f5fe,stroke:#0277bd
     style practice fill:#e8f5e9,stroke:#2e7d32
     style homework fill:#fff3e0,stroke:#ef6c00
