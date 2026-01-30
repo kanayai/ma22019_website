@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>agents – MA22019</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      MA22019
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MA22019</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment &amp; Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CHANGELOG.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Site Updates</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing_setup/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing_setup/weekly_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing_setup/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing_setup/why_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing_setup/traditional_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual Workflow (Not Recommended)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#agents.md---ai-agent-project-guide" id="toc-agents.md---ai-agent-project-guide" class="nav-link active" data-scroll-target="#agents.md---ai-agent-project-guide">AGENTS.md - AI Agent Project Guide</a>
+  <ul class="collapse">
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#critical-symlink-architecture" id="toc-critical-symlink-architecture" class="nav-link" data-scroll-target="#critical-symlink-architecture">⚠️ Critical: Symlink Architecture</a>
+  <ul class="collapse">
+  <li><a href="#primary-onedrive-location" id="toc-primary-onedrive-location" class="nav-link" data-scroll-target="#primary-onedrive-location">Primary OneDrive Location</a></li>
+  <li><a href="#complete-symlink-map" id="toc-complete-symlink-map" class="nav-link" data-scroll-target="#complete-symlink-map">Complete Symlink Map</a></li>
+  <li><a href="#symlink-rules-for-ai-agents" id="toc-symlink-rules-for-ai-agents" class="nav-link" data-scroll-target="#symlink-rules-for-ai-agents">Symlink Rules for AI Agents</a></li>
+  </ul></li>
+  <li><a href="#directory-structure" id="toc-directory-structure" class="nav-link" data-scroll-target="#directory-structure">Directory Structure</a></li>
+  <li><a href="#content-release-workflow" id="toc-content-release-workflow" class="nav-link" data-scroll-target="#content-release-workflow">Content Release Workflow</a>
+  <ul class="collapse">
+  <li><a href="#releasing-solutions" id="toc-releasing-solutions" class="nav-link" data-scroll-target="#releasing-solutions">Releasing Solutions</a></li>
+  <li><a href="#releasing-coursework" id="toc-releasing-coursework" class="nav-link" data-scroll-target="#releasing-coursework">Releasing Coursework</a></li>
+  <li><a href="#assignment-deployment-strategy-templates-vs.-materials" id="toc-assignment-deployment-strategy-templates-vs.-materials" class="nav-link" data-scroll-target="#assignment-deployment-strategy-templates-vs.-materials">Assignment Deployment Strategy (Templates vs.&nbsp;Materials)</a></li>
+  </ul></li>
+  <li><a href="#whats-intentionally-ignored-.gitignore" id="toc-whats-intentionally-ignored-.gitignore" class="nav-link" data-scroll-target="#whats-intentionally-ignored-.gitignore">What’s Intentionally Ignored (.gitignore)</a></li>
+  <li><a href="#for-merging-with-another-project" id="toc-for-merging-with-another-project" class="nav-link" data-scroll-target="#for-merging-with-another-project">For Merging With Another Project</a></li>
+  <li><a href="#protocol-the-definition-of-done-ai-trigger" id="toc-protocol-the-definition-of-done-ai-trigger" class="nav-link" data-scroll-target="#protocol-the-definition-of-done-ai-trigger">🛡️ Protocol: “The Definition of Done” (AI TRIGGER)</a></li>
+  <li><a href="#next-steps-todo-session-handoff---2026-01-30" id="toc-next-steps-todo-session-handoff---2026-01-30" class="nav-link" data-scroll-target="#next-steps-todo-session-handoff---2026-01-30">Next Steps / TODO (Session Handoff - 2026-01-30)</a>
+  <ul class="collapse">
+  <li><a href="#completed-this-session-late-night" id="toc-completed-this-session-late-night" class="nav-link" data-scroll-target="#completed-this-session-late-night">Completed This Session (Late Night)</a></li>
+  <li><a href="#next-session-urgent" id="toc-next-session-urgent" class="nav-link" data-scroll-target="#next-session-urgent">Next Session (URGENT)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="agents.md---ai-agent-project-guide" class="level1">
+<h1>AGENTS.md - AI Agent Project Guide</h1>
+<blockquote class="blockquote">
+<p><strong>For AI Agents</strong>: This document provides everything you need to understand and work with this project. Read this first before making any changes.</p>
+</blockquote>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p><strong>MA22019 Course Website</strong> - A Quarto-based educational website for the “Introduction to Data Science” course at the University of Bath. The site includes lecture notes, slides, labs, homework, quizzes, case studies, and coursework.</p>
+<ul>
+<li><strong>Tech Stack</strong>: Quarto, R, RevealJS (slides), HTML/CSS</li>
+<li><strong>Author</strong>: Dr.&nbsp;Karim Anaya-Izquierdo</li>
+<li><strong>Repository</strong>: https://github.bath.ac.uk/ma22019-2026/ma22019_website.git</li>
+</ul>
+<hr>
+</section>
+<section id="critical-symlink-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="critical-symlink-architecture">⚠️ Critical: Symlink Architecture</h2>
+<p><strong>This project uses symlinks extensively for data management.</strong> Data files are stored on OneDrive and symlinked into the project. This is intentional and must be preserved.</p>
+<section id="primary-onedrive-location" class="level3">
+<h3 class="anchored" data-anchor-id="primary-onedrive-location">Primary OneDrive Location</h3>
+<pre><code>/Users/kai21/OneDrive - University of Bath/Teaching/MA22019/from Christian/</code></pre>
+<p>Alternative path (varies by system):</p>
+<pre><code>/Users/kai21/Library/CloudStorage/OneDrive-UniversityofBath/Teaching/MA22019/from Christian/</code></pre>
+</section>
+<section id="complete-symlink-map" class="level3">
+<h3 class="anchored" data-anchor-id="complete-symlink-map">Complete Symlink Map</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Local Path</th>
+<th>Target (OneDrive)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>assets/data</code></td>
+<td><code>.../MA22019 Lecture Notes/Data</code> (<strong>Ignored</strong> to prevent build errors)</td>
+</tr>
+<tr class="even">
+<td><code>lecture_notes/Data</code></td>
+<td><code>.../MA22019 Lecture Notes/Data</code></td>
+</tr>
+<tr class="odd">
+<td><code>slides/data</code></td>
+<td><code>../assets/data</code> (relative)</td>
+</tr>
+<tr class="even">
+<td><code>case_studies/data</code></td>
+<td><code>../assets/data</code> (relative)</td>
+</tr>
+<tr class="odd">
+<td><code>practice/week_1/data</code></td>
+<td><code>.../Practice/Week 1/data</code></td>
+</tr>
+<tr class="even">
+<td><code>practice/week_2/data</code></td>
+<td><code>.../Practice/Week 2/data</code></td>
+</tr>
+<tr class="odd">
+<td><code>practice/week_3/data</code></td>
+<td><code>.../Practice/Week 3/data</code></td>
+</tr>
+<tr class="even">
+<td><code>practice/week_4/data</code></td>
+<td><code>.../Practice/Week 4/data</code></td>
+</tr>
+<tr class="odd">
+<td><code>practice/week_5/data</code></td>
+<td><code>.../Practice/Week 5/data</code></td>
+</tr>
+<tr class="even">
+<td><code>practice/week_6/data</code></td>
+<td><code>.../Practice/Week 6/data</code></td>
+</tr>
+<tr class="odd">
+<td><code>practice/week_7/data</code></td>
+<td><code>.../Practice/Week 7/data</code></td>
+</tr>
+<tr class="even">
+<td><code>practice/week_8/data</code></td>
+<td><code>.../Practice/Week 8/data</code></td>
+</tr>
+<tr class="odd">
+<td><code>practice/week_9/data</code></td>
+<td><code>.../Practice/Week 9/data</code></td>
+</tr>
+<tr class="even">
+<td><code>live_coding/week_1/Data</code></td>
+<td><code>.../LIve Coding/LIve Coding 1/Data</code></td>
+</tr>
+<tr class="odd">
+<td><code>live_coding/week_2/Data</code></td>
+<td><code>.../LIve Coding/LIve Coding 2/Data</code></td>
+</tr>
+<tr class="even">
+<td><code>live_coding/week_3/Data</code></td>
+<td><code>.../LIve Coding/LIve Coding 3/Data</code></td>
+</tr>
+<tr class="odd">
+<td><code>live_coding/week_4/Data</code></td>
+<td><code>.../LIve Coding/LIve Coding 4/Data</code></td>
+</tr>
+<tr class="even">
+<td><code>live_coding/week_5/Data</code></td>
+<td><code>.../LIve Coding/LIve Coding 5/Data</code></td>
+</tr>
+<tr class="odd">
+<td><code>Coursework/_Coursework 1/data</code></td>
+<td><code>.../Coursework/Coursework 1/data</code></td>
+</tr>
+<tr class="even">
+<td><code>Coursework/_Coursework 2/data</code></td>
+<td><code>.../Coursework/Coursework 2/data</code></td>
+</tr>
+<tr class="odd">
+<td><code>Coursework/_Coursework 2/original_data</code></td>
+<td><code>.../Coursework/Coursework 2/Original Data</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="symlink-rules-for-ai-agents" class="level3">
+<h3 class="anchored" data-anchor-id="symlink-rules-for-ai-agents">Symlink Rules for AI Agents</h3>
+<ol type="1">
+<li><strong>Never delete symlinks</strong> - They are tracked in Git intentionally</li>
+<li><strong>Never commit actual data files</strong> - They are <code>.gitignore</code>d</li>
+<li><strong>If a symlink breaks</strong>, recreate it pointing to the OneDrive location</li>
+<li><strong>Symlinks are IGNORED by Git</strong> to prevent GitHub Pages build errors. Do not force add them.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="directory-structure" class="level2">
+<h2 class="anchored" data-anchor-id="directory-structure">Directory Structure</h2>
+<pre><code>ma22019_website/
+├── _quarto.yml              # Main Quarto config - CRITICAL
+├── index.qmd                # Homepage
+│
+├── lecture_notes/           # Course textbook (4 chapters)
+│   ├── 01-DataWrangling.qmd
+│   ├── 02-DataVisualization.qmd
+│   ├── 03-Text-Data-Analysis.qmd
+│   ├── 04-SpatialDataAnalysis.qmd
+│   └── Data -&gt; (symlink)
+│
+├── slides/                  # RevealJS lecture slides
+│   ├── _metadata.yml        # Slide-specific Quarto settings
+│   ├── 00_overview.qmd
+│   ├── 01_data_cleaning_and_wrangling.qmd
+│   ├── ...
+│   └── data -&gt; ../assets/data
+│
+├── practice/                # Labs, Homework, Quizzes by week
+│   ├── _metadata.yml
+│   ├── week_1/
+│   │   ├── lab_1.qmd
+│   │   ├── homework_1.qmd
+│   │   ├── quiz_1.qmd
+│   │   └── data -&gt; (symlink)
+│   └── week_2/ ... week_9/
+│
+├── _quizzes/                # Quiz SOLUTIONS (separate from practice/)
+│   └── week_2/ ... week_9/
+│
+├── case_studies/            # Extended analysis examples
+│   └── data -&gt; ../assets/data
+│
+├── live_coding/             # Live coding demos per week
+│   └── week_1/ ... week_5/
+│
+├── Coursework/              # Coursework assignments
+│   ├── _Coursework 1/       # Underscore = not yet released
+│   └── _Coursework 2/
+│
+├── computing_setup/         # Student setup guides
+│   ├── setup.qmd            # Main setup guide (R, RStudio, Git)
+
+│   ├── setup_university_drive.qmd
+│   ├── weekly_workflow.qmd  # Weekly pull/clone workflow
+│   ├── computing_assignments.qmd
+│   ├── troubleshooting.qmd  # Common issues and fixes
+│   ├── traditional_workflow.qmd  # Manual (non-Git) workflow
+│   ├── why_quarto.qmd
+│   └── InstallPackages.R    # R package installer
+│
+├── _templates/              # Assignment templates for deployment
+│   ├── lab-00/
+│   └── homework-01/
+│
+├── _tools/                  # Internal R tools
+│   └── ma22019tools/        # R package for assignment deployment
+│
+├── _admin/                  # Internal/planning files (not rendered)
+│   ├── emails/              # Email templates for students/TAs
+│   ├── rosters/             # Class rosters
+│   ├── new_lectures_plan.qmd
+│   ├── Plan for Weeks 1-11.xlsx
+│   └── book_generation/     # Legacy PDF book files
+│
+├── assets/                  # Static assets
+│   └── data -&gt; (symlink)    # Centralized data
+│
+├── style/                   # Custom theming
+│   └── sta199.scss
+│
+├── _freeze/                 # Quarto render cache (tracked)
+├── _site/                   # Built website (gitignored)
+└── _solutions/              # Solution files (gitignored)</code></pre>
+<p>MA22019/ ├── materials/ ← You’ll clone this in Week 1 ├── practice/ ← Clone practice labs (like Lab 00) here ├── homework/ ← Clone homework assignments here └── coursework/ ← Clone coursework assignments here</p>
+<pre><code>
+---
+
+## File Naming Conventions
+
+- **All files/folders**: `snake_case` (e.g., `week_1`, `lab_1.qmd`)
+- **Slides**: `NN_descriptive_name.qmd` (e.g., `01_data_cleaning_and_wrangling.qmd`)
+- **Practice files**: `lab_N.qmd`, `homework_N.qmd`, `quiz_N.qmd`
+- **Underscore prefix `_`**: Ignored by Quarto (e.g., `_Coursework 1`, `_quizzes`, `_admin`)
+
+---
+
+## Standard Activity Structure
+
+All activities distributed to students (labs, homework, coursework, live coding) should follow the same internal structure. This consistency helps students navigate any activity once they learn the pattern.
+</code></pre>
+<p>activity_name/ ├── activity_name.Rproj # RStudio Project file ├── activity_name.qmd # Main report/analysis file ├── data/ # Data files for this activity └── README.md # (Optional) Instructions</p>
+<pre><code>
+**When creating templates for `github.bath.ac.uk`:**
+1. Always include an `.Rproj` file matching the folder name
+2. Always include a `.qmd` file as the main working document
+3. Place all data in a `data/` subfolder
+4. Use `snake_case` for all file and folder names
+
+---
+
+## Critical Files (Do Not Delete)
+
+| File | Purpose |
+|------|---------|
+| `_quarto.yml` | Main site configuration, navigation, theme |
+| `practice/_metadata.yml` | Shared settings for practice folder |
+| `slides/_metadata.yml` | RevealJS slide settings |
+| `style/sta199.scss` | Custom theming |
+| `.gitignore` | Defines what's tracked |
+| `SYNC_WORKFLOW.md` | Multi-machine sync instructions |
+| All symlinks | Data access - see symlink map above |
+
+---
+
+## Build Commands
+
+```bash
+# Full render
+quarto render
+
+# Development (live reload)
+quarto preview
+
+# Single file
+quarto render "practice/week_1/lab_1.qmd"
+
+# Publish to GitHub Pages
+quarto publish gh-pages --no-browser</code></pre>
+<hr>
+</section>
+<section id="content-release-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="content-release-workflow">Content Release Workflow</h2>
+<section id="releasing-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="releasing-solutions">Releasing Solutions</h3>
+<ol type="1">
+<li>Move file from <code>_solutions/</code> to appropriate <code>practice/week_X/</code> folder</li>
+<li>Re-render the site</li>
+<li>Commit and push</li>
+</ol>
+</section>
+<section id="releasing-coursework" class="level3">
+<h3 class="anchored" data-anchor-id="releasing-coursework">Releasing Coursework</h3>
+<ol type="1">
+<li>Rename <code>_Coursework X</code> to <code>Coursework X</code> (remove underscore)</li>
+<li>Update <code>coursework.qmd</code> with listing</li>
+<li>Re-render, commit, push</li>
+</ol>
+</section>
+<section id="assignment-deployment-strategy-templates-vs.-materials" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-deployment-strategy-templates-vs.-materials">Assignment Deployment Strategy (Templates vs.&nbsp;Materials)</h3>
+<ol type="1">
+<li><strong>Student Repos (The Templates)</strong>:
+<ul>
+<li>Repositories like <code>lab_00</code> or <code>homework_01</code> on GitHub.</li>
+<li>These are the <strong>actual repositories</strong> students will clone.</li>
+</ul></li>
+<li><strong><code>_templates/</code> Folder (Website Copy)</strong>:
+<ul>
+<li>Located inside this project (<code>ma22019_website/_templates/</code>).</li>
+<li><strong>Purpose</strong>: Serves as the “Golden Master” and is used to render the instructions onto the course website.</li>
+<li><strong>Why</strong>: This ensures that <strong>what students read on the website</strong> matches <strong>what they get when they clone the repo</strong>.</li>
+</ul></li>
+<li><strong>Why NOT in <code>materials</code>?</strong>:
+<ul>
+<li>The <code>materials</code> repository is <strong>read-only</strong> for students.</li>
+<li>If assignments lived there, students might try to work inside the materials project, hit “Push”, and get a “Permission Denied” error.</li>
+<li><strong>Solution</strong>: Assignments are their own separate repositories (cloned from templates). We keep a copy in <code>_templates</code> (or copy it to <code>practice/week_X</code> for rendering) to ensure the website reflects the repo content.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="whats-intentionally-ignored-.gitignore" class="level2">
+<h2 class="anchored" data-anchor-id="whats-intentionally-ignored-.gitignore">What’s Intentionally Ignored (.gitignore)</h2>
+<ul>
+<li><code>_site/</code> - Built output</li>
+<li><code>*.csv</code>, <code>*.shp</code>, <code>*.zip</code>, <code>*.nc</code> - Data files</li>
+<li><code>*_files/</code> - Quarto render artifacts</li>
+<li><code>rosm.cache/</code> - Map tile cache</li>
+<li><code>_solutions/</code> - Unreleased solutions</li>
+<li><code>.quarto/</code> - Quarto internal files</li>
+<li><code>Coursework/</code> - Contains symlinks to private solutions/data (prevent build errors)</li>
+</ul>
+<hr>
+</section>
+<section id="for-merging-with-another-project" class="level2">
+<h2 class="anchored" data-anchor-id="for-merging-with-another-project">For Merging With Another Project</h2>
+<p>When merging this project:</p>
+<ol type="1">
+<li><strong>Preserve all symlinks</strong> - They are the data access mechanism</li>
+<li><strong>Keep <code>_quarto.yml</code></strong> as the source of truth for site structure</li>
+<li><strong><code>_admin/</code></strong> contains internal planning files that can be ignored</li>
+<li><strong><code>_quizzes/</code></strong> contains quiz solutions (separate from student-facing <code>practice/</code>)</li>
+<li><strong>Check OneDrive paths</strong> if moving to a different machine</li>
+</ol>
+<hr>
+<hr>
+</section>
+<section id="protocol-the-definition-of-done-ai-trigger" class="level2">
+<h2 class="anchored" data-anchor-id="protocol-the-definition-of-done-ai-trigger">🛡️ Protocol: “The Definition of Done” (AI TRIGGER)</h2>
+<blockquote class="blockquote">
+<p><strong>⚠️ AI AGENT INSTRUCTION:</strong> You MUST check this list before marking ANY task as “Complete” or finishing a session.</p>
+</blockquote>
+<p><strong>If you have modified code or content:</strong> 1. <strong>Update <code>CHANGELOG.md</code></strong>: - [ ] Did you add a new feature, guide, or policy? -&gt; Add a bullet point. - [ ] Did you fix a bug that students noticed? -&gt; Add a bullet point. - [ ] <em>Format</em>: <code>### DD Mon YYYY</code> <code>- **Type**: Description</code>.</p>
+<ol start="2" type="1">
+<li><strong>Update <code>AGENTS.md</code> (Self-Correction)</strong>:
+<ul class="task-list">
+<li><label><input type="checkbox">Did you learn a new rule/constraint? (e.g., “Don’t use X tool”) -&gt; Add it to <code>AGENTS.md</code>.</label></li>
+<li><label><input type="checkbox">Did the project structure change? -&gt; Update the file tree map.</label></li>
+</ul></li>
+<li><strong>Update <code>README.md</code></strong>:
+<ul class="task-list">
+<li><label><input type="checkbox">Did the “Quick Start” commands change?</label></li>
+<li><label><input type="checkbox">Are there new requirements?</label></li>
+</ul></li>
+</ol>
+<p><strong>The Logic:</strong> - If it changes how the <em>site</em> looks -&gt; <code>CHANGELOG.md</code> - If it changes how the <em>agent</em> works -&gt; <code>AGENTS.md</code> - If it changes how <em>developers</em> setup -&gt; <code>README.md</code></p>
+<hr>
+</section>
+<section id="next-steps-todo-session-handoff---2026-01-30" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps-todo-session-handoff---2026-01-30">Next Steps / TODO (Session Handoff - 2026-01-30)</h2>
+<section id="completed-this-session-late-night" class="level3">
+<h3 class="anchored" data-anchor-id="completed-this-session-late-night">Completed This Session (Late Night)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked=""><strong>Syncwork Fixed</strong>: Diagnosed and fixed SSH remote URL mismatch for <code>ma22019_website</code> and fixed <code>syncwork</code> script failure.</label></li>
+<li><label><input type="checkbox" checked=""><strong>Setup Guide Refined</strong>:</label>
+<ul>
+<li>Updated folder trees to match <code>ma22019_tools</code> output (<code>hw_01-username</code>).</li>
+<li>Added <code>labs</code>, <code>lab_solutions</code>, and <code>live_coding</code> to <code>materials</code> project structure in docs.</li>
+<li>Created actual <code>labs/</code> and <code>live_coding/</code> folders in the sibling <code>materials</code> repo.</li>
+<li>Simplified Quick Reference Card and Windows Git instructions.</li>
+</ul></li>
+<li><label><input type="checkbox" checked=""><strong>Workflow Docs Updated</strong>:</label>
+<ul>
+<li><code>weekly_workflow.qmd</code>: Changed “HTML” output to “Markdown”. Added 2FA/PAT warning.</li>
+<li><code>traditional_workflow.qmd</code>: Renamed “assignment” to “activity”. Clarified download sources. Removed <code>_manual</code> suffix advice.</li>
+</ul></li>
+<li><label><input type="checkbox" checked=""><strong>Verified</strong>: Full site render and folder structure checks.</label></li>
+</ul>
+</section>
+<section id="next-session-urgent" class="level3">
+<h3 class="anchored" data-anchor-id="next-session-urgent">Next Session (URGENT)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Finish <code>lab_00</code> template</strong>: Ensure it’s ready for deployment.</label></li>
+<li><label><input type="checkbox"><strong>Get Real Roster</strong>: Import the actual student list.</label></li>
+<li><label><input type="checkbox"><strong>Deploy Lab 00</strong>: Use <code>ma22019_tools</code> to deploy to the total number of students.</label></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/github\.bath\.ac\.uk\/ma22019-2026\/ma22019_website\.git");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

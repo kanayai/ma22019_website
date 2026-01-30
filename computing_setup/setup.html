@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computer Setup Guide – MA22019</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../computing_setup/weekly_workflow.html" rel="next">
+<link href="../CHANGELOG.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f208714201d96898fd04a32119b1e84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing_setup/setup.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing_setup/setup.html">Setup Guide</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">MA22019</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../course_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment &amp; Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../CHANGELOG.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Site Updates</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Setup Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/weekly_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/why_quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why Quarto?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing_setup/traditional_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manual Workflow (Not Recommended)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#start-here-which-path-are-you-on" id="toc-start-here-which-path-are-you-on" class="nav-link active" data-scroll-target="#start-here-which-path-are-you-on">🏁 1. START HERE: Which path are you on?</a>
+  <ul class="collapse">
+  <li><a href="#a.-using-university-of-bath-computers" id="toc-a.-using-university-of-bath-computers" class="nav-link" data-scroll-target="#a.-using-university-of-bath-computers">1A. Using University of Bath Computers</a></li>
+  <li><a href="#b.-using-your-own-laptop" id="toc-b.-using-your-own-laptop" class="nav-link" data-scroll-target="#b.-using-your-own-laptop">1B. Using Your Own Laptop</a></li>
+  <li><a href="#c.-install-r-packages-the-apps" id="toc-c.-install-r-packages-the-apps" class="nav-link" data-scroll-target="#c.-install-r-packages-the-apps">1C. Install R Packages (The “Apps”)</a></li>
+  </ul></li>
+  <li><a href="#your-computational-toolkit" id="toc-your-computational-toolkit" class="nav-link" data-scroll-target="#your-computational-toolkit">Your Computational Toolkit</a>
+  <ul class="collapse">
+  <li><a href="#a-quick-tour-of-rstudio" id="toc-a-quick-tour-of-rstudio" class="nav-link" data-scroll-target="#a-quick-tour-of-rstudio">A Quick Tour of RStudio</a>
+  <ul class="collapse">
+  <li><a href="#the-most-important-buttons" id="toc-the-most-important-buttons" class="nav-link" data-scroll-target="#the-most-important-buttons">The Most Important Buttons</a></li>
+  </ul></li>
+  <li><a href="#quarto-your-new-document-format" id="toc-quarto-your-new-document-format" class="nav-link" data-scroll-target="#quarto-your-new-document-format">Quarto: Your New Document Format</a></li>
+  <li><a href="#an-analogy-to-writing-an-essay" id="toc-an-analogy-to-writing-an-essay" class="nav-link" data-scroll-target="#an-analogy-to-writing-an-essay">An Analogy to Writing an Essay</a></li>
+  </ul></li>
+  <li><a href="#create-your-folder-structure" id="toc-create-your-folder-structure" class="nav-link" data-scroll-target="#create-your-folder-structure">2. Create Your Folder Structure</a>
+  <ul class="collapse">
+  <li><a href="#where-to-put-the-ma22019-folder" id="toc-where-to-put-the-ma22019-folder" class="nav-link" data-scroll-target="#where-to-put-the-ma22019-folder">Where to put the MA22019 folder</a></li>
+  <li><a href="#the-folder-structure" id="toc-the-folder-structure" class="nav-link" data-scroll-target="#the-folder-structure">The Folder Structure</a></li>
+  <li><a href="#using-the-h-drive-university-network-storage" id="toc-using-the-h-drive-university-network-storage" class="nav-link" data-scroll-target="#using-the-h-drive-university-network-storage">Using the H: Drive (University Network Storage)</a>
+  <ul class="collapse">
+  <li><a href="#on-campus-lab-pcs" id="toc-on-campus-lab-pcs" class="nav-link" data-scroll-target="#on-campus-lab-pcs">On Campus (Lab PCs)</a></li>
+  <li><a href="#from-home-personal-laptop" id="toc-from-home-personal-laptop" class="nav-link" data-scroll-target="#from-home-personal-laptop">From Home (Personal Laptop)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#configure-git-in-rstudio" id="toc-configure-git-in-rstudio" class="nav-link" data-scroll-target="#configure-git-in-rstudio">3. Configure Git in RStudio</a>
+  <ul class="collapse">
+  <li><a href="#on-university-lab-computers" id="toc-on-university-lab-computers" class="nav-link" data-scroll-target="#on-university-lab-computers">On University Lab Computers</a>
+  <ul class="collapse">
+  <li><a href="#critical-fix-the-dubious-ownership-error" id="toc-critical-fix-the-dubious-ownership-error" class="nav-link" data-scroll-target="#critical-fix-the-dubious-ownership-error">⚠️ Critical: Fix the “Dubious Ownership” Error</a></li>
+  </ul></li>
+  <li><a href="#on-personal-computers-windows" id="toc-on-personal-computers-windows" class="nav-link" data-scroll-target="#on-personal-computers-windows">On Personal Computers (Windows)</a></li>
+  <li><a href="#on-personal-computers-mac" id="toc-on-personal-computers-mac" class="nav-link" data-scroll-target="#on-personal-computers-mac">On Personal Computers (Mac)</a></li>
+  <li><a href="#if-git-isnt-found" id="toc-if-git-isnt-found" class="nav-link" data-scroll-target="#if-git-isnt-found">If Git isn’t found</a></li>
+  <li><a href="#tell-git-who-you-are" id="toc-tell-git-who-you-are" class="nav-link" data-scroll-target="#tell-git-who-you-are">Tell Git Who You Are</a></li>
+  </ul></li>
+  <li><a href="#clone-the-materials-repository" id="toc-clone-the-materials-repository" class="nav-link" data-scroll-target="#clone-the-materials-repository">4. Clone the Materials Repository</a>
+  <ul class="collapse">
+  <li><a href="#authentication-if-asked-for-password" id="toc-authentication-if-asked-for-password" class="nav-link" data-scroll-target="#authentication-if-asked-for-password">Authentication (If Asked for Password)</a></li>
+  <li><a href="#verify-it-worked" id="toc-verify-it-worked" class="nav-link" data-scroll-target="#verify-it-worked">Verify It Worked</a></li>
+  <li><a href="#test-pull-verify-your-setup" id="toc-test-pull-verify-your-setup" class="nav-link" data-scroll-target="#test-pull-verify-your-setup">Test Pull (Verify Your Setup)</a></li>
+  </ul></li>
+  <li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link" data-scroll-target="#rstudio-projects">5. RStudio Projects</a>
+  <ul class="collapse">
+  <li><a href="#why-use-projects" id="toc-why-use-projects" class="nav-link" data-scroll-target="#why-use-projects">Why Use Projects?</a></li>
+  <li><a href="#how-to-open-a-project" id="toc-how-to-open-a-project" class="nav-link" data-scroll-target="#how-to-open-a-project">How to Open a Project</a></li>
+  <li><a href="#youll-have-multiple-.rproj-files" id="toc-youll-have-multiple-.rproj-files" class="nav-link" data-scroll-target="#youll-have-multiple-.rproj-files">You’ll Have Multiple .Rproj Files</a></li>
+  </ul></li>
+  <li><a href="#using-unidesk" id="toc-using-unidesk" class="nav-link" data-scroll-target="#using-unidesk">6. Using UniDesk</a></li>
+  <li><a href="#quick-reference-card" id="toc-quick-reference-card" class="nav-link" data-scroll-target="#quick-reference-card">7. Quick Reference Card</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">8. Next Steps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../computing_setup/setup.html">Computing</a></li><li class="breadcrumb-item"><a href="../computing_setup/setup.html">Setup Guide</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Computer Setup Guide</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Welcome! 🎉 This guide will get you up and running for the semester. Don’t worry — we’ll walk you through every step. You’ve got this!</p>
+<section id="start-here-which-path-are-you-on" class="level1">
+<h1>🏁 1. START HERE: Which path are you on?</h1>
+<p>Choose your adventure:</p>
+<ul>
+<li><strong>A) “I’m using University of Bath Computers”</strong> → <a href="#a.-using-university-of-bath-computers">Skip to Section 1A</a>. Lucky you — everything’s pre-installed!</li>
+<li><strong>B) “I’m using my own Laptop”</strong> → <a href="#b.-using-your-own-laptop">Start at Section 1B</a>. A bit more work, but totally worth it!</li>
+</ul>
+<hr>
+<section id="a.-using-university-of-bath-computers" class="level2">
+<h2 class="anchored" data-anchor-id="a.-using-university-of-bath-computers">1A. Using University of Bath Computers</h2>
+<p><strong>Great news!</strong> R, RStudio, Quarto and and Git are already installed. The IT team has done the hard work for you! 🙌</p>
+<ul>
+<li>Just <strong>log in</strong> to a PC.</li>
+<li>Then <a href="#create-your-folder-structure">jump straight to <strong>Section 2: Create Your Folder Structure</strong></a>.</li>
+</ul>
+</section>
+<section id="b.-using-your-own-laptop" class="level2">
+<h2 class="anchored" data-anchor-id="b.-using-your-own-laptop">1B. Using Your Own Laptop</h2>
+<p>Using your own machine? Brilliant — having your own setup means you can work from anywhere.</p>
+<p>You’ll need to install <strong>four</strong> things before your first lab:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Software</th>
+<th>Download Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td><a href="https://cloud.r-project.org">cloud.r-project.org</a></td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td><a href="https://posit.co/download/rstudio-desktop/">posit.co/download/rstudio-desktop</a></td>
+</tr>
+<tr class="odd">
+<td>Quarto</td>
+<td><a href="https://quarto.org/docs/get-started/">quarto.org/docs/get-started/</a></td>
+</tr>
+<tr class="even">
+<td>Git</td>
+<td><a href="https://git-scm.com/downloads">git-scm.com/downloads</a></td>
+</tr>
+</tbody>
+</table>
+<p>Just choose your operating system and download the installer. The installation wizards will guide you through — accept the defaults and you’ll be fine!</p>
+<hr>
+</section>
+<section id="c.-install-r-packages-the-apps" class="level2">
+<h2 class="anchored" data-anchor-id="c.-install-r-packages-the-apps">1C. Install R Packages (The “Apps”)</h2>
+<p>R is like a new phone—it’s great, but you need to install “apps” (called <strong>packages</strong>) to make it useful.</p>
+<p>We have prepared a <strong>Master Script</strong> that installs everything you need for the semester (Tidyverse, Mapping tools, etc.).</p>
+<ol type="1">
+<li>Open RStudio.</li>
+<li>Go to <strong>File &gt; New File &gt; R Script</strong>.</li>
+<li>Copy and paste the code below into the new file.</li>
+<li>Select all the code (Cmd+A / Ctrl+A).</li>
+<li>Click <strong>Run</strong> (or press Cmd+Enter / Ctrl+Enter).</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MA22019: Master Package Installation Script</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this entire chunk to install/update course packages</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>install_if_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(packages) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  new_packages <span class="ot">&lt;-</span> packages[<span class="sc">!</span>(packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="st">"Package"</span>])]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(new_packages)) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Installing: "</span>, <span class="fu">paste</span>(new_packages, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new_packages)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"✅ All packages in this group are already installed."</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Core Data Science</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">install_if_missing</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"knitr"</span>, <span class="st">"lubridate"</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Visualization</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">install_if_missing</span>(<span class="fu">c</span>(<span class="st">"patchwork"</span>, <span class="st">"RColorBrewer"</span>, <span class="st">"scales"</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Text Analysis</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">install_if_missing</span>(<span class="fu">c</span>(<span class="st">"tidytext"</span>, <span class="st">"wordcloud"</span>, <span class="st">"textdata"</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Spatial Analysis</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">install_if_missing</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"tmap"</span>, <span class="st">"ggspatial"</span>, <span class="st">"prettymapr"</span>, <span class="st">"sp"</span>, <span class="st">"gstat"</span>, <span class="st">"spatstat"</span>, <span class="st">"raster"</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"🎉 Setup Complete! You are ready for MA22019."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> This might take a few minutes. If it asks “Do you want to restart R prior to installing?”, click <strong>Yes</strong>.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="your-computational-toolkit" class="level1">
+<h1>Your Computational Toolkit</h1>
+<p>Let’s meet the tools you’ll be using this semester. Don’t worry if they sound unfamiliar — by Week 2, they’ll feel like old friends!</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 28%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>What It Is</th>
+<th>Think of It Like…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R</strong></td>
+<td>The programming language for data analysis</td>
+<td>The language you speak (like English)</td>
+</tr>
+<tr class="even">
+<td><strong>RStudio</strong></td>
+<td>The software where you write R code</td>
+<td>Your word processor (like Microsoft Word)</td>
+</tr>
+<tr class="odd">
+<td><strong>Quarto</strong></td>
+<td>Creates documents with code AND text</td>
+<td>A Word doc that can actually <em>run</em> code!</td>
+</tr>
+<tr class="even">
+<td><strong>Git</strong></td>
+<td>Version control (tracks all your changes)</td>
+<td>“Track Changes” on steroids 💪</td>
+</tr>
+<tr class="odd">
+<td><strong>GitHub</strong></td>
+<td>Cloud storage for your Git projects</td>
+<td>Like Google Drive, but designed for code</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Quick Clarification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R is the <em>language</em>, RStudio is the <em>interface</em>. You write R code <em>inside</em> RStudio — just like you write English <em>inside</em> Word!</p>
+</div>
+</div>
+<hr>
+<section id="a-quick-tour-of-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-tour-of-rstudio">A Quick Tour of RStudio</h2>
+<p>When you first open RStudio, don’t panic if it looks complicated! You’ll see <strong>three panes</strong> initially. The fourth one (Source) appears when you open a file.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“Where’s the fourth pane?!”</strong> The Source pane only appears when you open a file (<code>.R</code>, <code>.qmd</code>, etc.). Go to <strong>File → Open File</strong> or double-click any file in the Files pane to reveal it.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/rstudio_interface.png" class="img-fluid figure-img"></p>
+<figcaption>RStudio interface</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 34%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pane</th>
+<th>Location</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Source</strong></td>
+<td>Top-left</td>
+<td>Your code editor — where the magic happens! ✨</td>
+</tr>
+<tr class="even">
+<td><strong>Console</strong></td>
+<td>Bottom-left</td>
+<td>Run code and see immediate results (look for the <code>&gt;</code> prompt)</td>
+</tr>
+<tr class="odd">
+<td><strong>Environment</strong></td>
+<td>Top-right</td>
+<td>Shows your data, variables, and those all-important Git buttons (when activated, see below)</td>
+</tr>
+<tr class="even">
+<td><strong>Files/Plots/Help</strong></td>
+<td>Bottom-right</td>
+<td>Browse files, admire your plots, get help when stuck</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Pro tip</strong>: If a pane goes missing (it happens!), go to <strong>View → Panes → Show All Panes</strong> to bring it back.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Use Source Mode, Not Visual Mode
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When editing <code>.qmd</code> files, RStudio offers two modes: <strong>Source</strong> and <strong>Visual</strong>. We <em>strongly</em> recommend <strong>Source mode</strong> because:</p>
+<ul>
+<li>You see exactly what’s in the file — no mystery formatting hiding in the background</li>
+<li>You’ll learn Markdown syntax (a skill that transfers to blogs, READMEs, documentation, and more!)</li>
+<li>It’s way easier to debug when something goes wrong</li>
+<li>Visual mode can sometimes sneak in unwanted formatting changes</li>
+</ul>
+<p>Switch modes using the toggle at the top-left of the Source pane. Trust us on this one!</p>
+</div>
+</div>
+<section id="the-most-important-buttons" class="level3">
+<h3 class="anchored" data-anchor-id="the-most-important-buttons">The Most Important Buttons</h3>
+<p>You’ll use these buttons constantly. Memorize them and you’ll fly through your work!</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 25%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Button</th>
+<th>Where</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Run</strong></td>
+<td>Source pane toolbar</td>
+<td>Runs your selected code — see results instantly!</td>
+</tr>
+<tr class="even">
+<td><strong>Render</strong></td>
+<td>Source pane toolbar</td>
+<td>Transforms your <code>.qmd</code> into HTML, PDF or plain markdown</td>
+</tr>
+<tr class="odd">
+<td><strong>Pull</strong></td>
+<td>Git pane (top-right)</td>
+<td><strong>Downloads</strong> the latest updates from GitHub</td>
+</tr>
+<tr class="even">
+<td><strong>Push</strong></td>
+<td>Git pane (top-right)</td>
+<td><strong>Uploads</strong> your amazing work to GitHub</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="quarto-your-new-document-format" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-your-new-document-format">Quarto: Your New Document Format</h2>
+<p>Forget Word and Google Docs — in this course, you’ll create <strong>Quarto documents</strong> (<code>.qmd</code> files). These are special because they combine:</p>
+<ul>
+<li>📝 Your written analysis (in plain English)</li>
+<li>💻 Your code (in R)</li>
+<li>📊 The output of your code (plots, tables, results — all auto-generated!)</li>
+</ul>
+<p>When you click <strong>Render</strong>, everything magically combines into a beautifully formatted HTML or PDF. It’s like having a robot assistant who formats your reports perfectly every time!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Also taking MA22015 (Statistics 2B)?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Good news! In MA22015, you use <strong>R Markdown</strong> (<code>.Rmd</code> files) which is basically Quarto’s older sibling. They’re <em>very</em> similar!</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>R Markdown (<code>.Rmd</code>)</th>
+<th>Quarto (<code>.qmd</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Used in</td>
+<td>MA22015</td>
+<td>MA22019 (this course)</td>
+</tr>
+<tr class="even">
+<td>Button to run</td>
+<td><strong>Knit</strong></td>
+<td><strong>Render</strong></td>
+</tr>
+<tr class="odd">
+<td>File header</td>
+<td>Uses <code>output: html_document</code></td>
+<td>Uses <code>format: html</code></td>
+</tr>
+<tr class="even">
+<td>Syntax</td>
+<td>Nearly identical</td>
+<td>Nearly identical</td>
+</tr>
+</tbody>
+</table>
+<p>Think of Quarto as the “next generation” upgrade. Skills transfer directly between them — you’re basically learning two tools for the price of one! 🎁</p>
+</div>
+</div>
+</div>
+</section>
+<section id="an-analogy-to-writing-an-essay" class="level2">
+<h2 class="anchored" data-anchor-id="an-analogy-to-writing-an-essay">An Analogy to Writing an Essay</h2>
+<p>Still feeling a bit overwhelmed? Think of it like writing an essay for a literature class:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Literature Class</th>
+<th>Data Science (This Course)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Language: English</td>
+<td>Language: R</td>
+</tr>
+<tr class="even">
+<td>Interface: Microsoft Word</td>
+<td>Interface: RStudio</td>
+</tr>
+<tr class="odd">
+<td>Document: .docx file</td>
+<td>Document: .qmd (Quarto) file</td>
+</tr>
+<tr class="even">
+<td>Track Changes</td>
+<td>Git</td>
+</tr>
+<tr class="odd">
+<td>Google Drive</td>
+<td>GitHub</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/r-english-analogy.jpg" class="img-fluid figure-img"></p>
+<figcaption>Comparison of tools</figcaption>
+</figure>
+</div>
+<p>See? You’ve been doing a version of this your whole academic life. Now you’re just leveling up! 🚀</p>
+<hr>
+</section>
+</section>
+<section id="create-your-folder-structure" class="level1">
+<h1>2. Create Your Folder Structure</h1>
+<p>Let’s get organized! All your course work will live in one tidy folder. This takes 2 minutes and will save you <em>hours</em> of confusion later.</p>
+<section id="where-to-put-the-ma22019-folder" class="level2">
+<h2 class="anchored" data-anchor-id="where-to-put-the-ma22019-folder">Where to put the MA22019 folder</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Computer Type</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>University PC</td>
+<td><code>H:\MA22019\</code></td>
+</tr>
+<tr class="even">
+<td>Windows laptop</td>
+<td><code>C:\Users\YourName\Documents\MA22019\</code></td>
+</tr>
+<tr class="odd">
+<td>Mac</td>
+<td><code>~/Documents/MA22019/</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>⚠️ AVOID Cloud-Synced Folders at All Costs!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is really important: <strong>Do NOT</strong> save your projects in OneDrive, iCloud, Dropbox, or Google Drive folders!</p>
+<p>Why? Cloud sync services and Git are mortal enemies. Git creates thousands of tiny files that these services try to sync simultaneously, causing crashes, corruption, and heartbreak. 💔</p>
+<p><strong>The MA22019 folder can go anywhere that is NOT cloud-synced:</strong></p>
+<ul>
+<li><strong>Windows</strong>: If your Documents folder shows a cloud icon, create your folder at <code>C:\MA22019\</code> instead</li>
+<li><strong>Mac</strong>: Go to <em>System Settings → Apple ID → iCloud → iCloud Drive → Options</em>. If “Desktop &amp; Documents” is ON, use <code>~/MA22019/</code> (your home folder) instead</li>
+<li><strong>University PCs</strong>: The H: Drive is safe — use that!</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="the-folder-structure" class="level2">
+<h2 class="anchored" data-anchor-id="the-folder-structure">The Folder Structure</h2>
+<p>Create these three folders — you’ll use them all semester:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    root[MA22019]
+    root --&gt; materials[materials/]
+    root --&gt; practice[practice/]
+    root --&gt; homework[homework/]
+    root --&gt; coursework[coursework/]
+
+    style root fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style materials fill:#e1f5fe,stroke:#0277bd
+    style practice fill:#e8f5e9,stroke:#2e7d32
+    style homework fill:#fff3e0,stroke:#ef6c00
+    style coursework fill:#fce4ec,stroke:#c2185b
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<pre><code>MA22019/
+├── materials/         ← You'll clone this in Week 1
+├── practice/          ← Clone practice labs (like Lab 00) here
+├── homework/          ← Clone homework assignments here
+└── coursework/        ← Clone coursework assignments here</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>🛑 CRITICAL: Do NOT Move Folders Around!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you have created this structure, <strong>do not move or rename these folders</strong>.</p>
+<ul>
+<li>If you clone a repo into <code>practice/</code> and then drag-and-drop it into <code>materials/</code>, <strong>Git will break</strong>.</li>
+<li>If you rename <code>MA22019</code> to <code>My_Maths_Notes</code>, <strong>RStudio will get confused</strong>.</li>
+</ul>
+<p>Set it up once, leave it alone, and let RStudio manage the files inside. Simplicity is key!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can create these folders using File Explorer (Windows) or Finder (Mac), or use RStudio as shown below — whatever feels comfortable!</p>
+</div>
+</div>
+<p><strong>How to create folders in RStudio</strong> (optional method):</p>
+<ol type="1">
+<li>Open RStudio (not inside any project! Dont know what is a project? see below)</li>
+<li>In the <strong>Files</strong> pane (bottom-right), navigate to your Documents (or chosen location)</li>
+<li>Click <strong>New Folder</strong> → type <code>MA22019</code></li>
+<li>Click into <code>MA22019/</code></li>
+<li>Click <strong>New Folder</strong> → type <code>homework</code></li>
+<li>Click <strong>New Folder</strong> → type <code>coursework</code></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🎉 That’s All the Folders You Need!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re following the Git workflow (which you should!), this is the <em>only</em> manual folder creation you’ll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?</p>
+<p>You can jump to the <a href="../computing_setup/weekly_workflow.html">Weekly Workflow Guide</a> for details on how cloning works.</p>
+</div>
+</div>
+</section>
+<section id="using-the-h-drive-university-network-storage" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-h-drive-university-network-storage">Using the H: Drive (University Network Storage)</h2>
+<p>Your <strong>H: Drive</strong> is personal network storage that IT backs up for you. It’s a safe, reliable place for your work on university computers.</p>
+<section id="on-campus-lab-pcs" class="level3">
+<h3 class="anchored" data-anchor-id="on-campus-lab-pcs">On Campus (Lab PCs)</h3>
+<p>The H: Drive is automatically available — no setup needed!</p>
+<ol type="1">
+<li>Open <strong>File Explorer</strong> (Win+E)</li>
+<li>Look for <strong>(H:)</strong> under “This PC”</li>
+</ol>
+<p>That’s it!</p>
+</section>
+<section id="from-home-personal-laptop" class="level3">
+<h3 class="anchored" data-anchor-id="from-home-personal-laptop">From Home (Personal Laptop)</h3>
+<p>Want to access your H: Drive from home without using UniDesk or UniApps? Check the official university guides:</p>
+<ul>
+<li><strong>Windows</strong>: <a href="https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=f523cfb9-5538-4701-b5f9-2f0ed4ef8403">How to access your H: Drive vs VPN (Windows)</a></li>
+<li><strong>Mac</strong>: <a href="https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=16fc851afa754c558990c0b890124c26">How to access your H: Drive vs VPN (Mac)</a></li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="configure-git-in-rstudio" class="level1">
+<h1>3. Configure Git in RStudio</h1>
+<p><strong>New to Git?</strong> Curious why we bother with version control? Check out <a href="../computing_setup/why_teach_github.html">Why Learn Git?</a> — it’s a quick read and might change how you feel about it!</p>
+<p>Git is the version control system that connects RStudio to GitHub. You only need to set it up once per computer — then you’re good to go!</p>
+<section id="on-university-lab-computers" class="level2">
+<h2 class="anchored" data-anchor-id="on-university-lab-computers">On University Lab Computers</h2>
+<p>The good news: Git is already installed. But there is <strong>one critical step</strong> you must do to make it work with the university network drives (H: Drive).</p>
+<section id="critical-fix-the-dubious-ownership-error" class="level3">
+<h3 class="anchored" data-anchor-id="critical-fix-the-dubious-ownership-error">⚠️ Critical: Fix the “Dubious Ownership” Error</h3>
+<p>To verify your setup and ensure the Git pane appears:</p>
+<ol type="1">
+<li><p>Open <strong>RStudio</strong>.</p></li>
+<li><p>Click the <strong>Terminal</strong> tab (next to <strong>Console</strong>, usually bottom-left).</p></li>
+<li><p>Copy and paste this exact command and press <strong>Enter</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--add</span> safe.directory <span class="st">'*'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Restart RStudio</strong> (close and reopen it).</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why do I need this?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The University H: Drive has strict security settings that confuse Git. This command tells Git “It’s safe to use folders on this computer.”</p>
+<p><strong>If your Git pane ever disappears in the future, just run this command again!</strong> It resets occasionally on university PCs.</p>
+</div>
+</div>
+<p>Done! That was easy, right? ✅</p>
+</section>
+</section>
+<section id="on-personal-computers-windows" class="level2">
+<h2 class="anchored" data-anchor-id="on-personal-computers-windows">On Personal Computers (Windows)</h2>
+<p>If Git isn’t already installed, let’s fix that (or confirm it worked):</p>
+<ol type="1">
+<li>Open <strong>RStudio</strong></li>
+<li>Go to <strong>Tools → Global Options → Git/SVN</strong></li>
+<li>The Git executable should now show <code>C:\Program Files\Git\bin\git.exe</code></li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<p>High five! 🙌 You’re all set!</p>
+</section>
+<section id="on-personal-computers-mac" class="level2">
+<h2 class="anchored" data-anchor-id="on-personal-computers-mac">On Personal Computers (Mac)</h2>
+<p>Great news for Mac users — Git usually comes pre-installed! Let’s check:</p>
+<ol type="1">
+<li>Open <strong>RStudio</strong></li>
+<li>Go to <strong>Tools → Global Options → Git/SVN</strong></li>
+<li>Check if the Git executable shows <code>/usr/bin/git</code> or similar</li>
+</ol>
+</section>
+<section id="if-git-isnt-found" class="level2">
+<h2 class="anchored" data-anchor-id="if-git-isnt-found">If Git isn’t found</h2>
+<p>Here’s what to do:</p>
+<p><strong>On Windows</strong></p>
+<ol type="1">
+<li>Open <strong>Command Prompt</strong> (Start menu → type <code>cmd</code>)</li>
+<li>Type <code>git --version</code> and press Enter</li>
+<li>If it shows a version number, Git is installed! Copy the path from <code>where git</code> into RStudio settings</li>
+<li>If it says “not recognized”, install Git from <a href="https://git-scm.com/download/win">git-scm.com</a></li>
+</ol>
+<p><strong>On Mac:</strong></p>
+<ol type="1">
+<li>Open <strong>Terminal</strong> (Applications → Utilities → Terminal)</li>
+<li>Type <code>git --version</code> and press Enter</li>
+<li>If prompted, click <strong>Install</strong> to get the Xcode Command Line Tools</li>
+<li>Restart RStudio and check Git/SVN settings again</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>⚠️ Heads Up: Git Does NOT Work on Remote Desktop (UniDesk/UniApps)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re connecting to university computers remotely using <strong>UniDesk</strong> or <strong>UniApps</strong>, Git will <strong>not work</strong>. You can use RStudio fine, but Clone/Pull/Push operations will fail.</p>
+<p><strong>Your options</strong>: Use a <strong>physical lab computer</strong> on campus, or install R/RStudio/Git on your own laptop (honestly, it’s worth it!).</p>
+<p>More info: <a href="https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/">UniDesk/UniApps guide</a>.</p>
+</div>
+</div>
+</section>
+<section id="tell-git-who-you-are" class="level2">
+<h2 class="anchored" data-anchor-id="tell-git-who-you-are">Tell Git Who You Are</h2>
+<p>Almost there! Git needs to know your name and email so it can track who made which changes.</p>
+<p>In the RStudio <strong>Console</strong> (the pane with the <code>&gt;</code> prompt, usually bottom-left), run this once — just replace the example with <em>your</em> details:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)  <span class="co"># Only needed once</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"Your Name"</span>, <span class="at">user.email =</span> <span class="st">"abc123@bath.ac.uk"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Important: Use Your Bath Account Only
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use your <strong>Bath email address</strong> (<code>abc123@bath.ac.uk</code>), not your personal email</li>
+<li>You <strong>cannot</strong> use a personal GitHub.com account for this course</li>
+<li>We use <code>github.bath.ac.uk</code> (University of Bath’s enterprise GitHub), which is completely separate from <code>github.com</code></li>
+<li>Your Bath username and password work automatically — no need to create anything new!</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="clone-the-materials-repository" class="level1">
+<h1>4. Clone the Materials Repository</h1>
+<p>Time for the exciting part! 🎬 The <code>materials</code> repository will eventually contain all your course content: case studies, labs, and solutions. You’ll clone it once, then pull updates weekly.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/git_clone_flow.png" class="img-fluid figure-img"></p>
+<figcaption>How cloning works</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why Clone Instead of Downloading from Moodle?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You might be wondering: “Why not just download files from Moodle like in other courses?” Great question! Here’s why Git is better:</p>
+<p><strong>The Old Way (Moodle):</strong></p>
+<ol type="1">
+<li>Lecturer uploads homework to Moodle</li>
+<li>You log in, find the right folder, download a ZIP file</li>
+<li>You unzip it… somewhere on your computer</li>
+<li>Weeks later: “Where did I put that file?” 😩</li>
+<li>If the lecturer updates a file, you have to re-download everything and figure out what changed</li>
+</ol>
+<p><strong>The Git Way:</strong></p>
+<ol type="1">
+<li>You clone once — everything lands in the right place automatically</li>
+<li>When updates are available, you click <strong>Pull</strong> and only the <em>changed</em> files update</li>
+<li>Your folder structure stays organized forever</li>
+<li>Git tracks what changed and when — no guessing!</li>
+<li>Your work is automatically backed up to GitHub</li>
+</ol>
+<p>Think of it like the difference between printing every email vs.&nbsp;using Gmail. One is clunky and creates chaos; the other just <em>works</em>. 📧</p>
+</div>
+</div>
+</div>
+<p>Here’s how to clone the materials:</p>
+<ol type="1">
+<li>In RStudio: <strong>File → New Project → Version Control → Git</strong></li>
+<li><strong>Repository URL</strong>: <code>https://github.bath.ac.uk/ma22019-2026/materials.git</code></li>
+<li><strong>Project directory name</strong>: you can leave that blank if has not been already filled with <code>materials</code></li>
+<li><strong>Create project as subdirectory of</strong>: Browse to <code>MA22019/</code> and click <strong>Open</strong></li>
+<li>Click <strong>Create Project</strong></li>
+</ol>
+<p>RStudio will download everything and open the project automatically. Magic! ✨</p>
+<section id="authentication-if-asked-for-password" class="level2">
+<h2 class="anchored" data-anchor-id="authentication-if-asked-for-password">Authentication (If Asked for Password)</h2>
+<p>If RStudio asks for credentials when cloning, use:</p>
+<ul>
+<li><strong>Username</strong>: Your Bath username (e.g., <code>abc123</code>)</li>
+<li><strong>Password</strong>: Your university password</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We use <code>github.bath.ac.uk</code> (enterprise GitHub) which connects to your university login. You do NOT need a Personal Access Token or SSH keys for this course — keep it simple!</p>
+</div>
+</div>
+</section>
+<section id="verify-it-worked" class="level2">
+<h2 class="anchored" data-anchor-id="verify-it-worked">Verify It Worked</h2>
+<p>Take a moment to check everything looks right:</p>
+<ul>
+<li>✅ You should see a <strong>Git</strong> tab in the top-right pane</li>
+<li>✅ The <strong>Files</strong> pane should show folders like <code>case_studies/</code>, <code>labs/</code>, etc.</li>
+<li>✅ You should see a file called <code>check_location.R</code></li>
+</ul>
+<p>If you see all three, give yourself a pat on the back! 🎉</p>
+<hr>
+</section>
+<section id="test-pull-verify-your-setup" class="level2">
+<h2 class="anchored" data-anchor-id="test-pull-verify-your-setup">Test Pull (Verify Your Setup)</h2>
+<p>One last check! Let’s make sure you can pull updates:</p>
+<ol type="1">
+<li>In the <strong>Git</strong> pane (top-right), click the <strong>Pull</strong> button (blue down arrow ⬇️)</li>
+<li>You should see a message like “Already up to date” or watch files appear</li>
+<li>✅ If the Git pane works and Pull runs without errors, <strong>your setup is complete!</strong></li>
+</ol>
+<p>Congratulations — you’re ready to do data science! 🚀</p>
+</section>
+</section>
+<section id="rstudio-projects" class="level1">
+<h1>5. RStudio Projects</h1>
+<p>When you clone or pull from the course repository, you’ll notice an unfamiliar file with a <code>.Rproj</code> extension. This is an <strong>RStudio Project file</strong> — think of it as a bookmark that tells RStudio “this folder is a project.”</p>
+<section id="why-use-projects" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-projects">Why Use Projects?</h3>
+<p>Projects make your life <em>so</em> much easier:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Benefit</th>
+<th>What It Means For You</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Working directory</strong></td>
+<td>R knows where your files are — no more confusing file paths!</td>
+</tr>
+<tr class="even">
+<td><strong>Everything together</strong></td>
+<td>Data, code, and output all live in one tidy place</td>
+</tr>
+<tr class="odd">
+<td><strong>Reproducible</strong></td>
+<td>Your code works on any computer, not just yours</td>
+</tr>
+<tr class="even">
+<td><strong>Git integration</strong></td>
+<td>The Git pane appears automatically when you need it</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-to-open-a-project" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-open-a-project">How to Open a Project</h3>
+<p>When you want to work on a specific lab or homework:</p>
+<ol type="1">
+<li>Navigate to the project folder in File Explorer/Finder</li>
+<li>Double-click the <code>.Rproj</code> file</li>
+<li>RStudio opens with that project loaded — you’re ready to code!</li>
+</ol>
+</section>
+<section id="youll-have-multiple-.rproj-files" class="level3">
+<h3 class="anchored" data-anchor-id="youll-have-multiple-.rproj-files">You’ll Have Multiple .Rproj Files</h3>
+<p>As the semester progresses, your MA22019 folder will fill up with <code>.Rproj</code> files — one for each activity:</p>
+<pre><code>MA22019/
+├── materials/
+│   ├── materials.Rproj      ← For pulling course content
+│   ├── labs/
+│   │   ├── lab_01.Rproj
+│   │   └── lab_02.Rproj
+│   ├── lab_solutions/
+│   │   └── lab_01_sols.Rproj
+│   └── live_coding/
+│       └── live_coding_01.Rproj
+├── practice/
+│   └── lab-00-yourusername/
+│       └── lab-00.Rproj     ← Practice Lab 00
+├── homework/
+│   ├── hw-01-yourusername/
+│   │   └── hw_01.Rproj      ← Homework 1
+│   └── hw-02-yourusername/
+│       └── hw_02.Rproj      ← Homework 2
+└── coursework/
+│   └── cw-01-yourusername/
+│       └── cw_01.Rproj      ← Coursework 1</code></pre>
+<p>This is totally normal! Each <code>.Rproj</code> file keeps that assignment’s work separate and organized. Just remember: <strong>open one project at a time</strong> — don’t try to juggle multiple!</p>
+<blockquote class="blockquote">
+<p><strong>Golden Rule</strong>: Always work inside a project! If you don’t see a <code>.Rproj</code> file in your Files pane, you’re probably not in one.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="using-unidesk" class="level1">
+<h1>6. Using UniDesk</h1>
+<p>You can also access university computers remotely using <a href="https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/">UniDesk</a>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>⚠️ Reminder: Git Does NOT Work on Remote Desktop
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>One more time for the people in the back: <strong>Git doesn’t work on UniDesk!</strong> You can write and run R code, but Clone/Pull/Push won’t work.</p>
+<p>For Git workflows, use a physical lab computer or your own laptop with R/RStudio/Git installed locally.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="quick-reference-card" class="level1">
+<h1>7. Quick Reference Card</h1>
+<p><strong>Already finished setup?</strong> Bookmark this section! For detailed step-by-step instructions, see the <a href="../computing_setup/weekly_workflow.html">Weekly Workflow Guide</a>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Open Project</strong></td>
+<td>Double-click the <code>.Rproj</code> file</td>
+</tr>
+<tr class="even">
+<td><strong>Pull Updates</strong></td>
+<td>Git pane → <strong>Pull</strong> (⬇️ blue arrow)</td>
+</tr>
+<tr class="odd">
+<td><strong>Render</strong></td>
+<td>Source pane → <strong>Render</strong> (🚀 blue arrow)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="next-steps" class="level1">
+<h1>8. Next Steps</h1>
+<p>You made it! 🎉 Here’s what to do next:</p>
+<ul>
+<li>📖 Read the <a href="../computing_setup/weekly_workflow.html">Weekly Workflow Guide</a> to understand what you’ll do each week</li>
+<li>🔧 If something goes wrong (it happens to everyone!), check the <a href="../computing_setup/troubleshooting.html">Troubleshooting Guide</a></li>
+</ul>
+<p>Now go forth and wrangle some data! 📊</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/github\.bath\.ac\.uk\/ma22019-2026\/ma22019_website\.git");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../CHANGELOG.html" class="pagination-link" aria-label="Site Updates">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Site Updates</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../computing_setup/weekly_workflow.html" class="pagination-link" aria-label="Weekly Workflow">
+        <span class="nav-page-text">Weekly Workflow</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2026, University of Bath</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

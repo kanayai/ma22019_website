@@ -24,12 +24,14 @@ flowchart LR
         A["Course Materials"]
         B["Your Homework Repo"]
         E["Your Coursework Repo"]
+        G["Your Practice Repo"]
     end
     
     subgraph Computer["Your Computer"]
         C["materials/"]
         D["homework/hw-01/"]
         F["coursework/cw-01/"]
+        H["practice/lab-00/"]
     end
     
     A -->|Pull weekly| C
@@ -37,6 +39,8 @@ flowchart LR
     D -->|Push your work| B
     E -->|Clone once| F
     F -->|Push your work| E
+    G -->|Clone once| H
+    H -->|Push your work| G
     
     style A fill:#4a90d9,color:#fff
     style B fill:#e74c3c,color:#fff
@@ -44,6 +48,8 @@ flowchart LR
     style D fill:#27ae60,color:#fff
     style E fill:#e74c3c,color:#fff
     style F fill:#27ae60,color:#fff
+    style G fill:#27ae60,color:#fff
+    style H fill:#27ae60,color:#fff
 ```
 
 **Two simple concepts:**
