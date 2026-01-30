@@ -256,6 +256,34 @@ When merging this project:
 
 ---
 
+---
+
+## 🛡️ Protocol: "The Definition of Done" (AI TRIGGER)
+
+> **⚠️ AI AGENT INSTRUCTION:** 
+> You MUST check this list before marking ANY task as "Complete" or finishing a session.
+
+**If you have modified code or content:**
+1.  **Update `CHANGELOG.md`**:
+    - [ ] Did you add a new feature, guide, or policy? -> Add a bullet point.
+    - [ ] Did you fix a bug that students noticed? -> Add a bullet point.
+    - [ ] *Format*: `### DD Mon YYYY` \n `- **Type**: Description`.
+
+2.  **Update `AGENTS.md` (Self-Correction)**:
+    - [ ] Did you learn a new rule/constraint? (e.g., "Don't use X tool") -> Add it to `AGENTS.md`.
+    - [ ] Did the project structure change? -> Update the file tree map.
+
+3.  **Update `README.md`**:
+    - [ ] Did the "Quick Start" commands change?
+    - [ ] Are there new requirements?
+
+**The Logic:**
+- If it changes how the *site* looks -> `CHANGELOG.md`
+- If it changes how the *agent* works -> `AGENTS.md`
+- If it changes how *developers* setup -> `README.md`
+
+---
+
 ## Next Steps / TODO (Session Handoff - 2026-01-30)
 
 ### Completed This Session (Late Night)

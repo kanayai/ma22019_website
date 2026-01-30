@@ -22,6 +22,8 @@ website:
             text: Overview
           - href: course_info.qmd
             text: Assessment & Grading
+          - href: CHANGELOG.md
+            text: Site Updates
       - section: "Computing"
         contents:
           - href: computing_setup/setup.qmd
