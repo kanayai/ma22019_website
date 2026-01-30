@@ -194,7 +194,7 @@ See? You've been doing a version of this your whole academic life. Now you're ju
 
 # 3. Create Your Folder Structure
 
-Let's get organized! All your course work will live in one tidy folder. This takes 2 minutes and will save you *hours* of confusion later.
+Let's get organized! All your course work will live in one tidy folder. This takes a few  minutes and will save you *hours* of confusion later.
 
 ## Where to put the MA22019 folder
 
@@ -218,7 +218,6 @@ Why? Cloud sync services and Git are mortal enemies. Git creates thousands of ti
 - **University PCs**: The H: Drive is safe — use that!
 :::
 
-## The Folder Structure
 
 ## The Folder Structure
 
