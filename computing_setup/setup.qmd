@@ -110,7 +110,7 @@ We have prepared a **Master Script** that installs everything you need for the s
 
 1.  Open RStudio.
 2.  Go to **File > New File > R Script**.
-3.  Copy and paste the code below into the new file.
+3.  Copy and paste the code below into the new file. (Tip: You can use the copy icon 📋 in the top-right of the code block).
 4.  **Save the file** as `install_packages.R` in your `MA22019` folder.
 5.  Select all the code (Cmd+A / Ctrl+A).
 6.  Click **Run** (or press Cmd+Enter / Ctrl+Enter).
@@ -220,7 +220,9 @@ Why? Cloud sync services and Git are mortal enemies. Git creates thousands of ti
 
 ## The Folder Structure
 
-Create these three folders — you'll use them all semester:
+## The Folder Structure
+
+Create these **three** folders now (we will create the `materials` folder in the next step!):
 
 ```{mermaid}
 graph TD
@@ -239,8 +241,8 @@ graph TD
 
 ```
 MA22019/
-├── install_packages.R   ← (The file you just created!)
-├── materials/         ← You'll clone this in Week 1
+├── install_packages.R   
+├── materials/         ← (Created automatically in Section 5!)
 ├── practice/          ← Clone practice labs (like Lab 00) here
 ├── homework/          ← Clone homework assignments here
 └── coursework/        ← Clone coursework assignments here
@@ -273,8 +275,10 @@ You can create these folders using File Explorer (Windows) or Finder (Mac), or u
 2. In the **Files** pane (bottom-right), navigate to your Documents (or chosen location)
 3. Click **New Folder** → type `MA22019`
 4. Click into `MA22019/`
-5. Click **New Folder** → type `homework`
-6. Click **New Folder** → type `coursework`
+5. Click **New Folder** → type `practice`
+6. Click **New Folder** → type `homework`
+7. Click **New Folder** → type `coursework`
+8. (Do **not** create `materials` yet — RStudio will do it for you!)
 
 ::: {.callout-tip}
 ## 🎉 That's All the Folders You Need!
@@ -444,8 +448,8 @@ Here's how to clone the materials:
 
 1. In RStudio: **File → New Project → Version Control → Git**
 2. **Repository URL**: `https://github.bath.ac.uk/ma22019-2026/materials.git`
-3. **Project directory name**: you can leave that blank if has not been already filled with `materials`
-4. **Create project as subdirectory of**: Browse to `MA22019/` and click **Open**
+3. **Project directory name**: Leave as `materials` (this creates the folder for you!)
+4. **Create project as subdirectory of**: Browse and select your `MA22019` folder
 5. Click **Create Project**
 
 RStudio will download everything and open the project automatically. Magic! ✨
