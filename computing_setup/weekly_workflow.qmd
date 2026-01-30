@@ -28,8 +28,8 @@ flowchart LR
     
     subgraph Computer["Your Computer"]
         C["materials/"]
-        D["homework/hw_01/"]
-        F["coursework/cw_01/"]
+        D["homework/hw-01/"]
+        F["coursework/cw-01/"]
     end
     
     A -->|Pull weekly| C
@@ -132,7 +132,7 @@ Homeworks are **formative** (for learning, not your final grade). You'll get fee
 Each homework has a unique URL just for you. 
 
 1. **Find your URL on Moodle** 
-   - It looks like: `https://github.bath.ac.uk/ma22019-2026/hw_01-yourusername.git`
+   - It looks like: `https://github.bath.ac.uk/ma22019-2026/hw-01-yourusername.git`
    
 2. **Clone in RStudio**
    - Go to **File → New Project → Version Control → Git**
@@ -238,8 +238,8 @@ MA22019/
 │   ├── hw_01-yourusername/
 │   └── hw_02-yourusername/
 └── coursework/
-    ├── cw_01-yourusername/   ← Coursework goes here!
-    └── cw_02-yourusername/
+    ├── cw-01-yourusername/   ← Coursework goes here!
+    └── cw-02-yourusername/
 ```
 
 ### The 3-Commit Rule 📜
