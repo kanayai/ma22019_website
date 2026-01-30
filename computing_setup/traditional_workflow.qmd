@@ -21,6 +21,7 @@ Create this structure inside your `MA22019` folder:
 ```
 MA22019/
 ├── materials/                # Course materials (labs, solutions)
+├── practice/                 # Practice labs
 ├── homework/                 # Your personal homework activities
 └── coursework/               # Your personal coursework activities
 ```

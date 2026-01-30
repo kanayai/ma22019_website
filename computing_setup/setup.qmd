@@ -220,7 +220,20 @@ Why? Cloud sync services and Git are mortal enemies. Git creates thousands of ti
 
 Create these three folders — you'll use them all semester:
 
-![MA22019 folder structure](../img/folder_structure.png)
+```{mermaid}
+graph TD
+    root[MA22019]
+    root --> materials[materials/]
+    root --> practice[practice/]
+    root --> homework[homework/]
+    root --> coursework[coursework/]
+
+    style root fill:#f9f9f9,stroke:#333,,stroke-width:2px
+    style materials fill:#e1f5fe,stroke:#0277bd
+    style practice fill:#e8f5e9,stroke:#2e7d32
+    style homework fill:#fff3e0,stroke:#ef6c00
+    style coursework fill:#fce4ec,stroke:#c2185b
+```
 
 ```
 MA22019/

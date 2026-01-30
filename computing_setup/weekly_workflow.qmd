@@ -234,9 +234,10 @@ Just like homework, you submit your **source files** (`.qmd`, `.R`), not the ren
 ```
 MA22019/
 ├── materials/
+├── practice/          ← Practice labs (like Lab 00)
 ├── homework/
-│   ├── hw_01-yourusername/
-│   └── hw_02-yourusername/
+│   ├── hw-01-yourusername/
+│   └── hw-02-yourusername/
 └── coursework/
     ├── cw-01-yourusername/   ← Coursework goes here!
     └── cw-02-yourusername/
