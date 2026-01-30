@@ -225,9 +225,20 @@ Create these three folders — you'll use them all semester:
 ```
 MA22019/
 ├── materials/         ← You'll clone this in Week 1
+├── practice/          ← Clone practice labs (like Lab 00) here
 ├── homework/          ← Clone homework assignments here
 └── coursework/        ← Clone coursework assignments here
 ```
+
+::: {.callout-important}
+## 🛑 CRITICAL: Do NOT Move Folders Around!
+Once you have created this structure, **do not move or rename these folders**.
+
+- If you clone a repo into `practice/` and then drag-and-drop it into `materials/`, **Git will break**.
+- If you rename `MA22019` to `My_Maths_Notes`, **RStudio will get confused**.
+
+Set it up once, leave it alone, and let RStudio manage the files inside. Simplicity is key!
+:::
 
 ::: {.callout-note}
 You can create these folders using File Explorer (Windows) or Finder (Mac), or use RStudio as shown below — whatever feels comfortable!

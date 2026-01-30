@@ -138,6 +138,12 @@ ma22019_website/
 ├── _site/                   # Built website (gitignored)
 └── _solutions/              # Solution files (gitignored)
 ```
+MA22019/
+├── materials/         ← You'll clone this in Week 1
+├── practice/          ← Clone practice labs (like Lab 00) here
+├── homework/          ← Clone homework assignments here
+└── coursework/        ← Clone coursework assignments here
+```
 
 ---
 
