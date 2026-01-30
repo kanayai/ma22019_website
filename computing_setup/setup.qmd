@@ -18,7 +18,7 @@ Choose your adventure:
 **Great news!** R, RStudio, Quarto and  and Git are already installed. The IT team has done the hard work for you! 🙌
 
 *   Just **log in** to a PC.
-*   Then [jump straight to **Section 2: Create Your Folder Structure**](#create-your-folder-structure).
+*   Then [jump straight to **Section 3: Create Your Folder Structure**](#create-your-folder-structure).
 
 ## 1B. Using Your Own Laptop
 
@@ -37,7 +37,7 @@ Just choose your operating system and download the installer. The installation w
 
 ---
 
-# Your Computational Toolkit
+# 2. Your Computational Toolkit
 
 Let's meet the tools you'll be using this semester. Don't worry if they sound unfamiliar — by Week 2, they'll feel like old friends!
 
@@ -192,7 +192,7 @@ See? You've been doing a version of this your whole academic life. Now you're ju
 
 ---
 
-# 2. Create Your Folder Structure
+# 3. Create Your Folder Structure
 
 Let's get organized! All your course work will live in one tidy folder. This takes 2 minutes and will save you *hours* of confusion later.
 
@@ -249,8 +249,9 @@ MA22019/
 ### The "Practice" Folder = Your Sandbox 🏖️
 
 The `practice/` folder is special. 
+
 *   **Official Use:** It's for Lab 00 and other non-assessed practice tasks.
-*   **Your Use:** Think of it as your **Sandbox**. Want to test some code from a lecture? Want to try a new package? create a script in `practice/my_experiments.R`! It's the one place where you can be messy without breaking anything important.
+*   **Your Use:** Think of it as your **Sandbox**. Want to test some code from a lecture? Want to try a new package? create a script in `practice/my_experiments.R` for example! It's the one place where you can be messy without breaking anything important.
 
 ::: {.callout-important}
 ## 🛑 CRITICAL: Do NOT Move Folders Around!
@@ -306,7 +307,7 @@ Want to access your H: Drive from home without using UniDesk or UniApps? Check t
 
 ---
 
-# 3. Configure Git in RStudio
+# 4. Configure Git in RStudio
 
 **New to Git?** Curious why we bother with version control? Check out [Why Learn Git?](why_teach_github.md) — it's a quick read and might change how you feel about it!
 
@@ -409,7 +410,7 @@ use_git_config(user.name = "Your Name", user.email = "abc123@bath.ac.uk")
 
 ---
 
-# 4. Clone the Materials Repository
+# 5. Clone the Materials Repository
 
 Time for the exciting part! 🎬 The `materials` repository will eventually contain all your course content: case studies, labs, and solutions. You'll clone it once, then pull updates weekly.
 
@@ -484,7 +485,7 @@ One last check! Let's make sure you can pull updates:
 Congratulations — you're ready to do data science! 🚀
 
 
-# 5. RStudio Projects
+# 6. RStudio Projects
 
 When you clone or pull from the course repository, you'll notice an unfamiliar file with a `.Rproj` extension. This is an **RStudio Project file** — think of it as a bookmark that tells RStudio "this folder is a project."
 
@@ -544,7 +545,7 @@ This is totally normal! Each `.Rproj` file keeps that assignment's work separate
 ---
 
 
-# 6. Using UniDesk 
+# 7. Using UniDesk 
 
 You can also access university computers remotely using [UniDesk](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
 
@@ -558,7 +559,7 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 
 ---
 
-# 7. Quick Reference Card
+# 8. Quick Reference Card
 
 **Already finished setup?** Bookmark this section! For detailed step-by-step instructions, see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
@@ -569,7 +570,7 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 | **Render** | Source pane → **Render** (🚀 blue arrow) |
 ---
 
-# 8. Next Steps
+# 9. Next Steps
 
 You made it! 🎉 Here's what to do next:
 
