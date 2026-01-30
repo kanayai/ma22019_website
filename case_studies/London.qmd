@@ -34,7 +34,7 @@ class( London )
 ## Load and clean the population data
 
 ```{r}
-London_population <- read.csv("data/london.csv" )
+London_population <- read.csv("data/shapefiles/London.csv")
 London_population <- London_population %>% 
   mutate( Population = as.numeric( gsub("\\,","",Population) ) )
 ```

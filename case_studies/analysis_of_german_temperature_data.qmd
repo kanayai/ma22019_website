@@ -49,7 +49,7 @@ ggplot( Temperature, aes(x=longitude, y=latitude) ) +
 We load the shapefile with the read_sf() function
 
 ```{r}
-Germany <- read_sf( "data/shapefiles/gadm41_DEU_1.shp" )
+Germany <- read_sf( "data/gadm41_DEU_shp/gadm41_DEU_1.shp" )
 ```
 
 Let's slightly reduce the complexity of the shape
