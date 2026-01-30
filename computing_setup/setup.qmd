@@ -513,6 +513,9 @@ MA22019/
 │   │   └── lab_01_sols.Rproj
 │   └── live_coding/
 │       └── live_coding_01.Rproj
+├── practice/
+│   └── lab-00-yourusername/
+│       └── lab-00.Rproj     ← Practice Lab 00
 ├── homework/
 │   ├── hw-01-yourusername/
 │   │   └── hw_01.Rproj      ← Homework 1
