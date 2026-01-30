@@ -221,7 +221,7 @@ Why? Cloud sync services and Git are mortal enemies. Git creates thousands of ti
 
 ## The Folder Structure
 
-Create these **three** folders now (we will create the `materials` folder in the next step!):
+We will create **three** folders now (since we will create the `materials` folder in the next step!):
 
 ```{mermaid}
 graph TD
@@ -241,10 +241,10 @@ graph TD
 ```
 MA22019/
 ├── install_packages.R   
-├── materials/         ← (Created automatically in Section 5!)
-├── practice/          ← Clone practice labs (like Lab 00) here
-├── homework/          ← Clone homework assignments here
-└── coursework/        ← Clone coursework assignments here
+├── materials/         ← Created automatically in Section 5
+├── practice/          ← You will clone practice labs (like Lab 00 created in Section 6) or use as a sandbox for your own experiments
+├── homework/          ← You will clone homework assignments here
+└── coursework/        ← You will clone coursework assignments here
 ```
 
 ### The "Practice" Folder = Your Sandbox 🏖️
@@ -270,7 +270,7 @@ You can create these folders using File Explorer (Windows) or Finder (Mac), or u
 
 **How to create folders in RStudio** (optional method):
 
-1. Open RStudio (not inside any project! Dont know what is a project? see below)
+1. Open RStudio (not inside any project! Don't know what a project is? See Section 7 below)
 2. In the **Files** pane (bottom-right), navigate to your Documents (or chosen location)
 3. Click **New Folder** → type `MA22019`
 4. Click into `MA22019/`

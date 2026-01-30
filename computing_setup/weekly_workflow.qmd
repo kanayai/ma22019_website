@@ -339,6 +339,12 @@ That's normal on university computers. Just enter your Bath credentials each tim
 
 **Important**: If you have enabled **Two-Factor Authentication (2FA)** on your GitHub account, your regular password will NOT work. You must use a **Personal Access Token (PAT)** instead. See the [Troubleshooting Guide](troubleshooting.qmd#if-you-enabled-two-factor-authentication-2fa) for instructions.
 
+**Q: I tried to push and got a "403 Forbidden" error.**
+
+Don't panic! This usually happens if you try to push changes to the **course materials** repository.
+*   **Why:** The `materials` repo is read-only for students (so you don't accidentally delete the lecture notes!).
+*   **Fix:** You cannot push to `materials`. You should only **Pull** from it. If you want to save your own experiments, do them in your `practice/` folder instead.
+
 On your personal laptop, you can set up credential caching to avoid this.
 
 ---

@@ -35,6 +35,8 @@ ma22019_website/
 ├── case_studies/            # Extended analysis examples
 ├── live_coding/             # Live coding session files
 ├── computing_setup/         # Setup guides for students
+│   ├── InstallPackages.R    # The script students copy
+│   └── setup.qmd            # Main setup guide
 │
 ├── _admin/                  # Internal planning & legacy files
 │   ├── book_generation/     # Legacy PDF book generation files
@@ -62,6 +64,7 @@ ma22019_website/
 ## 📦 Data Management
 
 **Large data files are hosted on OneDrive and symlinked into the project.**
+(Note: The `materials` folder in the root is NOT the `ma22019-materials` repo. It simulates the student experience of cloning the separate materials repo).
 
 ### Symlink Architecture
 

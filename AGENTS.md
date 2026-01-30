@@ -292,7 +292,7 @@ When merging this project:
 
 ## Next Steps / TODO (Session Handoff - 2026-01-30)
 
-### Completed This Session (Late Night)
+### Completed This Session (2026-01-30)
 - [x] **Syncwork Fixed**: Diagnosed and fixed SSH remote URL mismatch for `ma22019_website` and fixed `syncwork` script failure.
 - [x] **Setup Guide Refined**: 
     - Updated folder trees to match `ma22019_tools` output (`hw_01-username`).
@@ -303,6 +303,14 @@ When merging this project:
     - `weekly_workflow.qmd`: Changed "HTML" output to "Markdown". Added 2FA/PAT warning.
     - `traditional_workflow.qmd`: Renamed "assignment" to "activity". Clarified download sources. Removed `_manual` suffix advice.
 - [x] **Verified**: Full site render and folder structure checks.
+
+- [x] **Lab 00 Prep**:
+    - [x] Consolidate email draft to `_admin/emails/students/pre_lab_00.md`.
+    - [x] Create dedicated "Cloning Lab 00" section in setup guide.
+    - [x] Clean up `materials` repo (remove outdated references).
+- [x] **Setup Guide Refined**:
+    - Addresses user feedback on folder nesting and copy tips.
+    - Explicitly clarified "403 Forbidden" errors.
 
 ### Next Session (URGENT)
 - [ ] **Finish `lab_00` template**: Ensure it's ready for deployment.
