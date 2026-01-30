@@ -485,7 +485,32 @@ One last check! Let's make sure you can pull updates:
 Congratulations — you're ready to do data science! 🚀
 
 
-# 6. RStudio Projects
+# 6. Your First Task: Practice 'Cloning' (Lab 00)
+
+Now that you've cloned the materials, let's practice with your personal repository for Lab 00.
+
+1.  **Find your repo URL**: 
+    - Go to `https://github.bath.ac.uk/ma22019-2026/lab-00-yourusername`
+    - (Replace `yourusername` with your actual username!)
+    - Copy the URL from your browser address bar.
+
+2.  **Clone it in RStudio**:
+    - Go to **File > New Project > Version Control > Git**.
+    - **Repository URL**: Paste the URL you just copied.
+    - **Project directory name**: Leave this as `lab-00-yourusername`.
+    - **Create project as subdirectory of**: Click **Browse** and navigate to `.../MA22019/practice`.
+    - Click **Create Project**.
+
+3.  **Verify**:
+    - RStudio should open your new project.
+    - Look in the **Files** pane (bottom-right). You should see a file called `lab_00.qmd`.
+    - Click on `lab_00.qmd` to open it.
+
+🎉 Success! You have just cloned your first personal repository. This is exactly how you will start every homework and coursework.
+
+---
+
+# 7. RStudio Projects
 
 When you clone or pull from the course repository, you'll notice an unfamiliar file with a `.Rproj` extension. This is an **RStudio Project file** — think of it as a bookmark that tells RStudio "this folder is a project."
 
@@ -545,7 +570,7 @@ This is totally normal! Each `.Rproj` file keeps that assignment's work separate
 ---
 
 
-# 7. Using UniDesk 
+# 8. Using UniDesk 
 
 You can also access university computers remotely using [UniDesk](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
 
@@ -559,7 +584,7 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 
 ---
 
-# 8. Quick Reference Card
+# 9. Quick Reference Card
 
 **Already finished setup?** Bookmark this section! For detailed step-by-step instructions, see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
@@ -570,7 +595,7 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 | **Render** | Source pane → **Render** (🚀 blue arrow) |
 ---
 
-# 9. Next Steps
+# 10. Next Steps
 
 You made it! 🎉 Here's what to do next:
 

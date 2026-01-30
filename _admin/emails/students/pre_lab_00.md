@@ -1,42 +1,36 @@
-# MA22019: Pre-Lab 0 To-Do List
+# Draft Email to Students
 
-**Subject**: MA22019: Your Pre-Lab Checklist (Get Ready for Lab 0!)
+**Subject:** MA22019: Urgent Setup Instructions for Week 1
 
-Hi everyone,
+Dear Students,
 
-Lab 0 is our "Setup & Launch" session. To ensure a smooth start, please go through this checklist before your first lab session.
+Welcome to MA22019!
 
-### ✅ MUST DO (Everyone)
-- [ ] **Read the Setup Guide**: This is your primary instruction manual. It is available on Moodle (or in the materials repo once cloned).
-- [ ] **Create a GitHub Account**: Go to [github.bath.ac.uk](https://github.bath.ac.uk) and sign in with your university credentials.
-- [ ] **Know Your Password**: Make sure you know your university password (you will need it to log in).
+I am very excited to start this journey into Data Science with you. This course is designed to be hands-on and practical, giving you the real-world tools used by data scientists today.
 
-### 💻 IF YOU ARE BRINGING YOUR OWN LAPTOP (Recommended)
-- [ ] **Install R**: Download it from [cloud.r-project.org](https://cloud.r-project.org).
-- [ ] **Install RStudio**: Download the "RStudio Desktop" from [posit.co](https://posit.co/download/rstudio-desktop/).
-- [ ] **Install Quarto**: Download it from [quarto.org](https://quarto.org).
-- [ ] **Install Git**:
-    - **Windows**: Download from [git-scm.com](https://git-scm.com/download/win).
-    - **Mac**: Open Terminal and type `git --version`. If it asks to install, say yes.
-- [ ] **Verify**: Open RStudio and check that you can see the "Git" tab in the top right pane (or go to Tools > Global Options > Git/SVN).
+We are using a professional software stack this semester (R, RStudio, and GitHub Enterprise). To ensure you are ready for the first lab on Monday, please complete the following **two items** this weekend.
 
-### 🏛️ IF YOU ARE USING A LAB COMPUTER
-- [ ] **Bring Headphones**: (Optional) If you want to watch any video guides during the session.
-- [ ] **Log In Early**: allow 5-10 minutes for the PC to log you in if it's your first time.
+### 1. Log in to GitHub (CRITICAL)
+Your personal course repositories have been created, but you cannot access them until you log in.
+*   **Action:** Go to [https://github.bath.ac.uk](https://github.bath.ac.uk) and log in with your university username/password.
+*   **Deadline:** Please do this **immediately**. If you don't, you will get a "404 Not Found" error in the lab.
 
-### 🐢 IF YOU HAVEN'T DONE ANY OF THE ABOVE
-- [ ] **Don't Panic**: Just show up to the lab. We will help you.
-- [ ] **Be Patient**: It might take a bit longer to get started, but we'll get you there.
+### 2. Complete the Setup Guide
+We have prepared a step-by-step guide to installing the required software.
+*   **Action:** Read and follow the [Computing Setup Guide](https://kanayai.github.io/ma22019_website/computing_setup/setup.html).
+*   **Time required:** ~20-30 minutes.
+*   **Important:** You will create a folder called `MA22019/practice` and clone your lab there. Do not put it inside `materials`!
 
----
+### What to expect on Monday
+When you arrive at the lab, you will check two things to confirm you are ready:
+1.  Can you access the course materials? (https://github.bath.ac.uk/ma22019-2026/materials)
+2.  Can you see your personal repository? (https://github.bath.ac.uk/ma22019-2026/lab-00-yourusername)
 
-### ⚠️ IMPORTANT: The "One Command" Check
-In Lab 0, **after you clone the course materials** (see Setup Guide), you will run this command in RStudio:
-`source("check_location.R")`
-
-This is our new magic wand 🪄 that tells you if you are in the right folder or not. It saves 99% of the headaches!
+If you have completed the steps above, both links will work perfectly.
 
 See you in the lab!
 
-Best,
-The MA22019 Team
+Best regards,
+
+Dr. Karim Anaya-Izquierdo
+MA22019 Lecturer
