@@ -85,8 +85,10 @@ For quick marking, copy and paste this into the Issue body:
  2. **Clone in RStudio**:
     *   RStudio: **File** > **New Project** > **Version Control** > **Git**.
     *   Paste the URL into "Repository URL".
-    *   **Tip**: Save it to a temporary folder (e.g., `~/Downloads/marking/`) so it doesn't clutter your main projects.
+    *   **Tip**: Save it to a temporary folder (e.g., `~/Downloads/marking/`).
+    *   **⚠️ CRITICAL**: Do NOT clone student repos inside your `materials` folder! This creates a "repo inside a repo" which breaks Git. Clone them to a separate folder (e.g., `MA22019/marking/`).
     *   Click **Create Project**.
+
  
  3. **Render**:
     *   Open the `.qmd` file.
