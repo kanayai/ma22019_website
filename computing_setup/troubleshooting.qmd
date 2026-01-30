@@ -25,8 +25,8 @@ These are the most common emergencies. Don't panic — they're all fixable!
 
 **Fix**:
 
-1. Click **Pull** first (blue down arrow)
-2. If prompted, commit any local changes
+1. **Commit** your local changes first
+2. Click **Pull** (blue down arrow) to merge changes from GitHub
 3. Now click **Push** — it should work
 
 ### 3. "My Git Pane Disappeared!"
@@ -201,7 +201,7 @@ The **W: Drive** (`\\waltz.campus.bath.ac.uk\wwwgroup`) is your **Personal Web S
 
 1. Move your files to the **H: Drive** or your local `MA22019/` folder
 2. Delete anything you accidentally saved to W: Drive
-3. Only use W: Drive if explicitly asked to host a final HTML webpage
+3. Only use W: Drive if explicitly asked to host a final webpage
 
 ---
 

@@ -50,8 +50,8 @@ flowchart LR
 
 | Action | When You Use It | What It Does |
 |--------|-----------------|--------------|
-| **Pull** ⬇️ | Every week for labs & solutions | Downloads updates to a repo you already have |
-| **Clone** 📋 | Once per homework/coursework | Creates a fresh copy of a new repo |
+| **Pull** ⬇️ | Every week for labs & solutions | **Downloads** updates to a repo you already have |
+| **Clone** 📋 | Once per homework/coursework | **Creates** a fresh copy of a new repo |
 
 That's it! Master these two actions and you're set for the whole semester. 💪
 
@@ -156,15 +156,15 @@ Always clone homework into `MA22019/homework/` and each coursework into `MA22019
 
 1. Open the `.qmd` file provided
 2. Work through the questions
-3. Click **Render** regularly to preview your work as HTML
+3. Click **Render** regularly to preview your work as Markdown
 4. **Save frequently!** (Ctrl/Cmd + S)
 
 ::: {.callout-tip}
 ## Previewing Your Work
 
-Every time you click **Render**, an HTML file is created on your computer. RStudio automatically opens it so you can see exactly how your finished report looks. This is how you check your work before submitting!
+Every time you click **Render**, a Markdown (.md) file is created on your computer. RStudio automatically opens the preview so you can see exactly how your finished report looks. This is how you check your work before submitting!
 
-The HTML file stays on your computer — it won't be uploaded to GitHub. You only submit your **source files** (`.qmd`, `.R`), and your Tutor or Lecturer will render them to check your output.
+The .md file stays on your computer — it won't be explicitly uploaded to GitHub (unless you push). You only submit your **source files** (`.qmd`, `.R`), and your Tutor or Lecturer will render them to check your output.
 :::
 
 ### Step 3: Commit Your Progress
@@ -224,7 +224,7 @@ Coursework is **summative** — it counts toward your final mark! The process is
 ::: {.callout-important}
 ## Coursework Submission Reminder
 
-Just like homework, you submit your **source files** (`.qmd`, `.R`), not the rendered HTML. The Lecturer will render your work for marking.
+Just like homework, you submit your **source files** (`.qmd`, `.R`), not the rendered Markdown. The Lecturer will render your work for marking.
 
 **Always click Render** before your final push to make sure your code actually runs without errors!
 :::
@@ -258,7 +258,7 @@ For coursework, we require **at least 3 commits** showing your progress. This is
 |--------|---------|
 | 1 | "Started data cleaning and exploration" |
 | 2 | "Completed analysis section with visualizations" |
-| 3 | "Finished write-up and rendered final HTML" |
+| 3 | "Finished write-up and rendered final Markdown" |
 
 ---
 
@@ -323,7 +323,11 @@ Visit `github.bath.ac.uk`, find your repo, and check that your latest files and 
 
 **Q: RStudio is asking for my password every time I push.**
 
-That's normal on university computers. Just enter your Bath credentials each time. On your personal laptop, you can set up credential caching to avoid this.
+That's normal on university computers. Just enter your Bath credentials each time.
+
+**Important**: If you have enabled **Two-Factor Authentication (2FA)** on your GitHub account, your regular password will NOT work. You must use a **Personal Access Token (PAT)** instead. See the [Troubleshooting Guide](troubleshooting.qmd#if-you-enabled-two-factor-authentication-2fa) for instructions.
+
+On your personal laptop, you can set up credential caching to avoid this.
 
 ---
 

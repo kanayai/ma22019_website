@@ -32,18 +32,17 @@ website:
             text: Troubleshooting
           - href: computing_setup/why_quarto.qmd
             text: Why Quarto?
-
           - href: computing_setup/traditional_workflow.qmd
             text: Manual Workflow (Not Recommended)
       - slides.qmd
-      - case_studies.qmd
-      - labs.qmd
-      - homework.qmd
-      - coursework.qmd
+#      - case_studies.qmd
+#      - labs.qmd
+#      - homework.qmd
+#      - coursework.qmd
 
   page-footer:
     background: "#005871"
-    left: "© Copyright 2025, University of Bath"
+    left: "© Copyright 2026, University of Bath"
     right: "Built with [Quarto](https://quarto.org/)"
 
 format:

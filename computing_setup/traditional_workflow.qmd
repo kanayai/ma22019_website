@@ -4,7 +4,7 @@ title: "Manual (Non-Git) Workflow"
 
 ---
 
-> **Note**: This guide is for students who **cannot** use Git. If you are using Git (recommended), see the [Weekly Workflow Guide](weekly_workflow.qmd).
+> **Note**: This guide is for students who **opt-out** of using Git. If you are using Git (recommended), see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
 ## 1. Organizing Your Workspace
 
@@ -21,17 +21,17 @@ Create this structure inside your `MA22019` folder:
 ```
 MA22019/
 ├── materials/                # Course materials (labs, solutions)
-├── homework/                 # Your personal homework assignments
-└── coursework/               # Your personal coursework assignments
+├── homework/                 # Your personal homework activities
+└── coursework/               # Your personal coursework activities
 ```
 
-### Inside an Assignment folder
-Every assignment you download will look like this. **Do not mess with this structure!**
+### Inside an Activity folder
+Every activity you download will look like this. **Do not mess with this structure!**
 
 ```
-my_assignment/
-├── my_assignment.Rproj   # DOUBLE-CLICK THIS to open RStudio
-├── my_assignment.qmd     # Write your answers here
+my_activity/
+├── my_activity.Rproj     # DOUBLE-CLICK THIS to open RStudio
+├── my_activity.qmd       # Write your answers here
 ├── data/                 # Data files live here
 └── README.md             # Instructions
 ```
@@ -51,20 +51,33 @@ Use this only if you absolutely refuse to use GitHub Desktop/RStudio Git.
 
 ---
 
-## 1. Getting the Assignment
+## 1. Getting the Activity
 
-Instead of cloning, you must manually download the files.
+Instead of cloning, you must manually download the files. There are two places you'll look, depending on what you need:
 
-1. Go to the assignment page on `github.bath.ac.uk`
-2. Click the green **Code** button
-3. Select **Download ZIP**
-4. Unzip the folder to your documents
-5. **Rename the folder** (e.g., `hw_01_manual`) so you don't confuse it later
+### A. For Course Materials (Labs, Lecture Notes)
+
+These live in the central **materials** repository.
+
+1. Go to the [materials repository](https://github.bath.ac.uk/ma22019-2026/materials)
+2. Click the green **Code** button $\to$ **Download ZIP**
+3. Open the ZIP and find the folder you need (e.g. `labs/lab_01`)
+4. Copy that specific folder into your `MA22019/materials/` folder
+
+### B. For Your Activities (Homework, Coursework)
+
+These live in your **personal** repository (e.g., `hw_01-yourusername`).
+
+1. Find your repository URL on Moodle (it points to `github.bath.ac.uk`)
+2. Click the green **Code** button $\to$ **Download ZIP**
+3. Unzip the folder
+4. **Rename the folder** to something clear (e.g., `hw_01`) — remove the `-main` suffix if present.
+5. Move it into your `MA22019/homework/` or `MA22019/coursework/` folder.
 
 ## 2. Doing the Work
 
 1. Open the `.Rproj` file in RStudio
-2. Work on your assignment
+2. Work on your activity
 3. **Save often** (Ctrl+S) — RStudio does NOT auto-save your history like Git does
 
 ## 3. Submitting (The Hard Part)

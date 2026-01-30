@@ -128,23 +128,21 @@ Coursework folders prefixed with `_` are ignored. To release:
 2. Update `coursework.qmd` with listing
 3. Re-render, commit, push
 
-### Assignment Deployment Strategy (Templates vs. Materials)
+### Assignment Deployment Strategy (ma22019_tools)
 
-We use a specific strategy to handle assignments (Labs, Homework) to avoid permission issues for students.
+We use the custom `ma22019_tools` R package to manage assignment distribution.
 
-1.  **Student Repos (The Templates)**:
-    *   Repositories like `lab_00` or `homework-01` on GitHub.
-    *   These are the **actual repositories** students will clone.
+1.  **Student Repos (The Deliverable)**:
+    *   Repositories like `lab_00-username` or `hw_01-username` on GitHub.
+    *   These are created from template repositories using `ma22019_tools`.
 
 2.  **`_templates/` Folder (Website Copy)**:
     *   Located inside this project (`ma22019_website/_templates/`).
-    *   **Purpose**: Serves as the "Golden Master" and is used to render the instructions onto the course website.
-    *   **Why**: This ensures that **what students read on the website** matches **what they get when they clone the repo**.
+    *   **Purpose**: "Golden Master" for rendering instructions on the course website.
 
 3.  **Why NOT in `materials`?**:
-    *   The `materials` repository is **read-only** for students.
-    *   If assignments lived there, students might try to work inside the materials project, hit "Push", and get a "Permission Denied" error.
-    *   **Solution**: Assignments are their own separate repositories (cloned from templates), and the website copy lives in `_templates` (or `practice/week_X` for rendering).
+    *   The `materials` repository is **read-only** for students (Labs/Notes only).
+    *   Assignments are personal repositories.
 
 ## 🖥️ Setup on a New Machine
 

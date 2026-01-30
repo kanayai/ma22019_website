@@ -253,28 +253,21 @@ When merging this project:
 
 ---
 
-## Next Steps / TODO (Session Handoff - 2026-01-28)
+## Next Steps / TODO (Session Handoff - 2026-01-30)
 
-### Completed This Session (Afternoon)
-- [x] Tested GitHub deployment workflow on `github.bath.ac.uk/ma22019-2026`
-- [x] Created `lab_00` template repo and tested student repo creation via R package
-- [x] Fixed `ma22019tools` R package for GitHub Enterprise support
-- [x] Created `materials` repo with `labs/lab_00/` and `lab_solutions/`
-- [x] Tested student clone and pull workflows successfully
-- [x] Created `_admin/tutor_guide.md` for tutor feedback workflow
-- [x] Tested tutor feedback via GitHub Issues
-- [x] Added `generate_tutor_list()` function for tutors to track marking progress
-- [x] Merged `ta_marking.md` into `tutor_guide.md`
-- [x] Updated `weekly_workflow.qmd` with HTML preview and source file submission explanations
-- [x] Removed incorrect claim about RStudio supporting Jupyter Notebooks
+### Completed This Session (Late Night)
+- [x] **Syncwork Fixed**: Diagnosed and fixed SSH remote URL mismatch for `ma22019_website` and fixed `syncwork` script failure.
+- [x] **Setup Guide Refined**: 
+    - Updated folder trees to match `ma22019_tools` output (`hw_01-username`).
+    - Added `labs`, `lab_solutions`, and `live_coding` to `materials` project structure in docs.
+    - Created actual `labs/` and `live_coding/` folders in the sibling `materials` repo.
+    - Simplified Quick Reference Card and Windows Git instructions.
+- [x] **Workflow Docs Updated**:
+    - `weekly_workflow.qmd`: Changed "HTML" output to "Markdown". Added 2FA/PAT warning.
+    - `traditional_workflow.qmd`: Renamed "assignment" to "activity". Clarified download sources. Removed `_manual` suffix advice.
+- [x] **Verified**: Full site render and folder structure checks.
 
-### Test Repos Created (in ma22019-2026 org)
-- `lab_00` - Template repo
-- `lab_00-kai21` - Test student repo
-- `lab_00-test-student` - Another test student repo  
-- `materials` - Course materials repo
-
-### Next Session
-- [ ] Create real roster CSV with tutor assignments
-- [ ] Test with more realistic student data
-- [ ] Consider cleanup of test repos before semester start
+### Next Session (URGENT)
+- [ ] **Finish `lab_00` template**: Ensure it's ready for deployment.
+- [ ] **Get Real Roster**: Import the actual student list.
+- [ ] **Deploy Lab 00**: Use `ma22019_tools` to deploy to the total number of students.

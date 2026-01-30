@@ -22,7 +22,7 @@ Choose your adventure:
 
 ## 1B. Using Your Own Laptop
 
-Using your own machine? Brilliant — having your own setup means you can work from anywhere (coffee shops, trains, your bed at 2am... not that we recommend that last one 😄).
+Using your own machine? Brilliant — having your own setup means you can work from anywhere.
 
 You'll need to install **four** things before your first lab:
 
@@ -71,7 +71,7 @@ When you first open RStudio, don't panic if it looks complicated! You'll see **t
 |------|----------|-------------|
 | **Source** | Top-left | Your code editor — where the magic happens! ✨ |
 | **Console** | Bottom-left | Run code and see immediate results (look for the `>` prompt) |
-| **Environment** | Top-right | Shows your data, variables, and those all-important Git buttons |
+| **Environment** | Top-right | Shows your data, variables, and those all-important Git buttons (when activated, see below) |
 | **Files/Plots/Help** | Bottom-right | Browse files, admire your plots, get help when stuck |
 
 > **Pro tip**: If a pane goes missing (it happens!), go to **View → Panes → Show All Panes** to bring it back.
@@ -96,9 +96,9 @@ You'll use these buttons constantly. Memorize them and you'll fly through your w
 | Button | Where | What It Does |
 |--------|-------|-------------|
 | **Run** | Source pane toolbar | Runs your selected code — see results instantly! |
-| **Render** | Source pane toolbar | Transforms your `.qmd` into a beautiful HTML or PDF |
-| **Pull** | Git pane (top-right) | Downloads the latest updates from GitHub |
-| **Push** | Git pane (top-right) | Uploads your amazing work to GitHub |
+| **Render** | Source pane toolbar | Transforms your `.qmd` into HTML, PDF or plain markdown |
+| **Pull** | Git pane (top-right) | **Downloads** the latest updates from GitHub |
+| **Push** | Git pane (top-right) | **Uploads** your amazing work to GitHub |
 
 ---
 
@@ -139,7 +139,7 @@ Still feeling a bit overwhelmed? Think of it like writing an essay for a literat
 | Track Changes | Git |
 | Google Drive | GitHub |
 
-![Comparison of tools: R is like English, RStudio is like Word, Quarto is like a .docx, Git is like Track Changes, and GitHub is like Google Drive](../img/r-english-analogy.jpg)
+![Comparison of tools](../img/r-english-analogy.jpg)
 
 See? You've been doing a version of this your whole academic life. Now you're just leveling up! 🚀
 
@@ -190,7 +190,7 @@ You can create these folders using File Explorer (Windows) or Finder (Mac), or u
 
 **How to create folders in RStudio** (optional method):
 
-1. Open RStudio (not inside any project)
+1. Open RStudio (not inside any project! Dont know what is a project? see below)
 2. In the **Files** pane (bottom-right), navigate to your Documents (or chosen location)
 3. Click **New Folder** → type `MA22019`
 4. Click into `MA22019/`
@@ -202,8 +202,29 @@ You can create these folders using File Explorer (Windows) or Finder (Mac), or u
 
 If you're following the Git workflow (which you should!), this is the *only* manual folder creation you'll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?
 
-See the [Weekly Workflow Guide](weekly_workflow.qmd) for details on how cloning works.
+You can jump to the [Weekly Workflow Guide](weekly_workflow.qmd) for details on how cloning works.
 :::
+
+
+## Using the H: Drive (University Network Storage)
+
+Your **H: Drive** is personal network storage that IT backs up for you. It's a safe, reliable place for your work on university computers.
+
+### On Campus (Lab PCs)
+
+The H: Drive is automatically available — no setup needed! 
+
+1. Open **File Explorer** (Win+E)
+2. Look for **(H:)** under "This PC"
+
+That's it!
+
+### From Home (Personal Laptop)
+
+Want to access your H: Drive from home without using UniDesk or UniApps? Check the official university guides:
+
+*   **Windows**: [How to access your H: Drive vs VPN (Windows)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=f523cfb9-5538-4701-b5f9-2f0ed4ef8403)
+*   **Mac**: [How to access your H: Drive vs VPN (Mac)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=16fc851afa754c558990c0b890124c26)
 
 ---
 
@@ -217,12 +238,12 @@ Git is the version control system that connects RStudio to GitHub. You only need
 
 The good news: Git is already installed. But there is **one critical step** you must do to make it work with the university network drives (H: Drive).
 
-### ⚠️ Critical: Fix "Dubious Ownership" Error
+### ⚠️ Critical: Fix the "Dubious Ownership" Error
 
 To verify your setup and ensure the Git pane appears:
 
 1. Open **RStudio**.
-2. Click the **Terminal** tab (next to Console, usually bottom-left).
+2. Click the **Terminal** tab (next to **Console**, usually bottom-left).
 3. Copy and paste this exact command and press **Enter**:
 
    ```bash
@@ -259,9 +280,11 @@ Great news for Mac users — Git usually comes pre-installed! Let's check:
 2. Go to **Tools → Global Options → Git/SVN**
 3. Check if the Git executable shows `/usr/bin/git` or similar
 
-If Git isn't found, here's what to do:
+## If Git isn't found
 
-**On Windows** (if Git wasn't detected):
+Here's what to do:
+
+**On Windows** 
 
 1. Open **Command Prompt** (Start menu → type `cmd`)
 2. Type `git --version` and press Enter
@@ -310,7 +333,7 @@ use_git_config(user.name = "Your Name", user.email = "abc123@bath.ac.uk")
 
 # 4. Clone the Materials Repository
 
-Time for the exciting part! 🎬 The `materials` repository contains all your course content: case studies, labs, and solutions. You'll clone it once, then pull updates weekly.
+Time for the exciting part! 🎬 The `materials` repository will eventually contain all your course content: case studies, labs, and solutions. You'll clone it once, then pull updates weekly.
 
 ![How cloning works](../img/git_clone_flow.png)
 
@@ -321,11 +344,11 @@ You might be wondering: "Why not just download files from Moodle like in other c
 
 **The Old Way (Moodle):**
 
-1. Instructor uploads homework to Moodle
+1. Lecturer uploads homework to Moodle
 2. You log in, find the right folder, download a ZIP file
 3. You unzip it... somewhere on your computer
 4. Weeks later: "Where did I put that file?" 😩
-5. If the instructor updates a file, you have to re-download everything and figure out what changed
+5. If the lecturer updates a file, you have to re-download everything and figure out what changed
 
 **The Git Way:**
 
@@ -342,10 +365,23 @@ Here's how to clone the materials:
 
 1. In RStudio: **File → New Project → Version Control → Git**
 2. **Repository URL**: `https://github.bath.ac.uk/ma22019-2026/materials.git`
-3. **Create project as subdirectory of**: Browse to `MA22019/` and click **Open**
-4. Click **Create Project**
+3. **Project directory name**: you can leave that blank if has not been already filled with `materials`
+4. **Create project as subdirectory of**: Browse to `MA22019/` and click **Open**
+5. Click **Create Project**
 
 RStudio will download everything and open the project automatically. Magic! ✨
+
+## Authentication (If Asked for Password)
+
+If RStudio asks for credentials when cloning, use:
+
+- **Username**: Your Bath username (e.g., `abc123`)
+- **Password**: Your university password
+
+::: {.callout-note}
+We use `github.bath.ac.uk` (enterprise GitHub) which connects to your university login. You do NOT need a Personal Access Token or SSH keys for this course — keep it simple!
+:::
+
 
 ## Verify It Worked
 
@@ -370,7 +406,7 @@ One last check! Let's make sure you can pull updates:
 Congratulations — you're ready to do data science! 🚀
 
 
-## Understanding RStudio Projects
+# 5. RStudio Projects
 
 When you clone or pull from the course repository, you'll notice an unfamiliar file with a `.Rproj` extension. This is an **RStudio Project file** — think of it as a bookmark that tells RStudio "this folder is a project."
 
@@ -400,14 +436,21 @@ As the semester progresses, your MA22019 folder will fill up with `.Rproj` files
 ```
 MA22019/
 ├── materials/
-│   └── materials.Rproj      ← For pulling course content
+│   ├── materials.Rproj      ← For pulling course content
+│   ├── labs/
+│   │   ├── lab_01.Rproj
+│   │   └── lab_02.Rproj
+│   ├── lab_solutions/
+│   │   └── lab_01_sols.Rproj
+│   └── live_coding/
+│       └── live_coding_01.Rproj
 ├── homework/
-│   ├── hw_01/
+│   ├── hw_01-yourusername/
 │   │   └── hw_01.Rproj      ← Homework 1
-│   └── hw_02/
+│   └── hw_02-yourusername/
 │       └── hw_02.Rproj      ← Homework 2
 └── coursework/
-│   └── cw_01/
+│   └── cw_01-yourusername/
 │       └── cw_01.Rproj      ← Coursework 1
 ```
 
@@ -416,66 +459,36 @@ This is totally normal! Each `.Rproj` file keeps that assignment's work separate
 > **Golden Rule**: Always work inside a project! If you don't see a `.Rproj` file in your Files pane, you're probably not in one. 
 
 
-## Authentication (If Asked for Password)
-
-If RStudio asks for credentials when cloning, use:
-
-- **Username**: Your Bath username (e.g., `abc123`)
-- **Password**: Your university password
-
-::: {.callout-note}
-We use `github.bath.ac.uk` (enterprise GitHub) which connects to your university login. You do NOT need a Personal Access Token or SSH keys for this course — keep it simple!
-:::
 
 ---
 
-## Using the H: Drive (University Network Storage)
 
-Your **H: Drive** is personal network storage that IT backs up for you. It's a safe, reliable place for your work on university computers.
+# 6. Using UniDesk 
 
-### On Campus (Lab PCs)
-
-The H: Drive is automatically available — no setup needed! 
-
-1. Open **File Explorer** (Win+E)
-2. Look for **(H:)** under "This PC"
-
-That's it!
-
-### From Home (Personal Laptop)
-
-Want to access your H: Drive from home? Check the official university guides:
-
-*   **Windows**: [How to access your H: Drive vs VPN (Windows)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=f523cfb9-5538-4701-b5f9-2f0ed4ef8403)
-*   **Mac**: [How to access your H: Drive vs VPN (Mac)](https://bath.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=16fc851afa754c558990c0b890124c26)
-
-### Alternative: Using UniDesk or UniApps
-
-You can also access university computers remotely using [UniDesk or UniApps](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
+You can also access university computers remotely using [UniDesk](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
 
 ::: {.callout-warning}
 ## ⚠️ Reminder: Git Does NOT Work on Remote Desktop
 
-One more time for the people in the back: **Git doesn't work on UniDesk/UniApps!** You can write and run R code, but Clone/Pull/Push won't work.
+One more time for the people in the back: **Git doesn't work on UniDesk!** You can write and run R code, but Clone/Pull/Push won't work.
 
 For Git workflows, use a physical lab computer or your own laptop with R/RStudio/Git installed locally.
 :::
 
 ---
 
-# 5. Quick Reference Card
+# 7. Quick Reference Card
 
 **Already finished setup?** Bookmark this section! For detailed step-by-step instructions, see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
 | Task | How |
 |------|-----|
-| Open materials | Double-click `materials.Rproj` in your MA22019 folder |
-| Get new labs/solutions | Open materials project → Git pane → **Pull** |
-| Start homework | Clone your assigned repo into `homework/` folder |
-| Start coursework | Clone your assigned repo into `coursework/` folder |
+| **Open Project** | Double-click the `.Rproj` file |
+| **Pull Updates** | Git pane → **Pull** (⬇️ blue arrow) |
+| **Render** | Source pane → **Render** (🚀 blue arrow) |
 ---
 
-# 6. Next Steps
+# 8. Next Steps
 
 You made it! 🎉 Here's what to do next:
 

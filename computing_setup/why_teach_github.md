@@ -79,9 +79,9 @@ Good news: you don't need to become a Git expert. For this course, you only need
 
 | Action | What It Does |
 |--------|--------------|
-| **Pull / Clone** | Downloads content (use Clone for new repos, Pull for updates) |
-| **Stage & Commit** | Saves your work locally with a message ("Completed Q1") |
-| **Push** | Uploads your saved work to GitHub |
+| **Pull / Clone** | **Downloads** content (use Clone for new repos, Pull for updates) |
+| **Stage & Commit** | **Saves** your work locally with a message ("Completed Q1") |
+| **Push** | **Uploads** your saved work to GitHub |
 
 That's it! You'll do all of this through RStudio's buttons — no scary command line required.
 
