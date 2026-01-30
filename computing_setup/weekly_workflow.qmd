@@ -12,6 +12,11 @@ Welcome to your weekly workflow guide! 🗓️ This page tells you exactly what 
 
 ---
 
+::: {.callout-tip}
+## 🏖️ The Practice Sandbox
+The `practice/` folder isn't just for Lab 00! Use it as your personal **Sandbox** throughout the semester. if you want to test a function from a lecture or try out an idea, create a script inside `practice/` (e.g., `practice/experiment_week1.R`). It keeps your main `materials` and `homework` folders clean!
+:::
+
 
 
 ## The Big Picture: How This Course Works

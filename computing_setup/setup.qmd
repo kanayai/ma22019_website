@@ -37,52 +37,6 @@ Just choose your operating system and download the installer. The installation w
 
 ---
 
-## 1C. Install R Packages (The "Apps")
-
-R is like a new phone—it's great, but you need to install "apps" (called **packages**) to make it useful.
-
-We have prepared a **Master Script** that installs everything you need for the semester (Tidyverse, Mapping tools, etc.).
-
-1.  Open RStudio.
-2.  Go to **File > New File > R Script**.
-3.  Copy and paste the code below into the new file.
-4.  **Save the file** as `install_packages.R` in your `MA22019` folder.
-5.  Select all the code (Cmd+A / Ctrl+A).
-6.  Click **Run** (or press Cmd+Enter / Ctrl+Enter).
-
-```r
-# MA22019: Master Package Installation Script
-# Run this entire chunk to install/update course packages
-
-install_if_missing <- function(packages) {
-  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
-  if(length(new_packages)) {
-    message("Installing: ", paste(new_packages, collapse = ", "))
-    install.packages(new_packages)
-  } else {
-    message("✅ All packages in this group are already installed.")
-  }
-}
-
-# 1. Core Data Science
-install_if_missing(c("tidyverse", "rmarkdown", "knitr", "lubridate"))
-
-# 2. Visualization
-install_if_missing(c("patchwork", "RColorBrewer", "scales"))
-
-# 3. Text Analysis
-install_if_missing(c("tidytext", "wordcloud", "textdata"))
-
-# 4. Spatial Analysis
-install_if_missing(c("sf", "tmap", "ggspatial", "prettymapr", "sp", "gstat", "spatstat", "raster"))
-
-message("🎉 Setup Complete! You are ready for MA22019.")
-```
-
-> **Note:** This might take a few minutes. If it asks "Do you want to restart R prior to installing?", click **Yes**.
-
----
-
 # Your Computational Toolkit
 
 Let's meet the tools you'll be using this semester. Don't worry if they sound unfamiliar — by Week 2, they'll feel like old friends!
@@ -145,6 +99,53 @@ You'll use these buttons constantly. Memorize them and you'll fly through your w
 | **Render** | Source pane toolbar | Transforms your `.qmd` into HTML, PDF or plain markdown |
 | **Pull** | Git pane (top-right) | **Downloads** the latest updates from GitHub |
 | **Push** | Git pane (top-right) | **Uploads** your amazing work to GitHub |
+
+---
+
+##  Install R Packages (The "Apps")
+
+R is like a new phone—it's great, but you need to install "apps" (called **packages**) to make it useful.
+
+We have prepared a **Master Script** that installs everything you need for the semester (Tidyverse, Mapping tools, etc.).
+
+1.  Open RStudio.
+2.  Go to **File > New File > R Script**.
+3.  Copy and paste the code below into the new file.
+4.  **Save the file** as `install_packages.R` in your `MA22019` folder.
+5.  Select all the code (Cmd+A / Ctrl+A).
+6.  Click **Run** (or press Cmd+Enter / Ctrl+Enter).
+
+```r
+# MA22019: Master Package Installation Script
+# Run this entire chunk to install/update course packages
+
+install_if_missing <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    message("Installing: ", paste(new_packages, collapse = ", "))
+    install.packages(new_packages)
+  } else {
+    message("✅ All packages in this group are already installed.")
+  }
+}
+
+# 1. Core Data Science
+install_if_missing(c("tidyverse", "rmarkdown", "knitr", "lubridate"))
+
+# 2. Visualization
+install_if_missing(c("patchwork", "RColorBrewer", "scales"))
+
+# 3. Text Analysis
+install_if_missing(c("tidytext", "wordcloud", "textdata"))
+
+# 4. Spatial Analysis
+install_if_missing(c("sf", "tmap", "ggspatial", "prettymapr", "sp", "gstat", "spatstat", "raster"))
+
+message("🎉 Setup Complete! You are ready for MA22019.")
+```
+
+> **Note:** This might take a few minutes. If it asks "Do you want to restart R prior to installing?", click **Yes**.
+
 
 ---
 
@@ -244,6 +245,12 @@ MA22019/
 ├── homework/          ← Clone homework assignments here
 └── coursework/        ← Clone coursework assignments here
 ```
+
+### The "Practice" Folder = Your Sandbox 🏖️
+
+The `practice/` folder is special. 
+*   **Official Use:** It's for Lab 00 and other non-assessed practice tasks.
+*   **Your Use:** Think of it as your **Sandbox**. Want to test some code from a lecture? Want to try a new package? create a script in `practice/my_experiments.R`! It's the one place where you can be messy without breaking anything important.
 
 ::: {.callout-important}
 ## 🛑 CRITICAL: Do NOT Move Folders Around!
