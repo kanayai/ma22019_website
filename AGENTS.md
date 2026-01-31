@@ -2,6 +2,31 @@
 
 > **For AI Agents**: This document provides everything you need to understand and work with this project. Read this first before making any changes.
 
+## 🚨 CRITICAL HANDOVER (31 Jan 2026 - Interrupted)
+
+**Context**: The user switched computers because the current one lacked the `ma22019tools` and `gh` packages needed to run deployment scripts.
+
+**IMMEDIATE TODO (Next Machine):**
+1.  **Deploy Tutor Repo**:
+    *   Open RStudio.
+    *   Ensure `ma22019tools` is installed/loaded.
+    *   Run: `source("_admin/deploy_lab_00_tutors.R")`
+    *   *Goal*: Create repo `lab-00-jh3671` for the tutor who just logged in.
+2.  **Send Tutor Email**:
+    *   After the script runs, go to `_admin/emails/tutors/reply_jh3671_login.md`.
+    *   Use that text to reply to the tutor.
+3.  **Send Student/Staff Emails**:
+    *   The main student email (`pre_lab_00.md`) and the main tutor email (`tutor_email_draft.md`) are **FINALIZED** and ready to send.
+    *   The website is **PUBLISHED** and ready.
+
+**Status of "Semester Ready" Mission:**
+- [x] Website (Logo V3, Guides updated) -> **PUBLISHED**
+- [x] Email Drafts -> **FINALIZED**
+- [x] Admin Docs (Tutor Guide) -> **UPDATED**
+- [ ] **BLOCKER**: `jh3671` repo creation failed on previous machine.
+
+---
+
 ## Project Overview
 
 **MA22019 Course Website** - A Quarto-based educational website for the "Introduction to Data Science" course at the University of Bath. The site includes lecture notes, slides, labs, homework, quizzes, case studies, and coursework.
