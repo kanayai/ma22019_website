@@ -16,7 +16,13 @@ When moving to another machine, follow these steps to bring it in sync:
     git pull --prune
     ```
 
-2.  **Clean Untracked/Old Folders**:
+2.  **Install Admin Tools** (Admin Only):
+    If you are deploying assignments, you need the internal tools package.
+    ```r
+    source("_admin/setup_admin_tools.R")
+    ```
+
+3.  **Clean Untracked/Old Folders**:
     **WARNING**: This deletes all files not tracked by Git. Ensure you don't have local backups you want to keep inside the repo folder.
     ```bash
     git clean -fd

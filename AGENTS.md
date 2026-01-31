@@ -2,30 +2,7 @@
 
 > **For AI Agents**: This document provides everything you need to understand and work with this project. Read this first before making any changes.
 
-## 🚨 CRITICAL HANDOVER (31 Jan 2026 - Interrupted)
 
-**Context**: The user switched computers because the current one lacked the `ma22019tools` and `gh` packages needed to run deployment scripts.
-
-**IMMEDIATE TODO (Next Machine):**
-1.  **Deploy Tutor Repo**:
-    *   Open RStudio.
-    *   Ensure `ma22019tools` is installed/loaded.
-    *   Run: `source("_admin/deploy_lab_00_tutors.R")`
-    *   *Goal*: Create repo `lab-00-jh3671` for the tutor who just logged in.
-2.  **Send Tutor Email**:
-    *   After the script runs, go to `_admin/emails/tutors/reply_jh3671_login.md`.
-    *   Use that text to reply to the tutor.
-3.  **Send Student/Staff Emails**:
-    *   The main student email (`pre_lab_00.md`) and the main tutor email (`tutor_email_draft.md`) are **FINALIZED** and ready to send.
-    *   The website is **PUBLISHED** and ready.
-
-**Status of "Semester Ready" Mission:**
-- [x] Website (Logo V3, Guides updated) -> **PUBLISHED**
-- [x] Email Drafts -> **FINALIZED**
-- [x] Admin Docs (Tutor Guide) -> **UPDATED**
-- [ ] **BLOCKER**: `jh3671` repo creation failed on previous machine.
-
----
 
 ## Project Overview
 
@@ -284,6 +261,7 @@ When merging this project:
 3. **`_admin/`** contains internal planning files that can be ignored
 4. **`_quizzes/`** contains quiz solutions (separate from student-facing `practice/`)
 5. **Check OneDrive paths** if moving to a different machine
+6. **Run `_admin/setup_admin_tools.R`** if you need to deploy assignments or send emails.
 
 ---
 
