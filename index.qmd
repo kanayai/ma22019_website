@@ -9,7 +9,27 @@ Welcome to the course website for MA22019.
 
 ## Course Overview
 
-This module introduces students to the statistical analysis of spatial data.
+### Synopsis
+
+You will explore methods for understanding large data sets, using data visualization, data wrangling and tools for spatial and text data analysis. The unit will draw on data sets from a variety of applications and use R to explore the data-analysis techniques.
+
+### Learning Outcomes
+
+By the end of the module you will be able to:
+
+- Demonstrate knowledge of data science techniques.
+- Use R for data visualization and wrangling.
+- Show awareness of the applications of these methods.
+- Understand the mathematical models underlying spatial data and text data.
+- Apply these methods in R to analyse large-scale complex data sets.
+
+### Content
+
+- Data wrangling using R
+- Techniques for visualising data in R
+- Statistical analysis of text data
+- Spatial data analysis
+- Application of data science to analyse large-scale complex data sets
 
 ## Computing
 
