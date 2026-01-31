@@ -7,10 +7,13 @@ website:
   title: "MA22019"
   description: "Introduction to Data Science at the University of Bath"
   page-navigation: true
+  favicon: img/logo.png
+
 
   repo-url: https://github.bath.ac.uk/ma22019-2026/ma22019_website/
 
   sidebar:
+    logo: img/logo.png
     background: "#005871"
     style: docked
     search: true
