@@ -27,3 +27,5 @@ This page lists significant updates to the course website and guide materials. C
 - **Creative**: Added new custom "Lucha Data" hex sticker as site logo and favicon.
 - **Structure**: Renamed "Course Information" page to "Assessment" and updated coursework release/deadline dates.
 - **Guide Update**: Added "Important Best Practices" section to `traditional_workflow.qmd` covering submission formats and file naming.
+- **Logo Update**: Finalized site logo to "Intro to Data Science" edition (text inside border) - Version 3.
+- **Admin**: Finalized emails (`pre_lab_00.md`, `tutor_email_draft.md`) and updated `tutor_guide.md` with Safe Cloning rules.

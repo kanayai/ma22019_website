@@ -3,6 +3,16 @@
 This guide explains how to provide feedback on student homework and coursework using GitHub Issues.
 
 ---
+---
+
+## Recent Course Updates (Jan 2026)
+Please be aware of these instructions recently sent to students:
+
+1.  **Manual Workflow**: Students opting out of Git have been given strict "Best Practices" (file naming, data limits, manual submission).
+2.  **Assessment Page**: The "Assessment & Grading" page is now just "Assessment" and contains the definitive release/deadline dates.
+3.  **Lab 0 Access**: Students are explicitly told that Lab 0 is **not** on Moodle and must be accessed via the Setup Guide.
+
+---
 
 ## Quick Reference
 
@@ -68,14 +78,7 @@ For quick marking, copy and paste this into the Issue body:
     *   **What you see**: The exact report the student produced (plots, tables, etc.).
     *   **Limitation**: You can't run the code yourself, but you can see their results.
  
- #### Option B: The "Deep Dive" (Local Render)
- *Use only if the Markdown looks broken or you suspect academic misconduct.*
- 
- 1. **Clone** the repo locally (see below).
- 2. Open the `.qmd` file.
- 3. Run the code line-by-line or click **Render**.
- 
- #### Option B: Full Verification (Local Render)
+#### Option B: Full Verification (Recommended for Grading)
  *Best for checking plots, ensuring code runs without errors, and final grading.*
  
  1. **Copy the Clone URL**:
@@ -85,11 +88,13 @@ For quick marking, copy and paste this into the Issue body:
  2. **Clone in RStudio**:
     *   RStudio: **File** > **New Project** > **Version Control** > **Git**.
     *   Paste the URL into "Repository URL".
-    *   **Tip**: Save it to a temporary folder (e.g., `~/Downloads/marking/`).
-    *   **⚠️ CRITICAL**: Do NOT clone student repos inside your `materials` folder! This creates a "repo inside a repo" which breaks Git. Clone them to a separate folder (e.g., `MA22019/marking/`).
-    *   Click **Create Project**.
+    *   **Tip**: Save it to a dedicated marking folder (e.g., `~/Desktop/marking/`).
+    
+    > **⚠️ SAFE CLONING RULE:**
+    > **NEVER** clone student repos inside your own `MA22019` project folder or the `materials` folder.
+    > *   **Why?** This creates a "repo inside a repo" (nested git repositories), which breaks version control.
+    > *   **Do:** Always clone student work to a completely separate location (e.g., `Downloads` or a dedicated `Marking` folder outside your project).
 
- 
  3. **Render**:
     *   Open the `.qmd` file.
     *   Click the **Render** button (blue arrow).
