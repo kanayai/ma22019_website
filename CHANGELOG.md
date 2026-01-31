@@ -24,3 +24,6 @@ This page lists significant updates to the course website and guide materials. C
 - **Workflow Refinement**: Updated `weekly_workflow.qmd` to explicitly require using the full repo name as the directory name when cloning (replacing "leave blank").
 - **New Feature**: Added a "Verify Your Location" step to `weekly_workflow.qmd` using the `check_location.R` script.
 - **Content Update**: Updated the Course Overview (`index.qmd`) with the official module synopsis, learning outcomes, and content list.
+- **Creative**: Added new custom "Lucha Data" hex sticker as site logo and favicon.
+- **Structure**: Renamed "Course Information" page to "Assessment" and updated coursework release/deadline dates.
+- **Guide Update**: Added "Important Best Practices" section to `traditional_workflow.qmd` covering submission formats and file naming.
