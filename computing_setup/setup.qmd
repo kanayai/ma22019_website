@@ -20,6 +20,21 @@ Choose your adventure:
 *   Just **log in** to a PC.
 *   Then [jump straight to **Section 2: Your Computational Toolkit**](#your-computational-toolkit).
 
+::: {.callout-note}
+## 🏫 Important: Using University Computers
+
+While everything is installed, there are a few quirks to be aware of:
+
+1.  **Re-installing Packages**: R packages are often stored in a temporary location (`C:/Users/.../AppData/`). This folder is **wiped** when you log off or switch computers.
+    *   **The Fix**: Keep the `install_packages.R` script handy! You may need to run it again at the start of a session if your packages are missing.
+
+2.  **"Rtools is Missing" Warning**: When running the install script, you might see a scary red warning about `Rtools` not being installed.
+    *   **The Fix**: **Ignore it.** Rtools is for compiling packages from source. We use pre-built binaries, so you don't need it. As long as you see `Setup Complete` at the end, you are fine!
+
+3.  **Storage Limits**: Your H: Drive ("MyFiles") is safe and persistent, but it only has **8GB** of space.
+    *   **Advice**: Keep your active code projects on H:, but move large datasets or old projects to your OneDrive or a USB stick if you run out of space.
+:::
+
 ## 1B. Using Your Own Laptop
 
 Using your own machine? Brilliant — having your own setup means you can work from anywhere.

@@ -212,6 +212,16 @@ When you push, **everything** in your folder is uploaded. You may submit your wo
 2.  **R Script (`.R`)**: Good for pure code or scripts without narrative.
 3.  **Markdown File (`.md`)**: Useful if you prefer writing in plain Markdown.
 
+::: {.callout-note}
+## Why not HTML or PDF?
+In other courses, you might be asked to submit `.html` or `.pdf` files. **We don't do that here.**
+
+*   **HTML/PDF**: Great for emailing, but they are "binary blobs" to GitHub — you can't see the diffs (changes) easily online.
+*   **Markdown (`.md`)**: GitHub *natively* renders this. When your Tutor looks at your repo, they see your report immediately, including your plots and tables.
+
+So, while we love Quarto, we care most about the `.md` file it generates!
+:::
+
 **Why submit the `.md` file?**
 The `.md` file (the "Cake") lets Tutors instantly see your plotted graphs and tables on GitHub without running code. The source file (the "Recipe") allows them to reproduce your analysis.
 :::
