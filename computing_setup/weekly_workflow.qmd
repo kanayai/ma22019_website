@@ -151,10 +151,15 @@ Each homework has a unique URL just for you.
 2. **Clone in RStudio**
    - Go to **File → New Project → Version Control → Git**
    - Paste your URL
-   - Leave 'Project directory name' blank
+   - **Project directory name**: Ensure this matches your repo name (e.g., `hw-01-yourusername`)
    - **Important!** Click **Browse** and navigate to `MA22019/homework/`
    - Check the box 'Open in new session'
    - Click **Create Project**
+
+3. **Verify Your Location (Optional)**
+    - If the project includes a script called `check_location.R`, open it and click **Run**.
+    - It will confirm if you are in the correct folder structure.
+
 
 ![How cloning works](../img/git_clone_flow.png)
 
@@ -210,7 +215,7 @@ When you push, **everything** in your folder is uploaded. You may submit your wo
 
 1.  **Quarto Document (`.qmd`)**: The gold standard. Submitting the source `.qmd` and the rendered `.md` is best practice.
 2.  **R Script (`.R`)**: Good for pure code or scripts without narrative.
-3.  **Markdown File (`.md`)**: Useful if you prefer writing in plain Markdown.
+
 
 ::: {.callout-note}
 ## Why not HTML or PDF?
@@ -262,7 +267,7 @@ We have over 180 repositories to manage, so we need to be careful with storage s
     *   Load the data directly from a URL (e.g., `read_csv("https://...")`).
     *   Or, use an R package that contains the data (e.g., `library(palmerpenguins)`).
 
-If you are unsure if your data is "too big," ask on the discussion forum!
+If you are unsure if your data is "too big," ask your Lecturer or Tutor!
 
 ### Your Folder Structure
 
