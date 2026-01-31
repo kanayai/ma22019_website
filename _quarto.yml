@@ -36,7 +36,7 @@ website:
             text: Why Quarto?
           - href: computing_setup/traditional_workflow.qmd
             text: Manual Workflow (Not Recommended)
-      - slides.qmd
+#      - slides.qmd
 #      - case_studies.qmd
 #      - labs.qmd
 #      - homework.qmd
