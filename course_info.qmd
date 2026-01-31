@@ -1,17 +1,15 @@
 ---
-title: "Course Information"
+title: "Assessment"
 ---
 
 ## Assessment Structure
 
-This course has three types of activities:
+The course assessment consists of two coursework assignments:
 
-| Type | Weight | Feedback | Where |
-|------|--------|----------|-------|
-| **Labs** | 0% (Formative) | Self-check with solutions | Computer labs |
-| **Homework** | 0% (Formative) | Tutor feedback on GitHub | Weekly assignments |
-| **Coursework 1** |  (Summative) | Lecturer feedback on GitHub | Coursework 1 |
-| **Coursework 2** |  (Summative) | Lecturer feedback on GitHub | Coursework 2 |
+| Assignment | Weight | Release Date | Deadline |
+|:-----------|:------:|:-------------|:---------|
+| **Coursework 1** | 40% | 5th March | 13th March |
+| **Coursework 2** | 60% | 23rd April | 1st May |
 
 ---
 

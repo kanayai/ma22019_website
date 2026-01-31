@@ -24,7 +24,7 @@ website:
           - href: index.qmd
             text: Overview
           - href: course_info.qmd
-            text: Assessment & Grading
+            text: Assessment
           - href: CHANGELOG.md
             text: Site Updates
       - section: "Computing"

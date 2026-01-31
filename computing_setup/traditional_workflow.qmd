@@ -108,6 +108,30 @@ Tutors mark on GitHub. To see their feedback:
 
 ---
 
+---
+
+## 5. Important Best Practices
+
+Even without Git, you must follow these course rules:
+
+### A. Submission Formats
+When uploading your work, always submit:
+1.  **Source Code**: `.qmd` or `.R` files.
+2.  **Rendered Output**: `.md` files (if your .qmd generates one).
+    - **Do NOT submit** HTML or PDF files unless specifically asked. The GitHub website cannot display them properly.
+
+### B. File Naming Rules
+Bad file names break code. Follow these rules:
+*   **No spaces**: Use underscores (`my_file.R`) instead of spaces (`my file.R`).
+*   **No special characters**: Avoid `!`, `?`, `&`, etc.
+*   **Use dates**: `2026-02-01_analysis.R` is better than `analysis_final.R`.
+
+### C. Data Management
+*   **Small Data (< 10MB)**: It is okay to upload small CSV/Excel files.
+*   **Large Data (> 10MB)**: Do **not** upload large datasets. Load them from a URL in your script instead.
+
+---
+
 ## Why we don't recommend this
 
 - **It's risky**: One bad "Save" and you overwrite your only copy.
