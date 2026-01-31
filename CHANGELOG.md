@@ -20,3 +20,7 @@ This page lists significant updates to the course website and guide materials. C
 - **Policy Update**: Clarified in `weekly_workflow.qmd` that `.md` files are the required submission format for visualization on GitHub, unlike other courses requiring HTML/PDF.
 - **New Guide**: Added "University Computer Constraints" to `setup.qmd`, covering package persistence (AppData) and the Rtools warning.
 - **Update**: Added advice on storage management (H: Drive 8GB limit vs OneDrive) to `setup.qmd`.
+- **Expansion**: Greatly expanded the "Quick Reference Card" in `setup.qmd` to include cloning, committing, pushing, and package installation steps.
+- **Workflow Refinement**: Updated `weekly_workflow.qmd` to explicitly require using the full repo name as the directory name when cloning (replacing "leave blank").
+- **New Feature**: Added a "Verify Your Location" step to `weekly_workflow.qmd` using the `check_location.R` script.
+- **Content Update**: Updated the Course Overview (`index.qmd`) with the official module synopsis, learning outcomes, and content list.
