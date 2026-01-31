@@ -20,20 +20,6 @@ Choose your adventure:
 *   Just **log in** to a PC.
 *   Then [jump straight to **Section 2: Your Computational Toolkit**](#your-computational-toolkit).
 
-::: {.callout-note}
-## 🏫 Important: Using University Computers
-
-While everything is installed, there are a few quirks to be aware of:
-
-1.  **Re-installing Packages**: R packages are often stored in a temporary location (`C:/Users/.../AppData/`). This folder is **wiped** when you log off or switch computers.
-    *   **The Fix**: Keep the `install_packages.R` script handy! You may need to run it again at the start of a session if your packages are missing.
-
-2.  **"Rtools is Missing" Warning**: When running the install script, you might see a scary red warning about `Rtools` not being installed.
-    *   **The Fix**: **Ignore it.** Rtools is for compiling packages from source. We use pre-built binaries, so you don't need it. As long as you see `Setup Complete` at the end, you are fine!
-
-3.  **Storage Limits**: Your H: Drive ("MyFiles") is safe and persistent, but it only has **8GB** of space.
-    *   **Advice**: Keep your active code projects on H:, but move large datasets or old projects to your OneDrive or a USB stick if you run out of space.
-:::
 
 ## 1B. Using Your Own Laptop
 
@@ -160,6 +146,18 @@ message("🎉 Setup Complete! You are ready for MA22019.")
 ```
 
 > **Note:** This might take a few minutes. If it asks "Do you want to restart R prior to installing?", click **Yes**.
+
+::: {.callout-note}
+## 🏫 Important
+
+1.  **Re-installing Packages**: R packages are often stored in a temporary location (`C:/Users/.../AppData/`). This folder is **wiped** when you log off or switch computers.
+    *   **The Fix**: Keep the `install_packages.R` script handy! You may need to run it again at the start of a session if your packages are missing.
+
+2.  **"Rtools is Missing" Warning**: When running the install script, you might see a scary red warning about `Rtools` not being installed.
+    *   **The Fix**: **Ignore it.** Rtools is for compiling packages from source. We use pre-built binaries, so you don't need it. As long as you see `Setup Complete` at the end, you are fine!
+
+:::
+
 
 
 ---
@@ -316,6 +314,14 @@ The H: Drive is automatically available — no setup needed!
 2. Look for **(H:)** under "This PC"
 
 That's it!
+
+::: {.callout-note}
+## 🏫 Important
+
+**Storage Limits**: Your H: Drive ("MyFiles") is safe and persistent, but it only has **8GB** of space.
+    *   **Advice**: Keep your active code projects on H:, but move large datasets or old projects to your OneDrive or a USB stick if you run out of space.
+:::
+
 
 ### From Home (Personal Laptop)
 
@@ -587,22 +593,7 @@ This is totally normal! Each `.Rproj` file keeps that assignment's work separate
 
 ---
 
-
-# 8. Using UniDesk 
-
-You can also access university computers remotely using [UniDesk](https://www.bath.ac.uk/guides/working-remotely-with-uniapps-and-unidesk/).
-
-::: {.callout-warning}
-## ⚠️ Reminder: Git Does NOT Work on Remote Desktop
-
-One more time for the people in the back: **Git doesn't work on UniDesk!** You can write and run R code, but Clone/Pull/Push won't work.
-
-For Git workflows, use a physical lab computer or your own laptop with R/RStudio/Git installed locally.
-:::
-
----
-
-# 9. Quick Reference Card
+# 8. Quick Reference Card
 
 **Already finished setup?** Bookmark this section! For detailed step-by-step instructions, see the [Weekly Workflow Guide](weekly_workflow.qmd).
 
@@ -610,10 +601,14 @@ For Git workflows, use a physical lab computer or your own laptop with R/RStudio
 |------|-----|
 | **Open Project** | Double-click the `.Rproj` file |
 | **Pull Updates** | Git pane → **Pull** (⬇️ blue arrow) |
-| **Render** | Source pane → **Render** (🚀 blue arrow) |
+| **Start New Guide/Homework** | File → New Project → Version Control → Git |
+| **Render Report** | Source pane → **Render** (🚀 blue arrow) |
+| **Save Your Work (Commit)** | Git pane → Check boxes → **Commit** |
+| **Submit Your Work (Push)** | Git pane → **Push** (⬆️ green arrow) |
+| **Install Packages** | Open `install_packages.R` → Select All → **Run** |
 ---
 
-# 10. Next Steps
+# 9. Next Steps
 
 You made it! 🎉 Here's what to do next:
 
