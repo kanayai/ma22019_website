@@ -164,6 +164,14 @@ We use the custom `ma22019_tools` R package to manage assignment distribution.
     *   The `materials` repository is **read-only** for students (Labs/Notes only).
     *   Assignments are personal repositories.
 
+## 🔐 Grading & Identity Verification
+
+This course uses **GitHub Enterprise** (`github.bath.ac.uk`), which strictly enforces University Single Sign-On (SSO).
+
+*   **Source of Truth**: Grading is linked to the **Repository Name** (e.g., `lab-00-username`), which is tied to the student's authenticated University account.
+*   **Git Author Mismatch**: If a student forgets to configure their local `git config` and pushes as "DarkLord99", it **does not matter**. The work is still securely inside the `username` repository, and the Pushed By event on GitHub Enterprise confirms their identity.
+*   **No Manual Tracking**: Tutors do NOT need to maintain a mapping of "Real Name" vs "Git Name". Trust the repository username.
+
 ## 🖥️ Setup on a New Machine
 
 **Crucial: Read [SYNC_WORKFLOW.md](SYNC_WORKFLOW.md) first!**

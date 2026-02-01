@@ -1,13 +1,10 @@
----
-title: "New Lectures Structure"
-format: html
----
 
 # Flipped classroom
 
 - refer to lecture NOtes to read first ,maybe some guardrails
 
 -
+
 
 # Part titles for the Lecture Notes (roller coaster analogy)
 
@@ -99,9 +96,5 @@ TO DO : Include at least 2 more mentis + some DS stuff so that is not all toolki
 
 
 
-
-# Lecture 1: Hello, World!
-
-- Menti
 
 

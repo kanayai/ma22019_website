@@ -29,3 +29,9 @@ This page lists significant updates to the course website and guide materials. C
 - **Guide Update**: Added "Important Best Practices" section to `traditional_workflow.qmd` covering submission formats and file naming.
 - **Logo Update**: Finalized site logo to "Intro to Data Science" edition (text inside border) - Version 3.
 - **Admin**: Finalized emails (`pre_lab_00.md`, `tutor_email_draft.md`) and updated `tutor_guide.md` with Safe Cloning rules.
+
+### 01 Feb 2026
+- **Feature**: Created Lecture 1 Slides (`01_hello_world.qmd`) with interactive Mentimeter/Forms integration and "Whole Game" Mermaid diagram.
+- **Feature**: Created `_admin/check_student_status.R` and `_admin/check_tutor_status.R` for tracking Lab 00 engagement.
+- **Documentation**: Updated `AGENTS.md` and `README.md` to clarify GitHub Enterprise identity verification (Repo Name > Git Config) and confirm Lab 00 deployment status.
+- **Fix**: Refined Setup Guide to include "Cloning Lab 00" instructions.

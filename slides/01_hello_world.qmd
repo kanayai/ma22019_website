@@ -1,0 +1,324 @@
+---
+title: "Hello World!"
+subtitle: "Lecture 1: Introduction to Data Science"
+format: revealjs
+---
+
+# Welcome 👋
+
+MA22019: Introduction to Data Science
+
+:::{.notes}
+- **9:05 - 9:15**: Arrival. Mentimeter QR visible.
+- "What did you do during the break?"
+:::
+
+---
+
+## 🧊 Ice Breaker
+
+<center>
+[MENTIMETER QR CODE HERE]
+</center>
+
+::: {.fragment .fade-in}
+> "What did you do during the break?"
+:::
+
+
+---
+
+## Who is this guy? 👨‍🏫
+
+**Dr. Karim Anaya-Izquierdo**
+
+- 🏢 Office: 4W 1.10
+- 📧 Email: k.anaya-izquierdo@bath.ac.uk
+- 🕒 **Office Hours**: [Time/Day TBD]
+
+. . .
+
+**The Team:**
+
+- 4 Tutors (PhD Students)
+- Help in Labs + Mark Homework
+
+---
+
+## What is Data Science? 🤔 
+
+> "Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge." — *R for Data Science*
+
+. . .
+
+It is **NOT** just about:
+
+- ❌ Coding continuously
+- ❌ Memorizing commands
+- ❌ Complex logic or maths (yet)
+
+. . .
+
+It **IS** about:
+
+- ✅ **Curiosity**
+- ✅ **Communication**
+- ✅ **Reproducibility**
+
+---
+
+## 🎢 The Rollercoaster
+
+```{mermaid}
+%%| fig-width: 10
+flowchart LR
+    Import(Import <br/> 🚧 The Lift Hill) --> Tidy(Tidy <br/> 📉 The First Drop)
+    Tidy --> Transform(Transform <br/> 🔄 The Loop)
+    Transform --> Visualize(Visualize <br/> 🌅 The View)
+    Visualize --> Model(Model <br/> 🚀 The G-Force)
+    Model --> Transform
+    Visualize --> Communicate(Communicate <br/> 📸 The Photo Finish)
+
+    style Import fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style Tidy fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Transform fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style Visualize fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Model fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style Communicate fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+```
+
+---
+
+## Why a Survey? 🤔
+
+We need raw ingredients for our cooking show.
+
+1.  **Real Data**: Not a boring pre-made dataset.
+2.  **Messy Data**: Real humans make typos.
+3.  **Instant Feedback**: From "Response" to "Insight" in 5 mins.
+
+*Your answers are anonymous and will only be used for this demo.*
+
+---
+
+## 📊 Live Data Experiment!
+
+We need some **DATA** to work with.
+
+Please scan this code and answer 4 quick questions:
+
+<center>
+[MICROSOFT FORMS QR CODE HERE]
+</center>
+
+::: {.r-stack}
+::: {}
+1. Hours of sleep? 😴
+2. Coding confidence (1-10)? 🤓
+3. Favorite 'probability' word? 🎲
+4. Used AI for code? 🤖
+:::
+
+::: {.fragment}
+<br/>
+<center>
+**Time Remaining:**
+<br/>
+<iframe width="400" height="200" src="https://www.youtube.com/embed/S280PkscoYQ?autoplay=1&mute=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+*(6 Minute Timer)*
+</center>
+:::
+:::
+
+---
+
+# The Magic Trick 🪄
+
+Let's see what you just said...
+
+*(Live Demo: RStudio)*
+
+---
+
+## The Raw Data 🙈
+
+*(Screenshot of messy raw Excel/CSV)*
+
+Usually, data looks like this:
+- Weird column names
+- Missing values
+- Typos ("Bayseian", "baesian", "Bayes!")
+
+---
+
+## The Clean Data ✨
+
+```r
+library(tidyverse)
+
+survey_data <- read_csv("responses.csv") %>%
+  clean_names() %>%
+  rename(sleep = how_many_hours_did_you_sleep)
+```
+
+. . .
+
+Now we can ask questions!
+
+---
+
+## Question 1: How tired are you? 😴
+
+```r
+ggplot(survey_data, aes(x = sleep)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Class Sleep Distribution")
+```
+
+*(Plot appears here)*
+
+---
+
+## Question 2: The "Word Cloud" ☁️
+
+"What is your favorite probability word?"
+
+```r
+library(tidytext)
+library(wordcloud)
+
+survey_data %>%
+  unnest_tokens(word, prob_word) %>%
+  count(word) %>%
+  with(wordcloud(word, n, max.words = 50))
+```
+
+*(Plot appears here)*
+
+---
+
+(Break: 10 mins) ☕
+
+---
+
+# Meet the Toolkit 🛠️
+
+We use professional, industry-standard tools.
+
+---
+
+## 1. R (The Engine) 🚗
+
+- The programming language.
+- It does the calculations.
+- Like the **engine** of a car.
+
+![](../img/r-logo.png){width="150px"}
+
+---
+
+## 2. RStudio (The Dashboard) 🏎️
+
+- The interface where you work.
+- It has the steering wheel, speedometer, GPS.
+- You drive the car (R) *through* the dashboard (RStudio).
+
+![](../img/rstudio-logo.png){width="200px"}
+
+---
+
+## 3. Quarto (The Lab Notebook) 📓
+
+- Where you write your code AND your report.
+- Combines text, code, and plots.
+- "Literate Programming" — code that humans can read.
+
+![](../img/quarto-logo.png){width="150px"}
+
+---
+
+## 4. Git & GitHub (The Time Machine) ⏳
+
+**Git** = "Save Points" in a video game.
+- Did you break your code?
+- Go back to yesterday's save point!
+
+**GitHub** = The Cloud.
+- Where you submit your work.
+- Where you get course materials.
+
+---
+
+# Housekeeping 🧹
+
+---
+
+## The Schedule 🗓️
+
+**Weeks 1-5**: 
+- Lecture (Wed) + Lab (Mon/Tue).
+- **Weeks 1-3:** "Live Coding" on Fridays.
+
+**Weeks 6 & 11**:
+- **Coursework Deadlines** 🚨
+
+---
+
+## Assessment 📝
+
+1.  **Formative (Practice)**
+    - Weekly Labs
+    - Weekly Homeworks
+    - *Marked by Tutors for feedback, not grade.*
+
+2.  **Summative (The Real Deal)**
+    - **Coursework 1 (40%)**: Due Week 6
+    - **Coursework 2 (60%)**: Due Week 11
+
+---
+
+## "Flipped Classroom" 🙃
+
+We follow the **R for Data Science (2e)** approach.
+
+1.  **Read** the assigned chapter from [r4ds.hadley.nz](https://r4ds.hadley.nz) BEFORE the lecture.
+2.  **Come** to the lecture for:
+    - Live Demos & Applications
+    - Interactive Quizzes (Mentimeter)
+    - Discussion
+    - "The big picture"
+
+---
+
+## Your First Mission 🚀
+
+**Install Everything.**
+
+Go to the **Computing Setup** page on Moodle/Website.
+
+You need:
+1. R & RStudio
+2. Quarto
+3. Git
+4. A GitHub Account (University one!)
+
+**Deadline**: Before your first Lab (Monday/Tuesday).
+
+---
+
+## One Last Question...
+
+<center>
+[MENTIMETER QR CODE]
+</center>
+
+> "In one word, how are you feeling about this course?"
+
+. . .
+
+(Excited / Scared / Hungry / Confused)
+
+---
+
+# See you next week! 👋

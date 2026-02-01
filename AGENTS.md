@@ -11,6 +11,8 @@
 - **Tech Stack**: Quarto, R, RevealJS (slides), HTML/CSS
 - **Author**: Dr. Karim Anaya-Izquierdo
 - **Repository**: https://github.bath.ac.uk/ma22019-2026/ma22019_website.git
+- **Infrastructure**: **GitHub Enterprise** (github.bath.ac.uk), NOT GitHub Classroom.
+- **Identity Security**: Student identity is verified via University SSO login (`abc123`). The repository ownership (`lab-00-abc123`) is the single source of truth for grading, regardless of the student's local Git configuration (`user.name`).
 
 ---
 
@@ -315,12 +317,16 @@ When merging this project:
     - Addresses user feedback on folder nesting and copy tips.
     - Explicitly clarified "403 Forbidden" errors.
 
-### Next Session (URGENT - Planned for Tomorrow)
-- [ ] **Setup Guide Refinements (User Request)**:
-    - [ ] **`.md` vs `.pmd`**: Add section explaining differences in setup guide.
-    - [ ] **Warning**: Add warning/recommendation about R packages being stored in `C/Users/../AppData` on University computers.
-    - [ ] **Storage Advice**: Remind students on University H drive ("myfiles") that they only have **8GB** limit. Contrast with OneDrive (much larger) to help them decide where to put files.
-    - [ ] **Rtools Warning**: Address "serious warning" for some Rtools packages when running `install_packages.R` on uni computers.
-- [ ] **Finish `lab_00` template**: Ensure it's ready for deployment.
-- [ ] **Get Real Roster**: Import the actual student list.
-- [ ] **Deploy Lab 00**: Use `ma22019_tools` to deploy to the total number of students.
+### Completed This Session (2026-02-01)
+- [x] **Lab 00 Status Verified**: Created `check_student_status.R` and `check_tutor_status.R`. Correctly identifies "Active" vs "Created" (ignoring automated patches).
+- [x] **Docs Updated**: Clarified GitHub Enterprise (Not Classroom) infrastructure in `AGENTS.md` and `README.md`.
+- [x] **Lecture 1 Ready**:
+    - Created `slides/01_hello_world.qmd`.
+    - Integrated "Rollercoaster" Mermaid diagram.
+    - Drafted Live Demo script (`live_coding/week_1/demo_lecture_01.R`).
+    - Finalized Session Plan (`_admin/lecture_01_plan.md`).
+
+### Next Session
+- [ ] **Run Lecture 1**: Wednesday morning!
+- [ ] **Monitor Lab 00**: Use the status scripts to identify struggling students before Labs (Mon/Tue).
+- [ ] **Prepare Week 2**: Start drafting `02_data_cleaning_and_wrangling.qmd`.
