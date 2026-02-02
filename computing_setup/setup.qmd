@@ -2,6 +2,26 @@
 title: "Computer Setup Guide"
 ---
 
+```{=html}
+<script>
+// Safety Check: Redirect if on the incorrect personal GitHub Pages site
+if (window.location.hostname.includes("kanayai.github.io")) {
+  document.body.innerHTML = `
+    <div style="margin: 50px auto; max-width: 800px; text-align: center; font-family: sans-serif;">
+      <h1 style="color: #c62828;">⚠️ Wrong Website Link</h1>
+      <p style="font-size: 1.2em;">You have accessed an outdated or incorrect version of the setup guide.</p>
+      <p>Please use the official course website:</p>
+      <br>
+      <a href="https://github.bath.ac.uk/pages/ma22019-2026/ma22019_website/computing_setup/setup.html" 
+         style="background-color: #005871; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; display: inline-block;">
+         Go to Official Setup Guide
+      </a>
+    </div>
+  `;
+}
+</script>
+```
+
 Welcome! 🎉 This guide will get you up and running for the semester. Don't worry — we'll walk you through every step. You've got this!
 
 # 🏁 1. START HERE: Which path are you on?
