@@ -1,0 +1,200 @@
+[
+  {
+    "objectID": "computing_setup/setup.html",
+    "href": "computing_setup/setup.html",
+    "title": "Computer Setup Guide",
+    "section": "",
+    "text": "Welcome! 🎉 This guide will get you up and running for the semester. Don’t worry — we’ll walk you through every step. You’ve got this!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#a.-using-university-of-bath-computers",
+    "href": "computing_setup/setup.html#a.-using-university-of-bath-computers",
+    "title": "Computer Setup Guide",
+    "section": "1A. Using University of Bath Computers",
+    "text": "1A. Using University of Bath Computers\nGreat news! R, RStudio, Quarto and and Git are already installed. The IT team has done the hard work for you! 🙌\n\nJust log in to a PC.\nThen jump straight to Section 2: Your Computational Toolkit.",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#b.-using-your-own-laptop",
+    "href": "computing_setup/setup.html#b.-using-your-own-laptop",
+    "title": "Computer Setup Guide",
+    "section": "1B. Using Your Own Laptop",
+    "text": "1B. Using Your Own Laptop\nUsing your own machine? Brilliant — having your own setup means you can work from anywhere.\nYou’ll need to install four things before your first lab:\n\n\n\nSoftware\nDownload Link\n\n\n\n\nR\ncloud.r-project.org\n\n\nRStudio\nposit.co/download/rstudio-desktop\n\n\nQuarto\nquarto.org/docs/get-started/\n\n\nGit\ngit-scm.com/downloads\n\n\n\nJust choose your operating system and download the installer. The installation wizards will guide you through — accept the defaults and you’ll be fine!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#a-quick-tour-of-rstudio",
+    "href": "computing_setup/setup.html#a-quick-tour-of-rstudio",
+    "title": "Computer Setup Guide",
+    "section": "A Quick Tour of RStudio",
+    "text": "A Quick Tour of RStudio\nWhen you first open RStudio, don’t panic if it looks complicated! You’ll see three panes initially. The fourth one (Source) appears when you open a file.\n\n\n\n\n\n\nTip\n\n\n\n“Where’s the fourth pane?!” The Source pane only appears when you open a file (.R, .qmd, etc.). Go to File → Open File or double-click any file in the Files pane to reveal it.\n\n\n\n\n\nRStudio interface\n\n\n\n\n\n\n\n\n\n\nPane\nLocation\nWhat It Does\n\n\n\n\nSource\nTop-left\nYour code editor — where the magic happens! ✨\n\n\nConsole\nBottom-left\nRun code and see immediate results (look for the &gt; prompt)\n\n\nEnvironment\nTop-right\nShows your data, variables, and those all-important Git buttons (when activated, see below)\n\n\nFiles/Plots/Help\nBottom-right\nBrowse files, admire your plots, get help when stuck\n\n\n\n\nPro tip: If a pane goes missing (it happens!), go to View → Panes → Show All Panes to bring it back.\n\n\n\n\n\n\n\nTipUse Source Mode, Not Visual Mode\n\n\n\nWhen editing .qmd files, RStudio offers two modes: Source and Visual. We strongly recommend Source mode because:\n\nYou see exactly what’s in the file — no mystery formatting hiding in the background\nYou’ll learn Markdown syntax (a skill that transfers to blogs, READMEs, documentation, and more!)\nIt’s way easier to debug when something goes wrong\nVisual mode can sometimes sneak in unwanted formatting changes\n\nSwitch modes using the toggle at the top-left of the Source pane. Trust us on this one!\n\n\n\nThe Most Important Buttons\nYou’ll use these buttons constantly. Memorize them and you’ll fly through your work!\n\n\n\n\n\n\n\n\nButton\nWhere\nWhat It Does\n\n\n\n\nRun\nSource pane toolbar\nRuns your selected code — see results instantly!\n\n\nRender\nSource pane toolbar\nTransforms your .qmd into HTML, PDF or plain markdown\n\n\nPull\nGit pane (top-right)\nDownloads the latest updates from GitHub\n\n\nPush\nGit pane (top-right)\nUploads your amazing work to GitHub",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#install-r-packages-the-apps",
+    "href": "computing_setup/setup.html#install-r-packages-the-apps",
+    "title": "Computer Setup Guide",
+    "section": "Install R Packages (The “Apps”)",
+    "text": "Install R Packages (The “Apps”)\nR is like a new phone—it’s great, but you need to install “apps” (called packages) to make it useful.\nWe have prepared a Master Script that installs everything you need for the semester (Tidyverse, Mapping tools, etc.).\n\nOpen RStudio.\nGo to File &gt; New File &gt; R Script.\nCopy and paste the code below into the new file. (Tip: You can use the copy icon 📋 in the top-right of the code block).\nSave the file as install_packages.R in your MA22019 folder.\nSelect all the code (Cmd+A / Ctrl+A).\nClick Run (or press Cmd+Enter / Ctrl+Enter).\n\n# MA22019: Master Package Installation Script\n# Run this entire chunk to install/update course packages\n\ninstall_if_missing &lt;- function(packages) {\n  new_packages &lt;- packages[!(packages %in% installed.packages()[,\"Package\"])]\n  if(length(new_packages)) {\n    message(\"Installing: \", paste(new_packages, collapse = \", \"))\n    install.packages(new_packages)\n  } else {\n    message(\"✅ All packages in this group are already installed.\")\n  }\n}\n\n# 1. Core Data Science\ninstall_if_missing(c(\"tidyverse\", \"rmarkdown\", \"knitr\", \"lubridate\"))\n\n# 2. Visualization\ninstall_if_missing(c(\"patchwork\", \"RColorBrewer\", \"scales\"))\n\n# 3. Text Analysis\ninstall_if_missing(c(\"tidytext\", \"wordcloud\", \"textdata\"))\n\n# 4. Spatial Analysis\ninstall_if_missing(c(\"sf\", \"tmap\", \"ggspatial\", \"prettymapr\", \"sp\", \"gstat\", \"spatstat\", \"raster\"))\n\nmessage(\"🎉 Setup Complete! You are ready for MA22019.\")\n\nNote: This might take a few minutes. If it asks “Do you want to restart R prior to installing?”, click Yes.\n\n\n\n\n\n\n\nNote🏫 Important\n\n\n\n\nRe-installing Packages: R packages are often stored in a temporary location (C:/Users/.../AppData/). This folder is wiped when you log off or switch computers.\n\nThe Fix: Keep the install_packages.R script handy! You may need to run it again at the start of a session if your packages are missing.\n\n“Rtools is Missing” Warning: When running the install script, you might see a scary red warning about Rtools not being installed.\n\nThe Fix: Ignore it. Rtools is for compiling packages from source. We use pre-built binaries, so you don’t need it. As long as you see Setup Complete at the end, you are fine!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#quarto-your-new-document-format",
+    "href": "computing_setup/setup.html#quarto-your-new-document-format",
+    "title": "Computer Setup Guide",
+    "section": "Quarto: Your New Document Format",
+    "text": "Quarto: Your New Document Format\nForget Word and Google Docs — in this course, you’ll create Quarto documents (.qmd files). These are special because they combine:\n\n📝 Your written analysis (in plain English)\n💻 Your code (in R)\n📊 The output of your code (plots, tables, results — all auto-generated!)\n\nWhen you click Render, everything magically combines into a beautifully formatted HTML or PDF. It’s like having a robot assistant who formats your reports perfectly every time!\n\n\n\n\n\n\nTipAlso taking MA22015 (Statistics 2B)?\n\n\n\n\n\nGood news! In MA22015, you use R Markdown (.Rmd files) which is basically Quarto’s older sibling. They’re very similar!\n\n\n\nFeature\nR Markdown (.Rmd)\nQuarto (.qmd)\n\n\n\n\nUsed in\nMA22015\nMA22019 (this course)\n\n\nButton to run\nKnit\nRender\n\n\nFile header\nUses output: html_document\nUses format: html\n\n\nSyntax\nNearly identical\nNearly identical\n\n\n\nThink of Quarto as the “next generation” upgrade. Skills transfer directly between them — you’re basically learning two tools for the price of one! 🎁",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#an-analogy-to-writing-an-essay",
+    "href": "computing_setup/setup.html#an-analogy-to-writing-an-essay",
+    "title": "Computer Setup Guide",
+    "section": "An Analogy to Writing an Essay",
+    "text": "An Analogy to Writing an Essay\nStill feeling a bit overwhelmed? Think of it like writing an essay for a literature class:\n\n\n\nLiterature Class\nData Science (This Course)\n\n\n\n\nLanguage: English\nLanguage: R\n\n\nInterface: Microsoft Word\nInterface: RStudio\n\n\nDocument: .docx file\nDocument: .qmd (Quarto) file\n\n\nTrack Changes\nGit\n\n\nGoogle Drive\nGitHub\n\n\n\n\n\n\nComparison of tools\n\n\nSee? You’ve been doing a version of this your whole academic life. Now you’re just leveling up! 🚀",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#where-to-put-the-ma22019-folder",
+    "href": "computing_setup/setup.html#where-to-put-the-ma22019-folder",
+    "title": "Computer Setup Guide",
+    "section": "Where to put the MA22019 folder",
+    "text": "Where to put the MA22019 folder\n\n\n\nComputer Type\nLocation\n\n\n\n\nUniversity PC\nH:\\MA22019\\\n\n\nWindows laptop\nC:\\Users\\YourName\\Documents\\MA22019\\\n\n\nMac\n~/Documents/MA22019/\n\n\n\n\n\n\n\n\n\nWarning⚠️ AVOID Cloud-Synced Folders at All Costs!\n\n\n\nThis is really important: Do NOT save your projects in OneDrive, iCloud, Dropbox, or Google Drive folders!\nWhy? Cloud sync services and Git are mortal enemies. Git creates thousands of tiny files that these services try to sync simultaneously, causing crashes, corruption, and heartbreak. 💔\nThe MA22019 folder can go anywhere that is NOT cloud-synced:\n\nWindows: If your Documents folder shows a cloud icon, create your folder at C:\\MA22019\\ instead\nMac: Go to System Settings → Apple ID → iCloud → iCloud Drive → Options. If “Desktop & Documents” is ON, use ~/MA22019/ (your home folder) instead\nUniversity PCs: The H: Drive is safe — use that!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#the-folder-structure",
+    "href": "computing_setup/setup.html#the-folder-structure",
+    "title": "Computer Setup Guide",
+    "section": "The Folder Structure",
+    "text": "The Folder Structure\nWe will create three folders now (since we create the materials folder in the next step!):\n\n\n\n\n\ngraph TD\n    root[MA22019]\n    root --&gt; materials[materials/]\n    root --&gt; practice[practice/]\n    root --&gt; homework[homework/]\n    root --&gt; coursework[coursework/]\n\n    style root fill:#f9f9f9,stroke:#333,stroke-width:2px\n    style materials fill:#e1f5fe,stroke:#0277bd\n    style practice fill:#e8f5e9,stroke:#2e7d32\n    style homework fill:#fff3e0,stroke:#ef6c00\n    style coursework fill:#fce4ec,stroke:#c2185b\n\n\n\n\n\n\nMA22019/\n├── install_packages.R   \n├── materials/         ← Created automatically in Section 5\n├── practice/          ← You will clone practice labs (like Lab 00 to be created in Section 6) or use as a sandbox \n├── homework/          ← You will clone homework assignments here\n└── coursework/        ← You will clone coursework assignments here\n\n\nThe “Practice” Folder = Your Sandbox 🏖️\nThe practice/ folder is special.\n\nOfficial Use: It’s for Lab 00 and other non-assessed practice tasks.\nYour Use: Think of it as your Sandbox. Want to test some code from a lecture? Want to try a new package? create a script in practice/my_experiments.R for example! It’s the one place where you can be messy without breaking anything important.\n\n\n\n\n\n\n\nImportant🛑 CRITICAL: Do NOT Move Folders Around!\n\n\n\nOnce you have created this structure, do not move or rename these folders.\n\nIf you clone a repo into practice/ and then drag-and-drop it into materials/, Git will break.\nIf you rename MA22019 to My_Maths_Notes, RStudio will get confused.\n\nSet it up once, leave it alone, and let RStudio manage the files inside. Simplicity is key!\n\n\n\n\n\n\n\n\nNote\n\n\n\nYou can create these folders using File Explorer (Windows) or Finder (Mac), or use RStudio as shown below — whatever feels comfortable!\n\n\nHow to create folders in RStudio (optional method):\n\nOpen RStudio (not inside any project! Don’t know what a project is? See Section 7 below)\nIn the Files pane (bottom-right), navigate to your Documents (or chosen location)\nClick New Folder → type MA22019\nClick into MA22019/\nClick New Folder → type practice\nClick New Folder → type homework\nClick New Folder → type coursework\n(Do not create materials yet — RStudio will do it for you!)\n\n\n\n\n\n\n\nTip🎉 That’s All the Folders You Need!\n\n\n\nIf you’re following the Git workflow (which you should!), this is the only mandated manual folder creation you’ll do all semester. When you clone homework or coursework, the folders appear automatically. Pretty neat, right?\nYou can jump to the Weekly Workflow Guide for details on how cloning works.",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#using-the-h-drive-university-network-storage",
+    "href": "computing_setup/setup.html#using-the-h-drive-university-network-storage",
+    "title": "Computer Setup Guide",
+    "section": "Using the H: Drive (University Network Storage)",
+    "text": "Using the H: Drive (University Network Storage)\nYour H: Drive is personal network storage that IT backs up for you. It’s a safe, reliable place for your work on university computers.\n\nOn Campus (Lab PCs)\nThe H: Drive is automatically available — no setup needed!\n\nOpen File Explorer (Win+E)\nLook for (H:) under “This PC”\n\nThat’s it!\n\n\n\n\n\n\nNote🏫 Important\n\n\n\nStorage Limits: Your H: Drive (“MyFiles”) is safe and persistent, but it only has 8GB of space. * Advice: Keep your active code projects on H:, but move large datasets or old projects to your OneDrive or a USB stick if you run out of space.\n\n\n\n\nFrom Home (Personal Laptop)\nWant to access your H: Drive from home without using UniDesk or UniApps? Check the official university guides:\n\nWindows: How to access your H: Drive vs VPN (Windows)\nMac: How to access your H: Drive vs VPN (Mac)",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#on-university-lab-computers",
+    "href": "computing_setup/setup.html#on-university-lab-computers",
+    "title": "Computer Setup Guide",
+    "section": "On University Lab Computers",
+    "text": "On University Lab Computers\nThe good news: Git is already installed. But there is one critical step you must do to make it work with the university network drives (H: Drive).\n\n⚠️ Critical: Fix the “Dubious Ownership” Error\nTo verify your setup and ensure the Git pane appears:\n\nOpen RStudio.\nClick the Terminal tab (next to Console, usually bottom-left).\nCopy and paste this exact command and press Enter:\ngit config --global --add safe.directory '*'\nRestart RStudio (close and reopen it).\n\n\n\n\n\n\n\nNoteWhy do I need this?\n\n\n\nThe University H: Drive has strict security settings that confuse Git. This command tells Git “It’s safe to use folders on this computer.”\nIf your Git pane ever disappears in the future, just run this command again! It resets occasionally on university PCs.\n\n\nDone! That was easy, right? ✅",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#on-personal-computers-windows",
+    "href": "computing_setup/setup.html#on-personal-computers-windows",
+    "title": "Computer Setup Guide",
+    "section": "On Personal Computers (Windows)",
+    "text": "On Personal Computers (Windows)\nDo the following check:\n\nOpen RStudio\nGo to Tools → Global Options → Git/SVN\nThe Git executable should now show C:\\Program Files\\Git\\bin\\git.exe\nClick OK\n\nHigh five! 🙌 You’re all set!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#on-personal-computers-mac",
+    "href": "computing_setup/setup.html#on-personal-computers-mac",
+    "title": "Computer Setup Guide",
+    "section": "On Personal Computers (Mac)",
+    "text": "On Personal Computers (Mac)\nGreat news for Mac users — Git usually comes pre-installed! Let’s check:\n\nOpen RStudio\nGo to Tools → Global Options → Git/SVN\nCheck if the Git executable shows /usr/bin/git or similar",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#if-git-isnt-found",
+    "href": "computing_setup/setup.html#if-git-isnt-found",
+    "title": "Computer Setup Guide",
+    "section": "If Git isn’t found",
+    "text": "If Git isn’t found\nHere’s what to do:\nOn Windows\n\nOpen Command Prompt (Start menu → type cmd)\nType git --version and press Enter\nIf it shows a version number, Git is installed! Copy the path from where git into RStudio settings\nIf it says “not recognized”, install Git from git-scm.com\n\nOn Mac:\n\nOpen Terminal (Applications → Utilities → Terminal)\nType git --version and press Enter\nIf prompted, click Install to get the Xcode Command Line Tools\nRestart RStudio and check Git/SVN settings again\n\n\n\n\n\n\n\nWarning⚠️ Heads Up: Git Does NOT Work on Remote Desktop (UniDesk/UniApps)\n\n\n\nIf you’re connecting to university computers remotely using UniDesk or UniApps, Git will not work. You can use RStudio fine, but Clone/Pull/Push operations will fail.\nYour options: Use a physical lab computer on campus, or install R/RStudio/Git on your own laptop (honestly, it’s worth it!).\nMore info: UniDesk/UniApps guide.",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#tell-git-who-you-are",
+    "href": "computing_setup/setup.html#tell-git-who-you-are",
+    "title": "Computer Setup Guide",
+    "section": "Tell Git Who You Are",
+    "text": "Tell Git Who You Are\nAlmost there! Git needs to know your name and email so it can track who made which changes.\nIn the RStudio Console (the pane with the &gt; prompt, usually bottom-left), run this once — just replace the example with your details:\ninstall.packages(\"usethis\")  # Only needed once\nlibrary(usethis)\nuse_git_config(user.name = \"Your Name\", user.email = \"abc123@bath.ac.uk\")\n\n\n\n\n\n\nWarningImportant: Use Your Bath Account Only\n\n\n\n\nUse your Bath email address (abc123@bath.ac.uk), not your personal email\nYou cannot use a personal GitHub.com account for this course\nWe use github.bath.ac.uk (University of Bath’s enterprise GitHub), which is completely separate from github.com\nYour Bath username and password work automatically — no need to create anything new!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#authentication-if-asked-for-password",
+    "href": "computing_setup/setup.html#authentication-if-asked-for-password",
+    "title": "Computer Setup Guide",
+    "section": "Authentication (If Asked for Password)",
+    "text": "Authentication (If Asked for Password)\nIf RStudio asks for credentials when cloning, use:\n\nUsername: Your Bath username (e.g., abc123)\nPassword: Your university password\n\n\n\n\n\n\n\nNote\n\n\n\nWe use github.bath.ac.uk (enterprise GitHub) which connects to your university login. You do NOT need a Personal Access Token or SSH keys for this course — keep it simple!",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#verify-it-worked",
+    "href": "computing_setup/setup.html#verify-it-worked",
+    "title": "Computer Setup Guide",
+    "section": "Verify It Worked",
+    "text": "Verify It Worked\nTake a moment to check everything looks right:\n\n✅ You should see a Git tab in the top-right pane\n✅ The Files pane should show folders like lab_solutions/, labs/, live_coding\n\nIf you see all, give yourself a pat on the back! 🎉",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  },
+  {
+    "objectID": "computing_setup/setup.html#test-pull-verify-your-setup",
+    "href": "computing_setup/setup.html#test-pull-verify-your-setup",
+    "title": "Computer Setup Guide",
+    "section": "Test Pull (Verify Your Setup)",
+    "text": "Test Pull (Verify Your Setup)\nOne last check! Let’s make sure you can pull updates:\n\nIn the Git pane (top-right), click the Pull button (blue down arrow ⬇️)\nYou should see a message like “Already up to date” or watch files appear\n✅ If the Git pane works and Pull runs without errors, your setup is complete!\n\nCongratulations — you’re ready to do data science! 🚀",
+    "crumbs": [
+      "Computing",
+      "Setup Guide"
+    ]
+  }
+]
